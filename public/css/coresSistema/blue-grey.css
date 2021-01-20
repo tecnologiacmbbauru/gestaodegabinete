@@ -1,0 +1,45 @@
+.nav-principal{
+	background-color:#102027 !important;
+}
+
+.nav-segundaria{
+	background-color:#37474f !important;
+}
+
+.btn{
+    background-color:#37474f !important;
+    border: none; 
+}
+
+.card-header{
+    background-color:#62727b !important;
+    text-align: center;
+}
+
+.aniversariante{
+    color:#ffffff !important;
+}
+
+.titulo-card{
+    color:#ffffff !important;
+    font-size:16px !important;
+}
+
+/*Seletor na pagina de configurações*/
+.seletor{
+	background-color:#37474f;
+}
+
+.a-footer{
+    color:#37474f !important;
+}
+
+.link-cad{
+    color:#37474f;
+}
+
+.sobre{
+    border-color: #37474f;
+    color: #ffffff;
+    background-color: #62727b;
+}

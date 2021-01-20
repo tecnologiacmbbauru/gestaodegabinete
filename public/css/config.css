@@ -1,0 +1,65 @@
+/*Define tamanho dos botões de cores*/
+.btn-color{
+	height:35px !important;
+	width:35px !important;
+}
+/*Div com a cor atual*/
+.seletor{
+	height:35px !important;
+	width:35px !important;
+}
+
+/*Layout do botão de seta*/
+.btn-seta{
+	background:none;
+	border:none;
+	height:35px !important;
+	width:35px !important;
+	margin-right:10px;
+}
+
+/*Define cor dos botões*/
+.btn-purple{
+	background-color:#6a1b9a !important;
+}
+
+.btn-dark-purple{
+	background-color:#4527a0 !important;	
+}
+
+.btn-indigo{
+	background-color:#283593 !important;	
+}
+
+.btn-blue{
+	background-color:#1563c0 !important;
+}
+
+.btn-teal{
+	background-color:#00695c !important;	
+}
+
+.btn-green{
+	background-color:#2e7d32 !important;	
+}
+
+.btn-brown{
+	background-color:#4e342e !important;	
+}
+
+.btn-grey{
+	background-color:#424242 !important;
+}
+
+.btn-blue-grey{
+	background-color:#37474f !important;
+}
+
+/*Define efeito de transição (Passar mouse por cima)*/
+.btn-color:hover
+{
+	-webkit-transform: scale(1.3);
+	-ms-transform: scale(1.3);
+	transform: scale(1.3);
+	border-radius:50%;
+}
