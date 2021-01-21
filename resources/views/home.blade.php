@@ -76,7 +76,7 @@ body{
       @if($vereador->img_foto !=null)
         <img src="{{url("storage/{$vereador->img_foto}")}}" alt="Imagem de Vereador" width="100%;">
       @elseif($vereador->img_foto === null)
-        <img src="{{url("storage/padrao/padrao.jpg")}}" alt="Imagem de Vereador" width="100%;">
+        <img src="{{url("utils/sem-imagem.jpg")}}" alt="Imagem de Vereador" width="100%;">
       @endif
     </div>   
 

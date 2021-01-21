@@ -8,7 +8,7 @@
                 <img src="{{url("storage/{$pessoaC->image}")}}" alt="$pessoaC->nom_nome" style="max-widht: 150px; max-height: 150px;">
             <!--Mostra imagem padrão de sem imagem-->
             @else
-                <img src="{{url("storage/padrao/padrao.jpg")}}" alt="$pessoaC->nom_nome" style="max-widht: 150px; max-height: 150px;">
+                <img src="{{url("utils/sem-imagem.jpg")}}" alt="$pessoaC->nom_nome" style="max-widht: 150px; max-height: 150px;">
             @endif  
         </div>
         <div class="form-group col-md-8">

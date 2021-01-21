@@ -26,7 +26,7 @@ $(document).ready(function(){
             $('#img_pessoa').attr("src","../../../storage/"+ui.item.path_imagem);
             $('#img_pessoa').attr("hidden",false);
         }else{
-            $('#img_pessoa').attr("src","../../../storage/padrao/padrao.jpg");
+            $('#img_pessoa').attr("src","../../../utils/sem-imagem.jpg");
             $('#img_pessoa').attr("hidden",false);
         }
         return false;

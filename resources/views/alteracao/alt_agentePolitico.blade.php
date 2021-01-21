@@ -7,7 +7,7 @@
             @if($vereador->img_foto !=null)
                 <img src="{{url("storage/{$vereador->img_foto}")}}" alt="Imagem de Vereador" style="max-widht: 150px; max-height: 200px;">
             @else
-                <img src="{{url("storage/padrao/padrao.jpg")}}" alt="Imagem de Vereador" style="max-widht: 50px;">
+                <img src="{{url("utils/sem-imagem.jpg")}}" alt="Imagem de Vereador" style="max-widht: 50px;">
             @endif 
         </div>  
         <div class="form-group col-md-6"> 
@@ -23,7 +23,7 @@
             </select>  
             <br>         
             <label class="col-form-label negrito" for="nome">Foto de perfil:</label>
-            <input type="file" class="form-control input-arquivo col-sm-10" name="img_perfil"  >    
+            <input type="file" class="form-control input-arquivo col-sm-10" name="img_foto"  >    
         </div>     
     </div>
     

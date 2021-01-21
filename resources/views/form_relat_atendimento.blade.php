@@ -98,7 +98,7 @@
                             $('#img_pessoa').attr("src","../storage/"+ui.item.path_imagem);
                             $('#img_pessoa').attr("hidden",false);
                         }else{
-                            $('#img_pessoa').attr("src","{{asset('storage/padrao/padrao.jpg')}}");
+                            $('#img_pessoa').attr("src","{{asset('utils/sem-imagem.jpg')}}");
                             $('#img_pessoa').attr("hidden",false);
                         }
                         return false;

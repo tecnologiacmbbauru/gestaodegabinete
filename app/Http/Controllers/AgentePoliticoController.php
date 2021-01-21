@@ -60,13 +60,19 @@ class AgentePoliticoController extends Controller
     }
 
     public function altera(Request $request) {
-        $vereador = $this->agentePolit->first();
+        /*Resgata o vereador que vai fazer a alteração (primeiro vereador cadastro, só é para ter 1) */
+        $vereador = agentePolitico::first();
 
+        $dataform = $request->all();
+
+        /*Altera a foto do vereador com um nome aleatorio*/
         if($request->hasFile('img_foto') && $request->img_foto->isValid()){
             $imagePath = $request->img_foto->store('agentePolitico');
             $dataform['img_foto']=$imagePath;
         }
-        $vereador->update($request->all());
+        
+        //atualiza o vereador
+        $vereador->update($dataform);
 
         return redirect()
             ->route('agentePolitico.index')
