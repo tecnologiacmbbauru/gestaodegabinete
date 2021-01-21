@@ -108,9 +108,9 @@ class AtendimentoController extends Controller
         $search = $request->search;
 
         if($search==''){
-            $pessoas = pessoa::orderby('nom_nome','asc')->select('cod_pessoa','nom_nome','cod_rg','cod_cpf_cnpj','image')->where('ind_status','A')->limit(5)->get();
+            $pessoas = pessoa::orderby('nom_nome','asc')->select('cod_pessoa','ind_pessoa','nom_nome','cod_rg','cod_ie','cod_cpf_cnpj','image')->where('ind_status','A')->limit(5)->get();
         }else{
-            $pessoas = pessoa::orderby('nom_nome','asc')->select('cod_pessoa','nom_nome','cod_rg','cod_cpf_cnpj','image')->where('nom_nome', 'like', '%' .$search.'%')->where('ind_status','A')->limit(5)->get();
+            $pessoas = pessoa::orderby('nom_nome','asc')->select('cod_pessoa','ind_pessoa','nom_nome','cod_rg','cod_ie','cod_cpf_cnpj','image')->where('nom_nome', 'like', '%' .$search.'%')->where('ind_status','A')->limit(5)->get();
                                                                                                                             //  ('nom_nome', 'like', '%' .$search . '%') para pesquisar em qualquer parte do nome   
         }
         $response = array();
@@ -118,9 +118,8 @@ class AtendimentoController extends Controller
             if($pessoa->ind_pessoa=="PF"){
                 $response[] = array("value"=>$pessoa->cod_pessoa,"label"=>$pessoa->nom_nome." - CPF:".$pessoa->cod_cpf_cnpj." - RG:".$pessoa->cod_rg,"nome"=>$pessoa->nom_nome,"path_imagem"=>$pessoa->image);
             }else{
-                $response[] = array("value"=>$pessoa->cod_pessoa,"label"=>$pessoa->nom_nome." - CNPJ:".$pessoa->cod_cpf_cnpj." - I.E:".$pessoa->cod_rg,"nome"=>$pessoa->nom_nome,"path_imagem"=>$pessoa->image);     
+                $response[] = array("value"=>$pessoa->cod_pessoa,"label"=>$pessoa->nom_nome." - CNPJ:".$pessoa->cod_cpf_cnpj." - I.E:".$pessoa->cod_ie,"nome"=>$pessoa->nom_nome,"path_imagem"=>$pessoa->image);     
             }
-           
         }
   
         return response()->json($response);

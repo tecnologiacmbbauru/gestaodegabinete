@@ -36,7 +36,7 @@
                 <label id="alert-uni" class="alert-obrigatorio" hidden="true">* Campo obrigatório</label>                  
             </div>            
             <div class="form-group col-md-4">
-                <label class="col-md-4 col-form-label negrito" for="dat_nascimento">Situação do Documento</label>
+                <label class="col-form-label negrito" for="dat_nascimento">Situação do Documento</label>
                 <select id="GAB_STATUS_DOCUMENTO_cod_status" class="form-control col-md-10" name="GAB_STATUS_DOCUMENTO_cod_status"  onClick="ocultarAlerta(document.getElementById('alert-situacao'))"> 
                     <option name="GAB_UNIDADE_DOCUMENTO_cod_uni_doc" value=""  style="font-style: italic;">Selecione</option>
                     @foreach ($situacaoDoc as $situacaoDoc)

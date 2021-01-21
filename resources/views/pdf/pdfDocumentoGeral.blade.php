@@ -10,6 +10,7 @@
         p {text-align: center; margin: 0px}
         table {
             border-collapse: collapse;
+            width: 100%;
         }
 
         td{
@@ -28,9 +29,11 @@
 	      border-left:0px;
           height:1px;
         }
+        /*Tabela zebrada
         .tabela tbody tr:nth-child(even) {
             background-color: #DCDCDC;
         }
+        */
     </style>
 </head>
 <body>
@@ -43,40 +46,45 @@
     <table class="tabela">
         <tbody>
         <tr>
-            <th>Data:</th>
-            <th>Número/Ano:</th>
-            <th>Tipo:</th>
-            <th>Situação:</th>
-            <th>Unidade:</th>
-            <th>Atendimento:</th>
-            <th>Resposta:</th>
+            <th>Data</th>
+            <th>Número/Ano</th>
+            <th>Tipo</th>
+            <th>Situação</th>
+            <th>Unidade</th>
+            <th>Atendimento</th>
+            <th>Resposta</th>
         </tr>
         @php $i=0; @endphp
         @foreach($documentos as $documento)
         @php $i++; @endphp
         <tr>
-            <td>
+            <td width="8%">
                 {{date('d/m/Y', strtotime($documento->dat_documento))}}
             </td>
-            <td>
+            <td width="10%">
                 {{$documento->nom_documento}}/{{$documento->dat_ano}}
             </td>
-            <td>
+            <td width="10%">
                 {{$documento->tipoDocumento->nom_tip_doc}}
             </td>
-            <td>
+            <td width="10%">
                 {{$documento->situacaoDoc->nom_status}}
             </td>
-            <td>
+            <td width="10%">
                 {{$documento->unidadeDocumento->nom_uni_doc}}
             </td>
-            <td>
+            <td width="20%" style="text-align: left;">
                 @if($documento->GAB_ATENDIMENTO_cod_atendimento!=null)
                     @if($documento->antedimentoRelacionado->ind_status=="A")
                         {{date('d/m/Y', strtotime($documento->antedimentoRelacionado->dat_atendimento))}}
                         <br>
                         {{$documento->antedimentoRelacionado->pessoa->nom_nome}}
                         <br>
+                        @if($documento->antedimentoRelacionado->pessoa->ind_pessoa=="PF")
+                            CPF:
+                        @else
+                            CNPJ:    
+                        @endif
                         {{$documento->antedimentoRelacionado->pessoa->cod_cpf_cnpj}}
                         <br>
                         Tipo: {{$documento->tipoDocumento->nom_tip_doc}}
@@ -85,9 +93,11 @@
                     @endif
                 @endif
             </td>
-            <td>
+            <td width="10%" style="text-align: left;">
                 @if($documento->dat_resposta!=null)
-                    Data:{{date('d/m/Y', strtotime($documento->dat_resposta))}}
+                    Data
+                    <br>
+                    {{date('d/m/Y', strtotime($documento->dat_resposta))}}
                 @endif
             </td>
         </tr>

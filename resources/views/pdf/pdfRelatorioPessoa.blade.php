@@ -11,6 +11,7 @@
         table {
             border-collapse:collapse;
             table-layout:auto;
+            width: 100%;
         }
 
         td{
@@ -29,9 +30,11 @@
 	      border-left:0px;
           height:1px;
         }
-        .tabela tbody tr:nth-child(even) {
+        /*.;
+        TABELA ZEBRADA
+        tabela tbody tr:nth-child(even) {
             background-color: #DCDCDC;
-        }
+        }*/
     </style>
 </head>
 <body>
@@ -44,10 +47,10 @@
     
     <table class="tabela">
         <tr>
-          <th>Nome:</th>
-          <th>Doc.Identificação:</th>
-          <th>Telefone(s):</th>
-          <th>Endereço:</th>
+          <th>Nome</th>
+          <th>Doc.Identificação</th>
+          <th>Telefone(s)</th>
+          <th>Endereço</th>
         </tr>
       <tbody>
       @php $i=0; @endphp

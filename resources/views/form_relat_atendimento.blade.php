@@ -192,39 +192,55 @@
                             <tr>
                                 <th>Data</th>
                                 <th>Pessoa</th>
-                                <th>Telefone</th>
-                                <th>Localização</th>
+                                <th>Doc. Identificação</th>
+                                <th>Endereço</th>
                                 <th>Tipo</th>
                                 <th>Situação</th>
                             </tr>
                         </thead>
                         @foreach($atendimentos as $atendimentoC)
                         <tbody>
-                                <td  width='16%'>   
+                                <td  width='10%'>   
                                     {{date('d/m/Y', strtotime($atendimentoC->dat_atendimento))}} <!--Formata para modo de data usado no Brasil-->
                                 </td>
                                     @if($atendimentoC->GAB_PESSOA_cod_pessoa==null)
-                                        <td  width='16%'>
+                                        <td  width='19%'>
                                             Não existe pessoa relacionada
                                         </td> 
                                         <td  width='16%'>
                                             -
                                         </td>
-                                        <td  width='16%'>
+                                        <td  width='19%'>
                                             -
                                         </td>
                                     @else
-                                        <td  width='16%'>
+                                        <td  width='19%'>
                                             {{$atendimentoC->pessoa->nom_nome}}
                                         </td>
-                                        <td  width='16%'>
-                                            {{$atendimentoC->pessoa->num_ddd_cel}} {{$atendimentoC->pessoa->num_cel}}
-                                            <br>
-                                            {{$atendimentoC->pessoa->num_ddd_tel}} {{$atendimentoC->pessoa->num_tel}}
+                                        <td  width='20%'>
+                                            @if($atendimentoC->pessoa->ind_pessoa=='PF')
+                                                @if($atendimentoC->pessoa->cod_cpf_cnpj!=null)
+                                                    <strong>CPF:</strong> <label class="cpf">{{$atendimentoC->pessoa->cod_cpf_cnpj}}</label>
+                                                @endif
+                                                <br>
+                                                @if($atendimentoC->pessoa->cod_rg!=null)
+                                                    <strong>RG:</strong> <label class="rg">{{$atendimentoC->pessoa->cod_rg}}</label>
+                                                @endif
+                                            @elseif($atendimentoC->pessoa->ind_pessoa=='PJ')
+                                                @if($atendimentoC->pessoa->cod_cpf_cnpj!=null)
+                                                    <strong>CNPJ:</strong> <label class="cnpj">{{$atendimentoC->pessoa->cod_cpf_cnpj}}</label>
+                                                @endif
+                                                <br>
+                                                @if($atendimentoC->pessoa->cod_ie!=null)
+                                                    <strong>I.E:</strong> <label class="ie">{{$atendimentoC->pessoa->cod_ie}}</label>
+                                                @endif
+                                            @endif
                                         </td>
-                                        <td  width='16%'>
-                                            {{$atendimentoC->pessoa->nom_bairro}}
-                                            <br>
+                                        <td  width='19%'>
+                                            @if(isset($atendimentoC->pessoa->nom_bairro))
+                                                {{$atendimentoC->pessoa->nom_bairro}},
+                                                <br>
+                                            @endif
                                             {{$atendimentoC->pessoa->nom_cidade}}@if($atendimentoC->pessoa->nom_estado!=null) / {{$atendimentoC->pessoa->nom_estado}}@endif
                                         </td>
                                     @endif

@@ -21,7 +21,7 @@
                     <th><input type="checkbox" name="checkTodos" id="checkTodos"></th>   
                     <th>Nome</th>
                     <th>Doc. Identificação</th>
-                    <th>Endereço/Bairro</th> 
+                    <th>Endereço</th> 
                     <th>E-mail</th>
                     <th>Telefone/Celular</th>     
                     <th style="text-align: center;">Alterar</th>
@@ -34,8 +34,8 @@
             @foreach($pessoa as $pessoaC)
             <tbody>
                 <td width='7%'><input type="checkbox" name="pessoa[]" value="{{$pessoaC->cod_pessoa}}"></td>
-                <td  width='15%'>{{$pessoaC->nom_nome}}</td>
-                <td  width='15%'>
+                <td  width='20%'>{{$pessoaC->nom_nome}}</td>
+                <td  width='20%'>
                     @if($pessoaC->ind_pessoa=='PF')
                         @if($pessoaC->cod_cpf_cnpj!=null)
                             <strong>CPF:</strong> <label class="cpf">{{$pessoaC->cod_cpf_cnpj}}</label>
@@ -65,11 +65,11 @@
                     {{$pessoaC->num_ddd_cel}} <label class="cel_phone">{{$pessoaC->num_cel}}</label>
                 </td>
                 
-                <td  width='10%' style="text-align: center;">
+                <td  width='5%' style="text-align: center;">
                         <a href="{{route('pessoa.edit',  $pessoaC->cod_pessoa)}}"><img src="{{asset('utils/alterar.png')}}" alt="Alterar"></a>                  
                     </form>
                 </td>
-                <td  width='10%' style="text-align: center;">
+                <td  width='5%' style="text-align: center;">
                     <form action="{{route('pessoa.destroy', "id_exclusao")}}" method="post">
                         @csrf
                         @method('DELETE')

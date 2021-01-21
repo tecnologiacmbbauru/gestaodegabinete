@@ -35,7 +35,7 @@
             <input id="nom_nome" type="text" class="form-control col-md-10" name="nom_nome" value="{{old('nom_nome')}}" autofocus  maxlength="150" required>
         </div>
         <div class="form-group col-md-6">
-            <label class="col-sm-2 col-form-label negrito" for="nome">Foto:</label>
+            <label class="col-sm-2 col-form-label negrito" for="nome">Foto</label>
             <input id="img_perfil" type="file" class="form-control col-md-10 input-arquivo" name="img_perfil" accept="image/*"/>
         </div>
     </div>

@@ -1,13 +1,13 @@
 <table >
         <thead>
             <tr>
-                <td>Data:</td>
-                <td>Numero/Ano:</td>
-                <td>Tipo:</td>
-                <td>Stiaucao:</td>
-                <td>Status:</td>
-                <td>Data de resposta:</td>
-                <td>Atendimento:</td>            
+                <td>Data</td>
+                <td>Numero/Ano</td>
+                <td>Tipo</td>
+                <td>Situação</td>
+                <td>Unidade</td>
+                <td>Resposta</td>
+                <td>Atendimento</td>            
             </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
             <td width="15">
                 {{date('d/m/Y', strtotime($documento->dat_resposta))}}
             </td>            
-            <td width="30">
+            <td width="100">
                 @if($documento->GAB_ATENDIMENTO_cod_atendimento!=null)
                     Data:{{date('d/m/Y', strtotime($documento->antedimentoRelacionado->dat_atendimento))}} 
                     Nome:{{$documento->antedimentoRelacionado->pessoa->nom_nome}} 
