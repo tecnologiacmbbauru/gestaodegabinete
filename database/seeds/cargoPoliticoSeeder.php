@@ -19,13 +19,5 @@ class cargoPoliticoSeeder extends Seeder
             'nom_car_pol' => 'Vereadora',
             'ind_car_pol' => 'A',
         ]);
-        DB::table('gab_cargo_politico')->insert([
-            'nom_car_pol' => 'Deputado/a Estadual',
-            'ind_car_pol' => 'A',
-        ]);
-        DB::table('gab_cargo_politico')->insert([
-            'nom_car_pol' => 'Deputado/a Federal',
-            'ind_car_pol' => 'A',
-        ]);
     }
 }

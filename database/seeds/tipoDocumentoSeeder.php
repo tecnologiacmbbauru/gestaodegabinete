@@ -12,7 +12,7 @@ class tipoDocumentoSeeder extends Seeder
     public function run()
     {
         DB::table('gab_tipo_documento')->insert([
-            'nom_tip_doc' => 'Moção',
+            'nom_tip_doc' => 'Carta',
             'ind_tip_doc' => 'A',
         ]);
         DB::table('gab_tipo_documento')->insert([
@@ -21,10 +21,6 @@ class tipoDocumentoSeeder extends Seeder
         ]);
         DB::table('gab_tipo_documento')->insert([
             'nom_tip_doc' => 'Requerimento',
-            'ind_tip_doc' => 'A',
-        ]);
-        DB::table('gab_tipo_documento')->insert([
-            'nom_tip_doc' => 'Projeto de Lei',
             'ind_tip_doc' => 'A',
         ]);
     }

@@ -20,6 +20,10 @@ class situacaoDocumentoSeeder extends Seeder
             'ind_status' => 'A',
         ]);
         DB::table('gab_status_documento')->insert([
+            'nom_status' => 'Aguardando resposta',
+            'ind_status' => 'A',
+        ]);
+        DB::table('gab_status_documento')->insert([
             'nom_status' => 'Respondido',
             'ind_status' => 'A',
         ]);

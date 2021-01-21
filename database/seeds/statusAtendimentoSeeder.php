@@ -16,11 +16,11 @@ class statusAtendimentoSeeder extends Seeder
             'ind_status' => 'A',
         ]);
         DB::table('gab_status_atendimento')->insert([
-            'nom_status' => 'Encaminhado',
+            'nom_status' => 'Em andamento',
             'ind_status' => 'A',
         ]);
         DB::table('gab_status_atendimento')->insert([
-            'nom_status' => 'Resolvido',
+            'nom_status' => 'Concluído',
             'ind_status' => 'A',
         ]);
     }

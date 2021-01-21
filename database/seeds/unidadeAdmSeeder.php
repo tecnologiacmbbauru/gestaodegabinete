@@ -12,11 +12,11 @@ class unidadeAdmSeeder extends Seeder
     public function run()
     {
         DB::table('gab_unidade_documento')->insert([
-            'nom_uni_doc' => 'Secretaria de Obras',
+            'nom_uni_doc' => 'Câmara',
             'ind_uni_doc' => 'A',
         ]);
         DB::table('gab_unidade_documento')->insert([
-            'nom_uni_doc' => 'Prfeitura',
+            'nom_uni_doc' => 'Prefeitura',
             'ind_uni_doc' => 'A',
         ]);
     }

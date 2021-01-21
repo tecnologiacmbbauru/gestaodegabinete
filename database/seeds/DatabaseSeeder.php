@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             tipoAtendimentoSeeder::class,
             tipoDocumentoSeeder::class,
             unidadeAdmSeeder::class,
+            usersSeeder::class,
         ]);
     }
 }
