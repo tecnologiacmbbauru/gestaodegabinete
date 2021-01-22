@@ -75,7 +75,7 @@ class atendimento extends Model
             if(isset($data['dat_fim'])) {
                 $query->where('dat_atendimento','<=',$data['dat_fim']);
             }
-        })->orderby('dat_atendimento','asc')->get();
+        })->orderby('dat_atendimento','desc')->get();
     }
 
     public function pesquisaLimitada(array $data) {
@@ -96,7 +96,7 @@ class atendimento extends Model
             if(isset($data['dat_fim'])) {
                 $query->where('dat_atendimento','<=',$data['dat_fim']);
             }
-        })->orderby('dat_atendimento','asc')->limit(5)->get();
+        })->orderby('dat_atendimento','desc')->limit(10)->get();
     }
    
 

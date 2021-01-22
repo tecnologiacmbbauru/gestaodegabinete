@@ -107,12 +107,12 @@
             </div>
 
             <div class="form-check form-check-inline" id="div_atend_rel" style="margin-bottom:20px;">
-                <input class="form-check-input" type="checkbox" id="atend_rel" onclick="mostraAtendimento()">
+                <input class="form-check-input" type="checkbox" id="atend_rel" name="atend_rel" onclick="mostraAtendimento()">
                 <label class="form-check-label" for="div_atend_rel">Possui Atendimento Relacionado</label>
             </div>
 
             <div class="form-group row">
-                <div class="form-group col-md-6">   
+                <div class="form-group col-md-11">   
                     <fieldset id="segunda_secao" class="fieldset-personalizado" form="form_cadastro_documento" hidden=true >
                         @include('Utils/form_pesquisa_atendimento')
                     </fieldset>
@@ -146,7 +146,7 @@
         </div>
         <!--listagem da busca documentos-->
         <div class="table-of row">
-            <table id="tb_atendimento" class="mtab table table-striped table-hover table-responsive" cellspacing="10" width="100%">
+            <table id="tb_atendimento" class="mtab table table-striped table-hover table-responsive-lg" style="width:100%;">
             <thead class="thead-dark">
                 <tr>
                     <th>Data</th>
@@ -157,7 +157,10 @@
                     <th>Atendimento</th>
                     <th>Resposta</th>
                 </tr>
-            </thead> 
+            </thead>             
+            @if($documentos->isEmpty()) {{--caso pesquisa não tenha resultado, o método isEmpty ja esta na classe LengthAwarePaginator na qual retorna a pesquisa paginada--}}
+                <td colspan="7" style="text-align: center;">Não foi encontrado nenhum registro</td>
+            @endif
             @php
                 $i=1; //contador para saber qual o atendimento relacionado
             @endphp

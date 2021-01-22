@@ -63,6 +63,9 @@ class documento extends Model
             if(isset($data['dat_resposta'])) {
                 $query->where('dat_resposta',$data['dat_resposta']);
             }
+            if(isset($data['atend_rel']) && !isset($data['GAB_ATENDIMENTO_cod_atendimento'])){
+                $query->where('GAB_ATENDIMENTO_cod_atendimento','!=',null);
+            }
             if(isset($data['GAB_ATENDIMENTO_cod_atendimento'])) {
                 $query->where('GAB_ATENDIMENTO_cod_atendimento',$data['GAB_ATENDIMENTO_cod_atendimento']);
             }               
@@ -93,10 +96,13 @@ class documento extends Model
             if(isset($data['dat_resposta'])) {
                 $query->where('dat_resposta',$data['dat_resposta']);
             }
+            if(isset($data['atend_rel']) && !isset($data['GAB_ATENDIMENTO_cod_atendimento'])){
+                $query->where('GAB_ATENDIMENTO_cod_atendimento','!=',null);
+            }
             if(isset($data['GAB_ATENDIMENTO_cod_atendimento'])) {
                 $query->where('GAB_ATENDIMENTO_cod_atendimento',$data['GAB_ATENDIMENTO_cod_atendimento']);
             }     
-        })->orderby('dat_documento','asc')->get();
+        })->orderby('dat_documento','desc')->get();
     }   
 }
 

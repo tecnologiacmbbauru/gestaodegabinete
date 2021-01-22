@@ -63,10 +63,16 @@
                 <input id="lnk_documento" type="text" class="form-control col-md-10" name="lnk_documento">
             </div>
         </div>
+        <div class="form-row">
+            <div class="form-group col-md-11">
+                <label class="col-form-label negrito" for="txt_assunto">Assunto</label>
+                <textarea class="form-control" rows="3" id="txt_assunto"  name="txt_assunto"></textarea>
+            </div>
+        </div>  
 
         <div class="form-row">
-            <div class="form-group col-md-6">
-                <div class="form-check form-check-inline" id="div_atend_rel" style="margin-bottom:20px;">
+            <div class="form-group col-md-11">
+                <div class="form-check form-check-inline" id="div_atend_rel" style="margin-bottom:5px;">
                     <input class="form-check-input" type="checkbox" id="atend_rel" name="atend_rel" onclick="mostraAtendimento()">
                     <label class="form-check-label negrito" for="div_atend_rel">Possui Atendimento Relacionado</label>
                 </div>
@@ -74,33 +80,36 @@
                     @include('Utils/form_pesquisa_atendimento')
                 </fieldset>
             </div>
-            <div class="form-group col-md-6">
-                <div class="form-check form-check-inline" id="div_resposta" style="margin-bottom:20px;">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-11">
+                <div class="form-check form-check-inline" id="div_resposta" style="margin-bottom:5px;">
                     <input class="form-check-input" type="checkbox" id="resp_rel" name="resp_rel" onclick="mostraResposta()">
                     <label class="form-check-label negrito" for="div_resposta">Possui Resposta</label>
                 </div>      
                 <div id="resposta" hidden=true>
                     <fieldset id="terceira_secao" class="fieldset-personalizado" form="form_cadastro_documento">
                         <div class="form-row" id="input_nom pessoa">
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                                 <label class="col-form-label negrito" for="dat_resposta">Data</label>
                                 <input id="dat_resposta" type="date" name="dat_resposta" placeholder="" class="form-control">
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                                 <label class="col-form-label negrito" for="link_doc">Documento de Resposta</label>
                                 <input type="file" class="form-control input-arquivo" name="path_doc_resp">
                             </div>
                         </div>                       
                         <div class="form-row">
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                                 <label class="col-form-label negrito" for="link_doc">Link Resposta {{--<img src="{{asset('utils/icone_ajuda.png')}}" title="Caso o documento estaja salvado na nuvem ou em algum site você pode inserir o link aqui." >--}}</label>
                                 <input id="link_resposta" type="text" class="form-control" name="link_resposta">
                             </div>
                         </div>                        
                         <div class="form-row">
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                                 <label class="col-form-label negrito" for="txt_obs">Detalhes</label>
                                 <textarea class="form-control" rows="4" id="txt_resposta"  name="txt_resposta"></textarea>   
                             </div>
@@ -111,13 +120,6 @@
             </div>  
         </div>
 
-        
-        <div class="form-row">
-            <div class="form-group col-md-11">
-                <label class="col-form-label negrito" for="txt_assunto">Assunto</label>
-                <textarea class="form-control" rows="3" id="txt_assunto"  name="txt_assunto"></textarea>
-            </div>
-        </div>  
 
         <div class="form-row div-botoes-cadastro">
             <div>   
@@ -126,6 +128,7 @@
                 <button id="limpar" type="reset" class="btn btn-primary">Limpar</button>
             </div>
         </div>
+
         {{--Modal de ajuda--}}
         @include('ajuda/modal_helpDocumento')
 </form>

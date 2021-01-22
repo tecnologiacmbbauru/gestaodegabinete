@@ -1,56 +1,50 @@
 <div id="form_pesq_cadastro" style="display: block;">
+    <h5 class="negrito">Pesquisa de Atendimentos</h5>
+    <label style="color: rgb(233, 15, 15)">Favor realizar a pesquisa e clicar no atendimento desejado</label>
     <div class="form-row" id="input_nom pessoa">
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-4">
             <label class="col-form-label negrito" for="input_nom_pessoa">Pessoa</label>
             <input id="pessoa_busca" type="text" class="form-control" name="pessoa_busca" autofocus >
             <input type="text" id='GAB_PESSOA_cod_pessoa' name="GAB_PESSOA_cod_pessoa" hidden="true"  readonly>
             <img src="" alt="Imagem de Municipe" id="img_pessoa" name="img_pessoa" style="max-widht: 150px; max-height: 150px;" hidden="true">
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-4">
             <label class="col-form-label negrito" for="input_nom_pessoa">Data</label>
             <input id="dat_atendimento" type="date" name="dat_atendimento" class="form-control" autofocus > 
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-4">
             <label class="col-form-label negrito" for="input_tipo_atendimento">Tipo de Atendimento</label>
             <select  class="form-control" id="GAB_TIPO_ATENDIMENTO_cod_tipo">
+                <option name="GAB_TIPO_ATENDIMENTO_cod_tipo" value="" style="font-style: italic;">{{"Selecione"}}</option>
                 @foreach ($tipoAtendimento as $tipoAtendimento)
                     <option  value="{{ $tipoAtendimento->cod_tipo}}">{{ $tipoAtendimento->nom_tipo}}</option>
                 @endforeach
             </select>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">  
+        <div class="form-group col-md-4">  
             <label class="col-form-label negrito" for="input_status_atendimento">Situação do Atendimento</label>
             <select  class="form-control" id="GAB_STATUS_ATENDIMENTO_cod_status">
+            <option name="GAB_TIPO_ATENDIMENTO_cod_tipo" value="" style="font-style: italic;">{{"Selecione"}}</option>
                 @foreach ($statusAtendimento as $statusAtendimento)
                     <option  value="{{$statusAtendimento->cod_status}}">{{$statusAtendimento->nom_status}}</option>
                     @endforeach
             </select>
         </div>
     </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <label>Preencha todos campos para realizar uma busca.</label><!--Mudar-->
-        </div>
-    </div>
-    <a id="Cadastrar" class="btn btn-primary" >Cadastrar</a>
-    <a id="Pesquisar" class="btn btn-primary" >Pesquisar</a>
+    <!--<a id="Cadastrar" class="btn btn-primary" >Cadastrar</a>-->
+    <a id="Pesquisar" class="btn btn-primary" >Pesquisar</a> <label style="margin-left: 10px;">(A pesquisa retorna até 10 registros)</label>
 </div>
 
     <div class=form-group id="form_pesq_result" style="display:none;" >
-    <label>Clique sobre um atendimento para selecionar</label>
-        <table id="tb_saida_pesquisa" class="mtab table table-hover table-responsive" cellspacing="10" width="100%">
+        <table id="tb_saida_pesquisa" class="mtab table table-striped table-hover table-responsive-lg" style="width: 100%;">
         <thead>
             <tr>
-                <th>Data</th>
-                <th>Pessoa</th>
-                <th>Status</th>
-                <th>Tipo</th>
+                <th width='20%'>Data</th>
+                <th width='40%'>Pessoa</th>
+                <th width='20%'>Status</th>
+                <th width='20%'>Tipo</th>
             </tr>
             <tbody id="resultado_pesquisa"></tbody>
         </table>    
@@ -117,10 +111,6 @@
 </script>
 <script type="text/javascript" >
     function enviaAtendimento(id,data,pessoa,tipo,situacao){
-        // Formatando data para o padrão brasileiro
-        //var split = data.split('/');
-        //data_formatada = split[2] + "/" + split[1] + "/" + split[0];
-        //Enviando dados para a div de saida
         $('#data').text(data);
         $('#pessoa').text(pessoa);
         $('#tipo').text(tipo);
@@ -176,24 +166,25 @@
                     GAB_STATUS_ATENDIMENTO_cod_status: jQuery('#GAB_STATUS_ATENDIMENTO_cod_status option:selected').val(),     
                 },
                 success:function(result){
-                    for(i=0;i<5;i++){
-                        var data=result[i].dat_atendimento;
-                        splitAux = data.split('T');
-                        split = splitAux[0].split('-');
-                        novadata = split[2] + "/" +split[1]+"/"+split[0]; 
-                        result[i].dat_atendimento = novadata;
-                    }
                     let tabela = ``; // declara a variável vazia
                     // vai montando as linhas com os valores do JSON
                     for(let item of result){
-                        tabela += `<tr onclick="enviaAtendimento(${item.cod_atendimento},'${item.dat_atendimento}','${item.GAB_PESSOA_cod_pessoa}','${item.GAB_STATUS_ATENDIMENTO_cod_status}','${item.GAB_TIPO_ATENDIMENTO_cod_tipo}');">
-                                        <td>${item.dat_atendimento}</td>
+                        var data = new Date(item.dat_atendimento),
+                        dia  = data.getDate().toString(),
+                        diaF = (dia.length == 1) ? '0'+dia : dia,
+                        mes  = (data.getMonth()+1).toString(), //+1 pois no getMonth Janeiro começa com zero.
+                        mesF = (mes.length == 1) ? '0'+mes : mes,
+                        anoF = data.getFullYear();
+                        dia= diaF+"/"+mesF+"/"+anoF;
+
+                        tabela += `<tr onclick="enviaAtendimento(${item.cod_atendimento},'${dia}','${item.GAB_PESSOA_cod_pessoa}','${item.GAB_TIPO_ATENDIMENTO_cod_tipo}','${item.GAB_STATUS_ATENDIMENTO_cod_status}');">
+                                        <td>${dia}</td>
                                         <td>${item.GAB_PESSOA_cod_pessoa}</td>
                                         <td>${item.GAB_STATUS_ATENDIMENTO_cod_status}</td>
                                         <td>${item.GAB_TIPO_ATENDIMENTO_cod_tipo}</td>
                                     </tr>`;
                     } 
-                    $('#resultado_pesquisa').html(tabela); // insere tudo no tbody*/
+                    $('#resultado_pesquisa').html(tabela); 
                     $("#form_pesq_result").css("display", "block");                                 
                 }
             });

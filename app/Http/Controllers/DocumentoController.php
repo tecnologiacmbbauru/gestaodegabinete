@@ -125,21 +125,37 @@ class DocumentoController extends Controller
     public function update($id, Request $request)
     {
         $docC = documento::findOrFail($id);;
+        
+        $dataform = $request->all();
+
         if($docC['ind_status'] == NULL){
             $docC['ind_status'] = 'A';
         }
-        $docC['nom_operacao_log'] = 'UPDATE';
 
-        if($request->hasFile('path_doc') && $request->path_doc->isValid()){
-            $docPath = $request->path_doc->store('documentos');
-            $docC['path_doc']=$docPath;
+        $docC['nom_operacao_log'] = 'UPDATE';
+     
+        if($dataform['altera_link']="on" && $dataform['lnk_documento']==null){    //verifica se selecionou para alterar o documento, mas deixou nulo o preenchimento 
+            $dataform['lnk_documento'] = $docC->lnk_documento;                       //neste caso volta ao valor anterior do documento
         }
+        if($dataform['altera_link_resp']="on" && $dataform['link_resposta']==null){
+            $dataform['link_resposta'] = $docC->link_resposta;
+        }
+
+        if($request->hasFile('path_doc') && $request->path_doc->isValid()){ 
+            $docPath = $request->path_doc->store('documento');
+            $dataform['path_doc']=$docPath;
+        }
+
         if($request->hasFile('path_doc_resp') && $request->path_doc_resp->isValid()){
-            $docPath = $request->path_doc_resp->store('documentos');
-            $docC['path_doc_resp']=$docPath;
+            $docPath = $request->path_doc_resp->store('documento');
+            $dataform['path_doc_resp']=$docPath;
+        }
+       
+        if($dataform['GAB_ATENDIMENTO_cod_atendimento']==null){
+            $dataform['GAB_ATENDIMENTO_cod_atendimento'] = $docC->GAB_ATENDIMENTO_cod_atendimento;
         }
         
-        $docC->update($request->all());
+        $docC->update($dataform);
 
         return redirect()
                     ->route('documento.index')
@@ -190,28 +206,13 @@ class DocumentoController extends Controller
         return response()->json(['codigo'=>$id,'data'=>$dataform['dat_atendimento'],'pessoa'=>$nome->nom_nome,'ident'=>$nome->cod_cpf_cnpj,'tipo'=>$tipo->nom_tipo,'situacao'=>$status->nom_status]);
     }
 
-    public function pesqAtendimento(Request $request, atendimento $atendimento) {
+    
+        //Quando pesquisa de atendimento era feita por Json
+        public function pesqAtendimento(Request $request, atendimento $atendimento) {
         $dataform = $request->only(['GAB_PESSOA_cod_pessoa','dat_atendimento','GAB_TIPO_ATENDIMENTO_cod_tipo','GAB_STATUS_ATENDIMENTO_cod_status']);
-        
-        
-       // Código antigo que precisava digitar todos campos para realizar uma busca
-        /*$atendimentos = DB::table('gab_atendimento')->where('GAB_PESSOA_cod_pessoa',$dataform['GAB_PESSOA_cod_pessoa'])->where('dat_atendimento',$dataform['dat_atendimento'])
-                                                    ->where('GAB_TIPO_ATENDIMENTO_cod_tipo',$dataform['GAB_TIPO_ATENDIMENTO_cod_tipo'])->where('GAB_STATUS_ATENDIMENTO_cod_status',$dataform['GAB_STATUS_ATENDIMENTO_cod_status'])
-                                                    ->get();//*
-        //Usando varios where, por padrão o laravel entende que é um and(&&).Se quisessemos usar o or(||) devemos usar o orWhere
-        */
 
         $atendimentos = $atendimento->pesquisaLimitada($dataform); 
-       //return response()->json($atendimentos);
-       /*
-        $saida=array('cod_atendimento','dat_atendimento','pessoa_atendimentom','status_atendimento','tipo_atendimento');
-        foreach ($atendimentos as $atendimento){ 
-            array_push($saida, $atendimento->cod_atendimento, date('d-m-Y', strtotime($atendimento->dat_atendimento)), $atendimento->pessoa->nom_nome, $atendimento->statusAtendimento->nom_status, $atendimento->tipoAtendimento->nom_tipo);    
-        }
-
-        
-        $teste = list($cod_atendimento, $dat_atendimento, $pessoa_atendimentom, $status_atendimento, $tipo_atendimento) = $saida;
-        return response()->json($teste);*/
+        //return response()->json($atendimentos);
         
         
         $pessoas = pessoa::all();
@@ -244,5 +245,6 @@ class DocumentoController extends Controller
         return response()->json($saida);
         
     }
+    
 
 }

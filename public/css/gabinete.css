@@ -61,7 +61,7 @@ html,body {
 .fieldset-personalizado {
   border: 1px solid #999 !important;
   padding: 10px !important;
-  width: 83% !important;
+  width:100% !important;
 }
 
 /*Forms Cadastro*/
