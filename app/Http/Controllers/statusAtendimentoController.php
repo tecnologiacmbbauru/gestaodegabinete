@@ -125,17 +125,16 @@ class statusAtendimentoController extends Controller
      */
     public function destroy(Request $request)
     {
-
         $statusA = statusAtendimento::findOrFail($request->id_exclusao);
-        $statusA->delete();
-
-       // $statusA = $this->statusA->where('cod_status',$id)->first();
-
-        //$statusA->delete();
-
-        return redirect()
-                    ->route('statusAtendimento.index')
-                    ->with('success', 'Situação do Atendimento excluída com sucesso!');
-
+        try {
+            $statusA->delete();
+            return redirect()
+                ->route('statusAtendimento.index')
+                ->with('success', 'Situação do Atendimento excluída com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()
+                ->route('statusAtendimento.index')
+                ->with('error', 'Situação do Atendimento não pode ser excluída, pois existem Atendimentos vinculados!');
+        }
     }
 }

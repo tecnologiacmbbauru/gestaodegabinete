@@ -127,10 +127,15 @@ class TipoAtendimentoController extends Controller
     {
 
         $tipoA = TipoAtendimento::findOrFail($request->id_exclusao);
-        $tipoA->delete();
-
-        return redirect()
+        try {
+            $tipoA->delete();
+            return redirect()
+                        ->route('tipoAtendimento.index')
+                        ->with('success', 'Tipo de Atendimento excluído com sucesso!');
+            } catch (\Exception $e) {
+                return redirect()
                     ->route('tipoAtendimento.index')
-                    ->with('success', 'Tipo de Atendimento excluído com sucesso!');
+                    ->with('error', 'Tipo do Atendimento não pode ser excluído, pois existem Atendimentos vinculados!');
+            }
      }
 }

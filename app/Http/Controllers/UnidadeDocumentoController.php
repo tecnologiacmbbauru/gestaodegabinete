@@ -121,10 +121,15 @@ class UnidadeDocumentoController extends Controller
     public function destroy(Request $request)
     {
         $uniDoc = unidadeDocumento::findOrFail($request->id_exclusao);
-        $uniDoc->delete();
-
-        return redirect()
-                    ->route('unidadeDocumento.index')
-                    ->with('success', 'Unidade Administrativa excluída com sucesso!');
+        try{
+            $uniDoc->delete();
+            return redirect()
+                        ->route('unidadeDocumento.index')
+                        ->with('success', 'Unidade Administrativa excluída com sucesso!');
+        }catch (\Exception $e) {
+            return redirect()
+                ->route('unidadeDocumento.index')
+                ->with('error', 'Unidade Administrativa não pode ser excluída, pois existem Documentos vinculados!');
+        }
     }
 }

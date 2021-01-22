@@ -123,10 +123,15 @@ class CargoPoliticoController extends Controller
     {
 
         $cargoPolit = cargoPolitico::findOrFail($request->id_exclusao);
-        $cargoPolit->delete();
-
-        return redirect()
-                    ->route('cargoPolitico.index')
-                    ->with('success', 'Cargo Político excluído com sucesso!');
+        try{
+            $cargoPolit->delete();
+            return redirect()
+                        ->route('cargoPolitico.index')
+                        ->with('success', 'Cargo Político excluído com sucesso!');
+        }catch (\Exception $e) {
+            return redirect()
+                ->route('cargoPolitico.index')
+                ->with('error', 'Cargo Político não pode ser excluído, pois existe Agente Político vinculado!');
+        }
      }
 }

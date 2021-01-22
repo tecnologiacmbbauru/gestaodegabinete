@@ -124,10 +124,15 @@ class TipoDocumentoController extends Controller
     public function destroy(Request $request)
     {
         $tipoDoc = TipoDocumento::findOrFail($request->id_exclusao);
-        $tipoDoc->delete();
-
-        return redirect()
-                    ->route('tipoDocumento.index')
-                    ->with('success', 'Tipo de Documento excluído com sucesso!');
+        try {
+            $tipoDoc->delete();
+            return redirect()
+                        ->route('tipoDocumento.index')
+                        ->with('success', 'Tipo de Documento excluído com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()
+                ->route('tipoDocumento.index')
+                ->with('error', 'Tipo do Documento não pode ser excluído, pois existem Documentos vinculados!');
+        }
     }
 }
