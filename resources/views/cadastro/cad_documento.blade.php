@@ -52,13 +52,6 @@
         </div>
 
         <div class="form-row">
-            <div class="form-group col-md-11">
-                <label class="col-form-label negrito" for="txt_assunto">Assunto</label>
-                <textarea class="form-control" rows="3" id="txt_assunto"  name="txt_assunto"></textarea>
-            </div>
-        </div>  
-
-        <div class="form-row">
             <div class="form-group col-md-6" id="input_documento">
                 <label class="col-form-label negrito" for="input_tipo_documento">Documento</label>
                 <input type="file" id="path_doc" class="form-control col-md-10 input-arquivo" name="path_doc" onClick="ocultarAlerta(document.getElementById('alert-documento'))">
@@ -117,6 +110,15 @@
                 </div>       
             </div>  
         </div>
+
+        
+        <div class="form-row">
+            <div class="form-group col-md-11">
+                <label class="col-form-label negrito" for="txt_assunto">Assunto</label>
+                <textarea class="form-control" rows="3" id="txt_assunto"  name="txt_assunto"></textarea>
+            </div>
+        </div>  
+
         <div class="form-row div-botoes-cadastro">
             <div>   
                 <button type="submit" onclick="return cadastrar();" class="btn btn-primary">Cadastrar</button>

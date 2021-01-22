@@ -32,6 +32,8 @@ class documento extends Model
         return $this->belongsTo('App\Models\atendimento', 'GAB_ATENDIMENTO_cod_atendimento', 'cod_atendimento');
     }
 
+    //PESQUISAS
+
     public function pesquisaPaginada(array $data) {
         return $this->where(function($query) use($data) {
             if(isset($data['GAB_TIPO_DOCUMENTO_cod_tip_doc'])) {
@@ -54,6 +56,9 @@ class documento extends Model
             }
             if(isset($data['GAB_UNIDADE_DOCUMENTO_cod_uni_doc'])) {
                 $query->where('GAB_UNIDADE_DOCUMENTO_cod_uni_doc',$data['GAB_UNIDADE_DOCUMENTO_cod_uni_doc']);
+            }
+            if(isset($data['resp_rel']) && !isset($data['dat_resposta'])) {//se existir uma resposta relacionada e não exister data de resposta 
+                $query->where('dat_resposta','!=',null); //retorna todas datas de resposta diferente de null                                                
             }
             if(isset($data['dat_resposta'])) {
                 $query->where('dat_resposta',$data['dat_resposta']);
@@ -82,6 +87,15 @@ class documento extends Model
             if(isset($data['dat_fim'])) {
                 $query->where('dat_atendimento','<=',$data['dat_fim']);
             }
+            if(isset($data['resp_rel']) && !isset($data['dat_resposta'])) {//se existir uma resposta relacionada e não exister data de resposta 
+                $query->where('dat_resposta','!=',null); //retorna todas datas de resposta diferente de null                                                
+            }
+            if(isset($data['dat_resposta'])) {
+                $query->where('dat_resposta',$data['dat_resposta']);
+            }
+            if(isset($data['GAB_ATENDIMENTO_cod_atendimento'])) {
+                $query->where('GAB_ATENDIMENTO_cod_atendimento',$data['GAB_ATENDIMENTO_cod_atendimento']);
+            }     
         })->orderby('dat_documento','asc')->get();
     }   
 }

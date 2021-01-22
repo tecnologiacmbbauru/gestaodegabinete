@@ -67,26 +67,6 @@
             </div>
 
             <div class="form-group row">
-                <div class="form-group col-md-4">   
-                    <label class="col-form-label negrito" for="dat_ini">Data Inicial</label>
-                    <input id="dat_ini" type="date" name="dat_ini" placeholder="" class="form-control input-md datepicker col-md-11">
-                </div>
-                <div class="form-group col-md-4">   
-                    <label class="col-form-label negrito" for="dat_fim">Data Final</label>
-                    <input id="dat_fim" type="date" name="dat_fim" placeholder="" class="form-control input-md datepicker col-md-10" >
-                </div>
-                <div class="form-group col-md-4">   
-                    {{--<div class="form-check form-check-inline" id="div_atend_rel" style="margin-bottom:20px;">
-                        <input class="form-check-input" type="checkbox" id="atend_rel" onclick="mostraResposta()">
-                        <label class="form-check-label" for="div_atend_rel">Possui Resposta</label>
-                    </div>
-                    <div class="form-group row" id="div_resp" hidden=true>--}}
-                    <label class="col-form-label negrito">Data da resposta</label>
-                    <input id="dat_resposta" type="date" name="dat_resposta" placeholder="" class="form-control input-md datepicker col-md-9">
-                </div>
-            </div>
-
-            <div class="form-group row">
                 <div class="form-group col-md-6">   
                     <label class="col-form-label negrito">Unidade Administrativa</label>
                     <select class="form-control col-md-10" name="GAB_UNIDADE_DOCUMENTO_cod_uni_doc">
@@ -104,6 +84,25 @@
                             <option name="GAB_STATUS_DOCUMENTO_cod_status" value="{{ $situacaoDoc->cod_status}}">{{ $situacaoDoc->nom_status}}</option>
                         @endforeach
                     </select>                            
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="form-group col-md-4">   
+                    <label class="col-form-label negrito" for="dat_ini">Data Inicial</label>
+                    <input id="dat_ini" type="date" name="dat_ini" placeholder="" class="form-control input-md datepicker col-md-11">
+                </div>
+                <div class="form-group col-md-4">   
+                    <label class="col-form-label negrito" for="dat_fim">Data Final</label>
+                    <input id="dat_fim" type="date" name="dat_fim" placeholder="" class="form-control input-md datepicker col-md-10" >
+                </div>
+                <div class="form-group col-md-4">   
+                    <input name="resp_rel" class="form-check-input" type="checkbox" id="resp_rel" onclick="mostraDataResp()" style="margin-left:0px;"><b style="margin-left:20px;">Possui resposta</b>
+                    <div class="form-inline row" id="div_resp" hidden=true>
+                        <label class="col-form-label negrito" style="margin-right: 5%;">Data</label>
+                        <input id="dat_resposta" type="date" name="dat_resposta" placeholder="" class="form-control input-md datepicker col-md-7">
+                    </div>
                 </div>
             </div>
 
@@ -183,6 +182,7 @@
                         @if($documento->GAB_ATENDIMENTO_cod_atendimento!=null)  
                             @if($documento->antedimentoRelacionado->ind_status=="A")
                                 Sim 
+                                {{--CÓDIGO PARA MOSTRAR INFORMAÇÕES SOBRE O ATENDIMENTO--}}
                                 {{--<button onclick="atendimentoR({{$i}})">
                                     <img id="img-seta" src="{{asset("utils/avanco-rapido.png")}}"style="height:35px; width:20px; transform: rotate(90deg); padding-left:3px;"></img> 
                                 </button> {{--Passa o contador de parametro para a função que mostra o atendimento--}}
@@ -224,3 +224,14 @@
     </div>
 </body>
 @endsection
+
+<script type="text/javascript" defer>
+    function mostraDataResp(){
+        var aux = document.getElementById('div_resp').hidden;
+        if(aux == true){
+            document.getElementById('div_resp').hidden=false;
+        }else{
+            document.getElementById('div_resp').hidden=true;
+        }
+    }
+</script>
