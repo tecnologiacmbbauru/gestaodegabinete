@@ -74,3 +74,5 @@ Route::get('/','HomeController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/sobre' , 'sobreController@index')->name('sobre');
+
+Route::get('/manual' , 'manualController@index')->name('manual');

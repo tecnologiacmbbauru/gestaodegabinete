@@ -6,17 +6,19 @@
       </div>
         <div class="modal-body">
             <p>
-                Nesta página você pode cadastrar os atendimentos feitos para sociedade civil e ter controle em qual estado que eles se encontram.
+                Nesta página, você pode cadastrar Atendimentos para as Pessoas já cadastradas no sistema.
                 <br>
-                Caso queira um <b>Tipo de Atendimento</b> ou uma <b>Situação do Atendimento</b> que ainda não tenha, você pode adicionar clicando na aba <b>Cadastro</b>.
+                <br>
+                Caso não exista o <b>Tipo de Atendimento</b> ou a <b>Situação do Atendimento</b> que você deseja, é possível cadastrar clicando no menu <b>Cadastros</b> -> <b>Tipo de Atendimento</b> e <b>Situação do Atendimento</b>.
+          <br>
             </p>
             <p>
-                <b>Atenção:</b>Você só pode usar uma pessoa ja cadastrada. Você pode criar uma pessoa com nome anônimo caso a pessoa não queira se cadastrar.
+                <b>Atenção:</b>Caso não exista a <u><i>Pessoa</i></u> que você deseja incluir o Atendimento, você deve cadastrar clicando no menu <b>Pessoa</b>.
             </p>
-            <p>Consulte o Manual do Usuário na aba <b>Ajuda</b> para mais informações.</</p>
+            <p>Para mais informações, consulte o Manual do Usuário no menu <b>Ajuda</b>.</</p>
             <div>
                 <input type="checkbox" id="scape" name="scape" checked>
-                <label for="scape">Não mostrar esta ajuda novamente.</label>
+                <label for="scape">Não mostrar novamente.</label>
             </div>
         </div>
         <div class="modal-footer">

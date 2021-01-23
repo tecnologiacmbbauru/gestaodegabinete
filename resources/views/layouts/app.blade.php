@@ -82,7 +82,7 @@
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Sair') }}
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
@@ -120,14 +120,14 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item negrito" href="{{ route('agentePolitico.index') }}">{{ __('Agente Político') }}</a>
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item negrito" href="{{ route('cargoPolitico.index') }}">{{ __('Cargo Político') }}</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item negrito" href="{{ route('tipoAtendimento.index') }}">{{ __('Tipo de Atendimento') }}</a>
                         <a class="dropdown-item negrito" href="{{ route('statusAtendimento.index') }}">{{ __('Situação do Atendimento') }}</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item negrito" href="{{ route('tipoDocumento.index') }}">{{ __('Tipo de Documento') }}</a>
                         <a class="dropdown-item negrito" href="{{ route('situacaoDoc.index') }}">{{ __('Situação do Documento') }}</a>
                         <a class="dropdown-item negrito" href="{{ route('unidadeDocumento.index') }}">{{ __('Unidade Administrativa (Documento)') }}</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item negrito" href="{{ route('cargoPolitico.index') }}">{{ __('Cargo Político') }}</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item negrito" href="{{ route('chaveAgenda.index') }}">{{ __('Chaves - Google Agenda') }}</a>
                         </div>
@@ -151,7 +151,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item negrito" href="{{ route('sobre') }}" }}>Sobre o Sistema</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item negrito" href="%" }}>Manual do Usuário</a>
+                        <a class="dropdown-item negrito" href="{{ route('manual') }}" }}>Manual do Usuário</a>
                         </div>
                     </li>  
                 </ul>
@@ -166,5 +166,5 @@
 
 </body>
 
-<footer class="footer">Desenvolvido pelo Serviço Tecnológico em Informática da <a class="a-footer" href="https://www.bauru.sp.leg.br/" target="blank">Câmara Municipal de Bauru</a> / São Paulo.</footer>
+<footer class="footer">Desenvolvido pelo Serviço Tecnológico em Informática da <a class="a-footer" href="https://www.bauru.sp.leg.br/" target="blank">Câmara Municipal de Bauru</a> / São Paulo em software livre e aberto.</footer>
 </html>

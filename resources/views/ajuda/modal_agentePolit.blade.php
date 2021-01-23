@@ -7,15 +7,17 @@
         <div class="modal-body">
           <p style="text-align: justify;text-justify: inter-word;">Para começar, cadastre o Agente Político.
           <br>
-          É bem rápido! Você só precisa colocar o <u><i>nome</i></u>, <i><u>cargo político</u></i> e se desejar uma <u><i>foto de perfil</i></u> e o <u><i>endereço</i></u> do agente político.
+          É bem rápido! Você deve informar os <u><i>dados do Agente Político</i></u>, incluir uma <u><i>Foto</i></u> e fornecer o <u><i>endereço do Órgâo</i></u> que ele pertence.
           <br>
-          Caso não exista o <u><i>cargo politico</i></u> que você deseja, é possível cadastrar um novo clicando na aba <b>Cadastros</b> e depois em <b>Cargo Político</b>.
           <br>
+          Caso não exista o <u><i>Cargo Político</i></u> que você deseja, é possível cadastrar clicando no menu <b>Cadastros</b> -> <b>Cargo Político</b>.
+          <br>
+          <p>Para mais informações, consulte o Manual do Usuário no menu <b>Ajuda</b>.</</p>
           <p>
           <div>
             <input type="checkbox" id="scape" name="scape"
                   checked>
-            <label for="scape">Não mostrar esta ajuda novamente.</label>
+            <label for="scape">Não mostrar novamente.</label>
           </div>
         </div>
         <div class="modal-footer">{{--data-dismiss="modal"--}}

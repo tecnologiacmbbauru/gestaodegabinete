@@ -6,21 +6,19 @@
       </div>
         <div class="modal-body">
             <p>
-                Nesta página você pode cadastrar pessoas, fisicas ou juridicas, para realizar atendimentos e gerar relatórios e ser informado sobre seus aniversários.
+                Nesta página, você pode cadastrar Pessoas, <u>Físicas e Jurídicas</u>, informando seus respectivos dados e fotos.
+                Após ter cadastrado Pessoas, é possível registrar Atendimentos e Documentos, gerar relatórios e planilhas, imprimir etiquetas, ser notificado sobre Aniversários, entre outros.
             </p>
             <p>
-                <b>Pesquisa:</b>Você pode realizar pesquisas para consultar os dados das pessoas cadastradas preenchendo qualquer campo e clicando em pesquisar. Se nenhum campo for preenchido, a pesquisa retornara todas pessoas cadastradas.<br>
-                Depois de fazer a busca você pode gerar relatórios ou planilha no excel com o resultado destas buscas.
+                Você pode pesquisar as Pessoas cadastradas e exportar os dados consultados para relatórios ou planilhas.
             </p>
             <p>
-                <b>Atenção:</b>Você pode realizar um <u>cadastro de forma rápida</u> apenas preenchendo o <b>Nome</b> e clicando em <b>cadastrar</b>.
-                <br>
-                Os demais campos são opicionais, mas lembre-se que o endereço é importante para gerar relatórios personalizados!
+                <b>Atenção:</b>Você pode realizar um <u>cadastro de forma rápida</u> apenas preenchendo o <b>Nome</b> da Pessoa. Mas lembre-se que o preenchimento de todos os dados de uma Pessoa é importante para ajudar nas pesquisas, além da geração de relatórios e notificações de Aniversários!
             </p>
-            <p>Consulte o Manual do Usuário na aba <b>Ajuda</b> para mais informações.</</p>
+            <p>Para mais informações, consulte o Manual do Usuário no menu <b>Ajuda</b>.</</p>
             <div>
                 <input type="checkbox" id="scape" name="scape" checked>
-                <label for="scape">Não mostrar esta ajuda novamente.</label>
+                <label for="scape">Não mostrar novamente.</label>
             </div>
         </div>
         <div class="modal-footer">

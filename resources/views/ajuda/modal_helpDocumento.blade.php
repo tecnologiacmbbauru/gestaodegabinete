@@ -6,18 +6,18 @@
       </div>
         <div class="modal-body">
             <p>
-                Nesta página você pode cadastrar os documentos, para você poder consultalos posteriormente ou ter controle da situação deles.
+                Nesta página, você pode cadastrar Documentos relacionados ou não aos Atendimentos já cadastrados no sistema.
             </p>
             <p>
-                Caso queira uma <b>Unidade Administrativa</b> ou uma <b>Situação</b> que ainda não tenha, você pode adicionar clicando na aba <b>Cadastro</b>.
+                Caso não exista o <b>Tipo de Documento</b>, a <b>Situação do Documento</b> ou a <b>Unidade Administrativa</b> que você deseja, é possível cadastrar clicando no menu <b>Cadastros</b> -> <b>Tipo de Documento</b>, <b>Situação do Documento</b> e <b>Unidade Administrativa</b>.
             </p>
             <p>
-                Você pode adicionar um <b>Atendimento</b> ou uma <b>Resposta</b> ao seu documento, tanto no momento do cadastro, quanto editando ele posteriormente.
+              <b>Atenção:</b>Você pode vincular um <b>Atendimento</b> e uma <b>Resposta</b> ao seu Documento, tanto no momento do cadastro quanto posteriormente.
             </p>
-            <p>Consulte o Manual do Usuário na aba <b>Ajuda</b> para mais informações.</</p>
+            <p>Para mais informações, consulte o Manual do Usuário no menu <b>Ajuda</b>.</</p>
             <div>
                 <input type="checkbox" id="scape" name="scape" checked>
-                <label for="scape">Não mostrar esta ajuda novamente.</label>
+                <label for="scape">Não mostrar novamente.</label>
             </div>
         </div>
         <div class="modal-footer">

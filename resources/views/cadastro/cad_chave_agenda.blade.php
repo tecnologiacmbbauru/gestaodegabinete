@@ -4,7 +4,7 @@
         <div class="cadastro-agenda">    
             <div class="form-row">
                 <div class="form-group col-md-8">
-                    <label class="col-form-label negrito">Google Calendar API Key</label>
+                    <label class="col-form-label negrito">Google Calendar API</label>
                     <input id="api_key" type="text" class="form-control" name="api_key" value="{{old('api_key')}}" maxlength="255" >
                 </div>
             </div>

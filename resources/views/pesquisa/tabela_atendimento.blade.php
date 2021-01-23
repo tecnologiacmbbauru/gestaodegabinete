@@ -38,7 +38,7 @@
                 {{$atendimentoC->statusAtendimento->nom_status}}
             </td>
             <td width='10%' style="text-align: center;">
-                    <a href="{{route('pdf.atendimento',$atendimentoC->cod_atendimento)}}"><img src="{{asset('utils/relatorio.png')}}" alt="Gerar Relatório do Atendimento" title="Gerar Relatório do Atendimento"></a>                
+                    <a href="{{route('pdf.atendimento',$atendimentoC->cod_atendimento)}}" target="_blank"><img src="{{asset('utils/relatorio.png')}}" alt="Gerar Relatório do Atendimento" title="Gerar Relatório do Atendimento"></a>                
             </td>
             <td  width='10%' style="text-align: center;">
                 <a href="{{route('atendimento.edit', $atendimentoC->cod_atendimento)}}"><img src="{{asset('utils/alterar.png')}}" alt="Alterar"></a>                   

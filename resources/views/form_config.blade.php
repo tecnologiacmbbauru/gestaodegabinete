@@ -43,19 +43,19 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label class="col-form-label negrito">Email</label>
+                        <label class="col-form-label negrito">E-mail</label>
                         <input id="email" type="text" name="email" class="form-control" value="{{Auth::user()->email}}"> 
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label class="col-form-label negrito">Alterar senha</label>
+                        <label class="col-form-label negrito">Trocar Senha</label>
                         <input id="password" type="password" name="password" minlength="3" class="form-control"> 
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label class="col-form-label negrito">Confirmar senha</label>
+                        <label class="col-form-label negrito">Confirmar Nova Senha</label>
                         <input id="password-confirm" type="password" name="password-confirm" minlength="3" class="form-control" onkeyup="validarSenha()"> 
                         <label id="alert-senha" class="alert-obrigatorio" hidden="true">*Senhas digitadas não iguais</label>
                     </div>
