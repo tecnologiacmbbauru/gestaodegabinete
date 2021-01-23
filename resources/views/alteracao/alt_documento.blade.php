@@ -64,7 +64,7 @@
         </div>
         <div class="form-group col-md-6">
             @if($docC->lnk_documento!=null)
-                <label class="col-form-label negrito">Link: </label> <strong><a href="{{$docC->lnk_documento}}" target="_blank">{{$docC->lnk_documento}}</a></strong>
+                <label class="col-form-label negrito">Link:</label><strong><a class="link-documento" href="{{url('//' . (strpos($docC->lnk_documento, '//') !== false ? substr($docC->lnk_documento, strpos($docC->lnk_documento, '//') + 2) : ltrim($docC->lnk_documento, '/')))}}" target="_blank">{{$docC->lnk_documento}}</a></strong>
                 <br>   
                 <input class="form-check-input" type="checkbox" id="altera_link" name="altera_link" onclick="mostraAlteraLink()" style="margin-left:3px;">
                 <label class="form-check-label negrito" for="altera_link" style="margin-left:25px;">Link Documento</label>
@@ -146,7 +146,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             @if($docC->link_resposta!=null)
-                                <label class="col-form-label negrito">Link: </label> <strong><a class="link-documento" href="{{$docC->link_resposta}}" target="_blank">{{$docC->link_resposta}}</a></strong>
+                                <label class="col-form-label negrito">Link: </label><strong><a class="link-documento" href="{{url('//' . (strpos($docC->link_resposta, '//') !== false ? substr($docC->link_resposta, strpos($docC->link_resposta, '//') + 2) : ltrim($docC->link_resposta, '/')))}}" target="_blank">{{$docC->link_resposta}}</a></strong>
                                 <br>   
                                 <input class="form-check-input" type="checkbox" id="altera_link_resp" id="altera_link_resp" onclick="subsLinkResp()" style="margin-left:3px;">
                                 <label class="form-check-label negrito" for="altera_link" style="margin-left:25px;">Substituir link de resposta</label>

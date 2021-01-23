@@ -43,8 +43,8 @@
             <tr>
                 <th width='20%'>Data</th>
                 <th width='40%'>Pessoa</th>
-                <th width='20%'>Status</th>
                 <th width='20%'>Tipo</th>
+                <th width='20%'>Situação</th>
             </tr>
             <tbody id="resultado_pesquisa"></tbody>
         </table>    
@@ -180,8 +180,8 @@
                         tabela += `<tr onclick="enviaAtendimento(${item.cod_atendimento},'${dia}','${item.GAB_PESSOA_cod_pessoa}','${item.GAB_TIPO_ATENDIMENTO_cod_tipo}','${item.GAB_STATUS_ATENDIMENTO_cod_status}');">
                                         <td>${dia}</td>
                                         <td>${item.GAB_PESSOA_cod_pessoa}</td>
-                                        <td>${item.GAB_STATUS_ATENDIMENTO_cod_status}</td>
                                         <td>${item.GAB_TIPO_ATENDIMENTO_cod_tipo}</td>
+                                        <td>${item.GAB_STATUS_ATENDIMENTO_cod_status}</td>
                                     </tr>`;
                     } 
                     $('#resultado_pesquisa').html(tabela); 
