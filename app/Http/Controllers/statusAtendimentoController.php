@@ -17,7 +17,7 @@ class statusAtendimentoController extends Controller
     public function index()
     {
         $alteracao=false;
-        $statusAtendimento = $this->statusA->paginate(5);
+        $statusAtendimento = $this->statusA->paginate(20);
 
         return view('form_status_atendimento',compact('alteracao','statusAtendimento'));
 
@@ -90,7 +90,7 @@ class statusAtendimentoController extends Controller
         // if(!$statusA = $this->statusAtendimento->find($id))
         // return redirect()->back;
         $alteracao = true;
-        $statusAtendimento = $this->statusA->paginate(5);
+        $statusAtendimento = $this->statusA->paginate(20);
         $statusA = $this->statusA->where('cod_status',$id)->first(); //recupera o primeiro id
 
         return view('form_status_atendimento',compact('alteracao','statusA','statusAtendimento'));

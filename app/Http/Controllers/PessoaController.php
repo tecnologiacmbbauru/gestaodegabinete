@@ -21,7 +21,7 @@ class PessoaController extends Controller
     public function index()
     {
         $alteracao=false;
-        $pessoa = $this->pessoaC->paginate(5);
+        $pessoa = $this->pessoaC->paginate(20);
         return view('form_pessoa',compact('alteracao','pessoa'));
     }
 

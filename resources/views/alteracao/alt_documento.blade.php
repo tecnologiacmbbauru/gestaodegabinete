@@ -166,7 +166,7 @@
                     <input type="hidden" NAME="ind_status" VALUE="A">                   
             @else
                 <div class="form-check form-check-inline" id="div_resposta" style="margin-bottom:5px;">
-                    <input class="form-check-input" type="checkbox" id="resp_rel" name="resp_rel" onclick="mostraResposta()">
+                    <input class="form-check-input" type="checkbox" id="resp_rel" name="resp_rel" onclick="mostraResposta(document.getElementById('resposta').hidden)">
                     <label class="form-check-label negrito">Adicionar Resposta</label>
                 </div>      
                 <div id="resposta" hidden=true>

@@ -23,7 +23,7 @@ class SituacaoDocController extends Controller
     public function index()
     {
         $alteracao=false;
-        $situacaoDoc = $this->sitDoc->paginate(5);
+        $situacaoDoc = $this->sitDoc->paginate(20);
 
         return view('form_situacaoDoc',compact('alteracao','situacaoDoc'));
     }
@@ -88,7 +88,7 @@ class SituacaoDocController extends Controller
     public function edit($id)
     {;
            $alteracao = true;
-           $situacaoDoc = $this->sitDoc->paginate(5);
+           $situacaoDoc = $this->sitDoc->paginate(20);
            $sitDoc = $this->sitDoc->where('cod_status',$id)->first();
    
            return view('form_situacaoDoc',compact('alteracao','sitDoc','situacaoDoc'));

@@ -23,7 +23,7 @@ class TipoAtendimentoController extends Controller
     public function index()
     {
         $alteracao=false;
-        $tipoAtendimento = $this->tipoA->paginate(5);
+        $tipoAtendimento = $this->tipoA->paginate(20);
 
         return view('form_tipoAtendimento',compact('alteracao','tipoAtendimento'));
     }
@@ -89,7 +89,7 @@ class TipoAtendimentoController extends Controller
     public function edit($id)
     {
         $alteracao = true;
-        $tipoAtendimento = $this->tipoA->paginate(5);
+        $tipoAtendimento = $this->tipoA->paginate(20);
         $tipoA = $this->tipoA->where('cod_tipo',$id)->first();
 
         return view('form_tipoAtendimento',compact('alteracao','tipoA','tipoAtendimento'));

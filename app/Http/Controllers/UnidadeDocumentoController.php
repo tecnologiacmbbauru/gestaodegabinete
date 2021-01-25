@@ -23,7 +23,7 @@ class UnidadeDocumentoController extends Controller
     public function index()
     {
         $alteracao=false;
-        $unidadeDocumento = $this->uniDoc->paginate(5);
+        $unidadeDocumento = $this->uniDoc->paginate(20);
 
         return view('form_unidadeDocumento',compact('alteracao','unidadeDocumento'));
     }
@@ -88,7 +88,7 @@ class UnidadeDocumentoController extends Controller
     public function edit($id)
     {
         $alteracao = true;
-        $unidadeDocumento = $this->uniDoc->paginate(5);
+        $unidadeDocumento = $this->uniDoc->paginate(20);
         $uniDoc = $this->uniDoc->where('cod_uni_doc',$id)->first();
 
         return view('form_unidadeDocumento',compact('alteracao','uniDoc','unidadeDocumento'));

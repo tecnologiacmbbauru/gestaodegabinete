@@ -24,7 +24,7 @@ class TipoDocumentoController extends Controller
     public function index()
     {
         $alteracao=false;
-        $tipoDocumento = $this->tipoDoc->paginate(5);
+        $tipoDocumento = $this->tipoDoc->paginate(20); 
 
         return view('form_tipoDoc',compact('alteracao','tipoDocumento'));
     }
@@ -91,7 +91,7 @@ class TipoDocumentoController extends Controller
     public function edit($id)
     {
         $alteracao = true;
-        $tipoDocumento = $this->tipoDoc->paginate(5); //mesmo do index
+        $tipoDocumento = $this->tipoDoc->paginate(20); //mesmo do index
         $tipoDoc = $this->tipoDoc->where('cod_tip_doc',$id)->first();
 
         return view('form_tipoDoc',compact('alteracao','tipoDoc','tipoDocumento'));

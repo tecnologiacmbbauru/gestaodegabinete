@@ -70,7 +70,7 @@ class documento extends Model
             if(isset($data['GAB_ATENDIMENTO_cod_atendimento'])) {
                 $query->where('GAB_ATENDIMENTO_cod_atendimento',$data['GAB_ATENDIMENTO_cod_atendimento']);
             }               
-        })->orderby('dat_documento','desc')->paginate(15);
+        })->orderby('dat_documento','desc')->paginate(20);
     }
 
     

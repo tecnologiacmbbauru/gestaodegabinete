@@ -29,7 +29,7 @@ class DocumentoController extends Controller
     public function index()
     {
         $alteracao=false;
-        $documento = $this->docC->paginate(5);
+        $documento = $this->docC->paginate(20);
         
         $tipoDocumento = tipoDocumento::all();
         $tipoAtendimento = tipoAtendimento::all();
@@ -96,7 +96,7 @@ class DocumentoController extends Controller
     public function edit($id)
     {
         $alteracao = true;
-        $documento = $this->docC->paginate(5);
+        $documento = $this->docC->paginate(20);
         $docC = $this->docC->where('cod_documento',$id)->first();
         $tipoDocumento = tipoDocumento::all();
         $tipoAtendimento = tipoAtendimento::all();

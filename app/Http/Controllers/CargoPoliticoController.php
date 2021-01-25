@@ -23,7 +23,7 @@ class CargoPoliticoController extends Controller
     public function index()
     {
         $alteracao=false;
-        $cargoPolitico = $this->cargoPolit->paginate(5);
+        $cargoPolitico = $this->cargoPolit->paginate(20);
 
         return view('form_cargoPolitico',compact('alteracao','cargoPolitico'));
     }
@@ -88,7 +88,7 @@ class CargoPoliticoController extends Controller
     public function edit($id)
     {
         $alteracao = true;
-        $cargoPolitico = $this->cargoPolit->paginate(5);
+        $cargoPolitico = $this->cargoPolit->paginate(20);
         $cargoPolit = $this->cargoPolit->where('cod_car_pol',$id)->first();
 
         return view('form_cargoPolitico',compact('alteracao','cargoPolit','cargoPolitico'));

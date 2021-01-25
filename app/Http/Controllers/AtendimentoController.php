@@ -20,7 +20,7 @@ class AtendimentoController extends Controller
     public function index()
     {
         $alteracao=false;
-        $Atendimento = $this->atendimentoC->paginate(5);
+        $Atendimento = $this->atendimentoC->paginate(20);
         $tipoAtendimento = tipoAtendimento::all();
         $statusAtendimento = statusAtendimento::all();
         $pessoas = pessoa::all();
@@ -71,7 +71,7 @@ class AtendimentoController extends Controller
     public function edit($id)
     {
         $alteracao = true;
-        $Atendimento = $this->atendimentoC->paginate(5);
+        $Atendimento = $this->atendimentoC->paginate(20);
         $atendimentoC = $this->atendimentoC->where('cod_atendimento',$id)->first();
         $tipoAtendimento = tipoAtendimento::all();
         $statusAtendimento = statusAtendimento::all();
