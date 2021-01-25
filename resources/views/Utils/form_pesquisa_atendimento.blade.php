@@ -6,7 +6,7 @@
             <label class="col-form-label negrito" for="input_nom_pessoa">Pessoa</label>
             <input id="pessoa_busca" type="text" class="form-control" name="pessoa_busca" autofocus >
             <input type="text" id='GAB_PESSOA_cod_pessoa' name="GAB_PESSOA_cod_pessoa" hidden="true"  readonly>
-            <img src="" alt="Imagem de Municipe" id="img_pessoa" name="img_pessoa" style="max-widht: 150px; max-height: 150px;" hidden="true">
+            <!--<img src="" alt="Imagem de Municipe" id="img_pessoa" name="img_pessoa" style="max-widht: 150px; max-height: 150px;" hidden="true">-->
         </div>
         <div class="form-group col-md-4">
             <label class="col-form-label negrito" for="input_nom_pessoa">Data</label>
@@ -93,10 +93,10 @@
                 $('#GAB_PESSOA_cod_pessoa').val(ui.item.value); // save selected id to input //salva o id do input
                     
                 if (ui.item.path_imagem!=null){
-                    $('#img_pessoa').attr("src","../../storage/"+ui.item.path_imagem);
+                   // $('#img_pessoa').attr("src","../../storage/"+ui.item.path_imagem);
                     $('#img_pessoa').attr("hidden",false);
                 }else{
-                    $('#img_pessoa').attr("src","../../utils/sem-imagem.jpg");
+                   // $('#img_pessoa').attr("src","../../utils/sem-imagem.jpg");
                     $('#img_pessoa').attr("hidden",false);
                 }
                 return false;
@@ -168,6 +168,14 @@
                 },
                 success:function(result){
                     let tabela = ``; // declara a variável vazia
+                    
+                    //console.log(result);
+                    if(result.length == 0){
+                        tabela += `<tr>
+                                    <td colspan="4" style="text-align: center;">Não foi encontrado nenhum registro</td>
+                                    </tr>`;
+                    }
+
                     // vai montando as linhas com os valores do JSON
                     for(let item of result){
                         var data = new Date(item.dat_atendimento),

@@ -20,7 +20,7 @@ $(document).ready(function(){
         },
         minLength:2,
         select: function (event, ui) {
-            $('#pessoa_busca').val(ui.item.label); // display the selected text //mostra o texto selecionado no input
+            $('#pessoa_busca').val(ui.item.nome); // display the selected text //mostra o texto selecionado no input
             $('#GAB_PESSOA_cod_pessoa').val(ui.item.value); // save selected id to input //salva o id do input
                             
         if (ui.item.path_imagem!=null){

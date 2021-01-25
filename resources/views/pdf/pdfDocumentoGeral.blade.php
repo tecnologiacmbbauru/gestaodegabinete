@@ -95,8 +95,6 @@
             </td>
             <td width="10%" style="text-align: left;">
                 @if($documento->dat_resposta!=null)
-                    Data
-                    <br>
                     {{date('d/m/Y', strtotime($documento->dat_resposta))}}
                 @endif
             </td>
