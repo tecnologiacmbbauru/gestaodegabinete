@@ -165,7 +165,9 @@ class DocumentoController extends Controller
     public function destroy(request $request)
     {
         $docC = Documento::findOrFail($request->id_exclusao);
-        $docC->delete();
+
+        $inativo = array('ind_status'=> 'I');
+        $docC->update($inativo);
 
         return redirect()
                     ->route('documento.index')

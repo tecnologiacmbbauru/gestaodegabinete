@@ -40,7 +40,7 @@
                         <form action="{{route('documento.destroy', "id_exclusao")}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <a type="button" data-toggle="modal" data-target="#modalExclusao" value="{{$docC->cod_documento }}"><img src="{{asset('utils/excluir.png')}}" alt="Excluir"></a>
+                            <a type="button" data-toggle="modal" data-target="#modalExclusao" data-id_exclusao="{{$docC->cod_documento }}"><img src="{{asset('utils/excluir.png')}}" alt="Excluir"></a>
                             @include('exclusao/exclusao_modal')
                         </form>
                     </td>

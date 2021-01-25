@@ -9,26 +9,21 @@
     <script src="{{asset('js/exclusao.js')}}" defer></script>
     
     <script>
-        var check = true;
-        var checkR = true;
-
-        function mostraAtendimento(){
-            if(check==true) {
+        function mostraAtendimento(checado){
+            if(checado==true) {
                 document.getElementById("segunda_secao").hidden=false;
-                check=false;
             }else{
                 document.getElementById("segunda_secao").hidden=true;
-                check=true;
             }
         }
-        
-        function mostraResposta(){
-            if(checkR==true) {
+        //checado é o valor de document.getElementById("resposta").hidden recebido como parametro da função
+        function mostraResposta(checado){
+            if(checado==true) {
                 document.getElementById("resposta").hidden=false;
-                checkR=false;
+                document.getElementById("dat_resposta").required=true; //valida para não cadastrar sem data da resposta
             }else{
                 document.getElementById("resposta").hidden=true;
-                checkR=true;
+                document.getElementById("dat_resposta").required=false;
             }
         }
     

@@ -73,7 +73,7 @@
         <div class="form-row">
             <div class="form-group col-md-11">
                 <div class="form-check form-check-inline" id="div_atend_rel" style="margin-bottom:5px;">
-                    <input class="form-check-input" type="checkbox" id="atend_rel" name="atend_rel" onclick="mostraAtendimento()">
+                    <input class="form-check-input" type="checkbox" id="atend_rel" name="atend_rel" onclick="mostraAtendimento(document.getElementById('segunda_secao').hidden)">
                     <label class="form-check-label negrito" for="div_atend_rel">Possui Atendimento Relacionado</label>
                 </div>
                 <fieldset id="segunda_secao" class="fieldset-personalizado" form="form_cadastro_documento" hidden=true >
@@ -85,7 +85,7 @@
         <div class="form-row">
             <div class="form-group col-md-11">
                 <div class="form-check form-check-inline" id="div_resposta" style="margin-bottom:5px;">
-                    <input class="form-check-input" type="checkbox" id="resp_rel" name="resp_rel" onclick="mostraResposta()">
+                    <input class="form-check-input" type="checkbox" id="resp_rel" name="resp_rel" onclick="mostraResposta(document.getElementById('resposta').hidden)">
                     <label class="form-check-label negrito" for="div_resposta">Possui Resposta</label>
                 </div>      
                 <div id="resposta" hidden=true>
@@ -146,7 +146,7 @@
         document.getElementById("form_cadastro_documento").action="{{route('documento.pesquisaDocumento')}}";
     }
 </script>
-{{--Script responsavel por impedir cadastro com o valor "todos"| Valor apenas de pesquisa--}}
+{{--Script responsavel por impedir cadastro com o valor "selecione"| Valor apenas de pesquisa--}}
 {{--Tambem valida se o arquivo não é um programa com claro potencial malicioso--}}
 <script type="text/javascript" defer>
     function cadastrar(i){
@@ -194,8 +194,8 @@
     }   
 
     function ocultarAlerta(element){
-            element.hidden=true;
-        }
+        element.hidden=true;
+    }
 </script>
 
 @if(Auth::user()->ajd_documento==1)
