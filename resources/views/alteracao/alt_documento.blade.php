@@ -20,7 +20,7 @@
         </div>
         <div class="form-group col-md-4">
             <label class="col-form-label negrito" for="dat_ano">Ano</label>
-            <input id="dat_ano" type="text" class="form-control col-md-9" name="dat_ano" value="{{$docC->dat_ano}}"  autocomplete="dat_ano"  maxlength="4" required>                       
+            <input id="dat_ano" type="year" class="form-control col-md-9" name="dat_ano" value="{{$docC->dat_ano}}"  autocomplete="dat_ano"  maxlength="4" required>                       
         </div>
     </div>
 

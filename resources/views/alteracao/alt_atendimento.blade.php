@@ -59,6 +59,7 @@
                         }
                     });
                     },
+                    minLength:2,
                     select: function (event, ui) {
                         $('#pessoa_busca').val(ui.item.nome); // display the selected text
 

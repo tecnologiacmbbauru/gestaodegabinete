@@ -132,7 +132,7 @@ class DocumentoController extends Controller
             $docC['ind_status'] = 'A';
         }
 
-        $docC['nom_operacao_log'] = 'UPDATE';
+        $dataform['nom_operacao_log'] = 'UPDATE';
      
         if($dataform['altera_link']="on" && $dataform['lnk_documento']==null){    //verifica se selecionou para alterar o documento, mas deixou nulo o preenchimento 
             $dataform['lnk_documento'] = $docC->lnk_documento;                       //neste caso volta ao valor anterior do documento
@@ -166,7 +166,7 @@ class DocumentoController extends Controller
     {
         $docC = Documento::findOrFail($request->id_exclusao);
 
-        $inativo = array('ind_status'=> 'I');
+        $inativo = array('ind_status'=> 'I','nom_usuario_log' => auth()->user()->name,'nom_operacao_log'=>'DELETE' );
         $docC->update($inativo);
 
         return redirect()

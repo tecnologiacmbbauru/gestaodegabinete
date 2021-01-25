@@ -89,6 +89,7 @@
                             }
                         });
                         },
+                        minLength:2,
                         select: function (event, ui) {
                         $('#pessoa_busca').val(ui.item.label); // display the selected text //mostra o texto selecionado
 

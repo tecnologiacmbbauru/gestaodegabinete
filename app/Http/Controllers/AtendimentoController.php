@@ -96,7 +96,7 @@ class AtendimentoController extends Controller
     {
         $atendimentoC = Atendimento::findOrFail($request->id_exclusao);
         //$atendimentoC->delete();
-        $inativo = array('ind_status'=> 'I');
+        $inativo = array('ind_status'=> 'I','nom_usuario_log' => auth()->user()->name,'nom_operacao_log'=>'DELETE' );
         $atendimentoC->update($inativo);
         return redirect()
                     ->route('atendimento.index')

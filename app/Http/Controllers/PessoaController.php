@@ -45,6 +45,7 @@ class PessoaController extends Controller
                     $dataform['image']=$imagePath;
                 }
                 $dataform['nom_usuario_log'] = auth()->user()->name;
+                $dataform['nom_operacao_log'] = 'INSERT';
                 //dd($dataform);
                 $insert = $this->pessoaC->create($dataform);
                 
@@ -91,13 +92,16 @@ class PessoaController extends Controller
 
     public function update($id , Request $request)
     {
-        //dd($request->all());
+        $dataform = $request->all();
         $pessoaC = pessoa::findOrFail($id);
         if($request->hasFile('img_perfil') && $request->img_perfil->isValid()){
             $imagePath = $request->img_perfil->store('pessoa');
-            $pessoaC['image']=$imagePath;
+            $dataform['image']=$imagePath;
         }
-        $pessoaC->update($request->all());
+        $dataform['nom_usuario_log'] = auth()->user()->name;
+        $dataform['nom_operacao_log'] = "UPDATE";
+
+        $pessoaC->update($dataform);
 
         return redirect()
                     ->route('pessoa.index')
@@ -109,7 +113,8 @@ class PessoaController extends Controller
     {
         $pessoaC = pessoa::findOrFail($request->id_exclusao);
         //$pessoaC = $pessoaC->delete(); //excluir de verdade
-        $inativo = array('ind_status'=> 'I');
+        $inativo = array('ind_status'=> 'I', 'nom_usuario_log' => auth()->user()->name,'nom_operacao_log'=>'DELETE' );
+
         $pessoaC->update($inativo);
 
         return redirect()

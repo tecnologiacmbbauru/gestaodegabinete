@@ -14,7 +14,9 @@
         @foreach($documentos as $documento)
         <tr>
             <td width="15">
-                {{date('d/m/Y', strtotime($documento->dat_documento))}}
+                @if(isset($documento->dat_documento))
+                    {{date('d/m/Y', strtotime($documento->dat_documento))}}
+                @endif
             </td>
             <td width="15">
                 {{$documento->nom_documento}}/{{$documento->dat_ano}}
@@ -29,7 +31,9 @@
                 {{$documento->unidadeDocumento->nom_uni_doc}}
             </td>
             <td width="15">
-                {{date('d/m/Y', strtotime($documento->dat_resposta))}}
+                @if(isset($documento->dat_resposta))
+                    {{date('d/m/Y', strtotime($documento->dat_resposta))}}
+                @endif
             </td>            
             <td width="100">
                 @if($documento->GAB_ATENDIMENTO_cod_atendimento!=null)

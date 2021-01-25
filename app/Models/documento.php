@@ -46,6 +46,9 @@ class documento extends Model
             if(isset($data['dat_ano'])) {
                 $query->where('dat_ano',$data['dat_ano']);
             }
+            if(isset($data['dat_documento'])) {
+                $query->where('dat_documento','=',$data['dat_documento']);
+            }
             if(isset($data['dat_ini'])) {
                 $query->where('dat_documento','>=',$data['dat_ini']);
             }

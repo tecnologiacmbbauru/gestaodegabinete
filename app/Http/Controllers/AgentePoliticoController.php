@@ -16,6 +16,7 @@ class AgentePoliticoController extends Controller
 
     public function __construct(agentePolitico $agentePolit){
         $this->middleware('auth'); //verificar se o usuario esta logado
+        $this->agentePolit = $agentePolit;
     }
 
 
