@@ -10,15 +10,17 @@
         *{
             font-family: Arial!important;
             font-size:13px;
+            font-style: bold;
         }
         body{
-            margin-right:0.4cm;
-            margin-left:0.4cm;
-            margin-top:1.2cm;
-            margin-bottom:1.2cm;
+            border: 0cm;
+            margin:0cm;
         }
         table {
-            margin:0cm;
+            margin-right:0.4cm;
+            margin-left:0.4cm;
+            margin-top:1.35cm;
+            margin-bottom:1.1cm;
             padding:0cm;
             table-layout: fixed;
             width:100%;
@@ -32,10 +34,10 @@
         .celula{
             padding-top:0cm;
             padding-bottom:0cm;
-            padding-left:0.5cm;
+            padding-left:0.1cm;
             min-width: 10.1cm;
             max-width: 10.1cm;          /*10,19cm; */
-            height:2.44cm;         /*3,39cm;*/
+            height:2.5cm;              /*3,39cm;*/
             white-space: nowrap;
             word-wrap: break-word;
             overflow: hidden;
@@ -97,7 +99,7 @@
                         {{$aniversariante->nom_cidade}}/{{$aniversariante->nom_estado}}-CEP:{{$aniversariante->num_cep}}
                     </td>
                     <td class="celula"> 
-                        {{$agentePolitico->nom_vereador}}
+                        {{$agentePolitico->cargoPolitico->nom_car_pol}} {{$agentePolitico->nom_vereador}}
                         <br>
                         {{$agentePolitico->nom_endereco}}-{{$agentePolitico->nom_numero}}
                         <br>

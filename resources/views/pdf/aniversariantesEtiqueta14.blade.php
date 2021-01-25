@@ -11,18 +11,21 @@
         *{
             font-family: Arial!important;
             font-size:13px;
+            font-style:bold ;
         }
         body{
             /*padding-right:14px; /*Equivale a 0,5 centrimetros
             padding-left:14px;
             margin-top:2cm;
             margin-bottom:2,1cm;*/
+            border:0cm;
+            margin: 0cm;
+        }
+        table {
             margin-top:2,1cm;
             margin-bottom:2.1cm;
             margin-left:0.5cm;
             margin-right:0.5cm;
-        }
-        table {
             table-layout: fixed;
             border:none; /*para debugar use 1px solid no lugar de none*/
             padding:0px;
@@ -35,20 +38,20 @@
             border: 0px solid;
         }
         .celula{
-            padding-left:0.5cm;
-            min-width:10.19cm;   /*10,19cm;*/
-            max-width:10.19cm;          /*10,19cm; */
-            height:3.3cm;         /*3,39cm;*/
+            padding-left:0.1cm;
+            min-width:10.1cm;   /*10,19cm;*/
+            max-width:10.1cm;          /*10,19cm; */
+            height:3.34cm;         /*3,39cm;*/
             white-space: nowrap;
             word-wrap: break-word;
             overflow: hidden;
             text-overflow: ellipsis;
         }
         .celula-esquerda{
-            padding-left:0.5cm;
-            min-width:10.19cm;
-            max-width: 10.19cm;          /*10,19cm; */
-            height:3.3cm;         /*3,39cm;*/
+            padding-left:0.2cm;
+            min-width:10.1cm;
+            max-width: 10.1cm;          /*10,19cm; */
+            height:3.34cm;         /*3,39cm;*/
             white-space: nowrap;
             word-wrap: break-word;
             overflow: hidden;
@@ -117,7 +120,7 @@
                         {{$aniversariante->nom_cidade}}/{{$aniversariante->nom_estado}}-CEP:{{$aniversariante->num_cep}}
                     </td>
                     <td class="celula-esquerda"> 
-                        {{$agentePolitico->nom_vereador}}
+                        {{$agentePolitico->cargoPolitico->nom_car_pol}} {{$agentePolitico->nom_vereador}}
                         <br>
                         {{$agentePolitico->nom_endereco}}-{{$agentePolitico->nom_numero}}
                         <br>
