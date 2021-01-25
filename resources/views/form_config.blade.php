@@ -61,7 +61,7 @@
                     </div>
                 </div>
 
-                <div class="form-row">
+                <!---<div class="form-row">
                     <div class="form-group col-md-8">
                         <label class="col-form-label negrito">Cor do Sistema</label>
                         <div class="input-group-append">
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                         </div>
-                </div>
+                </div>--->
 
                 <input hidden id="corSystem" name="corSystem">
 

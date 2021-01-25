@@ -31,8 +31,11 @@ class usuarioController extends Controller
         $dataForm = $request->all();
         
         if($dataForm['corSystem'] == null){
-            $dataForm['corSystem'] = $ususario->corSystem;
+            $dataForm['corSystem'] = 'blue-grey';
         }
+        /*if($dataForm['corSystem'] == null){
+            $dataForm['corSystem'] = $ususario->corSystem;
+        }*/
         if($dataForm['password']==null){
             $dataForm['password'] = $ususario->password;
         }else{
