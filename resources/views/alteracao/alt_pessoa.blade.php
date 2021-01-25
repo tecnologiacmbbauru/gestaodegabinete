@@ -89,7 +89,7 @@
             <label id="label9" name="label11" class="col-form-label negrito" for="cod_cpf_cnpj" >CPF:</label>
             <label id="label10" name="label11" class="col-form-label negrito" for="cod_cpf_cnpj" hidden="true">CNPJ</label>
             <input id="cod_cpf" type="text" class="form-control col-md-9 cpf" name="cod_cpf_cnpj"  value="{{$pessoaC->cod_cpf_cnpj}}">
-            <input id="cod_cnpj" type="text" class="form-control col-md-9 cnpj" name="cod_cpf_cnpj" vvalue="{{$pessoaC->cod_cpf_cnpj}}" hidden="true" disabled="true">
+            <input id="cod_cnpj" type="text" class="form-control col-md-9 cnpj" name="cod_cpf_cnpj" value="{{$pessoaC->cod_cpf_cnpj}}" hidden="true" disabled="true">
         </div>
         <div class="form-group col-md-4" id="label11">
             <label class="col-form-label negrito" for="cod_rg">RG</label>

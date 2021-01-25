@@ -9,13 +9,19 @@ use Maatwebsite\Excel\Concerns\FromView;
 
 class documentosExport implements FromView
 {
+    private $documentos;
+
+    public function __construct($documentos){
+        $this->documentos = $documentos;
+    }
+    
     /**
     * @return \Illuminate\Support\Collection
     */
     public function view(): View
     {
         return view('pdf.documentoExcelExport', [
-            'documentos' => documento::all()
+            'documentos' => $this->documentos
         ]);
     }
 }

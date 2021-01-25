@@ -97,7 +97,7 @@ class pessoa extends Model
             if(isset($data['nom_bairro'])) {
                 $query->where('nom_bairro',$data['nom_bairro']);
             }
-        })->orderby('nom_nome','asc')->paginate(15); //retorna 5 registro por pagina me modo crescente de acordo com o campo nome
+        })->orderby('nom_nome','asc')->paginate(20); //retorna 5 registro por pagina me modo crescente de acordo com o campo nome
     }
 
     public function pesquisa(array $data) {

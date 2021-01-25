@@ -11,11 +11,16 @@ use Maatwebsite\Excel\Concerns\FromView;
 //use Maatwebsite\Excel\Concerns\Exportable;
 class atendimentosExport implements FromView
 {
+    private $atendimentos;
+
+    public function __construct($atendimentos){
+        $this->atendimentos = $atendimentos;
+    }
 
     public function view(): View
     {
         return view('pdf.atendimentoExcelExport', [
-            'atendimentos' => atendimento::all()
+            'atendimentos' =>$this->atendimentos
         ]);
     }
 

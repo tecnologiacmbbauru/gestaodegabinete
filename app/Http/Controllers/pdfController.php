@@ -38,7 +38,9 @@ class pdfController extends Controller
                 return $pdf->setPaper('a4')->stream('pessoa.pdf');
             break;
             case 'relatorioExcel':
-                return Excel::download(new pessoasExport, 'pessoa.xlsx');
+                $dataform = $request->input('dataform');
+                $pessoas = $pessoa->pesquisa($dataform);  
+                return Excel::download(new pessoasExport($pessoas), 'pessoa.xlsx');
                 return Excel::download(new atendimentosExport, 'atendimento.xlsx');
             break;
         }
@@ -283,7 +285,66 @@ class pdfController extends Controller
                 
             break;
             case 'relatorioExcel':
-                return Excel::download(new atendimentosExport, 'atendimento.xlsx');
+                $dataform = $request->input('dataform');
+                //dd($dataform);
+                $atendimentos = $atendimento->pesquisaPdf($dataform);        
+                $agentePolitico = agentePolitico::first();
+
+                //GERAR PDF CASO TENHA TIDO BUSCA DE ENDEREÇO
+                if(isset($dataform['nom_estado'])){                                                  //Quando esta sendo paginada, pode não ter sido pesquisado um estado, por isto ele pode não existir
+                    if($dataform['nom_estado']!=null){                                                  
+                        $atendimentoEstado=[];                                                        //array que recebera os resultados da busca por estado       
+                        foreach ($atendimentos as $atendimento) {                                       //para todos atendimentos retornados pela busca
+                            if(isset($atendimento->pessoa->nom_estado)){                              //se existir uma pessoa que possua uma cidade
+                                if($dataform['nom_estado'] === $atendimento->pessoa->nom_estado){     //e se o nome da cidade for igual da da busca
+                                    $atendimentoEstado[]= $atendimentos;                               //então o array recebe o atendimento que tem a cidade buscada 
+                                }
+                            }
+                        }
+                    }else{
+                        $atendimentoEstado=$atendimentos;                                    //caso não tenha sido buscado por nenhum estado recebe a busca geral 
+                    }    
+                }else{
+                    $atendimentoEstado=$atendimentos;
+                }               
+
+                if(isset($dataform['nom_cidade'])){                                                  //Quando esta sendo paginada, pode não ter sido pesquisado uma cidade, por isto ele pode não existir
+                    if($dataform['nom_cidade']!=null){                                                  
+                        $atendimentosCidade=[];                                                         //array que recebera os resultados da busca por cidade
+                        foreach ($atendimentoEstado as $atendimento) {                                  //para todos atendimentos retornados pela busca
+                            if(isset($atendimento->pessoa->nom_cidade)){                                // se existir uma pessoa que possua uma cidade
+                                if($dataform['nom_cidade'] === $atendimento->pessoa->nom_cidade){       // e se o nome da cidade for igual da da busca
+                                    $atendimentosCidade[]= $atendimento;                                // então o array recebe o atendimento que tem a cidade buscada 
+                                }
+                            }
+                        }
+                    }else{                                                                              //caso não tenha sido buscado por nenhuma cidade                                                                        //se não foi buscado por nenhum estado
+                        $atendimentosCidade=$atendimentoEstado;                                    //recebe a busca por estado
+                    }
+                }else{
+                    $atendimentosCidade=$atendimentoEstado; 
+                }
+
+                if(isset($dataform['nom_bairro'])){                                              //Quando esta sendo paginada, pode não ter sido pesquisado um bairro, por isto ele pode não existir                
+                    if($dataform['nom_bairro']!=null){                                                 
+                        $atendimentosBairro=[];                                                       //Array que recebe a busca por bairro
+                        foreach ($atendimentosCidade as $atendimento) {                               //para todos atendimentos retornados pela busca
+                            if(isset($atendimento->pessoa->nom_bairro)){                              // se existir uma pessoa que possua uma cidade
+                                if($dataform['nom_bairro'] === $atendimento->pessoa->nom_bairro){     // e se o nome da cidade for igual da da busca
+                                    $atendimentosBairro[] = $atendimento;                             // então o array recebe o atendimento que tem o bairro buscado 
+                                }
+                            }
+                        }
+                    }else{                                                                    //se não foi buscado por nenhum bairro
+                            $atendimentosBairro=$atendimentosCidade;                          //então recebe a busca geral                    
+                    }
+                }else{
+                    $atendimentosBairro=$atendimentosCidade; 
+                }
+
+                $atendimentos = $atendimentosBairro;                                      //no final $atendimentosBairro vai ter todas busca realizadas, ou o resultado da busca gera                           
+                //dd($atendimentos);
+                return Excel::download(new atendimentosExport($atendimentos), 'atendimento.xlsx');
             break;
         }      
     }
@@ -311,7 +372,9 @@ class pdfController extends Controller
                 return view('form_relat_documento',compact('documentos','mostrarTodos','dataform','pessoas','tipoDocumento','situacaoDoc','unidadeDocumento','tipoAtendimento','statusAtendimento')); 
             break;
             case 'relatorioExcel':
-                return Excel::download(new documentosExport, 'documento.xlsx');
+                $dataform = $request->input('dataform');
+                $documentos = $documento->pesquisaPdf($dataform);
+                return Excel::download(new documentosExport($documentos), 'documento.xlsx');
             break;
         }        
     }
@@ -320,7 +383,7 @@ class pdfController extends Controller
      *
      * @var array
      */
-    public function paginate($items, $perPage = 5, $page = null, $options = ["path"=>"/relatorio/pesquisaAtendimento"])
+    public function paginate($items, $perPage = 20, $page = null, $options = ["path"=>"/relatorio/pesquisaAtendimento"])
     {
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);

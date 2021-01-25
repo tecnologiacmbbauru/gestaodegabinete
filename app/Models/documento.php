@@ -75,20 +75,26 @@ class documento extends Model
     
     public function pesquisaPdf(array $data) {
         return $this->where(function($query) use($data) {
-            if(isset($data['GAB_PESSOA_cod_pessoa'])) {
-                $query->where('GAB_PESSOA_cod_pessoa',$data['GAB_PESSOA_cod_pessoa']);
+            if(isset($data['GAB_TIPO_DOCUMENTO_cod_tip_doc'])) {
+                $query->where('GAB_TIPO_DOCUMENTO_cod_tip_doc',$data['GAB_TIPO_DOCUMENTO_cod_tip_doc']);
             }
-            if(isset($data['GAB_STATUS_ATENDIMENTO_cod_status'])) {
-                $query->where('GAB_STATUS_ATENDIMENTO_cod_status',$data['GAB_STATUS_ATENDIMENTO_cod_status']);
+            if(isset($data['nom_documento'])) {
+                $query->where('nom_documento',$data['nom_documento']);
             }
-            if(isset($data['GAB_TIPO_ATENDIMENTO_cod_tipo'])) {
-                $query->where('GAB_TIPO_ATENDIMENTO_cod_tipo',$data['GAB_TIPO_ATENDIMENTO_cod_tipo']);
+            if(isset($data['dat_ano'])) {
+                $query->where('dat_ano',$data['dat_ano']);
             }
             if(isset($data['dat_ini'])) {
-                $query->where('dat_atendimento','>=',$data['dat_ini']);
+                $query->where('dat_documento','>=',$data['dat_ini']);
             }
             if(isset($data['dat_fim'])) {
-                $query->where('dat_atendimento','<=',$data['dat_fim']);
+                $query->where('dat_documento','<=',$data['dat_fim']);
+            }
+            if(isset($data['GAB_STATUS_DOCUMENTO_cod_status'])) {
+                $query->where('GAB_STATUS_DOCUMENTO_cod_status',$data['GAB_STATUS_DOCUMENTO_cod_status']);
+            }
+            if(isset($data['GAB_UNIDADE_DOCUMENTO_cod_uni_doc'])) {
+                $query->where('GAB_UNIDADE_DOCUMENTO_cod_uni_doc',$data['GAB_UNIDADE_DOCUMENTO_cod_uni_doc']);
             }
             if(isset($data['resp_rel']) && !isset($data['dat_resposta'])) {//se existir uma resposta relacionada e não exister data de resposta 
                 $query->where('dat_resposta','!=',null); //retorna todas datas de resposta diferente de null                                                
@@ -101,7 +107,7 @@ class documento extends Model
             }
             if(isset($data['GAB_ATENDIMENTO_cod_atendimento'])) {
                 $query->where('GAB_ATENDIMENTO_cod_atendimento',$data['GAB_ATENDIMENTO_cod_atendimento']);
-            }     
+            }       
         })->orderby('dat_documento','desc')->get();
     }   
 }
