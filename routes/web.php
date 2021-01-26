@@ -47,7 +47,7 @@ Route::any('/pessoa/pesquisa','PessoaController@pesquisaPessoa')->name('pessoa.p
 Route::resource('/pessoa','PessoaController');
 
 //Route::post('/atendimento/teste','AtendimentoController@teste')->name('atendimento.teste');
-Route::any('/atendimento/pesquisaPessoa','AtendimentoController@pesquisaAtendimento')->name('atendimento.pesquisaAtendimento');
+Route::any('/atendimento/pesquisaAtendimento','AtendimentoController@pesquisaAtendimento')->name('atendimento.pesquisaAtendimento');
 Route::post('/atendimento/seleciona_pessoa','AtendimentoController@seleciona_pessoa')->name('atendimento.seleciona_pessoa');
 Route::resource('/atendimento','AtendimentoController');
 
