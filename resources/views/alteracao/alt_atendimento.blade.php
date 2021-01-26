@@ -66,10 +66,10 @@
                         $('#GAB_PESSOA_cod_pessoa').val(ui.item.value); // save selected id to input
                         
                         if (ui.item.path_imagem!=null){
-                            $('#img_pessoa').attr("src","../../storage/"+ui.item.path_imagem);
+                            $('#img_pessoa').attr("src","storage/"+ui.item.path_imagem);
                             $('#img_pessoa').attr("hidden",false);
                         }else{
-                            $('#img_pessoa').attr("src","../../utils/sem-imagem.jpg");
+                            $('#img_pessoa').attr("src","{{asset('utils/sem-imagem.jpg')}}");
                             $('#img_pessoa').attr("hidden",false);
                         }
                         return false;

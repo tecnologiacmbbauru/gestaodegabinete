@@ -189,28 +189,28 @@ class DocumentoController extends Controller
     }
 
 
-    public function cadAtendimento(Request $request) {
-        $dataform = $request->only(['GAB_PESSOA_cod_pessoa','dat_atendimento','GAB_TIPO_ATENDIMENTO_cod_tipo','GAB_STATUS_ATENDIMENTO_cod_status']);
+        /*public function cadAtendimento(Request $request) {
+            $dataform = $request->only(['GAB_PESSOA_cod_pessoa','dat_atendimento','GAB_TIPO_ATENDIMENTO_cod_tipo','GAB_STATUS_ATENDIMENTO_cod_status']);
 
-        $id = DB::table('gab_atendimento')->insertGetId(
-            ['GAB_PESSOA_cod_pessoa' => $dataform['GAB_PESSOA_cod_pessoa'],
-            'dat_atendimento'=> $dataform['dat_atendimento'],
-            'GAB_TIPO_ATENDIMENTO_cod_tipo'=> $dataform['GAB_TIPO_ATENDIMENTO_cod_tipo'],
-            'GAB_STATUS_ATENDIMENTO_cod_status'=> $dataform['GAB_STATUS_ATENDIMENTO_cod_status'],
-            'ind_status' => 'A','nom_operacao_log'=>'INSERT'
-            ],
-        ); 
-        
-        $nome = pessoa::findOrFail($dataform['GAB_PESSOA_cod_pessoa']);
-        $tipo = tipoAtendimento::findOrFail($dataform['GAB_TIPO_ATENDIMENTO_cod_tipo']);
-        $status = statusAtendimento::findOrFail($dataform['GAB_STATUS_ATENDIMENTO_cod_status']);
-        
-        return response()->json(['codigo'=>$id,'data'=>$dataform['dat_atendimento'],'pessoa'=>$nome->nom_nome,'ident'=>$nome->cod_cpf_cnpj,'tipo'=>$tipo->nom_tipo,'situacao'=>$status->nom_status]);
-    }
+            $id = DB::table('gab_atendimento')->insertGetId(
+                ['GAB_PESSOA_cod_pessoa' => $dataform['GAB_PESSOA_cod_pessoa'],
+                'dat_atendimento'=> $dataform['dat_atendimento'],
+                'GAB_TIPO_ATENDIMENTO_cod_tipo'=> $dataform['GAB_TIPO_ATENDIMENTO_cod_tipo'],
+                'GAB_STATUS_ATENDIMENTO_cod_status'=> $dataform['GAB_STATUS_ATENDIMENTO_cod_status'],
+                'ind_status' => 'A','nom_operacao_log'=>'INSERT'
+                ],
+            ); 
+            
+            $nome = pessoa::findOrFail($dataform['GAB_PESSOA_cod_pessoa']);
+            $tipo = tipoAtendimento::findOrFail($dataform['GAB_TIPO_ATENDIMENTO_cod_tipo']);
+            $status = statusAtendimento::findOrFail($dataform['GAB_STATUS_ATENDIMENTO_cod_status']);
+            
+            return response()->json(['codigo'=>$id,'data'=>$dataform['dat_atendimento'],'pessoa'=>$nome->nom_nome,'ident'=>$nome->cod_cpf_cnpj,'tipo'=>$tipo->nom_tipo,'situacao'=>$status->nom_status]);
+        }*/
 
     
         //Quando pesquisa de atendimento era feita por Json
-        public function pesqAtendimento(Request $request, atendimento $atendimento) {
+    public function pesqAtendimento(Request $request, atendimento $atendimento) {
         $dataform = $request->only(['GAB_PESSOA_cod_pessoa','dat_atendimento','GAB_TIPO_ATENDIMENTO_cod_tipo','GAB_STATUS_ATENDIMENTO_cod_status']);
 
         $atendimentos = $atendimento->pesquisaLimitada($dataform); 
