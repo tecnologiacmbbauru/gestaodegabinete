@@ -26,7 +26,6 @@ class CreateGabDocumentoTable extends Migration {
 			$table->integer('GAB_UNIDADE_DOCUMENTO_cod_uni_doc')->unsigned()->nullable()->index('fk_cod_uni_doc');
 			$table->integer('GAB_ATENDIMENTO_cod_atendimento')->unsigned()->nullable()->index('fk_cod_atendimento');
 			$table->date('dat_resposta')->nullable();
-			$table->string('lnk_resposta', 500)->nullable();
 			$table->text('txt_resposta', 65535)->nullable();
 			$table->dateTime('dat_log')->nullable();
 			$table->string('nom_usuario_log', 20)->nullable();
