@@ -199,6 +199,9 @@
                                 <th>Situação</th>
                             </tr>
                         </thead>
+                        @if($atendimentos->isEmpty()) {{--caso pesquisa não tenha resultado, o método isEmpty ja esta na classe LengthAwarePaginator (classe responsavel por retornar a pesquisa paginada)--}}
+                            <td colspan="6" style="text-align: center;">Não foi encontrado nenhum registro</td>
+                        @endif
                         @foreach($atendimentos as $atendimentoC)
                         <tbody>
                                 <td  width='10%'>   
