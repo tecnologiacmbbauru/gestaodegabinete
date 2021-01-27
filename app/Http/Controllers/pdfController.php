@@ -85,11 +85,11 @@ class pdfController extends Controller
 
     public function retornaAtendimento() {
         $pessoas = pessoa::all();
-        $pessoasCidade = pessoa::distinct()->whereNotNull('nom_cidade')->get(['nom_cidade']);
+        $pessoasCidade = pessoa::distinct()->whereNotNull('nom_cidade')->orderBy('nom_cidade')->get(['nom_cidade']);
         $cidades = array();
-        $pessoasBairro = pessoa::distinct()->whereNotNull('nom_bairro')->get(['nom_bairro']);
+        $pessoasBairro = pessoa::distinct()->whereNotNull('nom_bairro')->orderBy('nom_bairro')->get(['nom_bairro']);
         $bairros = array();
-        $pessoasEstados = pessoa::distinct()->whereNotNull('nom_estado')->get(['nom_estado']);
+        $pessoasEstados = pessoa::distinct()->whereNotNull('nom_estado')->orderBy('nom_estado')->get(['nom_estado']);
         $estados = array();
         foreach($pessoasCidade as $pessoa){
             array_push($cidades, $pessoa->nom_cidade);
@@ -177,11 +177,11 @@ class pdfController extends Controller
                 //dd($dataform);
                 //refazer
                 $pessoas = pessoa::all();
-                $pessoasCidade = pessoa::distinct()->whereNotNull('nom_cidade')->get(['nom_cidade']);
+                $pessoasCidade = pessoa::distinct()->whereNotNull('nom_cidade')->orderBy('nom_cidade')->get(['nom_cidade']);
                 $cidades = array();
-                $pessoasBairro = pessoa::distinct()->whereNotNull('nom_bairro')->get(['nom_bairro']);
+                $pessoasBairro = pessoa::distinct()->whereNotNull('nom_bairro')->orderBy('nom_bairro')->get(['nom_bairro']);
                 $bairros = array();
-                $pessoasEstados = pessoa::distinct()->whereNotNull('nom_estado')->get(['nom_estado']);
+                $pessoasEstados = pessoa::distinct()->whereNotNull('nom_estado')->orderBy('nom_estado')->get(['nom_estado']);
                 $estados = array();
                 foreach($pessoasCidade as $pessoa){
                     array_push($cidades, $pessoa->nom_cidade);
@@ -206,11 +206,11 @@ class pdfController extends Controller
             case 'pesquisaEndereco':
                 //refazer
                 $pessoas = pessoa::all();
-                $pessoasCidade = pessoa::distinct()->whereNotNull('nom_cidade')->get(['nom_cidade']);
+                $pessoasCidade = pessoa::distinct()->whereNotNull('nom_cidade')->orderBy('nom_cidade')->get(['nom_cidade']);
                 $cidades = array();
-                $pessoasBairro = pessoa::distinct()->whereNotNull('nom_bairro')->get(['nom_bairro']);
+                $pessoasBairro = pessoa::distinct()->whereNotNull('nom_bairro')->orderBy('nom_bairro')->get(['nom_bairro']);
                 $bairros = array();
-                $pessoasEstados = pessoa::distinct()->whereNotNull('nom_estado')->get(['nom_estado']);
+                $pessoasEstados = pessoa::distinct()->whereNotNull('nom_estado')->orderBy('nom_estado')->get(['nom_estado']);
                 $estados = array();
                 foreach($pessoasCidade as $pessoa){
                     array_push($cidades, $pessoa->nom_cidade);
