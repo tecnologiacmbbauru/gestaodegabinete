@@ -24,6 +24,7 @@ class TipoAtendimentoController extends Controller
     {
         $alteracao=false;
         $tipoAtendimento = $this->tipoA->paginate(20);
+        $tipoAtendimento->withPath(config('app.url')."/tipoAtendimento");
 
         return view('form_tipoAtendimento',compact('alteracao','tipoAtendimento'));
     }
@@ -90,6 +91,7 @@ class TipoAtendimentoController extends Controller
     {
         $alteracao = true;
         $tipoAtendimento = $this->tipoA->paginate(20);
+        $tipoAtendimento->withPath(config('app.url')."/tipoAtendimento");
         $tipoA = $this->tipoA->where('cod_tipo',$id)->first();
 
         return view('form_tipoAtendimento',compact('alteracao','tipoA','tipoAtendimento'));

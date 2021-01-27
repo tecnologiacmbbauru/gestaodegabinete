@@ -24,6 +24,7 @@ class SituacaoDocController extends Controller
     {
         $alteracao=false;
         $situacaoDoc = $this->sitDoc->paginate(20);
+        $situacaoDoc->withPath(config('app.url')."/situacaoDoc");
 
         return view('form_situacaoDoc',compact('alteracao','situacaoDoc'));
     }
@@ -89,6 +90,7 @@ class SituacaoDocController extends Controller
     {;
            $alteracao = true;
            $situacaoDoc = $this->sitDoc->paginate(20);
+           $situacaoDoc->withPath(config('app.url')."/situacaoDoc");
            $sitDoc = $this->sitDoc->where('cod_status',$id)->first();
    
            return view('form_situacaoDoc',compact('alteracao','sitDoc','situacaoDoc'));

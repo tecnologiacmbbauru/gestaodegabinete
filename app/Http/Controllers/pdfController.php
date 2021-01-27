@@ -24,6 +24,11 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator; //Paginação Manual
 
+
+//Importações para pegar a url da paginação
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Config;
+
 class pdfController extends Controller
 {
 
@@ -190,6 +195,7 @@ class pdfController extends Controller
                 $pesquisaEndereco = false;
                 $dataform = $request->except('_token');
                 $atendimentos = $atendimento->pesquisaPaginada($dataform);
+                $atendimentos->withPath(config('app.url')."/relatorio/pesquisaAtendimento");
                 //dd($atendimentos);
                 $pessoas = pessoa::all(); 
                 $tipoAtendimentos = tipoAtendimento::all();
@@ -275,8 +281,12 @@ class pdfController extends Controller
 
                 $myCollectionObj = collect($atendimentosBairro);
   
-                $atendimentos = $this->paginate($myCollectionObj);        
-
+                $atendimentos = $this->paginate($myCollectionObj); 
+                $atendimentos->withPath(config('app.url')."/relatorio/pesquisaAtendimento");
+                //dd($myCollectionObj);
+                
+                
+                //dd($atendimentos);
                 $pessoas = pessoa::all(); 
                 $tipoAtendimentos = tipoAtendimento::all();
                 $statusAtendimentos = statusAtendimento::all();
@@ -348,6 +358,7 @@ class pdfController extends Controller
             break;
         }      
     }
+
     public function pesquisaDocumento(Request $request, documento $documento){
         switch ($request->input('action')) {
             case 'relatorio':
@@ -361,6 +372,7 @@ class pdfController extends Controller
             case 'pesquisar':
                 $dataform = $request->except('_token');
                 $documentos = $documento->pesquisaPaginada($dataform);
+                $documentos->withPath(config('app.url')."/relatorio/pesquisaDocumento");
                 $mostrarTodos = true;
                 $pessoas = pessoa::all();
                 $tipoDocumento = tipoDocumento::all();
@@ -389,5 +401,5 @@ class pdfController extends Controller
         $items = $items instanceof Collection ? $items : Collection::make($items);
         return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
-}
 
+}

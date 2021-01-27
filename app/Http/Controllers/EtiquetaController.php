@@ -27,9 +27,9 @@ class EtiquetaController extends Controller
                                 ->whereDay('dat_nascimento','<=', $dataform['dia_final'])
                                 ->where('ind_status','A')                                       //pesquisa as pessoas que não estão excluidas(ativas)
                                // ->orderBy('dat_nascimento','asc')
-                                ->orderByRaw('month(dat_nascimento) asc')                       //ordena pela data de aniversario
+                                ->orderByRaw('nom_nome asc')                       //ordena pela data de aniversario
                                 ->paginate(50);                                                 //10 resultados por pagina
-
+        $aniversariantes->withPath(config('app.url')."/etiquetaAniversarioResultado");
 
         return view('form_relat_etiqueta',compact('aniversariantes','dataform','pesquisa'));
     }

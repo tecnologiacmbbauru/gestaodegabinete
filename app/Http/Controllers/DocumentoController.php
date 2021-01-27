@@ -177,6 +177,10 @@ class DocumentoController extends Controller
     public function pesquisaDocumento(Request $request,documento $documentoModel){
         $dataform = $request->except('_token');
         $documentos = $documentoModel->pesquisaPaginada($dataform);
+
+        //Passar para a função de paginação a url principal (encontrada no .env) e continuar a rota "/pessoa/pesquisa"
+        $documentos->withPath(config('app.url')."/documento/pesquisaDocumento");
+
         $alteracao = false;
         $mostraPesq=true;
         $tipoDocumento = tipoDocumento::all();

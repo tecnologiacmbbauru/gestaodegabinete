@@ -24,6 +24,8 @@ class CargoPoliticoController extends Controller
     {
         $alteracao=false;
         $cargoPolitico = $this->cargoPolit->paginate(20);
+        //Passar para a função de paginação a url principal (encontrada no .env) e continuar a rota "/pessoa/pesquisa"
+        $cargoPolitico->withPath(config('app.url')."/cargoPolitico");
 
         return view('form_cargoPolitico',compact('alteracao','cargoPolitico'));
     }
@@ -89,6 +91,7 @@ class CargoPoliticoController extends Controller
     {
         $alteracao = true;
         $cargoPolitico = $this->cargoPolit->paginate(20);
+        $cargoPolitico->withPath(config('app.url')."/cargoPolitico");
         $cargoPolit = $this->cargoPolit->where('cod_car_pol',$id)->first();
 
         return view('form_cargoPolitico',compact('alteracao','cargoPolit','cargoPolitico'));

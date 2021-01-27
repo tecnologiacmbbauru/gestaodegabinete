@@ -129,6 +129,10 @@ class AtendimentoController extends Controller
     public function pesquisaAtendimento(Request $request,atendimento $atendimentoModel){
         $dataform = $request->except('_token');
         $Atendimento = $atendimentoModel->pesquisaPaginada($dataform);
+        
+        //Passar para a função de paginação a url principal (encontrada no .env) e continuar a rota "/pessoa/pesquisa"
+        $Atendimento->withPath(config('app.url')."/atendimento/pesquisaAtendimento");
+
         $alteracao = false;
         $mostraPesq=true;
         $tipoAtendimento = tipoAtendimento::all();

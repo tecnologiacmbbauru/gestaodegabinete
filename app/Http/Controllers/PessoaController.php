@@ -69,8 +69,11 @@ class PessoaController extends Controller
         $mostraPesq=true;
         $dataform = $request->except('_token','ind_status');
         $pessoa = $pessoaModel->pesquisaPaginada($dataform);
-     
-        //dd(gettype($dataform));
+
+        //Passar para a função de paginação a url principal (encontrada no .env) e continuar a rota "/pessoa/pesquisa"
+        $pessoa->withPath(config('app.url')."/pessoa/pesquisa");
+    
+
         return view('form_pessoa',compact('pessoa','alteracao','mostraPesq','dataform'));
     }
 

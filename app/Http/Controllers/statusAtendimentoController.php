@@ -18,6 +18,7 @@ class statusAtendimentoController extends Controller
     {
         $alteracao=false;
         $statusAtendimento = $this->statusA->paginate(20);
+        $statusAtendimento->withPath(config('app.url')."/statusAtendimento");
 
         return view('form_status_atendimento',compact('alteracao','statusAtendimento'));
 
@@ -91,6 +92,7 @@ class statusAtendimentoController extends Controller
         // return redirect()->back;
         $alteracao = true;
         $statusAtendimento = $this->statusA->paginate(20);
+        $statusAtendimento->withPath(config('app.url')."/statusAtendimento");
         $statusA = $this->statusA->where('cod_status',$id)->first(); //recupera o primeiro id
 
         return view('form_status_atendimento',compact('alteracao','statusA','statusAtendimento'));

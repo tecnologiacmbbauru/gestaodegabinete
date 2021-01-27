@@ -24,6 +24,7 @@ class UnidadeDocumentoController extends Controller
     {
         $alteracao=false;
         $unidadeDocumento = $this->uniDoc->paginate(20);
+        $unidadeDocumento->withPath(config('app.url')."/unidadeDocumento");
 
         return view('form_unidadeDocumento',compact('alteracao','unidadeDocumento'));
     }
@@ -89,6 +90,7 @@ class UnidadeDocumentoController extends Controller
     {
         $alteracao = true;
         $unidadeDocumento = $this->uniDoc->paginate(20);
+        $unidadeDocumento->withPath(config('app.url')."/unidadeDocumento");
         $uniDoc = $this->uniDoc->where('cod_uni_doc',$id)->first();
 
         return view('form_unidadeDocumento',compact('alteracao','uniDoc','unidadeDocumento'));

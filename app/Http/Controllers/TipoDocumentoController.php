@@ -25,6 +25,7 @@ class TipoDocumentoController extends Controller
     {
         $alteracao=false;
         $tipoDocumento = $this->tipoDoc->paginate(20); 
+        $tipoDocumento->withPath(config('app.url')."/tipoDocumento");
 
         return view('form_tipoDoc',compact('alteracao','tipoDocumento'));
     }
@@ -92,6 +93,7 @@ class TipoDocumentoController extends Controller
     {
         $alteracao = true;
         $tipoDocumento = $this->tipoDoc->paginate(20); //mesmo do index
+        $tipoDocumento->withPath(config('app.url')."/tipoDocumento");
         $tipoDoc = $this->tipoDoc->where('cod_tip_doc',$id)->first();
 
         return view('form_tipoDoc',compact('alteracao','tipoDoc','tipoDocumento'));
