@@ -56,7 +56,7 @@ class PessoaController extends Controller
                 } catch (\Exception $e) {
                     return redirect()
                         ->route('pessoa.index')
-                        ->with('error', 'Pessoa excluida com sucesso!');
+                        ->with('error', 'A pessoa não pode ser cadastrada, algum campo foi preenchido de forma indevida.');
                 }
     
     }
