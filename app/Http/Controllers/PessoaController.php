@@ -47,20 +47,17 @@ class PessoaController extends Controller
                 $dataform['nom_usuario_log'] = auth()->user()->name;
                 $dataform['nom_operacao_log'] = 'INSERT';
                 //dd($dataform);
-                $insert = $this->pessoaC->create($dataform);
                 
-                // Verifica se inseriu com sucesso
-                // Redireciona para a listagem das categorias
-                // Passa uma session flash success (sessão temporária)
-                if ($insert)
+                try{
+                    $insert = $this->pessoaC->create($dataform);
                     return redirect()
                                 ->route('pessoa.index')
-                                ->with('success', 'Pessoa inserida com sucesso!');
-            
-                // Redireciona de volta com uma mensagem de erro
-                return redirect()
-                            ->back()
-                            ->with('error', 'Falha ao inserir');
+                                ->with('success', 'Pessoa cadastrada com sucesso!');
+                } catch (\Exception $e) {
+                    return redirect()
+                        ->route('pessoa.index')
+                        ->with('error', 'Pessoa excluida com sucesso!');
+                }
     
     }
 
