@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\pessoa;
 use App\Models\agentePolitico;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use PDF;
 
 class EtiquetaController extends Controller
@@ -21,14 +22,20 @@ class EtiquetaController extends Controller
     public function pesquisaAniversario(Request $request){
         $pesquisa = true; //variavel para controlar o if que mostra a tabela na view
         $dataform = $request->except('_token');
-        $aniversariantes = pessoa::whereMonth('dat_nascimento','>=', $dataform['mes_inicial'])  //pesquisa por mes
-                                ->whereMonth('dat_nascimento','<=', $dataform['mes_final'])
-                                ->whereDay('dat_nascimento','>=', $dataform['dia_inicial'])    //pesquisa por dia
-                                ->whereDay('dat_nascimento','<=', $dataform['dia_final'])
-                                ->where('ind_status','A')                                       //pesquisa as pessoas que não estão excluidas(ativas)
-                               // ->orderBy('dat_nascimento','asc')
-                                ->orderByRaw('nom_nome asc')                       //ordena pela data de aniversario
-                                ->paginate(50);                                                 //10 resultados por pagina
+
+        $datainicial = now()->year."-".$dataform['mes_inicial']."-".$dataform['dia_inicial'];
+        $datafinal = now()->year."-".$dataform['mes_final']."-".$dataform['dia_final'];
+
+        //chama função birthdayBetween, passando como parâmetros DATA INICIAL e DATA FINAL
+        //essa função não considera o ANO, então, passamos o ano atual
+        $aniversariantes = pessoa::birthdayBetween(
+                                $datainicial, 
+                                $datafinal
+                                )->where('ind_status','A')                                       //pesquisa as pessoas que não estão excluidas(ativas)
+                                // ->orderBy('dat_nascimento','asc')
+                                 ->orderByRaw('nom_nome asc')                       //ordena pela data de aniversario
+                                 ->paginate(50);       //10 resultados por pagina
+                                           
         $aniversariantes->withPath(config('app.url')."/etiquetaAniversarioResultado");
 
         return view('form_relat_etiqueta',compact('aniversariantes','dataform','pesquisa'));

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\CarbonPeriod;
+use Carbon\Carbon;
 
 class pessoa extends Model
 {
@@ -172,5 +174,27 @@ class pessoa extends Model
             }
         })->orderby('nom_nome','asc')->get();//Retorna todos os resultados encontrados por ordem crescente de acordo com o nome
     }    
+
+    //FUNÇÃO QUE RETORNA AS PESSOAS COM DATA DE ANIVERSÁRIO DENTRO DO PERÍODO PASSADO COMO PARAMETRO
+    public function scopeBirthdayBetween($query, $dateBegin, $dateEnd)
+    {
+        $period = CarbonPeriod::create($dateBegin, $dateEnd);
+
+        foreach ($period as $key => $date) {
+            $queryFn = function($query) use ($date) {
+                $query->whereMonth("dat_nascimento", '=', $date->format('m'))->whereDay("dat_nascimento", '=', $date->format('d'));
+            };
+
+            if($key === 0) {
+                $queryFn($query);
+            } else {
+                $query->orWhere(function($q) use ($queryFn) {
+                    $queryFn($q);
+                });
+            }
+        }
+
+        return $query;
+    }
 }
 

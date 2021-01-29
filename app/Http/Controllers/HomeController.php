@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\chaveAgenda;
 use App\Models\pessoa;
 use App\Models\agentePolitico;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -29,17 +30,13 @@ class HomeController extends Controller
         
         
         $chaveAgenda = chaveAgenda::get()->first();
-        $mes = date('m');
-        $data = date('d');
-        $dataFinal = date('d', strtotime('+5 days'));
-        $aniversariantes = Pessoa::whereMonth('dat_nascimento', $mes) //compara mes
-                                        //compara data de aniversario esta entre o intervalo da data atual e 5 dias
-                                        ->whereDay('dat_nascimento','>=', $data) 
-                                        ->whereDay('dat_nascimento','<=', $dataFinal)
-                                        //ver se é valido
-                                        ->where('ind_status','A')
-                                        //ordena os aniversariantes em ordem crescente
-                                        ->orderByRaw('day(dat_nascimento) asc')->get();
+
+        //chama função birthdayBetween, passando como parâmetros DATA ATUAL e DATA ATUAL + 4 DIAS
+        $aniversariantes = Pessoa::birthdayBetween(
+            Carbon::now()->toDateString(), 
+            Carbon::now()->addDays(4)->toDateString()
+        )->get();
+
         return view('home',compact('vereador','chaveAgenda','aniversariantes'));
     }
 }
