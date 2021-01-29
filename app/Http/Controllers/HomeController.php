@@ -35,7 +35,10 @@ class HomeController extends Controller
         $aniversariantes = Pessoa::birthdayBetween(
             Carbon::now()->toDateString(), 
             Carbon::now()->addDays(4)->toDateString()
-        )->get();
+        )
+        ->where('ind_status','A')
+        //ordena os aniversariantes em ordem crescente
+        ->orderByRaw('day(dat_nascimento) asc')->get();
 
         return view('home',compact('vereador','chaveAgenda','aniversariantes'));
     }
