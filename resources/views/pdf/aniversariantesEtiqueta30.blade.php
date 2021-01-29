@@ -151,7 +151,7 @@
                 @else
                     <tr>
                         <td class="celula"> 
-                            {{$agentePolitico->nom_vereador}}
+                            {{$agentePolitico->cargoPolitico->nom_car_pol}} {{$agentePolitico->nom_vereador}}
                             <br>
                             {{$agentePolitico->nom_endereco}}-{{$agentePolitico->nom_numero}}
                             <br>
@@ -169,7 +169,7 @@
                             {{$aniversariante->nom_cidade}}/{{$aniversariante->nom_estado}}-CEP:{{$aniversariante->num_cep}}
                         </td>     
                         <td class="celula"> 
-                            {{$agentePolitico->nom_vereador}}
+                            {{$agentePolitico->cargoPolitico->nom_car_pol}} {{$agentePolitico->nom_vereador}}
                             <br>
                             {{$agentePolitico->nom_endereco}}-{{$agentePolitico->nom_numero}}
                             <br>

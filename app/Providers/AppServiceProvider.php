@@ -27,11 +27,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        
-        //Força o caminho do laravel ser a url definida pelo usuario (No arquivo .env campo APP_URL)
-        //Sem isto este consideraria sempre o caminho local
-		URL::forceRootUrl(Config::get('app.url'));
-		if(config('app.env') === 'production') {
+		
+		if(config('app.env') === 'production') { //se o aplicativo tiver em produção
+            URL::forceRootUrl(Config::get('app.url')); //Força o caminho definido no arquivo .env campo APP_URL
+                                                       //Sem isto este consideraria sempre o caminho local (localhost)
             URL::forceScheme('https');
         }
     }
