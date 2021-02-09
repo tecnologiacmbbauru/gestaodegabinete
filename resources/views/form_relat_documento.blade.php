@@ -146,7 +146,7 @@
         </div>
         <!--listagem da busca documentos-->
         <div class="table-of row">
-            <table id="tb_atendimento" class="mtab table table-striped table-hover table-responsive-lg" style="width:100%;">
+            <table id="tb_documento" class="mtab table table-striped table-hover table-responsive-lg" style="width:100%;">
             <thead class="thead-dark">
                 <tr>
                     <th>Data</th>
@@ -223,6 +223,12 @@
             </table>
         </div> 
         {!!$documentos->appends($dataform)->links()!!}  
+        <script type="text/javascript" defer>
+            //foca na tabela quando mostra todos é igual a true e a pagina carrega
+            $(document).ready(function() { 
+                window.location.href='#tb_documento';
+            });
+        </script>
         @endif
     </div>
 </body>

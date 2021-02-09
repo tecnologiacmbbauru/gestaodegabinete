@@ -258,12 +258,14 @@
                         @endforeach
                     </table>
                 </div> 
-            {{--@if($pesquisaEndereco==false)--}}
                 {!!$atendimentos->appends($dataform)->links()!!}
-            {{--@else
-                entrei
-                {!!$data->appends($dataform)->links()!!}
-            @endif--}}
+                <script type="text/javascript" defer>
+                    //foca na tabela quando mostra todos é igual a true e a pagina carrega
+                    $(document).ready(function() { 
+                        window.location.href='#tb_atendimento';
+                    });
+                </script>
+  
         @endif
     </div>
 </body>

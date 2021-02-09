@@ -20,6 +20,11 @@ class DatabaseSeeder extends Seeder
             tipoDocumentoSeeder::class,
             unidadeAdmSeeder::class,
             usersSeeder::class,
+            /*APENAS PARA TESTES, GERAR DADOS ALEATORIOS
+            PessoaSeeder::class,
+            AtendimentoSeeder::class,
+            DocumentoSeeder::class,
+            FIM DOS DADOS DE TESTE*/
         ]);
     }
 }

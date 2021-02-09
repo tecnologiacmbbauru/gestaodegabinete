@@ -51,3 +51,9 @@
        
     {!!$documentos->appends($dataform)->links()!!} <!-- pacote coletive forms. Criar os links a serem passados da tabela -->
     <script src="{{asset('js/exclusao.js')}}"deffer></script>
+    <script type="text/javascript" defer>
+        //foca na tabela quando ela é criada
+        $(document).ready(function() { 
+            window.location.href='#tb_documento';
+        });
+    </script>

@@ -227,6 +227,10 @@
                     alert("Selecione ao menos uma Pessoa para a impressão de etiquetas.");
                 }
             });
+            //foca a tela na tebale, este scrpit esta dentro do if então só vai ser executado caso a tabela exista, ou seja tiver sido feito uma pesquisa
+            $(document).ready(function() { 
+                window.location.href='#tb_aniversariantes';
+            });
         </script>
     @endif
     </div>
