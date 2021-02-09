@@ -39,6 +39,6 @@
         "inferno": "^7.4.3",
         "jquery-typeahead": "^2.11.1",
         "node-gyp": "^7.1.0",
-        "slatest": "^2.1.6"
+        "slatest": "^2.3.10"
     }
 }
