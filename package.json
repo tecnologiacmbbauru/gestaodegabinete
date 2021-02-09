@@ -36,7 +36,7 @@
         "@popperjs/core": "^2.4.4",
         "bootstrap-icons": "^1.0.0",
         "fullcalendar": "^5.3.2",
-        "inferno": "^7.4.3",
+        "inferno": "^7.4.7",
         "jquery-typeahead": "^2.11.1",
         "node-gyp": "^7.1.0",
         "slatest": "^2.1.6"
