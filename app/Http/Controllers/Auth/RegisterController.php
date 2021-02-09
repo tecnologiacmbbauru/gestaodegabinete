@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\RedirectResponse;
 
 class RegisterController extends Controller
 {
@@ -51,7 +52,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'user_name' => ['required', 'string', 'max:255'],
+            'user_name' => ['required', 'string', 'max:255','unique:users'], //'unique:users' faz validar se é o unico user_name na tabela users
             //'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:3', 'confirmed'],
         ]);
@@ -65,7 +66,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        //dd($data['ajuda_inicio']);
         return User::create([
             'name'      => $data['name'],
             'user_name' => $data['user_name'],
@@ -77,5 +77,6 @@ class RegisterController extends Controller
             'ajd_atendimento' => true,
             'password'  => Hash::make($data['password']),
         ]);
+
     }
 }
