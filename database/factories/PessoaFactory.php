@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Pessoa::class, function (Faker $faker) {
     return [
-        'ind_pessoa'=>$faker->randomElement($array = array ('Pj','PF')),
+        'ind_pessoa'=>$faker->randomElement($array = array ('PJ','PF')),
         'nom_nome' => $faker->name,
         'nom_apelido' => $faker->userName,
         'nom_ocupacao' => $faker->text($maxNbChars = 8),

@@ -1,16 +1,69 @@
-<div style="display:flex;justify-content:flex-end;align-items:center;margin-top:10px;">
-    @if(isset($dataform))
-        <form class="form-horizontal" method="post" target="_blank" action={{route('relatorio.Pessoa',['dataform'=>$dataform])}}>
-            @method('get')
-            <button type="submit" aria-label="Gerar relatório pdf" class="btn-pdf" style="background-color: #f5f5f5;" name="action" value="relatorio">
-                <img src="{{asset('utils/pdf.png')}}" alt="Exportar para PDF" title="Exportar para PDF">
-            </button>
-            <button type="submit" aria-label="Gerar relatório Excel" class="btn-pdf"  style="background-color: #f5f5f5;" name="action" value="relatorioExcel">
-                <img src="{{asset('utils/xls.png')}}" alt="Exportar para XLS" title="Exportar para XLS"> 
-            </button>
+{{--Verificar se dispostivo é desktop ou mobile--}}
+@php
+    $iphone = strpos($_SERVER['HTTP_USER_AGENT'],"iPhone");
+    $ipad = strpos($_SERVER['HTTP_USER_AGENT'],"iPad");
+    $android = strpos($_SERVER['HTTP_USER_AGENT'],"Android");
+    $palmpre = strpos($_SERVER['HTTP_USER_AGENT'],"webOS");
+    $berry = strpos($_SERVER['HTTP_USER_AGENT'],"BlackBerry");
+    $ipod = strpos($_SERVER['HTTP_USER_AGENT'],"iPod");
+    $symbian = strpos($_SERVER['HTTP_USER_AGENT'],"Symbian");
 
-        </form>
+    if ($iphone || $ipad || $android || $palmpre || $ipod || $berry || $symbian == true) {
+        $dispositivo = "mobile";
+    }
+
+    else { $dispositivo = "computador";} 
+@endphp
+
+<div  style="margin-top:5px; display:flex">
+
+    @if(isset($dataform) and $dispositivo=="mobile")
+        <div class="row">
+            <div class="col" style="margin-bottom: 20px;margin-top: 20px;display:flex;justify-content:center;align-items:center;">
+                <form class="form-inline" method="post" target="_blank" action={{route('relatorio.Pessoa',['dataform'=>$dataform])}}>
+                    @method('get')
+                    <button type="submit" aria-label="Gerar relatório pdf" class="btn-pdf" style="background-color: #f5f5f5;" name="action" value="relatorio">
+                        <img src="{{asset('utils/pdf.png')}}" alt="Exportar para PDF" title="Exportar para PDF">
+                    </button>
+                    <button type="submit" aria-label="Gerar relatório Excel" class="btn-pdf"  style="background-color: #f5f5f5;" name="action" value="relatorioExcel">
+                        <img src="{{asset('utils/xls.png')}}" alt="Exportar para XLS" title="Exportar para XLS"> 
+                    </button>
+                </form>
+            </div>
+            <div class="col" style="margin-bottom: 20px;text-align:center;">
+                    {{--Se existir mais de 15 dados abre os links--}}
+                    @if(isset($dataform))
+                        A pesquisa retornou {{$pessoa->total()}} registros de {{$total}}
+                        {!!$pessoa->appends($dataform)->links()!!}
+                    @endif
+            </div>
+        </div>
     @endif
+
+    @if(isset($dataform) and $dispositivo=="computador")
+        <div class="col" style="margin-bottom: 15px;margin-top: 20px;text-align:center;">
+            {{--Se existir mais de 15 dados abre os links--}}
+            A pesquisa retornou {{$pessoa->total()}} registros de {{$total}}
+            @if(isset($dataform))        
+                {!!$pessoa->appends($dataform)->links()!!}
+            @endif
+        </div>
+        <div class="col-md-8" style="display:flex;justify-content:flex-end;align-items:center; margin-bottom: 10px;">
+            <div>
+            <form method="post" target="_blank" action={{route('relatorio.Pessoa',['dataform'=>$dataform])}}>
+                @method('get')
+                <button type="submit" aria-label="Gerar relatório pdf" class="btn-pdf" style="background-color: #f5f5f5;" name="action" value="relatorio">
+                    <img src="{{asset('utils/pdf.png')}}" alt="Exportar para PDF" title="Exportar para PDF" title="O relatório de PDF imprime até 500 registros">
+                </button>
+                <button type="submit" aria-label="Gerar relatório Excel" class="btn-pdf"  style="background-color: #f5f5f5;" name="action" value="relatorioExcel">
+                    <img src="{{asset('utils/xls.png')}}" alt="Exportar para XLS" title="Exportar para XLS"> 
+                </button>
+            </form>
+            </div>
+        </div>
+    @endif
+
+
 </div>
 <form class="form" method="post" target="_blank" action={{route('relatorio.imprimeEtiqueta')}}>
     @csrf
@@ -135,4 +188,4 @@
         </script>
   
 </form>
-    <script src="{{asset('js/exclusao.js')}}"deffer></script>
+<script src="{{asset('js/exclusao.js')}}"deffer></script>

@@ -3,6 +3,8 @@
 
 @section('content')
 <head>
+    <!--Estilo-->
+    <link href="{{ asset('css/pesquisa.css') }}" rel="stylesheet">
     <!-- Scripts -->
     <script src="{{asset('js/jquery-mask.js')}}" defer></script>
     <script src="{{asset('js/mask-pessoa.js')}}" defer></script>

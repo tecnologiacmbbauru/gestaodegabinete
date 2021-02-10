@@ -67,11 +67,13 @@ class PessoaController extends Controller
         $dataform = $request->except('_token','ind_status');
         $pessoa = $pessoaModel->pesquisaPaginada($dataform);
 
-        //Passar para a função de paginação a url principal (encontrada no .env) e continuar a rota "/pessoa/pesquisa"
-        $pessoa->withPath(config('app.url')."/pessoa/pesquisa");
-    
+        $pessoa->withPath(config('app.url')."/pessoa/pesquisa");//Passar para a função de paginação a url principal (encontrada no .env) e continuar a rota "/pessoa/pesquisa"
 
-        return view('form_pessoa',compact('pessoa','alteracao','mostraPesq','dataform'));
+        //Contar numero total de registros
+        $PessoasCadastradas = pessoa::where('ind_status','=','A')->get();
+        $total = $PessoasCadastradas->count();
+
+        return view('form_pessoa',compact('pessoa','alteracao','mostraPesq','dataform','total'));
     }
 
     public function show(pessoa $pessoa)
