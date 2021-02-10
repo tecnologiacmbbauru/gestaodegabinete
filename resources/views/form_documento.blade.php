@@ -3,6 +3,8 @@
 
 @section('content')
 <head>
+    <!--Estilo-->
+    <link href="{{ asset('css/pesquisa.css') }}" rel="stylesheet">
     <link href="{{asset('css/jquery-ui.css')}}" rel="stylesheet">
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-ui.js') }}" defer></script>
@@ -32,8 +34,6 @@
 <body>
 <div class="container">
     <!--Criar alerta de cadastro-->
-
-
         @if(session('success'))
             <div class="alert alert-success">
                 {{session('success')}}
@@ -63,7 +63,6 @@
         @if(isset($mostraPesq))
             @include('pesquisa/tabela_documento')  
         @endif
-
 </div>  
       
 

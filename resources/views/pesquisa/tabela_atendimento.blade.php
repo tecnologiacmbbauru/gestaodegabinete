@@ -1,3 +1,9 @@
+@if(isset($dataform))
+<div div="topo-pesqAtendimento" style="margin-bottom: 15px;margin-top: 15px;">
+    A pesquisa retornou {{$Atendimento->total()}} registros.
+    {!!$Atendimento->appends($dataform)->links()!!} <!-- pacote coletive forms. Criar os links a serem passados da tabela -->  
+</div>
+@endif
 <!--lISTAGEM DOS atendimentos ja cadastrados-->
 <div class="table-of row">
     <table id="tb_atendimento" class="mtab table table-striped table-responsive-lg" width="100%">
@@ -62,6 +68,6 @@
 <script type="text/javascript" defer>
     //foca na tabela quando ela é criada
     $(document).ready(function() { 
-        window.location.href='#tb_atendimento';
+        window.location.href='#topo-pesqAtendimento';
     });
 </script>

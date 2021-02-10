@@ -54,7 +54,7 @@ class atendimento extends Model
             if(isset($data['dat_fim'])) {
                 $query->where('dat_atendimento','<=',$data['dat_fim']);
             }
-        })->orderby('dat_atendimento','desc')->paginate(20);
+        })->orderby('dat_atendimento','desc')->paginate(20)->onEachSide(1);
     }
 
     public function pesquisaPdf(array $data) {

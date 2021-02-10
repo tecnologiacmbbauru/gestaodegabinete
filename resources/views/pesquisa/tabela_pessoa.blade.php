@@ -10,12 +10,12 @@
 
     if ($iphone || $ipad || $android || $palmpre || $ipod || $berry || $symbian == true) {
         $dispositivo = "mobile";
-    }
-
-    else { $dispositivo = "computador";} 
+    }else{
+        $dispositivo = "computador";
+    } 
 @endphp
 
-<div  style="margin-top:5px; display:flex">
+<div id="topo-pesqPessoa"  style="margin-top:5px; display:flex">
 
     @if(isset($dataform) and $dispositivo=="mobile")
         <div class="row">
@@ -23,7 +23,7 @@
                 <form class="form-inline" method="post" target="_blank" action={{route('relatorio.Pessoa',['dataform'=>$dataform])}}>
                     @method('get')
                     <button type="submit" aria-label="Gerar relatório pdf" class="btn-pdf" style="background-color: #f5f5f5;" name="action" value="relatorio">
-                        <img src="{{asset('utils/pdf.png')}}" alt="Exportar para PDF" title="Exportar para PDF">
+                        <img src="{{asset('utils/pdf.png')}}" alt="Exportar para PDF"  title="O relatório de PDF imprime até 500 registros">
                     </button>
                     <button type="submit" aria-label="Gerar relatório Excel" class="btn-pdf"  style="background-color: #f5f5f5;" name="action" value="relatorioExcel">
                         <img src="{{asset('utils/xls.png')}}" alt="Exportar para XLS" title="Exportar para XLS"> 
@@ -33,7 +33,7 @@
             <div class="col" style="margin-bottom: 20px;text-align:center;">
                     {{--Se existir mais de 15 dados abre os links--}}
                     @if(isset($dataform))
-                        A pesquisa retornou {{$pessoa->total()}} registros de {{$total}}
+                        A pesquisa retornou: {{$pessoa->total()}} registros.
                         {!!$pessoa->appends($dataform)->links()!!}
                     @endif
             </div>
@@ -41,9 +41,9 @@
     @endif
 
     @if(isset($dataform) and $dispositivo=="computador")
-        <div class="col" style="margin-bottom: 15px;margin-top: 20px;text-align:center;">
+        <div class="col" style="margin-bottom: 15px;margin-top: 20px;">
             {{--Se existir mais de 15 dados abre os links--}}
-            A pesquisa retornou {{$pessoa->total()}} registros de {{$total}}
+            A pesquisa retornou: {{$pessoa->total()}} registros.
             @if(isset($dataform))        
                 {!!$pessoa->appends($dataform)->links()!!}
             @endif
@@ -53,7 +53,7 @@
             <form method="post" target="_blank" action={{route('relatorio.Pessoa',['dataform'=>$dataform])}}>
                 @method('get')
                 <button type="submit" aria-label="Gerar relatório pdf" class="btn-pdf" style="background-color: #f5f5f5;" name="action" value="relatorio">
-                    <img src="{{asset('utils/pdf.png')}}" alt="Exportar para PDF" title="Exportar para PDF" title="O relatório de PDF imprime até 500 registros">
+                    <img src="{{asset('utils/pdf.png')}}" alt="Exportar para PDF" title="O relatório de PDF imprime até 500 registros">
                 </button>
                 <button type="submit" aria-label="Gerar relatório Excel" class="btn-pdf"  style="background-color: #f5f5f5;" name="action" value="relatorioExcel">
                     <img src="{{asset('utils/xls.png')}}" alt="Exportar para XLS" title="Exportar para XLS"> 
@@ -160,7 +160,7 @@
             
             //foca na tabela quando ela é criada
             $(document).ready(function() { 
-                window.location.href='#tb_pessoa';
+                window.location.href='#topo-pesqPessoa';
             });
 
 

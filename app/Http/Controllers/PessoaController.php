@@ -66,14 +66,11 @@ class PessoaController extends Controller
         $mostraPesq=true;
         $dataform = $request->except('_token','ind_status');
         $pessoa = $pessoaModel->pesquisaPaginada($dataform);
-
         $pessoa->withPath(config('app.url')."/pessoa/pesquisa");//Passar para a função de paginação a url principal (encontrada no .env) e continuar a rota "/pessoa/pesquisa"
-
         //Contar numero total de registros
-        $PessoasCadastradas = pessoa::where('ind_status','=','A')->get();
-        $total = $PessoasCadastradas->count();
-
-        return view('form_pessoa',compact('pessoa','alteracao','mostraPesq','dataform','total'));
+        //$PessoasCadastradas = pessoa::where('ind_status','=','A')->get();
+        //$total = $PessoasCadastradas->count();
+        return view('form_pessoa',compact('pessoa','alteracao','mostraPesq','dataform'));
     }
 
     public function show(pessoa $pessoa)
@@ -84,7 +81,6 @@ class PessoaController extends Controller
  
     public function edit($id)
     {
- 
         $alteracao = true;
         $pessoa = $this->pessoaC->paginate(15);
         $pessoaC = $this->pessoaC->where('cod_pessoa',$id)->first();

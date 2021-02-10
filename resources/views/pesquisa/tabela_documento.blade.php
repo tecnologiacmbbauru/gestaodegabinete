@@ -1,3 +1,4 @@
+{!!$documentos->appends($dataform)->links()!!} <!-- pacote coletive forms. Criar os links a serem passados da tabela -->
     <div class="table-of row">
             <table id="tb_documento" class="mtab table table-striped table-hover table-responsive-lg" width="100%">
                 <thead class="thead-dark">
