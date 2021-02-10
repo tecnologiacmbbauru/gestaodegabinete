@@ -35,6 +35,8 @@ e popule com as informações básicas
 
 <i>php artisan db:seed</i>
 
+<b>Atenção:</b> Para popular com dados de teste (Não usar na versão de produção) tire os comentários das linhas 24,25,26 do arquivo <i>DatabaseSeeder.php</i> antes de usar o comando <i>php artisan db:seed</i>.
+
 ## Módulos externos
 Este software utiliza **webservice gratuito <a href="https://viacep.com.br/">Via CEP</a>** no cadastro de Pessoas para consultar Códigos de Endereçamento Postal (CEP) do Brasil.
 
