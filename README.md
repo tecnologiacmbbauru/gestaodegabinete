@@ -1,3 +1,5 @@
+# GESTÃO DE GABINETE
+
 <p align="center"><img src="https://github.com/tecnologiacmbbauru/gestaodegabinete/blob/main/public/utils/gab-git.png" width="400"></p>
 
 <p align="center">
@@ -6,36 +8,35 @@
 
 ## Sobre o Sistema
 
-Este é um <i>software</i>, voltado para agentes políticos e assessores parlamentares, tendo como objetivo auxiliar as atividades diárias realizadas nos gabinetes.
-O <i>software</i> é disponibilizado de forma gratuita e aberta.
+"Gestão de Gabinete" consiste em um <i>software</i> voltado para Agentes Políticos e Assessores Parlamentares, tendo como objetivo auxiliar as atividades diárias realizadas nos Gabinetes.
 
 ## Licença
-O sistema Gestão de Gabinete é aberto e utiliza a licença pública geral [GNU](http://www.gnu.org/licenses/).
+O software "Gestão de Gabinete" foi desenvolvido pelo Serviço Tecnológico em Informática da Câmara Municipal de Bauru / São Paulo em software livre e aberto, dentro dos termos da Licença Pública Geral [GNU](http://www.gnu.org/licenses/).
 
 ## Como instalar o sistema
-Após clonar o repositório instale todas as dependencias dentro da pasta do projeto com
+Após clonar o repositório, instale todas as dependências dentro da pasta do projeto, utilizando o comando:
 
 <i>composer install</i>
 
-Renomeie o arquivo <i>.env.example</i> para <i>.env</i> e efetue as configurações do banco.
+Renomeie o arquivo <i>.env.example</i> para <i>.env</i> e altere com as configurações do seu banco de dados.
 
-Crie uma chave de acesso para o sistema com
+Defina uma nova chave no seu arquivo .env, utilizando o comando:
 
 <i>php artisan key:generate</i>
 
-Este sistema usa link simbolicos para ter acesso a pasta storage, para suas imagens e documentos serem carregados corretamente ultilize
+Crie um link simbólico apontando para a pasta storage/app/public, onde são armazenados imagens e documentos do software, utilizando o comando:
 
 <i>php artisan storage:link</i>
 
-Então crie o banco de dados
+Crie o banco de dados, utilizando o comando:
 
 <i>php artisan migrate</i>
 
-e popule com as informações básicas
+e popule as tabelas com dados iniciais, utilizando o comando:
 
 <i>php artisan db:seed</i>
 
-<b>Atenção:</b> Para popular com dados de teste (Não usar na versão de produção) tire os comentários das linhas 24,25,26 do arquivo <i>DatabaseSeeder.php</i> antes de usar o comando <i>php artisan db:seed</i>.
+<b>Atenção:</b> Para popular com dados de teste (não utilizar na versão de produção), retire os comentários das linhas 24,25,26 do arquivo <i>DatabaseSeeder.php</i> antes de executar o comando acima.
 
 ## Módulos externos
 Este software utiliza **webservice gratuito <a href="https://viacep.com.br/">Via CEP</a>** no cadastro de Pessoas para consultar Códigos de Endereçamento Postal (CEP) do Brasil.
