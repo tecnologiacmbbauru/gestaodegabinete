@@ -18,7 +18,7 @@ Após clonar o repositório, instale todas as dependências dentro da pasta do p
 
 <i>composer install</i>
 
-Renomeie o arquivo <i>.env.example</i> para <i>.env</i> e altere com as configurações do seu banco de dados.
+Renomeie o arquivo <i>.env.example</i> para <i>.env</i> e altere conforme as configurações do seu banco de dados.
 
 Defina uma nova chave no seu arquivo .env, utilizando o comando:
 
