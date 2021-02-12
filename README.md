@@ -6,14 +6,14 @@
     <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
 </p>
 
-## Sobre o Sistema
+## Sobre
 
 "Gestão de Gabinete" consiste em um <i>software</i> voltado para Agentes Políticos e Assessores Parlamentares, tendo como objetivo auxiliar as atividades diárias realizadas nos Gabinetes.
 
 ## Licença
 O software "Gestão de Gabinete" foi desenvolvido pelo Serviço Tecnológico em Informática da Câmara Municipal de Bauru / São Paulo em software livre e aberto, dentro dos termos da Licença Pública Geral [GNU](http://www.gnu.org/licenses/).
 
-## Como instalar o sistema
+## Instalação e Configuração
 Após clonar o repositório, instale todas as dependências dentro da pasta do projeto, utilizando o comando:
 
 <i>composer install</i>
@@ -43,7 +43,7 @@ Este software utiliza **webservice gratuito <a href="https://viacep.com.br/">Via
 
 A Agenda utilizada no software exibe eventos do **Google Agenda**. Para utilizá-la, é necessário cadastrar as Chaves do Google Agenda.
 
-## Demonstração do Sistema
+## Versão Demonstrativa
 *Para conhecer o software, acesse a **versão demonstrativa**: https://intranet.bauru.sp.leg.br/gabdemo/.* 
 
 ## Mais informações
