@@ -29,9 +29,8 @@ class pessoa extends Model
         return $this->hasOne('App\Models\atendimento', 'GAB_PESSOA_cod_pessoa', 'cod_pessoa');
     }
 
-    public function pesquisaPaginada(array $data) {
+    public function pesquisaLimitada(array $data) {
         return $this->where(function($query) use($data) {
-
             $query->where('ind_status',"A");//apenas as que o status seja igual a ATIVO. Caso ao contrario ela esta excluida
 
             if(isset($data['nom_nome'])) { //isset verifica se aquela variavel existe
@@ -99,12 +98,11 @@ class pessoa extends Model
             if(isset($data['nom_bairro'])) {
                 $query->where('nom_bairro',$data['nom_bairro']);
             }
-        })->orderby('nom_nome','asc')->paginate(20)->onEachSide(1); //retorna 20 registro por pagina me modo crescente de acordo com o campo nome
+        })->orderby('nom_nome','asc')->limit(500)->get(); //retorna 20 registro por pagina me modo crescente de acordo com o campo nome
     }                                                               //onEachSide faz mostrar apenas 1 numero do lado do que esta selecionado
 
     public function pesquisa(array $data) {
         return $this->where(function($query) use($data) {
-
             $query->where('ind_status',"A");//apenas as que o status seja igual a ATIVO. Caso ao contrario ela esta excluida
 
             if(isset($data['nom_nome'])) { //isset verifica se aquela variavel existe
@@ -172,9 +170,9 @@ class pessoa extends Model
             if(isset($data['nom_bairro'])) {
                 $query->where('nom_bairro',$data['nom_bairro']);
             }
-        })->orderby('nom_nome','asc')->limit(500)->get();//Retorna todos os resultados encontrados por ordem crescente de acordo com o nome
-    }    
-
+        })->orderby('nom_nome','asc')->get();//Retorna todos os resultados encontrados por ordem crescente de acordo com o nome
+    } 
+        
     //FUNÇÃO QUE RETORNA AS PESSOAS COM DATA DE ANIVERSÁRIO DENTRO DO PERÍODO PASSADO COMO PARAMETRO
     public function scopeBirthdayBetween($query, $dateBegin, $dateEnd)
     {

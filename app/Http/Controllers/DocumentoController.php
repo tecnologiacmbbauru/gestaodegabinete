@@ -29,7 +29,6 @@ class DocumentoController extends Controller
     public function index()
     {
         $alteracao=false;
-        $documento = $this->docC->paginate(20);
         
         $tipoDocumento = tipoDocumento::all();
         $tipoAtendimento = tipoAtendimento::all();
@@ -37,7 +36,7 @@ class DocumentoController extends Controller
         $unidadeDocumento = unidadeDocumento::all();
         $Atendimento = atendimento::all();
         $statusAtendimento = statusAtendimento::all();
-        return view('form_documento',compact('alteracao','documento','tipoDocumento','tipoAtendimento','situacaoDoc','unidadeDocumento','Atendimento','statusAtendimento'));
+        return view('form_documento',compact('alteracao','tipoDocumento','tipoAtendimento','situacaoDoc','unidadeDocumento','Atendimento','statusAtendimento'));
     }
 
     public function create()
@@ -176,8 +175,8 @@ class DocumentoController extends Controller
 
     public function pesquisaDocumento(Request $request,documento $documentoModel){
         $dataform = $request->except('_token');
-        $documentos = $documentoModel->pesquisaPaginada($dataform);
-
+        $documentos = $documentoModel->pesquisaLimitada($dataform);
+        $documentos = $documentos->paginate(20)->onEachSide(1);
         //Passar para a função de paginação a url principal (encontrada no .env) e continuar a rota "/pessoa/pesquisa"
         $documentos->withPath(config('app.url')."/documento/pesquisaDocumento");
 
@@ -217,7 +216,7 @@ class DocumentoController extends Controller
     public function pesqAtendimento(Request $request, atendimento $atendimento) {
         $dataform = $request->only(['GAB_PESSOA_cod_pessoa','dat_atendimento','GAB_TIPO_ATENDIMENTO_cod_tipo','GAB_STATUS_ATENDIMENTO_cod_status']);
 
-        $atendimentos = $atendimento->pesquisaLimitada($dataform); 
+        $atendimentos = $atendimento->pesquisa10limit($dataform); 
         //return response()->json($atendimentos);
         
         

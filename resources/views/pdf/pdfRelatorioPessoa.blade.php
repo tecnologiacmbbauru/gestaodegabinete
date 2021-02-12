@@ -30,11 +30,6 @@
 	      border-left:0px;
           height:1px;
         }
-        /*.;
-        TABELA ZEBRADA
-        tabela tbody tr:nth-child(even) {
-            background-color: #DCDCDC;
-        }*/
     </style>
 </head>
 <body>
@@ -92,10 +87,5 @@
     </table>    
     <br>
     <label>Total de Registros impressos: {{$i}}</label>
-    <script type='text/php'>
-      if (isset($pdf)) {               
-        $pdf->page_text(540, $pdf->get_height()-25, "{PAGE_NUM} de {PAGE_COUNT}", null, 12, array(0,0,0));
-      }
-    </script>
 </body>
 </html>

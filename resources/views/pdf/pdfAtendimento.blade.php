@@ -25,23 +25,23 @@
         </tr>
         <tr>
           <td><strong>Pessoa:</strong></td>
-          <td>{{$pessoa->nom_nome}}</td>
+          <td>{{$atendimentos->pessoa->nom_nome}}</td>
         </tr>
         <tr>
           <td><strong>CPF:</strong></td>
-          <td>{{$pessoa->cod_cpf_cnpj}}</td>
+          <td>{{$atendimentos->pessoa->cod_cpf_cnpj}}</td>
         </tr>
         <tr>
           <td><strong>RG:</strong></td>
-          <td>{{$pessoa->cod_rg}}</td>
+          <td>{{$atendimentos->pessoa->cod_rg}}</td>
         </tr>
         <tr>
           <td><strong>Tipo de Atendimento:</strong></td>
-          <td>{{$tipoAtendimento}}</td>
+          <td>{{$atendimentos->tipoAtendimento->nom_tipo}}</td>
         </tr>
         <tr>
           <td><strong>Situação do Atendimento:</strong></td>
-          <td>{{$statusAtendimento}}</td>
+          <td>{{$atendimentos->statusAtendimento->nom_status}}</td>
         </tr>
         <tr>
           <td><strong>Detalhes:</strong></td>

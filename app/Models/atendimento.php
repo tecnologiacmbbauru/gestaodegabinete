@@ -33,7 +33,7 @@ class atendimento extends Model
         return $this->hasOne('App\Models\documento', 'GAB_ATENDIMENTO_cod_atendimento', 'cod_atendimento');
     }
 
-    public function pesquisaPaginada(array $data) {
+    public function pesquisaLimitada(array $data) {
         return $this->where(function($query) use($data) {
             $query->where('ind_status',"A");//apenas as que o status seja igual a ATIVO. Caso ao contrario ela esta excluida
             if(isset($data['GAB_PESSOA_cod_pessoa'])) {
@@ -54,10 +54,10 @@ class atendimento extends Model
             if(isset($data['dat_fim'])) {
                 $query->where('dat_atendimento','<=',$data['dat_fim']);
             }
-        })->orderby('dat_atendimento','desc')->paginate(20)->onEachSide(1);
+        })->orderby('dat_atendimento','desc')->limit(500)->get();
     }
 
-    public function pesquisaPdf(array $data) {
+    public function pesquisa(array $data) {
         return $this->where(function($query) use($data) {
             $query->where('ind_status',"A");//apenas as que o status seja igual a ATIVO. Caso ao contrario ela esta excluida
             if(isset($data['GAB_PESSOA_cod_pessoa'])) {
@@ -78,7 +78,7 @@ class atendimento extends Model
         })->orderby('dat_atendimento','desc')->get();
     }
 
-    public function pesquisaLimitada(array $data) {
+    public function pesquisa10limit(array $data) {
         return $this->where(function($query) use($data) {
             $query->where('ind_status',"A");//apenas as que o status seja igual a ATIVO. Caso ao contrario ela esta excluida
             if(isset($data['GAB_PESSOA_cod_pessoa'])) {

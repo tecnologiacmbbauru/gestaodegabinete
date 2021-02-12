@@ -34,19 +34,18 @@ class pdfController extends Controller
 
     public function relatorioPessoa(Request $request, pessoa $pessoa) {
         switch ($request->input('action')) {
-            case 'relatorio':
-                $dataform = $request->input('dataform');
-                $pessoas = $pessoa->pesquisa($dataform);        
-                $agentePolitico = agentePolitico::first();
-                $pdf = PDF::loadView('pdf/pdfRelatorioPessoa',compact('agentePolitico','pessoas'));
-                $pdf->getDOMPdf()->set_option('isPhpEnabled', true); 
-                return $pdf->setPaper('a4')->stream('pessoa.pdf');
-            break;
             case 'relatorioExcel':
                 $dataform = $request->input('dataform');
-                $pessoas = $pessoa->pesquisa($dataform);  
+                $pessoas = $pessoa->pesquisaLimitada($dataform);  
                 return Excel::download(new pessoasExport($pessoas), 'pessoa.xlsx');
-                return Excel::download(new atendimentosExport, 'atendimento.xlsx');
+                //return Excel::download(new atendimentosExport, 'atendimento.xlsx');
+            break;
+            default:
+                $dataform = $request->input('dataform');
+                $pessoas = $pessoa->pesquisaLimitada($dataform);        
+                $agentePolitico = agentePolitico::first();
+                $pdf = PDF::loadView('pdf/pdfRelatorioPessoa',compact('agentePolitico','pessoas'));//->setOption('footer-right','"page [page] of [topage]"');
+                return $pdf->stream('pessoa.pdf');
             break;
         }
     }
@@ -55,19 +54,10 @@ class pdfController extends Controller
 
         $atendimentos = atendimento::findOrFail($id);
         $agentePolitico = agentePolitico::first();
-        $pessoa = pessoa::findOrFail($atendimentos['GAB_PESSOA_cod_pessoa']);
+
+        $pdf = PDF::loadView('pdf/pdfAtendimento',compact('agentePolitico','atendimentos'));
         
-
-        $tipoAtendimento = tipoAtendimento::findOrFail($atendimentos['GAB_TIPO_ATENDIMENTO_cod_tipo']);
-
-        $statusAtendimento = statusAtendimento::findOrFail($atendimentos['GAB_STATUS_ATENDIMENTO_cod_status']);
-
-        $tipoAtendimento = $tipoAtendimento['nom_tipo'];
-        $statusAtendimento =  $statusAtendimento['nom_status'];
-
-        $pdf = PDF::loadView('pdf/pdfAtendimento',compact('agentePolitico','atendimentos','pessoa','tipoAtendimento','statusAtendimento'));
-        
-        return $pdf->setPaper('a4')->stream('atendimento.pdf');
+        return $pdf->stream('atendimento.pdf');
     }
 
     public function retornaDocumento() {
@@ -113,7 +103,7 @@ class pdfController extends Controller
             case 'relatorio':
                 $dataform = $request->input('dataform');
                 //dd($dataform);
-                $atendimentos = $atendimento->pesquisaPdf($dataform);        
+                $atendimentos = $atendimento->pesquisaLimitada($dataform);        
                 $agentePolitico = agentePolitico::first();
 
                 //GERAR PDF CASO TENHA TIDO BUSCA DE ENDEREÇO
@@ -174,7 +164,6 @@ class pdfController extends Controller
                 return $pdf->setPaper('a4')->stream('atendimentos.pdf');
             break;
             case 'pesquisa':
-                //dd($dataform);
                 //refazer
                 $pessoas = pessoa::all();
                 $pessoasCidade = pessoa::distinct()->whereNotNull('nom_cidade')->orderBy('nom_cidade')->get(['nom_cidade']);
@@ -194,7 +183,8 @@ class pdfController extends Controller
                 }
                 $pesquisaEndereco = false;
                 $dataform = $request->except('_token');
-                $atendimentos = $atendimento->pesquisaPaginada($dataform);
+                $atendimentos = $atendimento->pesquisaLimitada($dataform);
+                $atendimentos = $atendimentos->paginate(20)->onEachSide(1);
                 $atendimentos->withPath(config('app.url')."/relatorio/pesquisaAtendimento");
                 //dd($atendimentos);
                 $pessoas = pessoa::all(); 
@@ -224,7 +214,7 @@ class pdfController extends Controller
                 //fim de refazer
                 $dataform = $request->except('_token');
                 $pesquisaEndereco = true;
-                $atendimentoSemEndereco = $atendimento->pesquisaPdf($dataform);     //o método pesquisa PDF vai retornar todos registros que tenham os campos pesquisados - menos os de endereço - sem cortar em paginas
+                $atendimentoSemEndereco = $atendimento->pesquisa($dataform);     //o método pesquisa PDF vai retornar todos registros que tenham os campos pesquisados - menos os de endereço - sem cortar em paginas
                 //dd($dataform);
                 if(isset($dataform['nom_estado'])){                                                  //Quando esta sendo paginada, pode não ter sido pesquisado um estado, por isto ele pode não existir
                     if($dataform['nom_estado']!=null){                                                  
@@ -363,15 +353,16 @@ class pdfController extends Controller
         switch ($request->input('action')) {
             case 'relatorio':
                 $dataform = $request->input('dataform');
-                $documentos = $documento->pesquisaPdf($dataform);        
+                $documentos = $documento->pesquisaLimitada($dataform);         
                 $agentePolitico = agentePolitico::first();
                 $pdf = PDF::loadView('pdf/pdfDocumentoGeral',compact('agentePolitico','documentos'));
-                $pdf->getDOMPdf()->set_option('isPhpEnabled', true); 
-                return $pdf->setPaper('a4')->stream('documentos.pdf');
+
+                return $pdf->stream('documentos.pdf');
             break;
             case 'pesquisar':
                 $dataform = $request->except('_token');
-                $documentos = $documento->pesquisaPaginada($dataform);
+                $documentos = $documento->pesquisaLimitada($dataform);
+                $documentos = $documentos->paginate(20)->onEachSide(1);
                 $documentos->withPath(config('app.url')."/relatorio/pesquisaDocumento");
                 $mostrarTodos = true;
                 $pessoas = pessoa::all();
@@ -385,7 +376,7 @@ class pdfController extends Controller
             break;
             case 'relatorioExcel':
                 $dataform = $request->input('dataform');
-                $documentos = $documento->pesquisaPdf($dataform);
+                $documentos = $documento->pesquisaLimitada($dataform);
                 return Excel::download(new documentosExport($documentos), 'documento.xlsx');
             break;
         }        
@@ -394,7 +385,7 @@ class pdfController extends Controller
      * The attributes that are mass assignable.
      *
      * @var array
-     */
+    */
     public function paginate($items, $perPage = 20, $page = null, $options = ["path"=>"/relatorio/pesquisaAtendimento"])
     {
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);

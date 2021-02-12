@@ -20,9 +20,9 @@
     @if(isset($dataform) and $dispositivo=="mobile")
         <div class="row">
             <div class="col" style="margin-bottom: 20px;margin-top: 20px;display:flex;justify-content:center;align-items:center;">
-                <form class="form-inline" method="post" target="_blank" action={{route('relatorio.Pessoa',['dataform'=>$dataform])}}>
+                <form id="form-relatorio" class="form-inline" method="post" target="_blank" action={{route('relatorio.Pessoa',['dataform'=>$dataform])}}>
                     @method('get')
-                    <button type="submit" aria-label="Gerar relatório pdf" class="btn-pdf" style="background-color: #f5f5f5;" name="action" value="relatorio">
+                    <button type="submit" aria-label="Gerar relatório pdf" class="btn-pdf" style="background-color: #f5f5f5;" name="action" value="relatorio" onclick="alertPdf()">
                         <img src="{{asset('utils/pdf.png')}}" alt="Exportar para PDF"  title="O relatório de PDF imprime até 500 registros">
                     </button>
                     <button type="submit" aria-label="Gerar relatório Excel" class="btn-pdf"  style="background-color: #f5f5f5;" name="action" value="relatorioExcel">
@@ -31,9 +31,9 @@
                 </form>
             </div>
             <div class="col" style="margin-bottom: 20px;text-align:center;">
-                    {{--Se existir mais de 15 dados abre os links--}}
+                    {{--Se existir mais de 20 dados abre os links--}}
+                    Total de registros: {{$pessoa->total()}} (a pesquisa retorna até 500)
                     @if(isset($dataform))
-                        A pesquisa retornou: {{$pessoa->total()}} registros.
                         {!!$pessoa->appends($dataform)->links()!!}
                     @endif
             </div>
@@ -42,17 +42,17 @@
 
     @if(isset($dataform) and $dispositivo=="computador")
         <div class="col" style="margin-bottom: 15px;margin-top: 20px;">
-            {{--Se existir mais de 15 dados abre os links--}}
-            A pesquisa retornou: {{$pessoa->total()}} registros.
+            {{--Se existir mais de 20 dados abre os links--}}
+            <label style="margin-left:10px;"> Total de registros: {{$pessoa->total()}} (a pesquisa retorna até 500)</label>
             @if(isset($dataform))        
                 {!!$pessoa->appends($dataform)->links()!!}
             @endif
         </div>
         <div class="col-md-8" style="display:flex;justify-content:flex-end;align-items:center; margin-bottom: 10px;">
             <div>
-            <form method="post" target="_blank" action={{route('relatorio.Pessoa',['dataform'=>$dataform])}}>
+            <form id="form-relatorio" method="post" target="_blank" action={{route('relatorio.Pessoa',['dataform'=>$dataform])}}>
                 @method('get')
-                <button type="submit" aria-label="Gerar relatório pdf" class="btn-pdf" style="background-color: #f5f5f5;" name="action" value="relatorio">
+                <button type="submit" aria-label="Gerar relatório pdf" class="btn-pdf" style="background-color: #f5f5f5;" name="action" value="relatorio" onclick="alertPdf()">
                     <img src="{{asset('utils/pdf.png')}}" alt="Exportar para PDF" title="O relatório de PDF imprime até 500 registros">
                 </button>
                 <button type="submit" aria-label="Gerar relatório Excel" class="btn-pdf"  style="background-color: #f5f5f5;" name="action" value="relatorioExcel">
@@ -62,9 +62,8 @@
             </div>
         </div>
     @endif
-
-
 </div>
+
 <form class="form" method="post" target="_blank" action={{route('relatorio.imprimeEtiqueta')}}>
     @csrf
     <div class="table-of row">
@@ -157,7 +156,6 @@
 
         {{--Script que seleciona todas checkbox quando a de cima for clicada--}}
         <script type="text/javascript" defer>
-            
             //foca na tabela quando ela é criada
             $(document).ready(function() { 
                 window.location.href='#topo-pesqPessoa';
@@ -184,7 +182,6 @@
                     alert("Selecione ao menos uma Pessoa para a impressão de etiquetas.");
                 }
             });
-
         </script>
   
 </form>

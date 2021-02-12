@@ -21,8 +21,7 @@ class PessoaController extends Controller
     public function index()
     {
         $alteracao=false;
-        $pessoa = $this->pessoaC->paginate(20);
-        return view('form_pessoa',compact('alteracao','pessoa'));
+        return view('form_pessoa',compact('alteracao'));
     }
 
 
@@ -65,12 +64,11 @@ class PessoaController extends Controller
         $alteracao = false;
         $mostraPesq=true;
         $dataform = $request->except('_token','ind_status');
-        $pessoa = $pessoaModel->pesquisaPaginada($dataform);
+        $pessoa = $pessoaModel->pesquisaLimitada($dataform);
+        $pessoa = $pessoa->paginate(20)->onEachSide(1);
         $pessoa->withPath(config('app.url')."/pessoa/pesquisa");//Passar para a função de paginação a url principal (encontrada no .env) e continuar a rota "/pessoa/pesquisa"
-        //Contar numero total de registros
-        //$PessoasCadastradas = pessoa::where('ind_status','=','A')->get();
-        //$total = $PessoasCadastradas->count();
-        return view('form_pessoa',compact('pessoa','alteracao','mostraPesq','dataform'));
+    
+        return view('form_pessoa',compact('alteracao','mostraPesq','dataform','pessoa'));
     }
 
     public function show(pessoa $pessoa)

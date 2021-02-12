@@ -10,14 +10,6 @@
           </button>
         </div>
         <div class="modal-body">
-
-
-
-
-
-
-
-
             <div id="form_pesq_cadastro" style="display: block;">
                 <div class="form-row" id="input_nom pessoa">
                     <div class="form-group col-md-12">

@@ -34,7 +34,7 @@ class documento extends Model
 
     //PESQUISAS
 
-    public function pesquisaPaginada(array $data) {
+    public function pesquisaLimitada(array $data) {
         return $this->where(function($query) use($data) {
             $query->where('ind_status',"A");//apenas as que o status seja igual a ATIVO. Caso ao contrario ela esta excluida
             if(isset($data['GAB_TIPO_DOCUMENTO_cod_tip_doc'])) {
@@ -73,11 +73,11 @@ class documento extends Model
             if(isset($data['GAB_ATENDIMENTO_cod_atendimento'])) {
                 $query->where('GAB_ATENDIMENTO_cod_atendimento',$data['GAB_ATENDIMENTO_cod_atendimento']);
             }               
-        })->orderby('dat_documento','desc')->paginate(20)->onEachSide(1);
+        })->orderby('dat_documento','desc')->limit(500)->get();
     }
 
     
-    public function pesquisaPdf(array $data) {
+    public function pesquisa(array $data) {
         return $this->where(function($query) use($data) {
             $query->where('ind_status',"A");//apenas as que o status seja igual a ATIVO. Caso ao contrario ela esta excluida
             if(isset($data['GAB_TIPO_DOCUMENTO_cod_tip_doc'])) {

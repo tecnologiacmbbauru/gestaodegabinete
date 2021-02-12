@@ -12,21 +12,18 @@ class AtendimentoController extends Controller
 {
     private $Atendimento;
 
-    public function __construct(Atendimento $atendimentoC){ 
+    public function __construct(Atendimento $atendimentoModal){ 
         $this->middleware('auth'); //verificar se o usuario esta logado
-        $this->atendimentoC = $atendimentoC;
+        $this->atendimentoModal = $atendimentoModal;
     }
 
     public function index()
     {
         $alteracao=false;
-        $Atendimento = $this->atendimentoC->paginate(20);
-        $tipoAtendimento = tipoAtendimento::all();
-        $statusAtendimento = statusAtendimento::all();
-        $pessoas = pessoa::all();
-        
-        return view('form_atendimento',compact('alteracao','Atendimento','tipoAtendimento','pessoas','statusAtendimento'));
-
+        $tipoAtendimento = tipoAtendimento::where('ind_tipo','A')->get();
+        $statusAtendimento = statusAtendimento::where('ind_status','A')->get();
+    
+        return view('form_atendimento',compact('alteracao','tipoAtendimento','statusAtendimento'));
     }
 
     public function create()
@@ -54,7 +51,7 @@ class AtendimentoController extends Controller
         $dataform['nom_operacao_log'] = 'INSERT';
         $dataform['nom_usuario_log'] = auth()->user()->name;
        
-        $insert = $this->atendimentoC->create($dataform);
+        $insert = $this->atendimentoModal->create($dataform);
         
         if ($insert)
             return redirect()
@@ -71,33 +68,31 @@ class AtendimentoController extends Controller
     public function edit($id)
     {
         $alteracao = true;
-        $Atendimento = $this->atendimentoC->paginate(20);
-        $atendimentoC = $this->atendimentoC->where('cod_atendimento',$id)->first();
+        $atendimentoModal = $this->atendimentoModal->where('cod_atendimento',$id)->first();
         $tipoAtendimento = tipoAtendimento::all();
         $statusAtendimento = statusAtendimento::all();
-        $pessoas = pessoa::all();
-        $dataFormatada = trim($atendimentoC['dat_atendimento']);
+        $dataFormatada = trim($atendimentoModal['dat_atendimento']);
         $dataFormatada = date("Y-m-d",strtotime($dataFormatada));
 
-        return view('form_atendimento',compact('alteracao','atendimentoC','Atendimento','tipoAtendimento','pessoas','statusAtendimento','dataFormatada'));
+        return view('form_atendimento',compact('alteracao','atendimentoModal','tipoAtendimento','statusAtendimento','dataFormatada'));
     }
 
     public function update(Request $request, $id)
     {
-        $atendimentoC = Atendimento::findOrFail($id);
-        $atendimentoC->update($request->all());
+        $atendimentoModal = Atendimento::findOrFail($id);
+        $atendimentoModal->update($request->all());
         
         return redirect()
                     ->route('atendimento.index')
-                    ->with('success', 'Atendimento Alterada com sucesso!');
+                    ->with('success', 'Atendimento Alterado com sucesso!');
     }
 
     public function destroy(Request $request)
     {
-        $atendimentoC = Atendimento::findOrFail($request->id_exclusao);
-        //$atendimentoC->delete();
+        $atendimentoModal = Atendimento::findOrFail($request->id_exclusao);
+        //$atendimentoModal->delete();
         $inativo = array('ind_status'=> 'I','nom_usuario_log' => auth()->user()->name,'nom_operacao_log'=>'DELETE' );
-        $atendimentoC->update($inativo);
+        $atendimentoModal->update($inativo);
         return redirect()
                     ->route('atendimento.index')
                     ->with('success', 'Atendimento excluído com sucesso!');
@@ -123,13 +118,12 @@ class AtendimentoController extends Controller
         }
   
         return response()->json($response);
-        
     }
 
     public function pesquisaAtendimento(Request $request,atendimento $atendimentoModel){
         $dataform = $request->except('_token');
-        $Atendimento = $atendimentoModel->pesquisaPaginada($dataform);
-        
+        $Atendimento = $atendimentoModel->pesquisaLimitada($dataform);
+        $Atendimento = $Atendimento->paginate(20)->onEachSide(1);
         //Passar para a função de paginação a url principal (encontrada no .env) e continuar a rota "/pessoa/pesquisa"
         $Atendimento->withPath(config('app.url')."/atendimento/pesquisaAtendimento");
 

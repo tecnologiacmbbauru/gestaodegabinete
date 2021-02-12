@@ -5,6 +5,8 @@
 <head>
 <!--Estilo do JQuery ui-->
 <link href="{{asset('css/jquery-ui.css')}}" rel="stylesheet">
+<link href="{{ asset('css/pesquisa.css') }}" rel="stylesheet">
+
 
 <script src="{{ asset('js/jquery.min.js') }}" ></script>
 <script src="{{ asset('js/jquery-ui.js') }}" ></script>
@@ -171,10 +173,29 @@
 
     </div>
 </form>
-        {{--</form>--}}
-            @if($mostrarTodos==true)
-                <div style="display:flex;justify-content:flex-end;align-items:center;">
-                    @if(isset($dataform))
+    @if($mostrarTodos==true) 
+        {{--Verificar se dispostivo é desktop ou mobile--}}
+        @php
+            $iphone = strpos($_SERVER['HTTP_USER_AGENT'],"iPhone");
+            $ipad = strpos($_SERVER['HTTP_USER_AGENT'],"iPad");
+            $android = strpos($_SERVER['HTTP_USER_AGENT'],"Android");
+            $palmpre = strpos($_SERVER['HTTP_USER_AGENT'],"webOS");
+            $berry = strpos($_SERVER['HTTP_USER_AGENT'],"BlackBerry");
+            $ipod = strpos($_SERVER['HTTP_USER_AGENT'],"iPod");
+            $symbian = strpos($_SERVER['HTTP_USER_AGENT'],"Symbian");
+
+            if ($iphone || $ipad || $android || $palmpre || $ipod || $berry || $symbian == true) {
+                $dispositivo = "mobile";
+            }else{
+                $dispositivo = "computador";
+            } 
+        @endphp
+
+        <div id="topo-pesqAtendimento"  style="margin-top:5px; display:flex">
+
+            @if(isset($dataform) and $dispositivo=="mobile")
+                <div class="row">
+                    <div class="col" style="margin-bottom:5px;margin-top: 20px;display:flex;justify-content:center;align-items:center;">
                         <form class="form-horizontal" method="post" target="_blank" action={{route('relatorio.pesquisaAtendimento',['dataform'=>$dataform])}}>
                             @method('get')
                             <button type="submit" aria-label="Gerar relatório pdf" class="btn-pdf" style="background-color: #f5f5f5;" name="action" value="relatorio">
@@ -184,92 +205,121 @@
                                 <img src="{{asset('utils/xls.png')}}" alt="Exportar para XLS" title="Exportar para XLS"> 
                             </button>
                         </form>
+                    </div>
+                    <div class="col" style="margin-bottom: 20px;text-align:center;">
+                            {{--Se existir mais de 20 dados abre os links--}}
+                            Total de registros: {{$atendimentos->total()}} (a pesquisa retorna até 500)
+                            @if(isset($dataform))
+                                {!!$atendimentos->appends($dataform)->links()!!}
+                            @endif
+                    </div>
+                </div>
+            @endif
+
+            @if(isset($dataform) and $dispositivo=="computador")
+                <div class="col" style="margin-bottom: 10px;margin-top: 10px;">
+                    {{--Se existir mais de 20 dados abre os links--}}
+                    <label style="margin-left:10px;"> Total de registros: {{$atendimentos->total()}} (a pesquisa retorna até 500)</label>
+                    @if(isset($dataform))        
+                        {!!$atendimentos->appends($dataform)->links()!!}
                     @endif
-                </div>            
-                <!--lISTAGEM DOS atendimentos ja cadastrados-->
-                <div class="table-of row">
-                    <table id="tb_atendimento" class="mtab table table-striped table-hover table-responsive-lg" cellspacing="10" width="100%">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Data</th>
-                                <th>Pessoa</th>
-                                <th>Doc. Identificação</th>
-                                <th>Endereço</th>
-                                <th>Tipo</th>
-                                <th>Situação</th>
-                            </tr>
-                        </thead>
-                        @if($atendimentos->isEmpty()) {{--caso pesquisa não tenha resultado, o método isEmpty ja esta na classe LengthAwarePaginator (classe responsavel por retornar a pesquisa paginada)--}}
-                            <td colspan="6" style="text-align: center;">Não foi encontrado nenhum registro</td>
-                        @endif
-                        @foreach($atendimentos as $atendimentoC)
-                        <tbody>
-                                <td  width='10%'>   
-                                    {{date('d/m/Y', strtotime($atendimentoC->dat_atendimento))}} <!--Formata para modo de data usado no Brasil-->
+                </div>
+                <div class="col-md-8" style="display:flex;justify-content:flex-end;align-items:center; margin-bottom: 10px;">
+                    <div>
+                        <form class="form-horizontal" method="post" target="_blank" action={{route('relatorio.pesquisaAtendimento',['dataform'=>$dataform])}}>
+                            @method('get')
+                            <button type="submit" aria-label="Gerar relatório pdf" class="btn-pdf" style="background-color: #f5f5f5;" name="action" value="relatorio">
+                                <img src="{{asset('utils/pdf.png')}}" alt="Exportar para PDF" title="Exportar para PDF">
+                            </button>
+                            <button type="submit" aria-label="Gerar relatório Excel" class="btn-pdf" style="background-color: #f5f5f5;" name="action" value="relatorioExcel">
+                                <img src="{{asset('utils/xls.png')}}" alt="Exportar para XLS" title="Exportar para XLS"> 
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            @endif
+        </div>
+        <!--lISTAGEM DOS atendimentos ja cadastrados-->
+        <div class="table-of row">
+            <table id="tb_atendimento" class="mtab table table-striped table-hover table-responsive-lg" cellspacing="10" width="100%">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Data</th>
+                        <th>Pessoa</th>
+                        <th>Doc. Identificação</th>
+                        <th>Endereço</th>
+                        <th>Tipo</th>
+                        <th>Situação</th>
+                    </tr>
+                </thead>
+                @if($atendimentos->isEmpty()) {{--caso pesquisa não tenha resultado, o método isEmpty ja esta na classe LengthAwarePaginator (classe responsavel por retornar a pesquisa paginada)--}}
+                    <td colspan="6" style="text-align: center;">Não foi encontrado nenhum registro</td>
+                @endif
+                @foreach($atendimentos as $atendimentoC)
+                <tbody>
+                        <td  width='10%'>   
+                            {{date('d/m/Y', strtotime($atendimentoC->dat_atendimento))}} <!--Formata para modo de data usado no Brasil-->
+                        </td>
+                            @if($atendimentoC->GAB_PESSOA_cod_pessoa==null)
+                                <td  width='19%'>
+                                    Não existe pessoa relacionada
+                                </td> 
+                                <td  width='16%'>
+                                    -
                                 </td>
-                                    @if($atendimentoC->GAB_PESSOA_cod_pessoa==null)
-                                        <td  width='19%'>
-                                            Não existe pessoa relacionada
-                                        </td> 
-                                        <td  width='16%'>
-                                            -
-                                        </td>
-                                        <td  width='19%'>
-                                            -
-                                        </td>
-                                    @else
-                                        <td  width='19%'>
-                                            {{$atendimentoC->pessoa->nom_nome}}
-                                        </td>
-                                        <td  width='20%'>
-                                            @if($atendimentoC->pessoa->ind_pessoa=='PF')
-                                                @if($atendimentoC->pessoa->cod_cpf_cnpj!=null)
-                                                    <strong>CPF:</strong> <label class="cpf">{{$atendimentoC->pessoa->cod_cpf_cnpj}}</label>
-                                                @endif
-                                                <br>
-                                                @if($atendimentoC->pessoa->cod_rg!=null)
-                                                    <strong>RG:</strong> <label class="rg">{{$atendimentoC->pessoa->cod_rg}}</label>
-                                                @endif
-                                            @elseif($atendimentoC->pessoa->ind_pessoa=='PJ')
-                                                @if($atendimentoC->pessoa->cod_cpf_cnpj!=null)
-                                                    <strong>CNPJ:</strong> <label class="cnpj">{{$atendimentoC->pessoa->cod_cpf_cnpj}}</label>
-                                                @endif
-                                                <br>
-                                                @if($atendimentoC->pessoa->cod_ie!=null)
-                                                    <strong>I.E:</strong> <label class="ie">{{$atendimentoC->pessoa->cod_ie}}</label>
-                                                @endif
-                                            @endif
-                                        </td>
-                                        <td  width='19%'>
-                                            @if(isset($atendimentoC->pessoa->nom_bairro))
-                                                {{$atendimentoC->pessoa->nom_bairro}},
-                                                <br>
-                                            @endif
-                                            {{$atendimentoC->pessoa->nom_cidade}}@if($atendimentoC->pessoa->nom_estado!=null) / {{$atendimentoC->pessoa->nom_estado}}@endif
-                                        </td>
+                                <td  width='19%'>
+                                    -
+                                </td>
+                            @else
+                                <td  width='19%'>
+                                    {{$atendimentoC->pessoa->nom_nome}}
+                                </td>
+                                <td  width='20%'>
+                                    @if($atendimentoC->pessoa->ind_pessoa=='PF')
+                                        @if($atendimentoC->pessoa->cod_cpf_cnpj!=null)
+                                            <strong>CPF:</strong> <label class="cpf">{{$atendimentoC->pessoa->cod_cpf_cnpj}}</label>
+                                        @endif
+                                        <br>
+                                        @if($atendimentoC->pessoa->cod_rg!=null)
+                                            <strong>RG:</strong> <label class="rg">{{$atendimentoC->pessoa->cod_rg}}</label>
+                                        @endif
+                                    @elseif($atendimentoC->pessoa->ind_pessoa=='PJ')
+                                        @if($atendimentoC->pessoa->cod_cpf_cnpj!=null)
+                                            <strong>CNPJ:</strong> <label class="cnpj">{{$atendimentoC->pessoa->cod_cpf_cnpj}}</label>
+                                        @endif
+                                        <br>
+                                        @if($atendimentoC->pessoa->cod_ie!=null)
+                                            <strong>I.E:</strong> <label class="ie">{{$atendimentoC->pessoa->cod_ie}}</label>
+                                        @endif
                                     @endif
-                                <td  width='16%'>
-                                    {{$atendimentoC->tipoAtendimento->nom_tipo}}
                                 </td>
-                                <td  width='16%'>
-                                    {{$atendimentoC->statusAtendimento->nom_status}}
+                                <td  width='19%'>
+                                    @if(isset($atendimentoC->pessoa->nom_bairro))
+                                        {{$atendimentoC->pessoa->nom_bairro}},
+                                        <br>
+                                    @endif
+                                    {{$atendimentoC->pessoa->nom_cidade}}@if($atendimentoC->pessoa->nom_estado!=null) / {{$atendimentoC->pessoa->nom_estado}}@endif
                                 </td>
-                        </tbody>
-                        @endforeach
-                    </table>
-                </div> 
-                {!!$atendimentos->appends($dataform)->links()!!}
-                <script type="text/javascript" defer>
-                    //foca na tabela quando mostra todos é igual a true e a pagina carrega
-                    $(document).ready(function() { 
-                        window.location.href='#tb_atendimento';
-                    });
-                </script>
-  
-        @endif
-    </div>
+                            @endif
+                        <td  width='16%'>
+                            {{$atendimentoC->tipoAtendimento->nom_tipo}}
+                        </td>
+                        <td  width='16%'>
+                            {{$atendimentoC->statusAtendimento->nom_status}}
+                        </td>
+                </tbody>
+                @endforeach
+            </table>
+        </div> 
+        {!!$atendimentos->appends($dataform)->links()!!}
+        <script type="text/javascript" defer>
+            //foca na tabela quando mostra todos é igual a true e a pagina carrega
+            $(document).ready(function() { 
+                window.location.href='#topo-pesqAtendimento';
+            });
+        </script>
+    @endif
 </body>
-@endsection
 <script type="text/javascript">
     function form_pesquisa(){
         estado = $('#nom_estado').val();
@@ -282,3 +332,5 @@
         }
     }
 </script>
+@endsection
+
