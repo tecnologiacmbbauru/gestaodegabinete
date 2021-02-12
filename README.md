@@ -38,6 +38,8 @@ Popule as tabelas com dados iniciais, utilizando o comando:
 
 <b>Atenção:</b> Para popular com dados de teste (não utilizar na versão de produção), retire os comentários das linhas 24,25,26 do arquivo <i>DatabaseSeeder.php</i> antes de executar o comando acima.
 
+Acesse o sistema e realize login utilizando *usuário:admin / senha:admin*. Após logon, **altere a senha** por meio do sistema.
+
 ## Módulos externos
 Este software utiliza **webservice gratuito <a href="https://viacep.com.br/">Via CEP</a>** no cadastro de Pessoas para consultar Códigos de Endereçamento Postal (CEP) do Brasil.
 
