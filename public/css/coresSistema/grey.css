@@ -11,6 +11,16 @@
     border: none; 
 }
 
+.btn-primary{
+    background-color:#424242 !important;
+    border: none; 
+}
+
+.btn-secondary{
+    background-color:#6d6d6d !important;
+    border: none; 
+}
+
 .card-header{
     background-color:#6d6d6d !important;
     text-align: center;
@@ -44,4 +54,16 @@
     border-color: #424242;
     color: #ffffff;
     background-color: #6d6d6d;
+}
+
+.link-documento{
+    color:#6d6d6d;
+}
+
+.smoothscroll-top {
+    background-color:#6d6d6d;
+}
+
+.smoothscroll-top:hover {
+    background-color:#424242;
 }

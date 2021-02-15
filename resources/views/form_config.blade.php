@@ -61,26 +61,26 @@
                     </div>
                 </div>
 
-                <!---<div class="form-row">
+                <div class="form-row">
                     <div class="form-group col-md-8">
                         <label class="col-form-label negrito">Cor do Sistema</label>
                         <div class="input-group-append">
                         <div id="seletor" class="seletor"></div>
                         <button class="btn-seta" type="button" onclick="mostrarCors()"><img id="img-seta" src="{{asset("utils/seta.png")}}"style="height:35px; width:35px;"></button>
-                                <div id="cores" hidden>
-                                    <button class="btn btn-outline-secondary btn-purple btn-color" type="button" onclick="purpleChoice()"></button>
-                                    <button class="btn btn-outline-secondary btn-dark-purple btn-color" type="button" onclick="darkPurpleChoice()"></button>
-                                    <button class="btn btn-outline-secondary btn-indigo btn-color" type="button" onclick="indigoChoice()"></button>
-                                    <button class="btn btn-outline-secondary btn-blue btn-color" type="button" onclick="blueChoice()"></button>
-                                    <button class="btn btn-outline-secondary btn-teal btn-color" type="button" onclick="tealChoice()"></button>
-                                    <button class="btn btn-outline-secondary btn-green btn-color" type="button" onclick="greenChoice()"></button>
-                                    <button class="btn btn-outline-secondary btn-brown btn-color" type="button" onclick="brownChoice()"></button>
-                                    <button class="btn btn-outline-secondary btn-grey btn-color" type="button" onclick="greyChoice()"></button>
-                                    <button class="btn btn-outline-secondary btn-blue-grey btn-color" type="button" onclick="blueGrayChoice()"></button>
-                                </div>
+                            <div id="cores" hidden>
+                                <button class="btn btn-outline-secondary btn-purple btn-color" type="button" onclick="purpleChoice()"></button>
+                                <button class="btn btn-outline-secondary btn-dark-purple btn-color" type="button" onclick="darkPurpleChoice()"></button>
+                                <button class="btn btn-outline-secondary btn-indigo btn-color" type="button" onclick="indigoChoice()"></button>
+                                <button class="btn btn-outline-secondary btn-blue btn-color" type="button" onclick="blueChoice()"></button>
+                                <button class="btn btn-outline-secondary btn-teal btn-color" type="button" onclick="tealChoice()"></button>
+                                <button class="btn btn-outline-secondary btn-green btn-color" type="button" onclick="greenChoice()"></button>
+                                <button class="btn btn-outline-secondary btn-brown btn-color" type="button" onclick="brownChoice()"></button>
+                                <button class="btn btn-outline-secondary btn-grey btn-color" type="button" onclick="greyChoice()"></button>
+                                <button class="btn btn-outline-secondary btn-blue-grey btn-color" type="button" onclick="blueGrayChoice()"></button>
                             </div>
                         </div>
-                </div>--->
+                    </div>
+                </div>
 
                 <input hidden id="corSystem" name="corSystem">
 

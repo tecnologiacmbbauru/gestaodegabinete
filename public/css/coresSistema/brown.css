@@ -11,6 +11,16 @@
     border: none; 
 }
 
+.btn-primary{
+    background-color:#4e342e !important;
+    border: none; 
+}
+
+.btn-secondary{
+    background-color:#7b5e57 !important;
+    border: none; 
+}
+
 .card-header{
     background-color:#7b5e57 !important;
     text-align: center;
@@ -43,4 +53,24 @@
     border-color: #4e342e;
     color: #ffffff;
     background-color: #7b5e57;
+}
+
+.smoothscroll-top {
+    background-color:#7b5e57;
+}
+
+.smoothscroll-top:hover {
+    background-color:#7b5e57;
+}
+
+/*PAGINAÇÃO*/
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #4e342e;
+    border-color: #4e342e;
+}
+
+.page-link {
+    color: #7b5e57;
 }
