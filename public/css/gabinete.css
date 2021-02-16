@@ -36,17 +36,7 @@ html,body {
 }
 
 /*Home Page*/
-/*Agenda*/
-.fc-header-toolbar{
-	background-color:#337AB7 !important;
-	text-align:center;
-	align-items:center !important;
-	margin:0px !important;
-	padding:12px;
-}
-.aniversariante{
-	color:black !important;
-}
+
 
 /*Tabela de amostragem de usuarios*/
 .table {
@@ -162,10 +152,11 @@ input{
 	.div-calendario{
 		height:auto !important;
 	}
+	#calendar{
+		height: 500px;
+	}
 }
 	
-
-
 .div-botoes-cadastro{
 	align-items: center;
 	justify-content: center;
@@ -216,4 +207,20 @@ input{
 	color: #f70713;
 }
 
-/*DIV DE PESSOA PARA RELATORIOS*/
+/*Cards aniversariatems na home com scroll*/
+.card-aniversariantes{
+	max-height: 500px;
+	overflow:auto;
+}
+
+@media(max-width: 480px) {
+	.card-aniversariantes{
+		max-height: 500px;
+		overflow:auto;
+	}
+}
+
+/*link documento na edição de documento*/
+.link-documento{
+	color:#4b636e;
+}

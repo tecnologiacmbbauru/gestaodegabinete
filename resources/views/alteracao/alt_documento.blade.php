@@ -52,7 +52,7 @@
    <div class="form-row">
         <div class="form-group col-md-6">
             @if($docC->path_doc!=null)
-                <label class="col-form-label negrito">Documento: </label>  <strong><a class="link-documento" href="{{asset("storage/{$docC->path_doc}")}}" download="{{$docC->tipoDocumento->nom_tip_doc}}-{{$docC->nom_documento}}-{{$docC->dat_ano}}">{{$docC->tipoDocumento->nom_tip_doc}}-{{$docC->nom_documento}}-{{$docC->dat_ano}}</a></strong>
+                <label class="col-form-label negrito">Baixar documento: </label>  <strong><a class="link-documento" href="{{asset("storage/{$docC->path_doc}")}}" download="{{$docC->tipoDocumento->nom_tip_doc}}-{{$docC->nom_documento}}-{{$docC->dat_ano}}">{{$docC->tipoDocumento->nom_tip_doc}}-{{$docC->nom_documento}}-{{$docC->dat_ano}}</a></strong>
                 <br>
                 <input class="form-check-input" type="checkbox" id="altera_doc" name="altera_doc" onclick="mostraAlteraDoc()" style="margin-left:3px;">
                 <label class="form-check-label negrito" style="margin-left:25px;">Substituir Documento</label>   
@@ -131,7 +131,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             @if($docC->path_doc_resp!=null)
-                                <label class="col-form-label negrito">Documento: </label> <strong><a class="link-documento" href="{{asset("storage/{$docC->path_doc_resp}")}}" download="Documento-Resposta">{{"Resposta"}}-{{$docC->tipoDocumento->nom_tip_doc}}-{{$docC->nom_documento}}-{{$docC->dat_ano}}</a></strong>
+                                <label class="col-form-label negrito">Baixar documento: </label> <strong><a class="link-documento" href="{{asset("storage/{$docC->path_doc_resp}")}}" download="Documento-Resposta">{{"Resposta"}}-{{$docC->tipoDocumento->nom_tip_doc}}-{{$docC->nom_documento}}-{{$docC->dat_ano}}</a></strong>
                                 <br>
                                 <input class="form-check-input" type="checkbox" id="altera_doc_resp" name="altera_doc_resp" onclick="mostraAlteraDocResp()" style="margin-left:3px;">
                                 <label class="form-check-label negrito" style="margin-left:25px;">Substituir Documento de Resposta</label>   
@@ -146,7 +146,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             @if($docC->link_resposta!=null)
-                                <label class="col-form-label negrito">Link: </label><strong><a class="link-documento" href="{{url('//' . (strpos($docC->link_resposta, '//') !== false ? substr($docC->link_resposta, strpos($docC->link_resposta, '//') + 2) : ltrim($docC->link_resposta, '/')))}}" target="_blank">{{$docC->link_resposta}}</a></strong>
+                                <label class="col-form-label negrito">Link: </label><strong> <a class="link-documento" href="{{url('//' . (strpos($docC->link_resposta, '//') !== false ? substr($docC->link_resposta, strpos($docC->link_resposta, '//') + 2) : ltrim($docC->link_resposta, '/')))}}" target="_blank">{{$docC->link_resposta}}</a></strong>
                                 <br>   
                                 <input class="form-check-input" type="checkbox" id="altera_link_resp" id="altera_link_resp" onclick="subsLinkResp()" style="margin-left:3px;">
                                 <label class="form-check-label negrito" for="altera_link" style="margin-left:25px;">Substituir link de resposta</label>

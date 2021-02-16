@@ -8,7 +8,7 @@
 <body>
     <h1 class="titulo" style="text-align:center;">Sobre o Sistema</h1>
     <div class="container">
-        <div id="alerta" class="alerta atencao col-md-11">
+        <div id="alerta" class="sobre col-md-11">
             <h3>Gestão de Gabinete</h3>
             <p>
                 <h4>Versão 5.0</h4>

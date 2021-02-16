@@ -12,7 +12,7 @@
 }
 
 .btn-primary{
-    background-color:#6a1b9a !important;
+    background-color:#00695c !important;
     border: none; 
 }
 
@@ -50,13 +50,18 @@
 }
 
 .sobre{
-    border-color: #00695c;
-    color: #000000;
-    background-color: #439889;
+    border-color: #b2dfdb;
+    color: black;
+    background-color: #b2dfdb;
+    padding: 10px;
+	border: 1px solid #b2dfdb;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	font-size: 17px;
 }
-
-.link-documento{
-    color:#439889;
+.sobre a{
+    color: black !important;
+    text-decoration: underline;
 }
 
 .smoothscroll-top {
@@ -65,4 +70,85 @@
 
 .smoothscroll-top:hover {
     background-color:#00695c;
+}
+
+/*LINKS*/
+.link-documento{
+    color:#00695c;
+    text-decoration: underline;
+}
+
+.link-aniversariante{
+    color:#00695c;
+    text-decoration: underline;
+}
+
+
+/*PAGINAÇÃO*/
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #00695c;
+    border-color: #00695c;
+}
+
+.page-link {
+    color: #439889;
+}
+
+/*HOME*/
+.li-data-niver{
+    background-color:#b2dfdb;
+    color:black;
+}
+
+/*Agenda*/
+.fc-header-toolbar{
+	background-color:#439889 !important;
+    color:white;
+	text-align:center;
+	align-items:center !important;
+	margin:0px !important;
+	padding:12px;
+}
+.fc-button{
+    background-color:#00695c !important;
+    border-color:#00695c !important;
+}
+
+.fc-col-header-cell-cushion {
+    color:#003d33 !important;
+}
+
+.fc-daygrid-day-number{
+    color:#00695c !important;
+}
+
+.fc-event-title {
+    color:black !important; 
+}
+
+.fc-event-time{
+    color:black !important; 
+}
+
+.fc-daygrid-event-dot{
+    border: calc(var(--fc-daygrid-event-dot-width, 8px) / 2) solid #000000 !important;
+}
+
+.fc-v-event{
+    background-color: var(--fc-event-bg-color, #b2dfdb) !important;
+    border-color: #90a4ae !important;
+}
+
+.fc-list-day-text{
+    color:#00695c !important; 
+}
+
+.fc-list-day-side-text{
+    color:#00695c !important; 
+}
+
+.fc-list-event-dot{
+    border: calc(var(--fc-list-event-dot-width, 10px) / 2) solid var(--fc-event-border-color, #003d33) !important;
 }

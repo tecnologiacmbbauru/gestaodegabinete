@@ -1,3 +1,8 @@
+/*PALETA
+primaria:003c80
+segundaria:1563c0
+terceria:5e92f3
+*/
 .nav-principal{
 	background-color:#003c80 !important;
 }
@@ -50,9 +55,18 @@
 }
 
 .sobre{
-    border-color: #1565c0;
+    border-color: #bbdefb;
     color: black;
-    background-color: #5e92f3;
+    background-color: #bbdefb;
+    padding: 10px;
+	border: 1px solid #bbdefb;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	font-size: 17px;
+}
+.sobre a{
+    color: black !important;
+    text-decoration: underline;
 }
 
 .smoothscroll-top {
@@ -61,4 +75,72 @@
 
 .smoothscroll-top:hover {
     background-color:#1563c0;
+}
+
+/*LINKS*/
+.link-documento{
+    color:#1563c0;
+    text-decoration: underline;
+}
+
+.link-aniversariante{
+    color:#1563c0;
+    text-decoration: underline;
+}
+
+/*HOME*/
+.li-data-niver{
+    background-color:#bbdefb;
+    color:black;
+}
+
+/*Agenda*/
+.fc-header-toolbar{
+	background-color:#5e92f3 !important;
+    color:white;
+	text-align:center;
+	align-items:center !important;
+	margin:0px !important;
+	padding:12px;
+}
+.fc-button{
+    background-color:#1563c0 !important;
+    border-color:#1563c0 !important;
+}
+
+.fc-col-header-cell-cushion {
+    color:#003c80 !important;
+}
+
+.fc-daygrid-day-number{
+    color:#1563c0 !important;
+}
+
+.fc-event-title {
+    color:black !important; 
+}
+
+.fc-event-time{
+    color:black !important; 
+}
+
+.fc-daygrid-event-dot{
+    border: calc(var(--fc-daygrid-event-dot-width, 8px) / 2) solid #000000 !important;
+}
+
+.fc-v-event{
+    background-color: var(--fc-event-bg-color, #bbdefb) !important;
+    border-color: #90a4ae !important;
+}
+
+.fc-list-day-text{
+    color:#1563c0 !important; 
+}
+
+.fc-list-day-side-text{
+    color:#1563c0 !important; 
+}
+
+.fc-list-event-dot{
+    border: calc(var(--fc-list-event-dot-width, 10px) / 2) solid var(--fc-event-border-color, #003c80) !important;
 }

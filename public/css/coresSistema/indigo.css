@@ -49,14 +49,20 @@
     color:#283593;
 }
 
+/*Pagina Sobre*/
 .sobre{
-    border-color: #283593;
-    color: #ffffff;
-    background-color: #5f5fc4;
+    border-color: #9fa8da;
+    color: black;
+    background-color: #9fa8da;
+    padding: 10px;
+	border: 1px solid #9fa8da;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	font-size: 17px;
 }
-
-.link-documento{
-    color:#5f5fc4;
+.sobre a{
+    color: black !important;
+    text-decoration: underline;
 }
 
 .smoothscroll-top {
@@ -65,4 +71,84 @@
 
 .smoothscroll-top:hover {
     background-color:#283593;
+}
+
+/*LINKS*/
+.link-documento{
+    color:#283593;
+    text-decoration: underline;
+}
+
+.link-aniversariante{
+    color:#283593;
+    text-decoration: underline;
+}
+
+/*PAGINAÇÃO*/
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #283593;
+    border-color: #283593;
+}
+
+.page-link {
+    color: #5f5fc4;
+}
+
+/*HOME*/
+.li-data-niver{
+    background-color:#9fa8da;
+    color:black;
+}
+
+/*Agenda*/
+.fc-header-toolbar{
+	background-color:#5f5fc4 !important;
+    color:white;
+	text-align:center;
+	align-items:center !important;
+	margin:0px !important;
+	padding:12px;
+}
+.fc-button{
+    background-color:#283593 !important;
+    border-color:#283593 !important;
+}
+
+.fc-col-header-cell-cushion {
+    color:#001064 !important;
+}
+
+.fc-daygrid-day-number{
+    color:#283593 !important;
+}
+
+.fc-event-title {
+    color:black !important; 
+}
+
+.fc-event-time{
+    color:black !important; 
+}
+
+.fc-daygrid-event-dot{
+    border: calc(var(--fc-daygrid-event-dot-width, 8px) / 2) solid #000000 !important;
+}
+
+.fc-v-event{
+    background-color: var(--fc-event-bg-color, #9fa8da) !important;
+    border-color: #90a4ae !important;
+}
+
+.fc-list-day-text{
+    color:#283593 !important; 
+}
+
+.fc-list-day-side-text{
+    color:#283593 !important; 
+}
+
+.fc-list-event-dot{
+    border: calc(var(--fc-list-event-dot-width, 10px) / 2) solid var(--fc-event-border-color, #001064) !important;
 }
