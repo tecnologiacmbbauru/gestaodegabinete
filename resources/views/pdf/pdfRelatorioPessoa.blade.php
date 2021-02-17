@@ -30,6 +30,9 @@
 	      border-left:0px;
           height:1px;
         }
+        @page {
+            footer: page-footer;
+        }
     </style>
 </head>
 <body>
@@ -87,5 +90,9 @@
     </table>    
     <br>
     <label>Total de Registros impressos: {{$i}}</label>
+
+    <htmlpagefooter name="page-footer">
+        {PAGENO}
+    </htmlpagefooter>
 </body>
 </html>

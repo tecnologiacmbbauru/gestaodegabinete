@@ -40,6 +40,10 @@
               background-color: #DCDCDC;
           }
         */
+
+        @page {
+            footer: page-footer;
+        }
     </style>
 </head>
 <body>
@@ -106,10 +110,8 @@
     </tbody>
     </table>
     <label>Total de Registros:{{$i}}</label>
-    <script type='text/php'>
-      if (isset($pdf)) {               
-        $pdf->page_text(540, $pdf->get_height()-25, "{PAGE_NUM} de {PAGE_COUNT}", null, 12, array(0,0,0));
-      }
-    </script>
+    <htmlpagefooter name="page-footer">
+      {PAGENO}
+    </htmlpagefooter>
 </body>
 </html>

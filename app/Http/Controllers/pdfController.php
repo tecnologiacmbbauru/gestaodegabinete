@@ -160,8 +160,7 @@ class pdfController extends Controller
 
                 $atendimentos = $atendimentosBairro;                                      //no final $atendimentosBairro vai ter todas busca realizadas, ou o resultado da busca gera                        
                 $pdf = PDF::loadView('pdf/pdfAtendimentoGeral',compact('agentePolitico','atendimentos')); 
-                $pdf->getDOMPdf()->set_option('isPhpEnabled', true); 
-                return $pdf->setPaper('a4')->stream('atendimentos.pdf');
+                return $pdf->stream('atendimentos.pdf');
             break;
             case 'pesquisa':
                 //refazer

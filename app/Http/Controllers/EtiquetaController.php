@@ -65,17 +65,18 @@ class EtiquetaController extends Controller
         $agentePolitico = agentePolitico::first();
 
         if($dataform['tip_et']==14){
-            $pdf = PDF::loadView('pdf/aniversariantesEtiqueta14',compact('agentePolitico','aniversariantes','remetende','pularLinha'));
-            $pdf->getDOMPdf()->set_option('isPhpEnabled', true); 
-            return $pdf->setPaper('letter')->stream('aniversariantes.pdf');
+            $pdf = PDF::loadView('pdf/aniversariantesEtiqueta14',compact('agentePolitico','aniversariantes','remetende','pularLinha'), [], [
+                'format' => 'letter'
+              ]);
+            return $pdf->stream('aniversariantes.pdf');
         }else if($dataform['tip_et']==20){
             $pdf = PDF::loadView('pdf/aniversariantesEtiqueta20',compact('agentePolitico','aniversariantes','remetende','pularLinha'));
-            $pdf->getDOMPdf()->set_option('isPhpEnabled', true); 
-            return $pdf->setPaper('letter')->stream('aniversariantes.pdf');
+            
+            return $pdf->stream('aniversariantes.pdf');
         }elseif($dataform['tip_et']==30){
             $pdf = PDF::loadView('pdf/aniversariantesEtiqueta30',compact('agentePolitico','aniversariantes','remetende','pularLinha'));
-            $pdf->getDOMPdf()->set_option('isPhpEnabled', true); 
-            return $pdf->setPaper('letter')->stream('aniversariantes.pdf');
+            
+            return $pdf->stream('aniversariantes.pdf');
         }else{
             return ("Erro desconhecido");
         }

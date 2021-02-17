@@ -23,11 +23,27 @@
     }
     var checkAtendR = true;
     function atendimentoR(contator){
+        //document.getElementById('seta').transform(rotate(180deg)); /* Equal to rotateZ(45deg) */
         if(checkAtendR == true){
+            document.getElementById("seta"+contator).style.transform = "rotate("+180+"deg)";
             document.getElementById("atendimentoRela"+contator).hidden=false;
             checkAtendR=false;
         }else{
+            document.getElementById("seta"+contator).style.transform = "rotate("+0+"deg)";
             document.getElementById("atendimentoRela"+contator).hidden=true;
+            checkAtendR=true;            
+        }
+    }
+    var Checkresp = true;
+    function dataRela(contator){
+        //document.getElementById('seta').transform(rotate(180deg)); /* Equal to rotateZ(45deg) */
+        if(checkAtendR == true){
+            document.getElementById("seta-res"+contator).style.transform = "rotate("+180+"deg)";
+            document.getElementById("dataRela"+contator).hidden=false;
+            checkAtendR=false;
+        }else{
+            document.getElementById("seta-res"+contator).style.transform = "rotate("+0+"deg)";
+            document.getElementById("dataRela"+contator).hidden=true;
             checkAtendR=true;            
         }
     }
@@ -230,19 +246,17 @@
                         <td  width='14%'>
                             {{$documento->situacaoDoc->nom_status}}             
                         </td> 
-                        <td  width='14%'>
+                        <td  width='12%'>
                             {{$documento->unidadeDocumento->nom_uni_doc}}              
                         </td>
-                        <td width='14%'>
+                        <td width='18%'>
                             @if($documento->GAB_ATENDIMENTO_cod_atendimento!=null)  
                                 @if($documento->antedimentoRelacionado->ind_status=="A")
                                     Sim 
                                     {{--CÓDIGO PARA MOSTRAR INFORMAÇÕES SOBRE O ATENDIMENTO--}}
-                                    {{--<button onclick="atendimentoR({{$i}})">
-                                        <img id="img-seta" src="{{asset("utils/avanco-rapido.png")}}"style="height:35px; width:20px; transform: rotate(90deg); padding-left:3px;"></img> 
-                                    </button> {{--Passa o contador de parametro para a função que mostra o atendimento--}}
-                                    {{--O nome da div tem o cotnador relacionado, para a função atendimnetoR saber qual div é para mostrar--}}
-                                    {{--
+                                    {{--Passa o contador de parametro para a função que mostra o atendimento--}}
+                                        <img type="button" src="{{asset('Utils/seta-down.svg')}}" id="seta{{$i}}" onclick="atendimentoR({{$i}})">
+                                    {{--O nome da div tem o cotnador relacionado, para a função atendimnetoR saber qual div é para mostrar--}} 
                                     <div id="atendimentoRela{{$i}}" hidden="true"> 
                                         <label style="font-weight: bolder">Data:</label> <label>{{date('d/m/Y', strtotime($documento->antedimentoRelacionado->dat_atendimento))}}</label>
                                         <br>
@@ -252,7 +266,6 @@
                                         <br>
                                         <label style="font-weight: bolder">Situação:</label> <label>{{$documento->situacaoDoc->nom_status}}</label>          
                                     </div>
-                                    --}}
                                 @else
                                     Não
                                 @endif                            
@@ -262,7 +275,12 @@
                         </td>
                         <td width='14%'>
                             @if($documento->dat_resposta!=null)
-                                Sim {{--{{$documento->dat_resposta = date('d/m/y',strtotime($documento->dat_resposta))}}--}}
+                                Sim
+                                <img type="button" src="{{asset('Utils/seta-down.svg')}}" id="seta-res{{$i}}" onclick="dataRela({{$i}})">
+                                {{--O nome da div tem o cotnador relacionado, para a função atendimnetoR saber qual div é para mostrar--}} 
+                                <div id="dataRela{{$i}}" hidden="true"> 
+                                    Data: {{$documento->dat_resposta = date('d/m/yy',strtotime($documento->dat_resposta))}}
+                                </div>
                             @else
                                 Não
                             @endif                    
