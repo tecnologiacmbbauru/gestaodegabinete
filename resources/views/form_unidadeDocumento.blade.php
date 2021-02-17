@@ -50,8 +50,9 @@
                     <th style="text-align: center;">Excluir</th>
                 </tr>
             </thead>
-            @foreach($unidadeDocumento as $uniDoc)
             <tbody>
+            @foreach($unidadeDocumento as $uniDoc)
+            <tr>
                 <td  width='60%'>{{$uniDoc->nom_uni_doc}}</td>
                 <td  width='20%'>
                     @if($uniDoc->ind_uni_doc == 'A'){{"Ativo"}}
@@ -69,8 +70,9 @@
                             @include('exclusao/exclusao_modal')
                         </form>
                  </td>
-            </tbody>
+            </tr>
             @endforeach
+            </tbody>
         </table>
         </div> 
         {!! $unidadeDocumento->links() !!} <!-- pacote coletive forms. Criar os links a serem passados da tabela -->  

@@ -50,8 +50,9 @@
                     <th style="text-align: center;">Excluir</th>
                 </tr>
             </thead>
-            @foreach($tipoDocumento as $tipoDoc)
             <tbody>
+            @foreach($tipoDocumento as $tipoDoc)
+            <tr>
                 <td  width='60%'>{{$tipoDoc->nom_tip_doc}}</td>
                 <td  width='20%'>
                     @if($tipoDoc->ind_tip_doc == 'A'){{"Ativo"}}
@@ -69,8 +70,9 @@
                             @include('exclusao/exclusao_modal')
                         </form>
                  </td>
-            </tbody>
+            </tr>
             @endforeach
+            </tbody>
         </table>
         </div> 
         {!! $tipoDocumento->links() !!} <!-- pacote coletive forms. Criar os links a serem passados da tabela -->  

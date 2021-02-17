@@ -124,15 +124,21 @@ class SituacaoDocController extends Controller
     public function destroy(Request $request)
     {
         $sitDoc = situacaoDoc::findOrFail($request->id_exclusao);
-        try{
+        try {
             $sitDoc->delete();
             return redirect()
-                        ->route('situacaoDoc.index')
-                        ->with('success', 'Situação do Documento excluída com sucesso!');
-        } catch (\Exception $e) {
-            return redirect()
                 ->route('situacaoDoc.index')
-                ->with('error', 'Situação do Documento não pode ser excluída, pois existem Documentos vinculados!');
+                ->with('success', 'Situação do Documento excluída com sucesso!');
+        } catch (\Exception $e){ 
+            if($e->getCode()=="23000"){
+                return redirect()
+                    ->route('situacaoDoc.index')
+                    ->with('error', 'Situação do Documento não pode ser excluída, pois existem Documentos vinculados!');
+            }else{
+                return redirect()
+                    ->route('situacaoDoc.index')
+                    ->with('error', 'Situação do Documento não pode ser excluída.');
+            }    
         }
     }
 }

@@ -97,11 +97,16 @@ class PessoaController extends Controller
         $dataform['nom_usuario_log'] = auth()->user()->name;
         $dataform['nom_operacao_log'] = "UPDATE";
 
-        $pessoaC->update($dataform);
-
-        return redirect()
-                    ->route('pessoa.index')
-                    ->with('success', 'Pessoa Alterada com sucesso!');
+        try{
+            $pessoaC->update($dataform);
+            return redirect()
+                        ->route('pessoa.index')
+                        ->with('success', 'Pessoa alterada com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()
+                ->route('pessoa.index')
+                ->with('error', 'A pessoa não pode ser alterada.');
+        }
     }
 
 

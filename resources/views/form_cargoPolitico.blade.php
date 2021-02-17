@@ -50,8 +50,9 @@
                     <th style="text-align: center;">Excluir</th>
                 </tr>
             </thead>
-            @foreach($cargoPolitico as $cargoPolit)
             <tbody>
+            @foreach($cargoPolitico as $cargoPolit)
+            <tr>
                 <td  width='60%'>{{$cargoPolit->nom_car_pol}}</td>
                 <td  width='20%'>
                     @if($cargoPolit->ind_car_pol == 'A'){{"Ativo"}}
@@ -69,8 +70,9 @@
                             @include('exclusao/exclusao_modal')
                         </form>
                  </td>
-            </tbody>
+            </tr>
             @endforeach
+            </tbody>
         </table>
         </div> 
         {!! $cargoPolitico->links() !!} <!-- pacote coletive forms. Criar os links a serem passados da tabela -->  

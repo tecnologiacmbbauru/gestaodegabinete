@@ -160,8 +160,9 @@
                         @if($aniversariantes->isEmpty()) {{--caso pesquisa não tenha resultado, o método isEmpty ja esta na classe LengthAwarePaginator na qual retorna a pesquisa paginada--}}
                             <td colspan="5" style="text-align: center;">Não foi encontrado nenhum registro</td>
                         @endif
+                        <tbody>
                         @foreach($aniversariantes as $aniversariante)
-                            <tbody> 
+                            <tr>
                                 <td width='7%'><input type="checkbox" name="aniversariante[]" value="{{$aniversariante->cod_pessoa}}"></td>
                                 <td  width='14%'>
                                     {{$aniversariante->nom_nome}}
@@ -198,8 +199,9 @@
                                 <td  width='14%'>
                                     {{date('d/m/Y', strtotime($aniversariante->dat_nascimento))}}            
                                 </td> 
-                            </tbody>
+                            </tr>
                         @endforeach
+                        </tbody>
                     </table>
                 </div> 
                 {!!$aniversariantes->appends($dataform)->links()!!}  

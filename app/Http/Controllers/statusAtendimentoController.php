@@ -65,8 +65,6 @@ class statusAtendimentoController extends Controller
                     ->back()
                     ->with('error', 'Falha ao inserir');
 
-    
-
     }
 
     /**
@@ -133,10 +131,16 @@ class statusAtendimentoController extends Controller
             return redirect()
                 ->route('statusAtendimento.index')
                 ->with('success', 'Situação do Atendimento excluída com sucesso!');
-        } catch (\Exception $e) {
-            return redirect()
-                ->route('statusAtendimento.index')
-                ->with('error', 'Situação do Atendimento não pode ser excluída, pois existem Atendimentos vinculados!');
+        } catch (\Exception $e){ 
+            if($e->getCode()=="23000"){
+                return redirect()
+                    ->route('statusAtendimento.index')
+                    ->with('error', 'Situação do Atendimento não pode ser excluída, pois existem ATENDIMENTOS vinculados!');
+            }else{
+                return redirect()
+                    ->route('statusAtendimento.index')
+                    ->with('error', 'Situação do Atendimento não pode ser excluída.'); 
+            }    
         }
     }
 }

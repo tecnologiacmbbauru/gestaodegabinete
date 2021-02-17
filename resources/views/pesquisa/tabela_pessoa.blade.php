@@ -69,7 +69,7 @@
     <div class="table-of row">
         <table id="tb_pessoa" class="mtab table table-striped table-hover table-responsive-lg" width="100%">
             <thead class="thead-dark">
-                <tr> 
+                <tr class="table-titulo"> 
                     <th><input type="checkbox" name="checkTodos" id="checkTodos"></th>   
                     <th>Nome</th>
                     <th>Doc. Identificação</th>
@@ -83,54 +83,56 @@
             @if($pessoa->isEmpty()) {{--caso pesquisa não tenha resultado, o método isEmpty ja esta na classe LengthAwarePaginator na qual retorna a pesquisa paginada--}}
                 <td colspan="8" style="text-align: center;">Não foi encontrado nenhum registro</td>
             @endif
-            @foreach($pessoa as $pessoaC)
             <tbody>
-                <td width='7%'><input type="checkbox" name="pessoa[]" value="{{$pessoaC->cod_pessoa}}"></td>
-                <td  width='20%'>{{$pessoaC->nom_nome}}</td>
-                <td  width='20%'>
-                    @if($pessoaC->ind_pessoa=='PF')
-                        @if($pessoaC->cod_cpf_cnpj!=null)
-                            <strong>CPF:</strong> <label class="cpf">{{$pessoaC->cod_cpf_cnpj}}</label>
+            @foreach($pessoa as $pessoaC)
+                <tr>
+                    <td width='7%'><input type="checkbox" name="pessoa[]" value="{{$pessoaC->cod_pessoa}}"></td>
+                    <td  width='20%'>{{$pessoaC->nom_nome}}</td>
+                    <td  width='20%'>
+                        @if($pessoaC->ind_pessoa=='PF')
+                            @if($pessoaC->cod_cpf_cnpj!=null)
+                                <strong>CPF:</strong> <label class="cpf">{{$pessoaC->cod_cpf_cnpj}}</label>
+                            @endif
+                            <br>
+                            @if($pessoaC->cod_rg!=null)
+                                <strong>RG:</strong> <label class="rg">{{$pessoaC->cod_rg}}</label>
+                            @endif
+                        @elseif($pessoaC->ind_pessoa=='PJ')
+                            @if($pessoaC->cod_cpf_cnpj!=null)
+                                <strong>CNPJ:</strong> <label class="cnpj">{{$pessoaC->cod_cpf_cnpj}}</label>
+                            @endif
+                            <br>
+                            @if($pessoaC->cod_ie!=null)
+                                <strong>I.E:</strong> <label class="ie">{{$pessoaC->cod_ie}}</label>
+                            @endif
                         @endif
+                    </td>
+                    <td  width='20%'>{{$pessoaC->nom_endereco}} {{$pessoaC->nom_numero}}
+                        <br>@if($pessoaC->nom_bairro!=null){{$pessoaC->nom_bairro}},@endif
+                        @if($pessoaC->nom_cidade!=null){{$pessoaC->nom_cidade}}/{{$pessoaC->nom_estado}}@endif
+                    </td>
+                    <td  width='10%'>{{$pessoaC->nom_email}}</td>
+                    <td  width='10%'>
+                        {{$pessoaC->num_ddd_tel}} <label class="phone">{{$pessoaC->num_tel}}</label>
                         <br>
-                        @if($pessoaC->cod_rg!=null)
-                            <strong>RG:</strong> <label class="rg">{{$pessoaC->cod_rg}}</label>
-                        @endif
-                    @elseif($pessoaC->ind_pessoa=='PJ')
-                        @if($pessoaC->cod_cpf_cnpj!=null)
-                            <strong>CNPJ:</strong> <label class="cnpj">{{$pessoaC->cod_cpf_cnpj}}</label>
-                        @endif
-                        <br>
-                        @if($pessoaC->cod_ie!=null)
-                            <strong>I.E:</strong> <label class="ie">{{$pessoaC->cod_ie}}</label>
-                        @endif
-                    @endif
-                </td>
-                <td  width='20%'>{{$pessoaC->nom_endereco}} {{$pessoaC->nom_numero}}
-                    <br>@if($pessoaC->nom_bairro!=null){{$pessoaC->nom_bairro}},@endif
-                    @if($pessoaC->nom_cidade!=null){{$pessoaC->nom_cidade}}/{{$pessoaC->nom_estado}}@endif
-                </td>
-                <td  width='10%'>{{$pessoaC->nom_email}}</td>
-                <td  width='10%'>
-                    {{$pessoaC->num_ddd_tel}} <label class="phone">{{$pessoaC->num_tel}}</label>
-                    <br>
-                    {{$pessoaC->num_ddd_cel}} <label class="cel_phone">{{$pessoaC->num_cel}}</label>
-                </td>
-                
-                <td  width='5%' style="text-align: center;">
-                        <a href="{{route('pessoa.edit',  $pessoaC->cod_pessoa)}}"><img src="{{asset('utils/alterar.png')}}" alt="Alterar"></a>                  
-                    </form>
-                </td>
-                <td  width='5%' style="text-align: center;">
-                    <form action="{{route('pessoa.destroy', "id_exclusao")}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <a type="button" data-toggle="modal" data-target="#modalExclusao" data-id_exclusao="{{$pessoaC->cod_pessoa}}"><img src="{{asset('utils/excluir.png')}}" alt="Excluir"></a>
-                        @include('exclusao/exclusao_modal')
-                    </form>
-                </td>
-            </tbody>
+                        {{$pessoaC->num_ddd_cel}} <label class="cel_phone">{{$pessoaC->num_cel}}</label>
+                    </td>
+                    
+                    <td  width='5%' style="text-align: center;">
+                            <a href="{{route('pessoa.edit',  $pessoaC->cod_pessoa)}}"><img src="{{asset('utils/alterar.png')}}" alt="Alterar"></a>                  
+                        </form>
+                    </td>
+                    <td  width='5%' style="text-align: center;">
+                        <form action="{{route('pessoa.destroy', "id_exclusao")}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <a type="button" data-toggle="modal" data-target="#modalExclusao" data-id_exclusao="{{$pessoaC->cod_pessoa}}"><img src="{{asset('utils/excluir.png')}}" alt="Excluir"></a>
+                            @include('exclusao/exclusao_modal')
+                        </form>
+                    </td>
+                </tr>
             @endforeach
+            </tbody>
         </table>
     </div> 
         <div>

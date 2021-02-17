@@ -129,12 +129,18 @@ class TipoDocumentoController extends Controller
         try {
             $tipoDoc->delete();
             return redirect()
-                        ->route('tipoDocumento.index')
-                        ->with('success', 'Tipo de Documento excluído com sucesso!');
-        } catch (\Exception $e) {
-            return redirect()
-                ->route('tipoDocumento.index')
-                ->with('error', 'Tipo do Documento não pode ser excluído, pois existem Documentos vinculados!');
+                    ->route('tipoDocumento.index')
+                    ->with('success', 'Tipo de Documento excluído com sucesso!');
+        } catch (\Exception $e){ 
+            if($e->getCode()=="23000"){
+                return redirect()
+                    ->route('tipoDocumento.index')
+                    ->with('error', 'Tipo do Documento não pode ser excluído, pois existem Documentos vinculados!');
+            }else{
+                return redirect()
+                    ->route('tipoDocumento.index')
+                    ->with('error', 'Tipo do Documento não pode ser excluído.');
+            }    
         }
     }
 }

@@ -265,8 +265,9 @@
                 @if($atendimentos->isEmpty()) {{--caso pesquisa não tenha resultado, o método isEmpty ja esta na classe LengthAwarePaginator (classe responsavel por retornar a pesquisa paginada)--}}
                     <td colspan="6" style="text-align: center;">Não foi encontrado nenhum registro</td>
                 @endif
-                @foreach($atendimentos as $atendimentoC)
                 <tbody>
+                @foreach($atendimentos as $atendimentoC)
+                    <tr>
                         <td  width='10%'>   
                             {{date('d/m/Y', strtotime($atendimentoC->dat_atendimento))}} <!--Formata para modo de data usado no Brasil-->
                         </td>
@@ -317,8 +318,9 @@
                         <td  width='16%'>
                             {{$atendimentoC->statusAtendimento->nom_status}}
                         </td>
-                </tbody>
+                    </tr>
                 @endforeach
+                </tbody>
             </table>
         </div> 
         {!!$atendimentos->appends($dataform)->links()!!}

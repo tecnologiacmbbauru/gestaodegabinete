@@ -224,3 +224,21 @@ input{
 .link-documento{
 	color:#4b636e;
 }
+
+/*Tabela zebrada
+Ou com hover
+*/
+.table tbody tr:nth-child(even) {
+	/*Cor padrão #e9e9e9*/
+    background-color: #dcdcdc !important;
+}
+
+.table tbody tr:nth-child(even):hover {
+	/*Cor padrão #e9e9e9*/
+    background-color: #cacaca !important;
+}
+
+.table tbody tr:hover {
+	/*Cor padrão #e9e9e9*/
+    background-color: #cacaca !important;
+}

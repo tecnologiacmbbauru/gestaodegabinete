@@ -215,8 +215,9 @@
                 @php
                     $i=1; //contador para saber qual o atendimento relacionado
                 @endphp
+                <tbody>
                 @foreach($documentos as $documento)
-                    <tbody> 
+                    <tr>
                         <td  width='14%'>
                             {{date('d/m/Y', strtotime($documento->dat_documento))}}
                         </td>
@@ -266,11 +267,12 @@
                                 Não
                             @endif                    
                         </td>  
-                    </tbody>
+                    </tr>
                     @php
                         $i++;
                     @endphp
                 @endforeach
+                </tbody>
                 </table>
             </div> 
             {!!$documentos->appends($dataform)->links()!!}  

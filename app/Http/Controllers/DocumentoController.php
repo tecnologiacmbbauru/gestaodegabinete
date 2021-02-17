@@ -72,17 +72,18 @@ class DocumentoController extends Controller
             $docPath = $request->path_doc_resp->store('documentos');
             $dataform['path_doc_resp']=$docPath;
         }
-        //dd($dataform);
-        $insert = $this->docC->create($dataform);
-                
-        if ($insert)
+        
+        try{
+            $insert = $this->docC->create($dataform);
             return redirect()
                     ->route('documento.index')
                     ->with('success', 'Documento inserido com sucesso!');
-             
+        } catch (\Exception $e) {
+            // Redireciona de volta com uma mensagem de erro
             return redirect()
-                    ->back()
-                    ->with('error', 'Falha ao inserir');
+                ->back()
+                ->with('error', 'Falha ao inserir');
+        }
     }   
 
     public function show(documento $documento)
@@ -103,22 +104,7 @@ class DocumentoController extends Controller
         $unidadeDocumento = unidadeDocumento::all();
         $statusAtendimento = statusAtendimento::all();
 
-        //dd($docC->path_doc_resp);
-        /*if($docC->GAB_ATENDIMENTO_cod_atendimento!=null) {
-            $atendimento = DB::table('gab_atendimento')->where('cod_atendimento', $docC['GAB_ATENDIMENTO_cod_atendimento'])->first();
-            $pessoa = pessoa::findOrFail($atendimento->GAB_PESSOA_cod_pessoa);
-            $docIndentificao = $pessoa->cod_cpf_cnpj;
-            $nomeA = $pessoa->nom_nome;
-            $tipoA = tipoAtendimento::findOrFail($atendimento->GAB_TIPO_ATENDIMENTO_cod_tipo);
-            $tipoA = $tipoA->nom_tipo;
-            $statusA = statusAtendimento::findOrFail($atendimento->GAB_STATUS_ATENDIMENTO_cod_status);
-            $statusA = $statusA->nom_status;
-            $dataA = $atendimento->dat_atendimento;
-
-            return view('form_documento',compact('alteracao','docC','documento','tipoDocumento','unidadeDocumento','tipoAtendimento','situacaoDoc','nomeA','tipoA','statusA','dataA','docIndentificao'));
-        }else{*/
         return view('form_documento',compact('alteracao','docC','documento','tipoDocumento','unidadeDocumento','tipoAtendimento','situacaoDoc','statusAtendimento'));
-        //}
     }
 
     public function update($id, Request $request)
@@ -154,11 +140,17 @@ class DocumentoController extends Controller
             $dataform['GAB_ATENDIMENTO_cod_atendimento'] = $docC->GAB_ATENDIMENTO_cod_atendimento;
         }
         
-        $docC->update($dataform);
-
-        return redirect()
-                    ->route('documento.index')
-                    ->with('success', 'Documento Alterado com sucesso!');
+        try{
+            $docC->update($dataform);
+            return redirect()
+                ->route('documento.index')
+                ->with('success', 'Documento Alterado com sucesso!');
+        } catch (\Exception $e) {
+            // Redireciona de volta com uma mensagem de erro
+            return redirect()
+                ->back()
+                ->with('error', 'Falha ao alterar documento');
+        }
     }
 
     public function destroy(request $request)
@@ -218,7 +210,6 @@ class DocumentoController extends Controller
 
         $atendimentos = $atendimento->pesquisa10limit($dataform); 
         //return response()->json($atendimentos);
-        
         
         $pessoas = pessoa::all();
         $tipoAtendimentos = tipoAtendimento::all();

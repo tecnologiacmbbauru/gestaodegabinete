@@ -45,17 +45,18 @@ class AgentePoliticoController extends Controller
             $dataform['img_foto']=$imagePath;
         }
             
-        $insert = $this->agentePolit->create($dataform);
+        try{
+            $insert = $this->agentePolit->create($dataform);
+            return redirect()
+                ->route('agentePolitico.index')
+                ->with('success', 'Agente Político cadastrado com sucesso!');
+        } catch (\Exception $e) {
+            // Redireciona de volta com uma mensagem de erro
+            return redirect()
+                    ->back()
+                    ->with('error', 'Falha ao inserir.');
+        }
 
-        if ($insert)
-        return redirect()
-                    ->route('agentePolitico.index')
-                    ->with('success', 'Agente Político cadastrado com sucesso!');
-
-        // Redireciona de volta com uma mensagem de erro
-        return redirect()
-                ->back()
-                ->with('error', 'Falha ao inserir');
     }
 
     public function altera(Request $request) {
@@ -69,13 +70,20 @@ class AgentePoliticoController extends Controller
             $imagePath = $request->img_foto->store('agentePolitico');
             $dataform['img_foto']=$imagePath;
         }
-        
-        //atualiza o vereador
-        $vereador->update($dataform);
 
-        return redirect()
-            ->route('agentePolitico.index')
-            ->with('success', 'Agente Político alterado com sucesso!');
+        try{
+            //atualiza o vereador
+            $vereador->update($dataform);
+            return redirect()
+                ->route('agentePolitico.index')
+                ->with('success', 'Agente Político alterado com sucesso!');
+        } catch (\Exception $e) {
+            // Redireciona de volta com uma mensagem de erro
+            return redirect()
+                    ->back()
+                    ->with('error', 'Falha ao inserir.');
+        }
+
     }
     public function update(Request $request)
     {

@@ -45,46 +45,55 @@ class AtendimentoController extends Controller
             ->back()
             ->with('error', 'Falha ao inserir. Por favor selecione uma pessoa cadastrada.');
         } else{
-        if($dataform['ind_status'] == NULL){
-            $dataform['ind_status'] = 'A';
-        }
-        $dataform['nom_operacao_log'] = 'INSERT';
-        $dataform['nom_usuario_log'] = auth()->user()->name;
-       
-        $insert = $this->atendimentoModal->create($dataform);
+            if($dataform['ind_status'] == NULL){
+                $dataform['ind_status'] = 'A';
+            }
+            $dataform['nom_operacao_log'] = 'INSERT';
+            $dataform['nom_usuario_log'] = auth()->user()->name;
         
-        if ($insert)
-            return redirect()
-                        ->route('atendimento.index')
-                        ->with('success', 'Atendimento inserido com sucesso!');
-    
-        // Redireciona de volta com uma mensagem de erro
-        return redirect()
+            try{
+                $insert = $this->atendimentoModal->create($dataform);
+                if ($insert)
+                return redirect()
+                            ->route('atendimento.index')
+                            ->with('success', 'Atendimento inserido com sucesso!');
+            } catch (\Exception $e) {
+                // Redireciona de volta com uma mensagem de erro
+                return redirect()
                     ->back()
                     ->with('error', 'Falha ao inserir');
+            }
         }
     }
 
     public function edit($id)
     {
         $alteracao = true;
-        $atendimentoModal = $this->atendimentoModal->where('cod_atendimento',$id)->first();
+        $atendimentoC = $this->atendimentoModal->where('cod_atendimento',$id)->first();
         $tipoAtendimento = tipoAtendimento::all();
         $statusAtendimento = statusAtendimento::all();
-        $dataFormatada = trim($atendimentoModal['dat_atendimento']);
+        $dataFormatada = trim($atendimentoC['dat_atendimento']);
         $dataFormatada = date("Y-m-d",strtotime($dataFormatada));
 
-        return view('form_atendimento',compact('alteracao','atendimentoModal','tipoAtendimento','statusAtendimento','dataFormatada'));
+        return view('form_atendimento',compact('alteracao','atendimentoC','tipoAtendimento','statusAtendimento','dataFormatada'));
     }
 
     public function update(Request $request, $id)
     {
         $atendimentoModal = Atendimento::findOrFail($id);
-        $atendimentoModal->update($request->all());
         
-        return redirect()
+        try{
+            $atendimentoModal->update($request->all());
+                return redirect()
                     ->route('atendimento.index')
                     ->with('success', 'Atendimento Alterado com sucesso!');
+        } catch (\Exception $e) {
+            // Redireciona de volta com uma mensagem de erro
+            return redirect()
+                ->back()
+                ->with('error', 'Falha ao inserir');
+        }
+
     }
 
     public function destroy(Request $request)

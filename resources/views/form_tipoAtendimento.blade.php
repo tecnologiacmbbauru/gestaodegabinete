@@ -49,8 +49,9 @@
                     <th style="text-align: center;">Excluir</th>
                 </tr>
             </thead>
-            @foreach($tipoAtendimento as $tipoA)
             <tbody>
+            @foreach($tipoAtendimento as $tipoA)
+            <tr>
                 <td  width='60%'>{{$tipoA->nom_tipo}}</td>
                 <td  width='20%'>
                     @if($tipoA->ind_tipo == 'A'){{"Ativo"}}
@@ -68,8 +69,9 @@
                             @include('exclusao/exclusao_modal')
                         </form>
                  </td>
-            </tbody>
+            </tr>
             @endforeach
+            </tbody>
         </table>
         </div> 
         {!! $tipoAtendimento->links() !!} <!-- pacote coletive forms. Criar os links a serem passados da tabela -->  

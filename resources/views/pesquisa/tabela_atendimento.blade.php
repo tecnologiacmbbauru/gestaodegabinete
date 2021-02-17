@@ -7,7 +7,7 @@
 @endif
 <!--lISTAGEM DOS atendimentos ja cadastrados-->
 <div class="table-of row">
-    <table id="tb_atendimento" class="mtab table table-striped table-responsive-lg" width="100%">
+    <table id="tb_atendimento" class="mtab table table-responsive-lg" width="100%">
         <thead class="thead-dark">
             <tr>
                 <th>Data</th>
@@ -23,8 +23,9 @@
         @if($Atendimento->isEmpty()) {{--caso pesquisa não tenha resultado, o método isEmpty ja esta na classe LengthAwarePaginator na qual retorna a pesquisa paginada--}}
             <td colspan="7" style="text-align: center;">Não foi encontrado nenhum registro</td>
         @endif
-        @foreach($Atendimento as $atendimentoC)
         <tbody>
+        @foreach($Atendimento as $atendimentoC)
+        <tr>
             <td  width='10%'>   
                 {{date('d/m/Y', strtotime($atendimentoC->dat_atendimento))}} <!--Formata para modo de data usado no Brasil-->
             </td>
@@ -58,8 +59,9 @@
                     @include('exclusao/exclusao_modal')
                 </form>
             </td>
-        </tbody>
+        </tr>
         @endforeach
+        </tbody>
     </table>
 </div> 
 @if(isset($dataform))
