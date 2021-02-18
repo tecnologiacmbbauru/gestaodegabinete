@@ -3,45 +3,47 @@
 <html lang="pt-br">
 <head>
     <style type="text/css">
-        @page {
-            size: 21.6cm 27.9cm;
-            margin:0cm;
-        }
-        *{
-            font-family: Arial!important;
-            font-size:13px;
-            font-style: bold;
-        }
-        body{
-            margin:0cm;
-            padding:0cm;
-        }
-        table {
+        @page { sheet-size: Letter; }
+        @page bigger { sheet-size: 216mm 279mm; }
+        @page toc { sheet-size: Letter; }
+        @page{
             margin-right:0.4cm;
             margin-left:0.4cm;
             margin-top:1.3cm;
-            margin-bottom:1.1cm;
-            padding:0cm;
-            table-layout: fixed;
-            width:100%;
-            border-spacing: 0.3cm 0cm;/*0,3 centimetro de espalamento de uma celula para outra*/
+            margin-bottom:1.2cm;
+            padding:0px;
+            {
+            font-family: Arial!important;
+            font-size:13px;
+            font-style: bold;
+            }
+            body{
+                margin:0cm;
+                padding:0cm;
+            }
+            table {
+                padding:0cm;
+                table-layout: fixed;
+                width:100%;
+                border-spacing: 0.3cm 0cm;/*0,3 centimetro de espalamento de uma celula para outra*/
 
-        }
-        td{
-            border:none; /*1px solid;*/
-            margin:0cm;
-            padding:0cm;
-        }
-        .celula{
-            margin:0cm;
-            padding:0cm;
-            min-width: 6.65cm;
-            max-width: 6.65cm;           
-            height:2.5cm;          
-            white-space: nowrap;
-            word-wrap: break-word;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            }
+            td{
+                margin:0cm;
+                padding:0cm;
+                border:0px solid; /*1px solid;*/
+            }
+            .celula{
+                margin:0cm;
+                padding:0cm;
+                width: 6.65cm;           
+                height:2.5cm;          
+                white-space: nowrap;
+                word-wrap: break-word;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-left:0.4cm;
+            }
         }
     </style>
 </head>

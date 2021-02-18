@@ -3,11 +3,9 @@
 <html lang="pt-br">
 <head>
     <style type="text/css">
-        @page {
-            size:21.6cm 27.9cm; /*21,6cm 27,9cm; 816px 1054px;*/
-            margin:0cm;
-            padding:0cm;
-        }
+        @page { sheet-size: Letter; }
+        @page bigger { sheet-size: 216mm 279mm; }
+        @page toc { sheet-size: Letter; }
         *{
             font-family: Arial!important;
             font-size:13px;

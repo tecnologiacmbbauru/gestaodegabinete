@@ -4,6 +4,18 @@
 @section('content')
 <link href="{{asset('js/lib/main.css')}}" rel='stylesheet' />
 <link href="{{ asset('css/full-calendar.css') }}" rel="stylesheet">
+<style>
+    /*
+    O calendar da um margin top de 40px para o body
+    o código a seguir serve para retirar
+    */
+    body{
+      margin:0px;
+    }
+    
+</style>
+
+
 <script src="{{'js/lib/main.js'}}"></script>
 <script src="{{'js/lib/locales-all.js'}}"></script>
 
@@ -133,16 +145,7 @@
   calendar.render();
 });
 </script>
-<style>
-/*
-O calendar da um margin top de 40px para o body
-o código a seguir serve para retirar
-*/
-body{
-  margin:0px;
-}
 
-</style>
 <div class="container">
   <h2 style="text-align:center;">Agenda</h2>
   <div id='calendar'></div>
