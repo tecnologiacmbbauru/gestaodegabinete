@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/404-tenant', function() {
+    return view('errors.404-tenant');
+})->name('404.tenant');
+
 Auth::routes();
 /*HELPS*/
 Route::resource('/usuario','usuarioController');

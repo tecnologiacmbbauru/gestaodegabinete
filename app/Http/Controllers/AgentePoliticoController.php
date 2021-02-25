@@ -22,7 +22,7 @@ class AgentePoliticoController extends Controller
 
     public function index()
     { 
-        $alteracao;
+        $alteracao=false;
         $cargoPolitico=cargoPolitico::get();
         $vereadorCad = DB::select("select * FROM gab_vereador LIMIT 1");//verificar se é o primeiro cadastro de vereador | saida:(Nuul ou o vereador)
         if ($vereadorCad==null) {

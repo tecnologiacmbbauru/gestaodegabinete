@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrganizacaosTable extends Migration
+class Organizacoes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateOrganizacaosTable extends Migration
      */
     public function up()
     {
-        Schema::create('organizacaos', function (Blueprint $table) {
+        Schema::create('organizacoes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('domain')->unique();
-            $table->string('image');
             $table->string('bd_database')->unique(); //caso queira mudar para o futuro poder trabalhar em cameras pequenas com uma databse para multiplos clientes alterar
             $table->string('bd_hostname');
             $table->string('bd_username');
             $table->string('bd_password');
+            $table->integer('id_instancia_rel')->unsigned()->nullable()->index('fk_id_instancia');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateOrganizacaosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organizacaos');
+        Schema::dropIfExists('organizacoes');
     }
 }
