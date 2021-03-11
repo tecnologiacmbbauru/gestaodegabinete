@@ -5,6 +5,9 @@ namespace App\Http\Middleware\Tenant;
 use App\Models\Organizacao;
 use App\Tenant\ManagerTenant;
 use Closure;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class TenantMiddleware
 {
@@ -17,22 +20,19 @@ class TenantMiddleware
      */
     public function handle($request, Closure $next)
     {
-        //dd($request->getHost());
-        /*$manager = app(ManagerTenant::class);
-
-        if($manager->domainIsMain())
+        //dd(Auth::user()->domain);
+        if(isset(Auth::user()->domain)){
+            if(Auth::user()->domain!="system"){
+                $organizacao = Organizacao::where('domain',Auth::user()->domain)->first();
+                $manager = app(ManagerTenant::class);
+                $manager->setConnection($organizacao);
+                return $next($request);
+            }else{
+                return $next($request);
+            }
+        }else{
             return $next($request);
-
-        $organizacao = $this->getOrganizacao($request->getHost());
-
-        /*Caso a organização não seja valida ou não tenha sido encontrada (verifica se ja não esta na rota de erro caso ao contrario ficaria um loop infinito
-        if (!$organizacao && $request->url() != route('404.tenant')) {
-            return redirect()->route('404.tenant');
-        }else if($request->url() != route('404.tenant') && !$manager->domainIsMain()){
-            $manager->setConnection($organizacao);
-        }*/
-
-        return $next($request);
+        }
     }
 
     public function getOrganizacao($host){

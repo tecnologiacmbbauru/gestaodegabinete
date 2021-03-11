@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Database\QueryException;
 
 class Handler extends ExceptionHandler
 {
@@ -50,6 +51,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        //erro personalizado caso não consiga conectar a database
+        if($exception->getCode()=='1049'){
+            return response()->view('error.database-error',[],404);
+        }
+
+
         return parent::render($request, $exception);
+        
     }
 }

@@ -4,47 +4,48 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;//classe de hash para senha
 
 class usuarioController extends Controller
 {
-    private $ususario;
+    private $usuario;
 
-    public function __construct(User $ususario){
+    public function __construct(User $usuario){
         $this->middleware('auth'); 
-        $this->ususario = $ususario;
+        $this->usuario = $usuario;
     }
 
     public function index(){
-        //$ususario = $this->ususario->where('id',$id); //recupera o primeiro id
+        //$usuario = $this->usuario->where('id',$id); //recupera o primeiro id
         return view('form_config');
     }
     
     public function edit($id){
-        $ususario = $this->ususario->where('id',$id); //recupera o primeiro id
+        $usuario = $this->usuario->where('id',$id); //recupera o primeiro id
 
-        return view('form_config',compact('ususario'));
+        return view('form_config',compact('usuario'));
     }
 
     public function update($id , Request $request){
-        $ususario = User::findOrFail($id);
+        $usuario = User::findOrFail($id);
         $dataForm = $request->all();
         
         if($dataForm['corSystem'] == null){
-            $dataForm['corSystem'] = $ususario->corSystem;
+            $dataForm['corSystem'] = $usuario->corSystem;
         }
         /*if($dataForm['corSystem'] == null){
-            $dataForm['corSystem'] = $ususario->corSystem;
+            $dataForm['corSystem'] = $usuario->corSystem;
         }*/
         if($dataForm['password']==null){
-            $dataForm['password'] = $ususario->password;
+            $dataForm['password'] = $usuario->password;
         }else{
             $dataForm['password']= Hash::make($dataForm['password']);
         }
 
         //dd($dataForm);
 
-        $ususario->update($dataForm);
+        $usuario->update($dataForm);
 
         return redirect()
                     ->route('usuario.index')
@@ -53,36 +54,37 @@ class usuarioController extends Controller
 
     public function disableHelpIni(Request $request)
     {
-        $ususario = User::findOrFail($request['id']);
+        //dd($request['id']);
+        $usuario = User::find($request['id']);
         $array['ajuda_inicio']=false;
-        $ususario->update($array);
-
+        $usuario->update($array);
+        
         return redirect()->back();
     }
 
     public function disableHelpPessoa(Request $request)
     {
-        $ususario = User::findOrFail($request['id']);
+        $usuario = User::findOrFail($request['id']);
         $array['ajd_pessoa']=false;
-        $ususario->update($array);
+        $usuario->update($array);
 
         return redirect()->back();
     }
 
     public function disableHelpDocumento(Request $request)
     {
-        $ususario = User::findOrFail($request['id']);
+        $usuario = User::findOrFail($request['id']);
         $array['ajd_documento']=false;
-        $ususario->update($array);
+        $usuario->update($array);
 
         return redirect()->back();
     }
 
     public function disableHelpAtendimento(Request $request)
     {
-        $ususario = User::findOrFail($request['id']);
+        $usuario = User::findOrFail($request['id']);
         $array['ajd_atendimento']=false;
-        $ususario->update($array);
+        $usuario->update($array);
 
         return redirect()->back();
     }

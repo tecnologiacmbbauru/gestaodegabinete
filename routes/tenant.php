@@ -13,5 +13,13 @@ Route::get('/',function(){
 
 //Rota da criação de gabinetes
 //Route::resource('/organizacao', 'Tenant\OrganizacaoController');
-Route::get('/organizacao', 'Tenant\OrganizacaoController@store')->name('organizacao.store');
+Route::resource('/organizacao', 'Tenant\OrganizacaoController');
 
+Route::post('/usuario/reset', 'Tenant\tenantUsuarioController@resetSenha')->name('usuario.reset');
+Route::get('/usuario/padrao/{domain}', 'Tenant\tenantUsuarioController@cadUsuariosPadrao')->name('usuarios.padrao.cadastro');
+Route::post('/usuario/delete', 'Tenant\tenantUsuarioController@excluirUsuario')->name('usuario.exclusao');
+Route::post('/usuario/cadastro', 'Tenant\tenantUsuarioController@cadastrarUsuario')->name('usuario.cadastro');
+
+Route::put('/tenants/configuracao/{id}', 'Tenant\TenantController@alterarUsuario')->name('usuario.alterar');
+Route::get('/tenants/configuracao/{id}', 'Tenant\TenantController@editarUsuario')->name('usuario.editar');
+Route::get('/tenants', 'Tenant\TenantController@index')->name('tenant.index');

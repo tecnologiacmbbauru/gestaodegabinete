@@ -1,0 +1,73 @@
+/*Menu de navegação*/
+*{
+
+}
+a{
+  color:#455a64 !important;
+}
+.navbar {
+	padding:0px !important;
+	background-color:#455a64 !important;
+	font-family: 'Times New Roman', Times, sans-serif;
+	font-size: 18px !important;
+	font-weight: 700 !important;
+}
+.nav-item:hover {
+  background-color: #1c313a !important;
+}
+.dropdown-item:hover {
+	background-color: #DCDCDC !important;
+}
+
+.nav-link {
+  color: white !important;
+}
+.navbar-brand{
+	color: white !important;
+}
+.btn-primary{
+    background-color:#455a64 !important;
+    border: none; 
+}
+
+.card-system{
+    max-width: 400px;
+    height: 150px;
+    background-color:#757575;
+    color:white;
+    padding-top: 20px;
+    text-align: center;
+    -webkit-box-shadow: 7px 5px 3px rgba(50, 50, 50, 0.55);
+    -moz-box-shadow:    7px 5px 3px rgba(50, 50, 50, 0.55);
+    box-shadow:         7px 5px 3px rgba(50, 50, 50, 0.55);
+}
+
+.title{
+    font-size: large;
+}
+
+.number{
+    font-size: xx-large;
+}
+
+.btn-add{
+  display: block;
+  background-color: #455a64 !important;
+  color: #FFF !important;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.btn-add:hover{
+  background-color: #1c313a !important;
+  color: #FFF !important;
+}
+
+.btn-transparente{
+  background-color: transparent;
+  border: none;
+}
+.btn-transparente:focus{
+  outline-style: none;
+  background-color: transparent;
+  border: none;
+}

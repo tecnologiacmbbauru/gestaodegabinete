@@ -19,7 +19,7 @@ $factory->define(documento::class, function (Faker $faker) {
         'GAB_UNIDADE_DOCUMENTO_cod_uni_doc'=> $faker->numberBetween(1,2),
         'GAB_TIPO_DOCUMENTO_cod_tip_doc'=> $faker->numberBetween(1,3),
         'GAB_STATUS_DOCUMENTO_cod_status'=> $faker->numberBetween(1,4),
-        'GAB_ATENDIMENTO_cod_atendimento'=> $faker->numberBetween(1,500),
+        'GAB_ATENDIMENTO_cod_atendimento'=> $faker->numberBetween(1,5),
         'dat_documento'=> $faker->date,
         'dat_resposta'=> $faker->date,
         'path_doc'=> $faker->url,

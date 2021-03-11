@@ -7,7 +7,7 @@ use App\Tenant\ManagerTenant;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 
-class TenantMigrations extends Command
+class TenantSeeder extends Command
 {
     /**
      * The name and signature of the console command.
@@ -15,14 +15,14 @@ class TenantMigrations extends Command
      * @var string
      */
     ///protected $signature = 'tenants:migrations {--refresh}';
-    protected $signature = 'tenants:migrations {id?} {--refresh}';
+    protected $signature = 'tenants:seed {id?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Run migrations Tenants';
+    protected $description = 'Run Seeder Tenants';
 
     /**
      * Create a new command instance.
@@ -44,7 +44,6 @@ class TenantMigrations extends Command
      */
     public function handle()
     {
-
         if( $this->argument('id')) { //verifica se foi passado o parametro opicional id
             $organizacao =  Organizacao::find($this->argument('id')); 
 
@@ -61,25 +60,17 @@ class TenantMigrations extends Command
     }
     
     public function execCommand(Organizacao $organizacao){
-        //validação para caso use o comando com --refersh
-        //ULTILIZAR COMANDO REFRESH SOMENTE EM DESENVOLVIMENTO --NÃO-- EM PRODUÇÃO
-        $comando = $this->option('refresh') ? 'migrate:refresh' :'migrate';
-        
+
         $this->tenant->setConnection($organizacao);
-        //dd($this->tenant->setConnection($organizacao));
+        
         $this->info("Conectando com: {$organizacao->name}");
 
-        $command = Artisan::call($comando,[
-            '--force' =>true,
-            '--path'  =>'/database/migrations/tenant',
+        $command = Artisan::call('db:seed',[
+            '--class'  =>'DatabaseTenantSeeder',
         ]);
 
         if($command === 0){
-            Artisan::call('db:seed',[
-                '--class'  =>'DatabaseTenantSeeder',
-            ]);
-
-            $this->info("Migracao com sucesso em: {$organizacao->name}");
+            $this->info("Seeder com sucesso em: {$organizacao->name}");
         }
 
         $this->info("Fim da conexão com: {$organizacao->name}");

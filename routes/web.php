@@ -18,7 +18,11 @@ Route::get('/404-tenant', function() {
     return view('errors.404-tenant');
 })->name('404.tenant');
 
-Auth::routes();
+
+Auth::routes(['register' => false]); //rotas de autenticação sem registro
+
+Route::post('/login','loginController@authenticate')->name('login.tenant');
+
 /*HELPS*/
 Route::resource('/usuario','usuarioController');
 Route::get('/usuarioI','usuarioController@disableHelpIni')->name('usuario.disableHelpIni');
@@ -52,7 +56,6 @@ Route::any('/pessoa/pesquisa/relatorio/{var}','PessoaController@pessoaRelatorio'
 Route::any('/pessoa/pesquisa','PessoaController@pesquisaPessoa')->name('pessoa.pesquisaPessoa');
 Route::resource('/pessoa','PessoaController');
 
-//Route::post('/atendimento/teste','AtendimentoController@teste')->name('atendimento.teste');
 Route::any('/atendimento/pesquisaAtendimento','AtendimentoController@pesquisaAtendimento')->name('atendimento.pesquisaAtendimento');
 Route::post('/atendimento/seleciona_pessoa','AtendimentoController@seleciona_pessoa')->name('atendimento.seleciona_pessoa');
 Route::resource('/atendimento','AtendimentoController');
@@ -81,4 +84,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/sobre' , 'sobreController@index')->name('sobre');
 
-Route::get('/manual' , 'manualController@index')->name('manual');
+Route::get('/manual' , 'manualController@index')->name('manual');        

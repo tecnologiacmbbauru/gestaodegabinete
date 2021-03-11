@@ -12,21 +12,6 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="Dominio" class="col-md-4 col-form-label text-md-right">{{ __('Dominio') }}</label>
-                            
-                            <div class="col-md-6">
-                                <input id="dominio" class="form-control @error('dominio') is-invalid @enderror" name="dominio" value="{{ old('dominio') }}" required autocomplete="dominio" autofocus>
-
-                                @error('user_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Login') }}</label>
                             
                             <div class="col-md-6">
@@ -86,26 +71,3 @@
     </div>
 </div>
 @endsection
-{{--Script de busca usando jquery-ui. Não pode se colocado separado pois não funciona a rota--}}
-<script type="text/javascript" defer> 
-
-    $(document).ready(function(){
-        $("#dominio").blur(function (){
-                console.log($("#dominio").val()),
-                console.log("sai"),
-                $.ajax({                    
-                    url:"{{route('tenant.setaBanco')}}",
-                    type: 'post',
-                    dataType: "json",
-                    data: {
-                        _token: '{{csrf_token()}}',
-                        dominio: $("#dominio").val(),
-                    },
-                    cache:false,
-                    success: function(data) {
-                        console.log(data);
-                    }
-                });
-        });
-    });
-</script>

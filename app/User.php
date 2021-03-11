@@ -10,6 +10,7 @@ use App\Notifications\ResetPassword;
 class User extends Authenticatable
 {
     use Notifiable;
+    protected $connection = 'mysql';
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','user_name','email', 'password','ajuda_inicio','ajd_pessoa','ajd_documento','ajd_atendimento','corSystem'
+        'name','user_name','email','domain','password','ajuda_inicio','ajd_pessoa','ajd_documento','ajd_atendimento','corSystem'
     ];
 
     /**

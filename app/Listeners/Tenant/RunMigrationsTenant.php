@@ -28,7 +28,6 @@ class RunMigrationsTenant
     public function handle(DatabaseCreated $event)
     {
         $organizacao = $event->getOrganizacao();
-
         $migration = Artisan::call('tenants:migrations',[
             'id' => $organizacao->id,
         ]);

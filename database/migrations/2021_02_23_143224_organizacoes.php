@@ -16,12 +16,13 @@ class Organizacoes extends Migration
         Schema::create('organizacoes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('image')->nullable();
             $table->string('domain')->unique();
             $table->string('bd_database')->unique(); //caso queira mudar para o futuro poder trabalhar em cameras pequenas com uma databse para multiplos clientes alterar
+            $table->string('bd_port');
             $table->string('bd_hostname');
             $table->string('bd_username');
             $table->string('bd_password');
-            $table->integer('id_instancia_rel')->unsigned()->nullable()->index('fk_id_instancia');
             $table->timestamps();
         });
     }

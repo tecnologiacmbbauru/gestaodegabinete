@@ -1,0 +1,51 @@
+*{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    background-color: #fffafa;
+}
+a{
+    color: rgb(75, 63, 63);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1{
+    font-family: Impact, fantasy;
+    font-size: 200px;
+    text-shadow: 7px 5px 3px rgba(50, 50, 50, 0.55);
+    margin: 0px;
+    padding: 0px;
+}
+h2{
+    font-family: Impact, fantasy;
+    font-size: 30px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.bt {
+    border:1px solid #1c313a;
+    border-radius:4px;
+    display:inline-block;
+    cursor:pointer;
+    font-family:Verdana;
+    font-weight:bold;
+    font-size:25px;
+    padding:6px 10px;
+    text-decoration:none;
+}
+
+.bt-vd {
+    border-color:#455a64;
+    background:linear-gradient(to bottom, #718792 5%, #455a64  100%);
+    box-shadow:inset 0px 1px 0px 0px #afc2cc;
+    color:rgb(43, 42, 42);
+    text-shadow:0px 1px 0px #546e7a;
+}
+
+.bt-vd:hover {
+    background:linear-gradient(to bottom, #546e7a 5%, #718792 100%);
+}

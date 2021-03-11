@@ -16,12 +16,13 @@ class ManagerTenant
 
         //seta as configurações vinda do banco de dados
         config()->set('database.connections.tenant.host',$organizacao->bd_hostname);
+        config()->set('database.connections.tenant.port',$organizacao->bd_port);
         config()->set('database.connections.tenant.database',$organizacao->bd_database);
         config()->set('database.connections.tenant.username',$organizacao->bd_username);
         config()->set('database.connections.tenant.password',$organizacao->bd_password);
         
         DB::reconnect('tenant');//Reconceta com as novas configurações
-    
+        
         Schema::connection('tenant')->getConnection()->reconnect();
     }
 

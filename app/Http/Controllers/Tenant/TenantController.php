@@ -5,30 +5,44 @@ namespace App\Http\Controllers\Tenant;
 use App\Models\Organizacao;
 use App\Tenant\ManagerTenant;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class TenantController extends Controller
 {
-    public function setaBanco(Request $request){
-        
-        $dominio = $request->dominio;
+    public function index(){
+        $totalReg = Organizacao::count(); 
+        $totalUser = User::count();
 
-        $manager = app(ManagerTenant::class);
+        return view("Tenants/home",compact('totalReg','totalUser'));
+    }
 
-        $organizacao = $this->getOrganizacao($dominio);
+    public function editarUsuario($id){
+        $ususario = User::where('id',$id); //recupera o primeiro id
 
-        if($organizacao != null){//se a organização existir
-            $manager->setConnection($organizacao); //tenta setar conexão
-            $response = true;
+        return view ('Tenants/configuracao_userAdmin',compact($ususario));
+    }
+
+    public function alterarUsuario($id , Request $request){
+        $ususario = User::findOrFail($id);
+        $dataForm = $request->all();
+
+        if($dataForm['password']==null){
+            $dataForm['password'] = $ususario->password;
         }else{
-            $response = false;
+            $dataForm['password']= Hash::make($dataForm['password']);
         }
 
-        return response()->json($response);
+        //dd($dataForm);
+
+        $ususario->update($dataForm);
+
+        return redirect()
+                    ->route('usuario.editar',$ususario->id)
+                    ->with('success', 'Configurações e usuário alterado com sucesso!');
     }
 
 
-    public function getOrganizacao($host){
-        return Organizacao::where('domain',$host)->first();
-    }
+
 }
