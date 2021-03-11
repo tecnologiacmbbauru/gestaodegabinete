@@ -66,7 +66,7 @@
                         <form action="{{route('cargoPolitico.destroy', "id_exclusao")}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <a type="button" onclick="teste()" data-toggle="modal" data-target="#modalExclusao" data-id_exclusao="{{$cargoPolit->cod_car_pol}}"><img src="{{asset('utils/excluir.png')}}" alt="Excluir"></a>
+                            <a type="button" data-toggle="modal" data-target="#modalExclusao" data-id_exclusao="{{$cargoPolit->cod_car_pol}}"><img src="{{asset('utils/excluir.png')}}" alt="Excluir"></a>
                             @include('exclusao/exclusao_modal')
                         </form>
                  </td>
@@ -79,5 +79,4 @@
              
 </div>
 </body>
-
 @endsection

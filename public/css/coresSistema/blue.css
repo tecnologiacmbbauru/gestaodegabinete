@@ -13,16 +13,19 @@ terceria:5e92f3
 
 .btn{
     background-color:#1563c0 !important;
+    border-color: #003c80 !important;
     border: none; 
 }
 
 .btn-primary{
     background-color:#1563c0 !important;
+    border-color: #003c80 !important;
     border: none; 
 }
 
 .btn-secondary{
     background-color:#5e92f3 !important;
+    border-color: #003c80 !important;
     border: none; 
 }
 

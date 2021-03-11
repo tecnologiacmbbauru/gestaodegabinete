@@ -8,16 +8,19 @@
 
 .btn{
     background-color:#4e342e !important;
+    border-color: #260e04 !important;
     border: none; 
 }
 
 .btn-primary{
     background-color:#4e342e !important;
+    border-color: #260e04 !important;
     border: none; 
 }
 
 .btn-secondary{
     background-color:#7b5e57 !important;
+    border-color: #260e04 !important;
     border: none; 
 }
 

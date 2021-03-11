@@ -13,16 +13,19 @@ terceria:62727b
 
 .btn{
     background-color:#37474f !important;
+    border-color: #102027 !important;
     border: none; 
 }
 
 .btn-primary{
     background-color:#37474f !important;
+    border-color: #102027 !important;
     border: none; 
 }
 
 .btn-secondary{
     background-color:#62727b !important;
+    border-color: #102027 !important;
     border: none; 
 }
 
