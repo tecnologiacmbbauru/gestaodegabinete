@@ -20,6 +20,9 @@ Route::get('/usuario/padrao/{domain}', 'Tenant\tenantUsuarioController@cadUsuari
 Route::post('/usuario/delete', 'Tenant\tenantUsuarioController@excluirUsuario')->name('usuario.exclusao');
 Route::post('/usuario/cadastro', 'Tenant\tenantUsuarioController@cadastrarUsuario')->name('usuario.cadastro');
 
-Route::put('/tenants/configuracao/{id}', 'Tenant\TenantController@alterarUsuario')->name('usuario.alterar');
-Route::get('/tenants/configuracao/{id}', 'Tenant\TenantController@editarUsuario')->name('usuario.editar');
+Route::put('/usuario/configuracao/{id}', 'Tenant\TenantController@alterarUsuario')->name('usuario.alterar');
+Route::get('/usuario/configuracao/{id}', 'Tenant\TenantController@editarUsuario')->name('usuario.editar');
 Route::get('/tenants', 'Tenant\TenantController@index')->name('tenant.index');
+
+Route::get('/estatisticas', 'Tenant\EstatisticasController@index')->name('tenant.estatisticas.index');
+Route::post('/estatisticas/pesquisaEstatistica','Tenant\EstatisticasController@pesquisaEstatisticas')->name('estatisticas.pesquisa');

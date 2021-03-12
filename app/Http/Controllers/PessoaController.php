@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\pessoa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PessoaController extends Controller
 {
@@ -40,7 +41,7 @@ class PessoaController extends Controller
                 }
                 
                 if($request->hasFile('img_perfil') && $request->img_perfil->isValid()){
-                    $imagePath = $request->img_perfil->store('pessoa');
+                    $imagePath = $request->img_perfil->store(Auth::user()->domain.'/pessoa');
                     $dataform['image']=$imagePath;
                 }
                 $dataform['nom_usuario_log'] = auth()->user()->name;
@@ -91,7 +92,7 @@ class PessoaController extends Controller
         $dataform = $request->all();
         $pessoaC = pessoa::findOrFail($id);
         if($request->hasFile('img_perfil') && $request->img_perfil->isValid()){
-            $imagePath = $request->img_perfil->store('pessoa');
+            $imagePath = $request->img_perfil->store(Auth::user()->domain.'/pessoa');
             $dataform['image']=$imagePath;
         }
         $dataform['nom_usuario_log'] = auth()->user()->name;

@@ -3,14 +3,12 @@
 
 @section('content')
 <head>
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-<link href="{{ asset('css/forms.css') }}" rel="stylesheet">
-<!-- Scripts -->
-<script src="{{ asset('js/exclusao.js') }}"></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
+    <!-- Scripts -->
+    <script src="{{ asset('js/exclusao.js') }}" defer></script>
 </head>
 <body>
-
-
     <div id="tipo_documentoo" class="container">
     <!--Criar alerta de cadastro-->
 

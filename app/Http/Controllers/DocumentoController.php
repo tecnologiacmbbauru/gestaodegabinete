@@ -13,6 +13,7 @@ use App\Models\pessoa;
 use App\Models\statusAtendimento;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DocumentoController extends Controller
@@ -65,11 +66,11 @@ class DocumentoController extends Controller
         $dataform['nom_usuario_log'] = auth()->user()->name;
         
         if($request->hasFile('path_doc') && $request->path_doc->isValid()){
-            $docPath = $request->path_doc->store('documentos');
+            $docPath = $request->path_doc->store(Auth::user()->domain.'/documentos');
             $dataform['path_doc']=$docPath;
         }
         if($request->hasFile('path_doc_resp') && $request->path_doc_resp->isValid()){
-            $docPath = $request->path_doc_resp->store('documentos');
+            $docPath = $request->path_doc_resp->store(Auth::user()->domain.'/documentos');
             $dataform['path_doc_resp']=$docPath;
         }
         
@@ -127,12 +128,12 @@ class DocumentoController extends Controller
         }
 
         if($request->hasFile('path_doc') && $request->path_doc->isValid()){ 
-            $docPath = $request->path_doc->store('documento');
+            $docPath = $request->path_doc->store(Auth::user()->domain.'/documento');
             $dataform['path_doc']=$docPath;
         }
 
         if($request->hasFile('path_doc_resp') && $request->path_doc_resp->isValid()){
-            $docPath = $request->path_doc_resp->store('documento');
+            $docPath = $request->path_doc_resp->store(Auth::user()->domain.'/documento');
             $dataform['path_doc_resp']=$docPath;
         }
        

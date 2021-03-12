@@ -34,6 +34,12 @@
                 </li>
             </ul>
 
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="{{ route('tenant.estatisticas.index') }}">{{ __('Estatisticas') }}</a>
+                </li>
+            </ul>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">

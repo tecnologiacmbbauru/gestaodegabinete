@@ -6,6 +6,7 @@ use App\Http\Requests\agentePoliticoRequest;
 use App\Models\cargoPolitico;
 use App\Models\agentePolitico;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage; //para trabalhar com fotos
 use Illuminate\Support\Facades\DB;
 
@@ -41,7 +42,7 @@ class AgentePoliticoController extends Controller
     {
         $dataform = $request->all();
         if($request->hasFile('img_foto') && $request->img_foto->isValid()){
-            $imagePath = $request->img_foto->store('agentePolitico');
+            $imagePath = $request->img_foto->store(Auth::user()->domain.'/agentePolitico');
             $dataform['img_foto']=$imagePath;
         }
             
@@ -67,7 +68,7 @@ class AgentePoliticoController extends Controller
 
         /*Altera a foto do vereador com um nome aleatorio*/
         if($request->hasFile('img_foto') && $request->img_foto->isValid()){
-            $imagePath = $request->img_foto->store('agentePolitico');
+            $imagePath = $request->img_foto->store(Auth::user()->domain.'/agentePolitico');
             $dataform['img_foto']=$imagePath;
         }
 

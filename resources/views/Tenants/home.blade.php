@@ -25,11 +25,10 @@
                 <p class="number">{{$totalUser}}</p>
             </div>
         </div>
-        <div class="col-md-4" style="margin-bottom:10px">
+        <div class="col-md-4" style="margin-bottom:10px;">
             <div class="card-system">
-                <p class="title">Estatisticas Avançadas</p>
-                <br>
-                <p class="number"></p>
+                <p class="title">Estatisticas de Espaço</p>
+                <a class="btn-transparente" href="{{route('tenant.estatisticas.index')}}"><img src="{{asset('utils/estatisticas.png')}}" alt="Estatisticas"></a>
             </div>
         </div>
     </div>

@@ -26,29 +26,48 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label class="col-form-label">Host</label>
-                    <input id="bd_hostname" type="text" name="bd_hostname" class="form-control" value="{{$organizacao->bd_hostname}}"> 
+                <div class="form-group col-md-6" style="margin-left:20px;">
+                    <input class="form-check-input" type="checkbox" id="altear-db" name="altear-db" onclick="showConfig()">
+                    <label class="form-check-label" for="alterar-db">Alterar configurações da database</label>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label class="col-form-label">Usuario</label>
-                    <input id="bd_username" type="text" name="bd_username" class="form-control" value="{{$organizacao->bd_username}}"> 
+            <div id="conf-db" hidden>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="col-form-label">Host</label>
+                        <input id="bd_hostname" type="text" name="bd_hostname" class="form-control" value="{{$organizacao->bd_hostname}}"> 
+                    </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label class="col-form-label">Senha</label>
-                    <input id="bd_password" type="password" name="bd_password" class="form-control" value="{{$organizacao->bd_password}}"> 
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="col-form-label">Porta</label>
+                        <input id="bd_port" type="text" name="bd_port" class="form-control"  value="{{$organizacao->bd_port}}"> 
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="col-form-label">Usuario</label>
+                        <input id="bd_username" type="text" name="bd_username" class="form-control" value="{{$organizacao->bd_username}}"> 
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="col-form-label">Senha</label>
+                        <input id="bd_password" type="password" name="bd_password" class="form-control" value="{{$organizacao->bd_password}}"> 
+                    </div>
                 </div>
             </div>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmaAltDb">
                 Editar
             </button>
             @include('Tenants/modals/confirma_alteracao')
         </form>
     </div>
 </div>
+<script>
+    function showConfig(){
+        document.getElementById('conf-db').hidden =  !document.getElementById('conf-db').hidden;
+    }
+</script>
 @endsection
