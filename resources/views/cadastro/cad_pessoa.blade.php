@@ -1,7 +1,4 @@
 <div class="cadastro">
-    <div id="alerta-img" class="alerta atencao col-md-11" hidden>
-        Infelizmente o formato da imagem inserido não é aceito pelo nosso sistema ou o arquivo esta danificado. Favor tente outra imagem.                   
-    </div>
 {{--<p style="padding:0px; margin:0px;"><strong>Dica:</strong> Preencha apenas o nome se quiser cadastrar uma pessoa de forma rapida.Você pode alterar o cadastro posteriormente para preencher os outros campos.</p>--}}
 <form id="form_cadastro_pessoa" method="post" enctype="multipart/form-data" autocomplete="off">
     @csrf
@@ -37,6 +34,8 @@
         <div class="form-group col-md-6">
             <label class="col-sm-2 col-form-label negrito" for="nome">Foto</label>
             <input id="img_perfil" type="file" class="form-control col-md-10 input-arquivo" name="img_perfil" accept="image/*"/>
+            <label id="alert-foto" class="alert-obrigatorio" hidden="true">* A extensão do arquivo não é aceita.</label>
+            <label id="alert-foto-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de foto aceito é 25mb.</label>
         </div>
     </div>
 
@@ -177,7 +176,7 @@
 
     <div class="form-row div-botoes-cadastro">
         <div>
-            <button type="submit" onclick="return cadastrar();" class="btn btn-primary">Cadastrar</button>
+            <button id="btn-cadastrar" type="submit" class="btn btn-primary">Cadastrar</button>
             <button id="btn-pesquisa" type="submit"  onclick="pesquisar()" class="btn btn-primary">Pesquisar</button>
             <button id="limpar" type="reset" class="btn btn-primary">Limpar</button>  
         </div>      
@@ -200,23 +199,27 @@
 
 {{--Valida a imagem que o usuario enviou--}}
 <script type="text/javascript" defer>
-    function cadastrar(){
-        var file = document.getElementById("img_perfil");
-        var file = file.files[0]; //recebe as informações do arquivo inserido pelo usuario
-        if(file=="undefined"){ //caso não tenha sido colocado um arquivo continua o cadastro
-            return false;
-        }else{
-            //verifica se é um formato de imagem valido
-            if(file.type=="image/png" || file.type=="image/jpg" || file.type=="image/gif" || file.type=="image/jpeg" || file.type=="image/heic" || file.type=="image/heif"){
+    //Validação do input de documento
+    $('#img_perfil').bind('change', function() {
+        $("#btn-cadastrar").attr("disabled", false);//primeiro ativa o botão cadastrar caso estivesse desativado
+        document.getElementById("alert-foto").hidden=true;//e esconde as mensagens de erro
+        document.getElementById("alert-foto-tamanho").hidden=true; 
+
+        if((this.files[0].size/1024/1024)>25){//valida se o tamanho é valido
+            document.getElementById("img_perfil").focus;
+            document.getElementById("alert-foto-tamanho").hidden=false; 
+            $("#btn-cadastrar").attr("disabled", true);
+        }else{ //valida se a extensão é valida
+            if(this.files[0].type=="image/png" || this.files[0].type=="image/jpg" || this.files[0].type=="image/gif" || this.files[0].type=="image/jpeg" || this.files[0].type=="image/heic" || this.files[0].type=="image/heif"){
                 return true;
             }else{ //caso a imagem não seja valida emite um aviso
-                document.getElementById("alerta-img").hidden=false;
+                document.getElementById("alert-foto").hidden=false;
                 jQuery('html, body').animate({scrollTop: 0}, 300); //Faz a animação da tela subindo até o topo, onde tem a mensagem
                 document.getElementById("img_perfil").focus;
-                return false;
+                $("#btn-cadastrar").attr("disabled", true);
             }
         }
-    }
+    });
 </script>
 </div>
 

@@ -23,7 +23,9 @@
             </select>  
             <br>         
             <label class="col-form-label negrito" for="nome">Foto de perfil:</label>
-            <input type="file" class="form-control input-arquivo col-sm-10" name="img_foto"  >    
+            <input type="file" class="form-control input-arquivo col-sm-10" name="img_foto" id="img_foto"  accept="image/*"/>    
+            <label id="alert-foto" class="alert-obrigatorio" hidden="true">* A extensão do arquivo não é aceita.</label>
+            <label id="alert-foto-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de foto aceito é 25mb.</label>
         </div>     
     </div>
     
@@ -98,7 +100,31 @@
     </div> 
 
     <div style="text-align:center; padding-right:10%; padding-top:2%;">    
-        <button type="submit" class="btn btn-primary alterar">Alterar</button>
+        <button id="btn-alterar" type="submit" class="btn btn-primary alterar">Alterar</button>
     </div>           
 
 </form>
+{{--Valida a imagem que o usuario enviou--}}
+<script type="text/javascript" defer>
+    //Validação do input de documento
+    $('#img_foto').bind('change', function() {
+        $("#btn-alterar").attr("disabled", false);//primeiro ativa o botão cadastrar caso estivesse desativado
+        document.getElementById("alert-foto").hidden=true;//e esconde as mensagens de erro
+        document.getElementById("alert-foto-tamanho").hidden=true; 
+
+        if((this.files[0].size/1024/1024)>25){//valida se o tamanho é valido
+            document.getElementById("img_foto").focus;
+            document.getElementById("alert-foto-tamanho").hidden=false; 
+            $("#btn-alterar").attr("disabled", true);
+        }else{ //valida se a extensão é valida
+            if(this.files[0].type=="image/png" || this.files[0].type=="image/jpg" || this.files[0].type=="image/gif" || this.files[0].type=="image/jpeg" || this.files[0].type=="image/heic" || this.files[0].type=="image/heif"){
+                return true;
+            }else{ //caso a imagem não seja valida emite um aviso
+                document.getElementById("alert-foto").hidden=false;
+                jQuery('html, body').animate({scrollTop: 0}, 300); //Faz a animação da tela subindo até o topo, onde tem a mensagem
+                document.getElementById("img_foto").focus;
+                $("#btn-alterar").attr("disabled", true);
+            }
+        }
+    });
+</script>

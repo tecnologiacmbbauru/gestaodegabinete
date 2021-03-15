@@ -54,10 +54,10 @@
         <div class="form-row">
             <div class="form-group col-md-6" id="input_documento">
                 <label class="col-form-label negrito" for="input_tipo_documento">Documento</label>
-                <input type="file" id="path_doc" class="form-control col-md-10 input-arquivo" name="path_doc" onClick="ocultarAlerta(document.getElementById('alert-documento'))">
+                <input type="file" id="path_doc" class="form-control col-md-10 input-arquivo" name="path_doc">
                 <label id="alert-documento" class="alert-obrigatorio" hidden="true">* A extensão do arquivo não é aceita.</label>
+                <label id="alert-doc-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de arquivo aceito é 25mb.</label>
             </div>
-
             <div class="form-group col-md-6" id="link">
                 <label class="col-form-label negrito" for="link_doc">Link Documento {{--<img src="{{asset('utils/icone_ajuda.png')}}" title="Caso o documento esteja salvo em algum site você pode inserir o link aqui." style="padding-bottom:6px;">--}}</label>
                 <input id="lnk_documento" type="text" class="form-control col-md-10" name="lnk_documento">
@@ -99,7 +99,9 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label class="col-form-label negrito" for="link_doc">Documento de Resposta</label>
-                                <input type="file" class="form-control input-arquivo" name="path_doc_resp">
+                                <input type="file" class="form-control input-arquivo" name="path_doc_resp" id="path_doc_resp">
+                                <label id="alert-documento-resp" class="alert-obrigatorio" hidden="true">* A extensão do arquivo não é aceita.</label>
+                                <label id="alert-doc-resp-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de arquivo aceito é 25mb.</label>
                             </div>
                         </div>                       
                         <div class="form-row">
@@ -123,7 +125,7 @@
 
         <div class="form-row div-botoes-cadastro">
             <div>   
-                <button type="submit" onclick="return cadastrar();" class="btn btn-primary">Cadastrar</button>
+                <button id="btn-cadastrar" type="submit" onclick="return cadastrar();" class="btn btn-primary">Cadastrar</button>
                 <button id="btn-pesquisa" type="submit"  onclick="pesquisar()" class="btn btn-primary">Pesquisar</button>
                 <button id="limpar" type="reset" class="btn btn-primary">Limpar</button>
             </div>
@@ -158,10 +160,6 @@
 
         var e = document.getElementById("GAB_STATUS_DOCUMENTO_cod_status");
         var statusDocumento = e.options[e.selectedIndex].value;//change it here 
-
-        var inputDocumento = document.getElementById("path_doc");
-        var nomDoc = inputDocumento.value.split(".");
-        var docExtension = "."+nomDoc.pop();
         
         if(tipoDocumento === ""){
             document.getElementById("GAB_TIPO_DOCUMENTO_cod_tip_doc").focus();
@@ -176,16 +174,7 @@
             document.getElementById("alert-situacao").hidden=false;
             return false;
         }else{
-            if(docExtension===".exe"||docExtension===".bat"||docExtension===".msi"||docExtension===".com"||docExtension===".cmd"
-            ||docExtension===".hta"||docExtension===".scr"||docExtension===".pif"||docExtension===".reg"||docExtension===".js"
-            ||docExtension===".vbs"||docExtension===".reg"||docExtension===".wsf"||docExtension===".cpl"||docExtension===".jar"){
-                document.getElementById("alert-documento").hidden=false;
-                jQuery('html, body').animate({scrollTop: 0}, 300); //Faz a animação da tela subindo até o topo, onde tem a mensagem
-                document.getElementById("path_doc").focus;
-                return false;
-            }else{
-                return true;
-            }  
+            return true;
         }
     }
 
@@ -196,6 +185,57 @@
     function ocultarAlerta(element){
         element.hidden=true;
     }
+</script>
+
+
+<!--Validações do front end para cadastro de arquivos-->
+<script>
+    //Validação do input de documento
+    $('#path_doc').bind('change', function() {
+        $("#btn-cadastrar").attr("disabled", false);//primeiro ativa o botão cadastrar caso estivesse desativado
+        document.getElementById("alert-documento").hidden=true;//e esconde as mensagens de erro
+        document.getElementById("alert-doc-tamanho").hidden=true; 
+
+        if((this.files[0].size/1024/1024)>25){//valida se o tamanho é valido
+            document.getElementById("path_doc").focus;
+            document.getElementById("alert-doc-tamanho").hidden=false; 
+            $("#btn-cadastrar").attr("disabled", true);
+        }else{ //valida se a extensão é valida
+            var inputDocumento = document.getElementById("path_doc");
+            var nomDoc = inputDocumento.value.split(".");
+            var docExtension = "."+nomDoc.pop();
+            if(docExtension===".exe"||docExtension===".bat"||docExtension===".msi"||docExtension===".com"||docExtension===".cmd"
+            ||docExtension===".hta"||docExtension===".scr"||docExtension===".pif"||docExtension===".reg"||docExtension===".js"
+            ||docExtension===".vbs"||docExtension===".reg"||docExtension===".wsf"||docExtension===".cpl"||docExtension===".jar"){
+                document.getElementById("alert-documento").hidden=false;
+                document.getElementById("path_doc").focus;
+                $("#btn-cadastrar").attr("disabled", true);
+            }
+        }
+    });
+
+    $('#path_doc_resp').bind('change', function() {
+        $("#btn-cadastrar").attr("disabled", false);//primeiro ativa o botão cadastrar caso estivesse desativado
+        document.getElementById("alert-documento-resp").hidden=true;//e esconde as mensagens de erro
+        document.getElementById("alert-doc-resp-tamanho").hidden=true; 
+
+        if((this.files[0].size/1024/1024)>25){
+            document.getElementById("path_doc_resp").focus;
+            document.getElementById("alert-doc-resp-tamanho").hidden=false; 
+            $("#btn-cadastrar").attr("disabled", true);
+        }else{ //valida se a extensão é valida
+            var inputDocumento = document.getElementById("path_doc_resp");
+            var nomDoc = inputDocumento.value.split(".");
+            var docExtension = "."+nomDoc.pop();
+            if(docExtension===".exe"||docExtension===".bat"||docExtension===".msi"||docExtension===".com"||docExtension===".cmd"
+            ||docExtension===".hta"||docExtension===".scr"||docExtension===".pif"||docExtension===".reg"||docExtension===".js"
+            ||docExtension===".vbs"||docExtension===".reg"||docExtension===".wsf"||docExtension===".cpl"||docExtension===".jar"){
+                document.getElementById("alert-documento-resp").hidden=false;
+                document.getElementById("path_doc_resp").focus;
+                $("#btn-cadastrar").attr("disabled", true);
+            }
+        }
+    });
 </script>
 
 @if(Auth::user()->ajd_documento==1)

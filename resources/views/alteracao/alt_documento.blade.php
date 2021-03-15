@@ -56,10 +56,14 @@
                 <br>
                 <input class="form-check-input" type="checkbox" id="altera_doc" name="altera_doc" onclick="mostraAlteraDoc()" style="margin-left:3px;">
                 <label class="form-check-label negrito" style="margin-left:25px;">Substituir Documento</label>   
-                <input id="path_doc" type="file" class="form-control col-md-10 input-arquivo" name="path_doc" hidden="true">             
+                <input id="path_doc" type="file" class="form-control col-md-10 input-arquivo" name="path_doc" id="path_doc" hidden="true"> 
+                <label id="alert-documento" class="alert-obrigatorio" hidden="true">* A extensão do arquivo não é aceita.</label>
+                <label id="alert-doc-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de arquivo aceito é 25mb.</label>            
             @else
                 <label class="col-form-label negrito" for="input_tipo_documento">Documento</label>
-                <input type="file" class="form-control col-md-10 input-arquivo" name="path_doc" autofocus >
+                <input type="file" class="form-control col-md-10 input-arquivo" name="path_doc" id="path_doc" autofocus >
+                <label id="alert-documento" class="alert-obrigatorio" hidden="true">* A extensão do arquivo não é aceita.</label>
+                <label id="alert-doc-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de arquivo aceito é 25mb.</label>
             @endif
         </div>
         <div class="form-group col-md-6">
@@ -138,7 +142,9 @@
                                 <input id="path_doc_resp" type="file" class="form-control col-md-10 input-arquivo" name="path_doc_resp" hidden>                                 
                             @else
                                 <label class="col-form-label negrito" for="path_doc_resp">Documento de Resposta</label>
-                                <input type="file" class="form-control input-arquivo" name="path_doc_resp">
+                                <input type="file" class="form-control input-arquivo" name="path_doc_resp" id="path_doc_resp">
+                                <label id="alert-documento-resp" class="alert-obrigatorio" hidden="true">* A extensão do arquivo não é aceita.</label>
+                                <label id="alert-doc-resp-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de arquivo aceito é 25mb.</label>                                
                             @endif
                             
                         </div>
@@ -179,7 +185,9 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label class="col-form-label negrito" for="link_doc">Documento de Resposta</label>
-                                <input type="file" class="form-control input-arquivo" name="path_doc_resp">
+                                <input type="file" class="form-control input-arquivo" name="path_doc_resp" id="path_doc_resp">
+                                <label id="alert-documento-resp" class="alert-obrigatorio" hidden="true">* A extensão do arquivo não é aceita.</label>
+                                <label id="alert-doc-resp-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de arquivo aceito é 25mb.</label>
                             </div>
                         </div>                       
                         <div class="form-row">
@@ -203,7 +211,7 @@
 
     <div class="form-row div-botoes-cadastro">
         <div>           
-            <button type="submit" class="btn btn-primary alterar">Alterar</button>
+            <button id="btn-alterar" type="submit" class="btn btn-primary alterar">Alterar</button>
             <a href="javascript:history.back()" class="btn btn-primary alterar">Voltar</a>
         </div>
     </div>
@@ -280,4 +288,54 @@
         }
     }
     
+</script>
+
+<!--Validações do front end para cadastro de arquivos-->
+<script>
+    //Validação do input de documento
+    $('#path_doc').bind('change', function() {
+        $("#btn-alterar").attr("disabled", false);//primeiro ativa o botão cadastrar caso estivesse desativado
+        document.getElementById("alert-documento").hidden=true;//e esconde as mensagens de erro
+        document.getElementById("alert-doc-tamanho").hidden=true; 
+
+        if((this.files[0].size/1024/1024)>25){//valida se o tamanho é valido
+            document.getElementById("path_doc").focus;
+            document.getElementById("alert-doc-tamanho").hidden=false; 
+            $("#btn-alterar").attr("disabled", true);
+        }else{ //valida se a extensão é valida
+            var inputDocumento = document.getElementById("path_doc");
+            var nomDoc = inputDocumento.value.split(".");
+            var docExtension = "."+nomDoc.pop();
+            if(docExtension===".exe"||docExtension===".bat"||docExtension===".msi"||docExtension===".com"||docExtension===".cmd"
+            ||docExtension===".hta"||docExtension===".scr"||docExtension===".pif"||docExtension===".reg"||docExtension===".js"
+            ||docExtension===".vbs"||docExtension===".reg"||docExtension===".wsf"||docExtension===".cpl"||docExtension===".jar"){
+                document.getElementById("alert-documento").hidden=false;
+                document.getElementById("path_doc").focus;
+                $("#btn-alterar").attr("disabled", true);
+            }
+        }
+    });
+
+    $('#path_doc_resp').bind('change', function() {
+        $("#btn-alterar").attr("disabled", false);//primeiro ativa o botão cadastrar caso estivesse desativado
+        document.getElementById("alert-documento-resp").hidden=true;//e esconde as mensagens de erro
+        document.getElementById("alert-doc-resp-tamanho").hidden=true; 
+
+        if((this.files[0].size/1024/1024)>25){
+            document.getElementById("path_doc_resp").focus;
+            document.getElementById("alert-doc-resp-tamanho").hidden=false; 
+            $("#btn-alterar").attr("disabled", true);
+        }else{ //valida se a extensão é valida
+            var inputDocumento = document.getElementById("path_doc_resp");
+            var nomDoc = inputDocumento.value.split(".");
+            var docExtension = "."+nomDoc.pop();
+            if(docExtension===".exe"||docExtension===".bat"||docExtension===".msi"||docExtension===".com"||docExtension===".cmd"
+            ||docExtension===".hta"||docExtension===".scr"||docExtension===".pif"||docExtension===".reg"||docExtension===".js"
+            ||docExtension===".vbs"||docExtension===".reg"||docExtension===".wsf"||docExtension===".cpl"||docExtension===".jar"){
+                document.getElementById("alert-documento-resp").hidden=false;
+                document.getElementById("path_doc_resp").focus;
+                $("#btn-alterar").attr("disabled", true);
+            }
+        }
+    });
 </script>
