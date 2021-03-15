@@ -11,6 +11,10 @@ terceria:62727b
 	background-color:#37474f !important;
 }
 
+.nav-item:hover {
+    background-color: #102027 !important;
+}
+
 .btn{
     background-color:#37474f !important;
     border-color: #102027 !important;

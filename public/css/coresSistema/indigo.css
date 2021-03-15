@@ -6,6 +6,10 @@
 	background-color:#283593 !important;
 }
 
+.nav-item:hover {
+	background-color:#001064 !important;
+}
+
 .btn{
     background-color:#283593 !important;
     border-color: #001064 !important;

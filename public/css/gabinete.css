@@ -21,9 +21,7 @@ html,body {
 .navbar {
 	padding:0px !important;
 }
-.nav-item:hover {
-  background-color: #28608f !important;
-}
+
 .dropdown-item:hover {
 	background-color: #DCDCDC !important;
 }
