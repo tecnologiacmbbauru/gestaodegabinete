@@ -9,7 +9,9 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <div class="modal-body">
         <input type="hidden" name="id_exclusao" id="id_exclusao" value="">
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-primary">Sim</button> <!--Submit que vai enviar o método delete esta aqui -->
