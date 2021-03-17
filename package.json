@@ -39,7 +39,7 @@
         "fullcalendar": "^5.5.1",
         "inferno": "^7.4.3",
         "jquery-typeahead": "^2.11.1",
-        "node-gyp": "^7.1.0",
+        "node-gyp": "^7.1.2",
         "slatest": "^2.3.10"
     }
 }
