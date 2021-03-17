@@ -66,12 +66,13 @@ class EtiquetaController extends Controller
 
         if($dataform['tip_et']==14){
             $pdf = PDF::loadView('pdf/aniversariantesEtiqueta14',compact('agentePolitico','aniversariantes','remetende','pularLinha'), [], [
-                'format' => 'letter'
+                'format' => 'Letter'
               ]);
             return $pdf->stream('aniversariantes.pdf');
         }else if($dataform['tip_et']==20){
-            $pdf = PDF::loadView('pdf/aniversariantesEtiqueta20',compact('agentePolitico','aniversariantes','remetende','pularLinha'));
-            
+            $pdf = PDF::loadView('pdf/aniversariantesEtiqueta20',compact('agentePolitico','aniversariantes','remetende','pularLinha'), [], [
+                'format' => 'Letter'
+              ]);
             return $pdf->stream('aniversariantes.pdf');
         }elseif($dataform['tip_et']==30){
             $pdf = PDF::loadView('pdf/aniversariantesEtiqueta30',compact('agentePolitico','aniversariantes','remetende','pularLinha'));

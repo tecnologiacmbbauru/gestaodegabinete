@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Relatório de Atendimentos</title>
-    <style type="text/css">
+<style type="text/css">
         h3 {text-align: center; margin: 0px}
         h4 {text-align: center; margin: 0px}
         p {text-align: center; margin: 0px}
@@ -32,17 +26,15 @@
         @page {
             footer: page-footer;
         }
-    </style>
-</head>
-<body>
+</style>
+
     <h3>{{$agentePolitico->cargoPolitico->nom_car_pol}} {{$agentePolitico->nom_vereador}}</h3>
     <h4>{{$agentePolitico->nom_orgao}}</h4>
     <p>
-        {{$agentePolitico->nom_endereco}}, {{$agentePolitico->nom_numero}} - {{$agentePolitico->nom_complemento}} - {{$agentePolitico->nom_cidade}}/{{$agentePolitico->nom_estado}} - CEP:{{$agentePolitico->nom_cep}}
+        {{$agentePolitico->nom_endereco}}, {{$agentePolitico->nom_numero}} - {{$agentePolitico->nom_complemento}} - {{$agentePolitico->nom_cidade}}/{{$agentePolitico->nom_estado}} - CEP:{{$agentePolitico->num_cep}}
     </p>
     <h3 style="margin:10px;text-decoration: underline">Gestão de Gabinete - Relatório de Documentos</h3>
     <table class="tabela">
-        <tbody>
         <tr>
             <th>Data</th>
             <th>Número/Ano</th>
@@ -99,11 +91,8 @@
         </tr>
         
         @endforeach
-        </tbody>
     </table>
     <label>Total de Registros:{{$i}} o PDF imprime até 500 registros.</label>
     <htmlpagefooter name="page-footer">
         {PAGENO}
     </htmlpagefooter>
-</body>
-</html>

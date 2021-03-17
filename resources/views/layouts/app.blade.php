@@ -139,7 +139,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item negrito" href="{{ route('relatorio.retornaAtendimento') }}">{{ __('Atendimentos') }}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item negrito" href="{{ route('relatorio.retornaDocumento') }}">{{_('Documentos')}}</a>
+                            <a class="dropdown-item negrito" href="{{ route('relatorio.retornaDocumento') }}">{{__('Documentos')}}</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item negrito" href="{{route('relatorio.retornaEtiqueta')}}" }}>Etiquetas de Aniversariantes</a>
                         </div>

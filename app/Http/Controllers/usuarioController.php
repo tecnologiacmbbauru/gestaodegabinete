@@ -31,7 +31,7 @@ class usuarioController extends Controller
         $dataForm = $request->all();
         
         if($dataForm['corSystem'] == null){
-            $dataForm['corSystem'] = 'blue-grey';
+            $dataForm['corSystem'] = $ususario->corSystem;
         }
         /*if($dataForm['corSystem'] == null){
             $dataForm['corSystem'] = $ususario->corSystem;

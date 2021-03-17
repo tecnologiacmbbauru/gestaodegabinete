@@ -21,7 +21,7 @@
             <br>
             <b>Email: </b><label id="email"></label>
             <br>
-            <b>Rede social: </b><a id="rede_social" style="color:#546e7a"></a>
+            <b>Rede social: </b><a id="rede_social" class="link-documento"></a>
             <br>
             <b>Texto de Observação: </b><label id="txt_obs"></label>
         </div>
