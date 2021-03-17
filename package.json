@@ -33,9 +33,8 @@
         "yarn": "^1.22.5"
     },
     "dependencies": {
-        "@popperjs/core": "^2.6.0",
+        "@popperjs/core": "^2.7.0",
         "inferno": "^7.4.8",
-        "inferno": "^7.4.7",
         "bootstrap-icons": "^1.4.0",
         "fullcalendar": "^5.5.1",
         "inferno": "^7.4.3",
