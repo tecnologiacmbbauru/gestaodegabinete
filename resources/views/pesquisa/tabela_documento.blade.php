@@ -13,6 +13,7 @@
                         <th>Unidade</th>
                         <th>Atendimento</th>
                         <th>Resposta</th>
+                        <th style="text-align: center;">Anexos</th>
                         <th style="text-align: center;">Alterar</th>
                         <th style="text-align: center;">Excluir</th>
                     </tr>
@@ -26,18 +27,18 @@
                 <tbody>
                     @foreach($documentos as $docC)
                     <tr>
-                        <td  width='11%'>{{date('d/m/Y', strtotime($docC->dat_documento))}}</td>
+                        <td  width='10%'>{{date('d/m/Y', strtotime($docC->dat_documento))}}</td>
                         <td  width='10%'>{{$docC->nom_documento}}/{{$docC->dat_ano}}</td>
                         <td  width='10%'>{{$docC->tipoDocumento->nom_tip_doc}}</td>
                         <td  width='10%'>{{$docC->situacaoDoc->nom_status}}</td>
                         <td  width='10%'>{{$docC->unidadeDocumento->nom_uni_doc}}</td>
-                        <td width='18%'>
+                        <td width='14%'>
                             @if($docC->GAB_ATENDIMENTO_cod_atendimento!=null)  
                                 @if($docC->antedimentoRelacionado->ind_status=="A")
                                     Sim 
                                     {{--CÓDIGO PARA MOSTRAR INFORMAÇÕES SOBRE O ATENDIMENTO--}}
                                     {{--Passa o contador de parametro para a função que mostra o atendimento--}}
-                                        <img type="button" src="{{asset('Utils/seta-down.svg')}}" id="seta{{$i}}" onclick="atendimentoR({{$i}})">
+                                    <img class="seta" type="button" src="{{asset('Utils/seta-down.svg')}}" id="seta{{$i}}" onclick="atendimentoR({{$i}})">
                                     {{--O nome da div tem o cotnador relacionado, para a função atendimnetoR saber qual div é para mostrar--}} 
                                     <div id="atendimentoRela{{$i}}" hidden="true"> 
                                         <label style="font-weight: bolder">Data:</label> <label>{{date('d/m/Y', strtotime($docC->antedimentoRelacionado->dat_atendimento))}}</label>
@@ -55,22 +56,47 @@
                                 Não
                             @endif
                         </td>
-                        <td width='14%'>
+                        <td width='10%'>
                             @if($docC->dat_resposta!=null)
                                 Sim
-                                <img type="button" src="{{asset('Utils/seta-down.svg')}}" id="seta-res{{$i}}" onclick="dataRela({{$i}})">
+                                <img class="seta" type="button" src="{{asset('Utils/seta-down.svg')}}" id="seta-res{{$i}}" onclick="respRela({{$i}})">
                                 {{--O nome da div tem o cotnador relacionado, para a função atendimnetoR saber qual div é para mostrar--}} 
-                                <div id="dataRela{{$i}}" hidden="true"> 
-                                    Data: {{$docC->dat_resposta = date('d/m/yy',strtotime($docC->dat_resposta))}}
+                                <div id="respRela{{$i}}" hidden="true" style="font-weight: 540;"> 
+                                    {{$docC->dat_resposta = date('d/m/yy',strtotime($docC->dat_resposta))}}
+                                    <br>
+                                    @if($docC->path_doc_resp!=null)
+                                        <a class="link-documento" href="{{asset("storage/{$docC->path_doc_resp}")}}" download="Documento-Resposta"><img src="{{asset('utils/baixar-doc.png')}}" alt="Baixar Documento de Resposta" title="Baixar Documento de Resposta"></a>  
+                                        @if($docC->link_resposta!=null)
+                                            <a href="{{$docC->link_resposta}}" target="_blank"><img src="{{asset('utils/link-doc.png')}}" alt="Link Resposta do Documento" title="Link Resposta do Documento"></a>
+                                        @endif 
+                                    @else
+                                        @if($docC->link_resposta!=null)
+                                            <a href="{{$docC->link_resposta}}" target="_blank"><img src="{{asset('utils/link-doc.png')}}" alt="Link Resposta do Documento" title="Link Resposta do Documento"></a>
+                                        @endif    
+                                    @endif
                                 </div>
                             @else
                                 Não
                             @endif                    
                         </td>  
-                        <td  width='10%'style="text-align: center;">
+                        @if($docC->path_doc!=null)
+                            <td  width='10%' style="text-align: center;">
+                                <a class="link-documento" href="{{asset("storage/{$docC->path_doc}")}}" download="{{$docC->tipoDocumento->nom_tip_doc}}-{{$docC->nom_documento}}-{{$docC->dat_ano}}"><img src="{{asset('utils/baixar-doc.png')}}" alt="Baixar Documento" title="Baixar Documento"></a>
+                                @if($docC->lnk_documento!=null)
+                                    <a href="{{$docC->lnk_documento}}" target="_blank"><img src="{{asset('utils/link-doc.png')}}" alt="Link Documento" title="Link do Documento"></a>
+                                @endif
+                            </td>
+                        @else
+                            <td  width='10%' style="text-align: center;">
+                                @if($docC->lnk_documento!=null)
+                                    <a href="{{$docC->lnk_documento}}" target="_blank"><img src="{{asset('utils/link-doc.png')}}" alt="Link Documento" title="Link do Documento"></a>
+                                @endif 
+                            </td>
+                        @endif
+                        <td  width='8%'style="text-align: center;">
                             <a href="{{route('documento.edit',  $docC->cod_documento)}}"><img src="{{asset('utils/alterar.png')}}" alt="Alterar"></a>
                         </td>
-                        <td  width='10%' style="text-align: center;">
+                        <td  width='8%' style="text-align: center;">
                             <form action="{{route('documento.destroy', "id_exclusao")}}" method="post">
                                 @csrf
                                 @method('DELETE')
@@ -88,40 +114,13 @@
     </div> 
 
 {{--Data e atendimento relacionado--}}
-<script defer>
-    var checkAtendR = true;
-    function atendimentoR(contator){
-        //document.getElementById('seta').transform(rotate(180deg)); /* Equal to rotateZ(45deg) */
-        if(checkAtendR == true){
-            document.getElementById("seta"+contator).style.transform = "rotate("+180+"deg)";
-            document.getElementById("atendimentoRela"+contator).hidden=false;
-            checkAtendR=false;
-        }else{
-            document.getElementById("seta"+contator).style.transform = "rotate("+0+"deg)";
-            document.getElementById("atendimentoRela"+contator).hidden=true;
-            checkAtendR=true;            
-        }
-    }
-    var Checkresp = true;
-    function dataRela(contator){
-        //document.getElementById('seta').transform(rotate(180deg)); /* Equal to rotateZ(45deg) */
-        if(checkAtendR == true){
-            document.getElementById("seta-res"+contator).style.transform = "rotate("+180+"deg)";
-            document.getElementById("dataRela"+contator).hidden=false;
-            checkAtendR=false;
-        }else{
-            document.getElementById("seta-res"+contator).style.transform = "rotate("+0+"deg)";
-            document.getElementById("dataRela"+contator).hidden=true;
-            checkAtendR=true;            
-        }
-    }
+<script src="{{asset('js/mostraRelacionados.js')}}" defer></script>
+     
+{!!$documentos->appends($dataform)->links()!!} <!-- pacote coletive forms. Criar os links a serem passados da tabela -->
+<script src="{{asset('js/exclusao.js')}}"deffer></script>
+<script type="text/javascript" defer>
+    //foca na tabela quando ela é criada
+    $(document).ready(function() { 
+        window.location.href='#tb_documento';
+    });
 </script>
-       
-    {!!$documentos->appends($dataform)->links()!!} <!-- pacote coletive forms. Criar os links a serem passados da tabela -->
-    <script src="{{asset('js/exclusao.js')}}"deffer></script>
-    <script type="text/javascript" defer>
-        //foca na tabela quando ela é criada
-        $(document).ready(function() { 
-            window.location.href='#tb_documento';
-        });
-    </script>

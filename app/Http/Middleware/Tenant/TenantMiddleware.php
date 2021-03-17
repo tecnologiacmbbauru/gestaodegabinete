@@ -27,15 +27,18 @@ class TenantMiddleware
                 $manager = app(ManagerTenant::class);
                 $manager->setConnection($organizacao);
                 return $next($request);
-            }else{
+            }else{ //caso o usuario seja "system", ou seja usuario administrador
                 return $next($request);
             }
-        }else{
+        }else{ //casso ainda não tenha nenhum usuario logado
             return $next($request);
         }
     }
 
+    /*
+    Imprementação por Host, não usada
     public function getOrganizacao($host){
         return Organizacao::where('domain',$host)->first();
     }
+    */
 }

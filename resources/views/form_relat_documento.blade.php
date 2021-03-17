@@ -10,43 +10,19 @@
 <script src="{{ asset('js/jquery-ui.js') }}" ></script>
 <!--Script voltar ao topo-->
 <script src="{{asset('js/voltarTopo.js')}}" defer></script>
+
+<!--Scripts para mostrarem divs ocultas-->
+<script src="{{asset('js/mostraRelacionados.js')}}" defer></script>
 <script type="text/javascript">
-    var check = true;
+
     function mostraAtendimento(){
-        if(check==true) {
-            document.getElementById("segunda_secao").hidden=false;
-            check=false;
-        }else{
-            document.getElementById("segunda_secao").hidden=true;
-            check=true;
-        }
+        document.getElementById("segunda_secao").hidden=!document.getElementById("segunda_secao").hidden;
     }
-    var checkAtendR = true;
-    function atendimentoR(contator){
-        //document.getElementById('seta').transform(rotate(180deg)); /* Equal to rotateZ(45deg) */
-        if(checkAtendR == true){
-            document.getElementById("seta"+contator).style.transform = "rotate("+180+"deg)";
-            document.getElementById("atendimentoRela"+contator).hidden=false;
-            checkAtendR=false;
-        }else{
-            document.getElementById("seta"+contator).style.transform = "rotate("+0+"deg)";
-            document.getElementById("atendimentoRela"+contator).hidden=true;
-            checkAtendR=true;            
-        }
+
+    function mostraDataResp(){
+        document.getElementById('div_resp').hidden=!document.getElementById('div_resp').hidden;
     }
-    var Checkresp = true;
-    function dataRela(contator){
-        //document.getElementById('seta').transform(rotate(180deg)); /* Equal to rotateZ(45deg) */
-        if(checkAtendR == true){
-            document.getElementById("seta-res"+contator).style.transform = "rotate("+180+"deg)";
-            document.getElementById("dataRela"+contator).hidden=false;
-            checkAtendR=false;
-        }else{
-            document.getElementById("seta-res"+contator).style.transform = "rotate("+0+"deg)";
-            document.getElementById("dataRela"+contator).hidden=true;
-            checkAtendR=true;            
-        }
-    }
+
 </script>
 </head>
 <body>
@@ -223,6 +199,7 @@
                         <th>Unidade</th>
                         <th>Atendimento</th>
                         <th>Resposta</th>
+                        <th style="text-align: center;">Anexos</th>
                     </tr>
                 </thead>             
                 @if($documentos->isEmpty()) {{--caso pesquisa não tenha resultado, o método isEmpty ja esta na classe LengthAwarePaginator na qual retorna a pesquisa paginada--}}
@@ -234,16 +211,16 @@
                 <tbody>
                 @foreach($documentos as $documento)
                     <tr>
-                        <td  width='14%'>
+                        <td  width='12%'>
                             {{date('d/m/Y', strtotime($documento->dat_documento))}}
                         </td>
-                        <td  width='14%'>
+                        <td  width='12%'>
                             {{$documento->nom_documento}}/{{$documento->dat_ano}}              
                         </td>
-                        <td  width='14%'>
+                        <td  width='12%'>
                             {{$documento->tipoDocumento->nom_tip_doc}}             
                         </td> 
-                        <td  width='14%'>
+                        <td  width='12%'>
                             {{$documento->situacaoDoc->nom_status}}             
                         </td> 
                         <td  width='12%'>
@@ -255,7 +232,7 @@
                                     Sim 
                                     {{--CÓDIGO PARA MOSTRAR INFORMAÇÕES SOBRE O ATENDIMENTO--}}
                                     {{--Passa o contador de parametro para a função que mostra o atendimento--}}
-                                        <img type="button" src="{{asset('Utils/seta-down.svg')}}" id="seta{{$i}}" onclick="atendimentoR({{$i}})">
+                                        <img class="seta" type="button" src="{{asset('Utils/seta-down.svg')}}" id="seta{{$i}}" onclick="atendimentoR({{$i}})">
                                     {{--O nome da div tem o cotnador relacionado, para a função atendimnetoR saber qual div é para mostrar--}} 
                                     <div id="atendimentoRela{{$i}}" hidden="true"> 
                                         <label style="font-weight: bolder">Data:</label> <label>{{date('d/m/Y', strtotime($documento->antedimentoRelacionado->dat_atendimento))}}</label>
@@ -273,18 +250,42 @@
                                 Não
                             @endif
                         </td>
-                        <td width='14%'>
+                        <td width='10%'>
                             @if($documento->dat_resposta!=null)
                                 Sim
-                                <img type="button" src="{{asset('Utils/seta-down.svg')}}" id="seta-res{{$i}}" onclick="dataRela({{$i}})">
+                                <img class="seta" type="button" src="{{asset('Utils/seta-down.svg')}}" id="seta-res{{$i}}" onclick="respRela({{$i}})">
                                 {{--O nome da div tem o cotnador relacionado, para a função atendimnetoR saber qual div é para mostrar--}} 
-                                <div id="dataRela{{$i}}" hidden="true"> 
-                                    Data: {{$documento->dat_resposta = date('d/m/yy',strtotime($documento->dat_resposta))}}
+                                <div id="respRela{{$i}}" hidden="true" style="font-weight: 540;"> 
+                                    {{$documento->dat_resposta = date('d/m/yy',strtotime($documento->dat_resposta))}}
+                                    @if($documento->path_doc_resp!=null)
+                                        <a class="link-documento" href="{{asset("storage/{$documento->path_doc_resp}")}}" download="Documento-Resposta"><img src="{{asset('utils/baixar-doc.png')}}" alt="Baixar Documento de Resposta" title="Baixar Documento de Resposta"></a>  
+                                        @if($documento->link_resposta!=null)
+                                            <a href="{{$documento->link_resposta}}" target="_blank"><img src="{{asset('utils/link-doc.png')}}" alt="Link Resposta do Documento" title="Link Resposta do Documento"></a>
+                                        @endif 
+                                    @else
+                                        @if($documento->link_resposta!=null)
+                                            <a href="{{$documento->link_resposta}}" target="_blank"><img src="{{asset('utils/link-doc.png')}}" alt="Link Resposta do Documento" title="Link Resposta do Documento"></a>
+                                        @endif    
+                                    @endif
                                 </div>
                             @else
                                 Não
                             @endif                    
                         </td>  
+                        @if($documento->path_doc!=null)
+                            <td  width='10%' style="text-align: center;">
+                                <a class="link-documento" href="{{asset("storage/{$documento->path_doc}")}}" download="{{$documento->tipoDocumento->nom_tip_doc}}-{{$documento->nom_documento}}-{{$documento->dat_ano}}"><img src="{{asset('utils/baixar-doc.png')}}" alt="Baixar Documento" title="Baixar Documento"></a>
+                                @if($documento->lnk_documento!=null)
+                                    <a href="{{$documento->lnk_documento}}" target="_blank"><img src="{{asset('utils/link-doc.png')}}" alt="Link Documento" title="Link do Documento"></a>
+                                @endif
+                            </td>
+                        @else
+                            <td  width='10%' style="text-align: center;">
+                                @if($documento->lnk_documento!=null)
+                                    <a href="{{$documento->lnk_documento}}" target="_blank"><img src="{{asset('utils/link-doc.png')}}" alt="Link Documento" title="Link do Documento"></a>
+                                @endif 
+                            </td>
+                        @endif 
                     </tr>
                     @php
                         $i++;
@@ -304,13 +305,3 @@
     </div>
 </body>
 @endsection
-<script type="text/javascript" defer>
-    function mostraDataResp(){
-        var aux = document.getElementById('div_resp').hidden;
-        if(aux == true){
-            document.getElementById('div_resp').hidden=false;
-        }else{
-            document.getElementById('div_resp').hidden=true;
-        }
-    }
-</script>

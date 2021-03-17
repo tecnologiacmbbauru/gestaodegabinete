@@ -50,13 +50,28 @@ class OrganizacaoController extends Controller
             if(isset($dataform['alterar-db'])===false){
                 $dataform['bd_password'] = env('DB_PASSWORD');
             }
+
             $organizacao = $this->organizacao->create($dataform);
 
-            if (isset($dataform['create_db']))
-                event(new CompanyCreated($organizacao));//evento para criação do banco de dados
-            else
-                event(new DatabaseCreated($organizacao));
-
+            if (isset($dataform['create_db'])){
+                try{
+                    event(new CompanyCreated($organizacao));//evento para criação do banco de dado
+                } catch (\Exception $e) { //caso tenha um erro ao criar o banco, deleta o registro de organização que foi criado
+                    $organizacao->delete();
+                    return redirect()
+                        ->route('organizacao.index')
+                        ->with('error', 'Falha ao criar base dedados. Verifique se a base de dados já existe.');
+                }
+            }else{
+                try{
+                    event(new DatabaseCreated($organizacao));
+                } catch (\Exception $e) {
+                    $organizacao->delete();
+                    return redirect()
+                        ->route('organizacao.index')
+                        ->with('error', 'Falha ao criar base dedados. Verifique se a base de dados já existe.');
+                }
+            }
             return redirect()
                         ->route('organizacao.show',$organizacao->id)
                         ->with('success', 'Cadastro de gabinete realizado com sucesso.');

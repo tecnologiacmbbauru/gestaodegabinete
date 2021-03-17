@@ -92,10 +92,11 @@
                 <a data-toggle="modal" data-target="#usuarioPadrao" style="text-decoration:underline; color:#37474f;">Deseja criar usuarios padrão?</a>
                 @include('Tenants/modals/confirma_usuario_padrao')
                 
-                <form class="form" method="post" >
+
+                <form class="form" method="post" action="{{route('usuario.cadastro')}}" style="margin-top:10px">
                     @csrf
-                    <br>
-                    <button class="btn btn-primary">Cadastrar novo usario</button>
+                    <a class="btn btn-add col-md-6" data-toggle="modal" data-target="#cadUsuario">Cadastrar novo usario</a>
+                    @include('Tenants/modals/cadastro_usuario')
                 </form>
 
             @else
