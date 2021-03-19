@@ -23,13 +23,13 @@
 <script src="./fullcalendar/moment/moment-with-locales.min.js"></script>
 <script src="./fullcalendar/moment/moment-timezone-with-data.min.js"></script>
 
-@if($chaveAgenda!=null)
+@if(!$chaveAgendas->isEmpty())
   <script type='text/javascript'>
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
-        
+
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          googleCalendarApiKey: '{{$chaveAgenda->api_key}}', //chave cadastrada google agenda
+          googleCalendarApiKey: '{{$api_key}}', //chave cadastrada google agenda
             headerToolbar: {
               center: '' // buttons for switching between views
             },
@@ -46,11 +46,14 @@
             },
             eventSources: [ //eventos que vão ser mostrado na agenda
               {
-                  googleCalendarId: '{{$chaveAgenda->calendar_id}}',  //id cadastrado do google agenda
+                {{--Coloca para mostrar evento de todos calendar_id--}}
+                @foreach ($chaveAgendas as $chaveAgenda)
+                    googleCalendarId: '{{$chaveAgenda->calendar_id}}',
+                @endforeach
                   className: 'gcal-event'
               }
             ],
-      //function resize layout responsive 
+      //function resize layout responsive
       windowResize: function(view) {
           if ($(window).width() <= 767){
               calendar.changeView('listWeek');
@@ -59,7 +62,7 @@
                   center: 'title',
                   right: 'next'
                 });
-          } 
+          }
       },
 
       eventClick: function (info) {
@@ -73,7 +76,7 @@
         var duration = moment.duration(fim.diff(ini));
         var texto;
         if (ini.isValid() && !fim.isValid()) { //verificar se data inicial é válida e final não é válida  - mostrar apenas data e horario iniciais
-            //OBS: Se as datas e horários inicial e final foram iguais no Google Agenda, 
+            //OBS: Se as datas e horários inicial e final foram iguais no Google Agenda,
             //o horário final não é considerado/exportado pelo Google Agenda e o FullCalendar não recebe uma data válida
             texto = ini.format("dddd, D") + " de " + ini.format("MMMM") + " de " + ini.format("YYYY") + ", a partir da(s) " + ini.format("HH:mm") + " h";
         } else if (moment(ini).isSame(fim, 'day')) { //verificar se data inicial e final são as mesmas sem considerar horário
@@ -129,7 +132,7 @@
             document.getElementById("titulodescricao").style.display = "none";
             document.getElementById("descricao").style.display = "none";
         } else {//descrição com valor
-            //console.log(info.event.extendedProps.description); 
+            //console.log(info.event.extendedProps.description);
             document.getElementById("titulodescricao").style.display = "";
             document.getElementById("descricao").style.display = "";
             $('#visualizar #descricao').html(info.event.extendedProps.description);
@@ -152,7 +155,7 @@
             mostraAniversariante=false;
         }else{
             document.getElementById("dadosAniver"+contator).hidden=true;
-            mostraAniversariante=true;            
+            mostraAniversariante=true;
         }
     }
 </script>
@@ -160,7 +163,7 @@
 <div class="form-group" style="margin:0px; margin-bottom:5px;">
   <h2 class="titulo" style="text-align:center;">{{$vereador->cargoPolitico->nom_car_pol}}<a href="{{route('agentePolitico.index')}}" target="" style="color:black !important;"> {{$vereador->nom_vereador}}</a></h2>
   <h4 style="text-align:center;">{{$vereador->nom_orgao}}</h4>
-</div>    
+</div>
 
 <div class="container">
 <div class="row">
@@ -171,21 +174,21 @@
       @elseif($vereador->img_foto === null)
         <img src="{{url("utils/sem-imagem.jpg")}}" alt="Imagem de Vereador" width="100%;">
       @endif
-    </div>   
+    </div>
 
-    <div  id='calendar' class="col-lg-6" style="height:100% widht:100% margin:0px;"> 
-        @if($chaveAgenda==null)
+    <div  id='calendar' class="col-lg-6" style="height:100% widht:100% margin:0px;">
+        @if($chaveAgendas->isEmpty())
           <div class="card">
             <div class="card-header">
                 <b><label class="titulo-card">Agenda</label></b>
             </div>
-            <ul class="list-group list-group-flush" style="text-align:center;">      
+            <ul class="list-group list-group-flush" style="text-align:center;">
               <p>A sua Agenda não está sincronizada.
               <br>
               Cadastre as <a href="{{route('chaveAgenda.index')}}" class="link-cad"><u>chaves do Google</u></a> para sincronizar sua Agenda.
               </p>
             </u>
-          </div>     
+          </div>
         @endif
     </div>
     <!--Modal para mostrar eventos no click-->
@@ -203,7 +206,7 @@
               Cadastre os dados de mais <a href="{{route('pessoa.index')}}" class="link-cad"><u>Pessoas</u></a>, incluindo a Data de Nascimento.
             </p>
           @else
-            @php 
+            @php
                 $data = new DateTime('now');
                 $umDia = new DateInterval('P1D'); // Intervalo de 1 dia
                 $j=1; //contador para saber qual o aniversariante relacionado
@@ -225,16 +228,16 @@
                           <br>
                           <label style="font-weight: bolder">Rede Social:</label>
                           <br>
-                          <label>{{$aniversariante->nom_rede_social}}</label> 
+                          <label>{{$aniversariante->nom_rede_social}}</label>
                           <br>
                           <a href="{{route('pessoa.edit',  $aniversariante->cod_pessoa)}}" type="submit">ir para o cadastro</a>
-                    </div>-->    
+                    </div>-->
                     <a type="button" class="link-aniversariante" onclick="populaModal({{$aniversariante}})" data-toggle="modal" data-target="#ModalAniversariante" data-aniversariante="{{$aniversariante}}">{{$aniversariante->nom_nome}}</a>
                   </li>
                   @php $j++; @endphp
                 @endif
               @endforeach
-              @php 
+              @php
                 $data->add($umDia); // Altera o valor de $hoje
               @endphp
             @endfor
@@ -242,7 +245,7 @@
         </ul>
       </div>
     </div>
-    
+
   </div>
 </div>
 @endsection
@@ -250,9 +253,9 @@
 {{--Preencher a modal de aniversariante--}}
 <script>
   function populaModal(aniversariante){
-    document.getElementById("nome").innerHTML = aniversariante.nom_nome;  
-    document.getElementById("apelido").innerHTML = " - '"+aniversariante.nom_apelido+"'";  
-    document.getElementById("rua").innerHTML = aniversariante.nom_endereco; 
+    document.getElementById("nome").innerHTML = aniversariante.nom_nome;
+    document.getElementById("apelido").innerHTML = " - '"+aniversariante.nom_apelido+"'";
+    document.getElementById("rua").innerHTML = aniversariante.nom_endereco;
     if(aniversariante.nom_numero!=null)
       document.getElementById("numero").innerHTML = "-"+aniversariante.nom_numero;
     if(aniversariante.nom_bairro!=null)
@@ -263,10 +266,10 @@
       document.getElementById("cidade").innerHTML = ", "+aniversariante.estado;
     if(aniversariante.num_ddd_tel!=null)
       document.getElementById("ddd_tel").innerHTML = "("+aniversariante.num_ddd_tel+")";
-    document.getElementById("telefone").innerHTML = aniversariante.num_tel; 
+    document.getElementById("telefone").innerHTML = aniversariante.num_tel;
     if(aniversariante.num_ddd_cel!=null)
       document.getElementById("ddd_cel").innerHTML = "("+aniversariante.num_ddd_cel+")";
-    document.getElementById("celular").innerHTML = aniversariante.num_cel ; 
+    document.getElementById("celular").innerHTML = aniversariante.num_cel ;
     document.getElementById("email").innerHTML = aniversariante.nom_email;
     document.getElementById("rede_social").href = aniversariante.nom_rede_social;
     document.getElementById("rede_social").innerHTML = aniversariante.nom_rede_social;

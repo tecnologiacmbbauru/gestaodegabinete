@@ -13,14 +13,14 @@ class tenantUsuarioController extends Controller
     private $ususario;
 
     public function __construct(User $ususario){
-        $this->middleware('auth'); 
+        $this->middleware('auth');
         $this->ususario = $ususario;
     }
 
     public function cadastrarUsuario(Request $request){
         $data = $request->all();
         $id = $data['id'];
-        
+
         try{
             User::create([
                 'name'      => $data['name'],
@@ -96,11 +96,11 @@ class tenantUsuarioController extends Controller
         $usuario = User::findOrFail($request->alter_id);
 
         $usuario->password = Hash::make($usuario->user_name);
-        
+
         $usuario->save();
 
         $organizacao = Organizacao::where('domain',$usuario->domain)->get();
-        
+
         if($organizacao!=null){
             $id = $organizacao[0]->id;
             return redirect()
@@ -123,7 +123,7 @@ class tenantUsuarioController extends Controller
             $usuario->delete();
 
             $organizacao = Organizacao::where('domain',$usuario->domain)->get();
-            
+
 
             if($organizacao!=null){
                 $id = $organizacao[0]->id;
@@ -136,7 +136,7 @@ class tenantUsuarioController extends Controller
         } catch (\Exception $e){
             return redirect()
                 ->route('organizacao.index')
-                ->with('error', 'Usuário não pode ser excluído.'); 
+                ->with('error', 'Usuário não pode ser excluído.');
         }
     }
 

@@ -11,7 +11,7 @@ class SituacaoDocController extends Controller
 
 
     public function __construct(situacaoDoc $sitDoc){
-        $this->middleware('auth'); 
+        $this->middleware('auth');
         $this->sitDoc = $sitDoc;
     }
 
@@ -52,9 +52,9 @@ class SituacaoDocController extends Controller
         if($dataform['ind_status'] == NULL){
             $dataform['ind_status'] == 'A';
         }
-      
+
         $insert = $this->sitDoc->create($dataform);
-        
+
         // Verifica se inseriu com sucesso
         // Redireciona para a listagem das categorias
         // Passa uma session flash success (sessão temporária)
@@ -62,7 +62,7 @@ class SituacaoDocController extends Controller
             return redirect()
                         ->route('situacaoDoc.index')
                         ->with('success', 'Situação do Documento inserida com sucesso!');
-    
+
         // Redireciona de volta com uma mensagem de erro
         return redirect()
                     ->back()
@@ -87,12 +87,12 @@ class SituacaoDocController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {;
+    {
            $alteracao = true;
            $situacaoDoc = $this->sitDoc->paginate(20);
            $situacaoDoc->withPath(config('app.url')."/situacaoDoc");
            $sitDoc = $this->sitDoc->where('cod_status',$id)->first();
-   
+
            return view('form_situacaoDoc',compact('alteracao','sitDoc','situacaoDoc'));
     }
 
@@ -106,7 +106,7 @@ class SituacaoDocController extends Controller
     public function update($id , Request $request)
     {
         $sitDoc = situacaoDoc::findOrFail($id);
-        
+
         $sitDoc->update($request->all());
        // dd($request->all());
 
@@ -129,7 +129,7 @@ class SituacaoDocController extends Controller
             return redirect()
                 ->route('situacaoDoc.index')
                 ->with('success', 'Situação do Documento excluída com sucesso!');
-        } catch (\Exception $e){ 
+        } catch (\Exception $e){
             if($e->getCode()=="23000"){
                 return redirect()
                     ->route('situacaoDoc.index')
@@ -138,7 +138,7 @@ class SituacaoDocController extends Controller
                 return redirect()
                     ->route('situacaoDoc.index')
                     ->with('error', 'Situação do Documento não pode ser excluída.');
-            }    
+            }
         }
     }
 }

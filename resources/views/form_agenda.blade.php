@@ -12,7 +12,7 @@
     body{
       margin:0px;
     }
-    
+
 </style>
 
 
@@ -29,7 +29,7 @@
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
-      googleCalendarApiKey: '{{$chaveAgenda->api_key}}',
+      googleCalendarApiKey: '{{$api_key}}',
         headerToolbar: {
         left: 'prev,next today',
         center: 'title',
@@ -39,14 +39,17 @@
       timeZone: 'America/Sao_Paulo',
       selectable: true,
       initialView: 'dayGridMonth',
-      
+
       eventSources: [
         {
-            googleCalendarId: '{{$chaveAgenda->calendar_id}}',
+            {{--Coloca para mostrar evento de todos calendar_id--}}
+            @foreach ($chaveAgendas as $chaveAgenda)
+                googleCalendarId: '{{$chaveAgenda->calendar_id}}',
+            @endforeach
             className: 'gcal-event'
         }
       ],
-      //function resize layout responsive 
+      //function resize layout responsive
       windowResize: function(view) {
           if ($(window).width() <= 767){
               calendar.changeView('listMonth');
@@ -57,9 +60,9 @@
                 });
           } else {
               calendar.changeView('dayGridMonth');
-              calendar.setOption('headerToolbar', { 
+              calendar.setOption('headerToolbar', {
                   left: 'prev,today,next',
-                  center: 'title', 
+                  center: 'title',
                   right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
               });
           }
@@ -76,7 +79,7 @@
         var duration = moment.duration(fim.diff(ini));
         var texto;
         if (ini.isValid() && !fim.isValid()) { //verificar se data inicial é válida e final não é válida  - mostrar apenas data e horario iniciais
-            //OBS: Se as datas e horários inicial e final foram iguais no Google Agenda, 
+            //OBS: Se as datas e horários inicial e final foram iguais no Google Agenda,
             //o horário final não é considerado/exportado pelo Google Agenda e o FullCalendar não recebe uma data válida
             texto = ini.format("dddd, D") + " de " + ini.format("MMMM") + " de " + ini.format("YYYY") + ", a partir da(s) " + ini.format("HH:mm") + " h";
         } else if (moment(ini).isSame(fim, 'day')) { //verificar se data inicial e final são as mesmas sem considerar horário
@@ -132,7 +135,7 @@
             document.getElementById("titulodescricao").style.display = "none";
             document.getElementById("descricao").style.display = "none";
         } else {//descrição com valor
-            //console.log(info.event.extendedProps.description); 
+            //console.log(info.event.extendedProps.description);
             document.getElementById("titulodescricao").style.display = "";
             document.getElementById("descricao").style.display = "";
             $('#visualizar #descricao').html(info.event.extendedProps.description);

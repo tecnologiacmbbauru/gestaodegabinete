@@ -13,19 +13,19 @@
 .btn{
     background-color:#2e7d32 !important;
     border-color: #005005 !important;
-    border: none; 
+    border: none;
 }
 
 .btn-primary{
     background-color:#2e7d32 !important;
     border-color: #005005 !important;
-    border: none; 
+    border: none;
 }
 
 .btn-secondary{
     background-color:#60ad5e !important;
     border-color: #005005 !important;
-    border: none; 
+    border: none;
 }
 
 .card-header{
@@ -129,11 +129,11 @@
 }
 
 .fc-event-title {
-    color:black !important; 
+    color:black !important;
 }
 
 .fc-event-time{
-    color:black !important; 
+    color:black !important;
 }
 
 .fc-daygrid-event-dot{
@@ -146,11 +146,11 @@
 }
 
 .fc-list-day-text{
-    color:#2e7d32 !important; 
+    color:#2e7d32 !important;
 }
 
 .fc-list-day-side-text{
-    color:#2e7d32 !important; 
+    color:#2e7d32 !important;
 }
 
 .fc-list-event-dot{

@@ -15,7 +15,9 @@ class CreateGabCalendarKeyTable extends Migration {
 	{
 		Schema::create('gab_calendar_key', function(Blueprint $table)
 		{
-			$table->string('api_key')->primary();
+			$table->id();
+			$table->string('name');
+			$table->string('api_key');
 			$table->string('calendar_id')->nullable();
 			$table->timestamps();
 		});

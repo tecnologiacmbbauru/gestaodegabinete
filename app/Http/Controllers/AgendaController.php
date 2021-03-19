@@ -7,12 +7,15 @@ use Illuminate\Http\Request;
 class AgendaController extends Controller
 {
     public function index(){
-        $chaveAgenda = chaveAgenda::get()->first();
-        if($chaveAgenda==null){
+        $chaveAgendas = chaveAgenda::all();
+
+        $api_key = chaveAgenda::first()->api_key;
+
+        if($chaveAgendas->isEmpty()){
             return view('form_agenda_vazio');
         }else{
-            return view('form_agenda',compact('chaveAgenda'));
+            return view('form_agenda',compact('chaveAgendas','api_key'));
         }
-    }    
+    }
 
 }

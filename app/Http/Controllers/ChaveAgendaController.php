@@ -11,23 +11,18 @@ class ChaveAgendaController extends Controller
 
 
     public function __construct(chaveAgenda $chaveAge){
-        $this->middleware('auth'); 
+        $this->middleware('auth');
         $this->chaveAge = $chaveAge;
     }
 
 
     public function index()
     {
-        $chaveAgenda = chaveAgenda::get()->first();
-        $alteracao=true;
+        $Chaves = $this->chaveAge->paginate(20);
+        $ChavePrimaria = $this->chaveAge->first();
+        $alteracao=false;
+        return view('form_chave_agenda',compact('Chaves','alteracao','ChavePrimaria'));
 
-        if($chaveAgenda==null){
-            $alteracao=false;
-            return view('form_chave_agenda',compact('alteracao'));
-        }else{
-            return view('form_chave_agenda',compact('alteracao','chaveAgenda'));
-        }
-    
     }
 
 
@@ -40,7 +35,7 @@ class ChaveAgendaController extends Controller
     public function store(Request $request)
     {
         $dataform = $request->all(); //variavel recebe todos dados do formulario
-      
+
         try{
             $insert = $this->chaveAge->create($dataform);
             // Verifica se inseriu com sucesso
@@ -64,15 +59,20 @@ class ChaveAgendaController extends Controller
     }
 
 
-    public function edit(chaveAgenda $chaveAgenda)
+    public function edit($id)
     {
-        //
+        $alteracao = true;
+        $Chaves = $this->chaveAge->paginate(20);
+        $Chaves->withPath(config('app.url')."/situacaoDoc");
+        $chaveAgenda = $this->chaveAge->where('id',$id)->first();
+
+        return view('form_chave_agenda',compact('alteracao','Chaves','chaveAgenda'));
     }
 
 
-    public function update(Request $request, chaveAgenda $chaveAgenda)
+    public function update(Request $request,$id)
     {
-        $chaveAgenda = chaveAgenda::get()->first();
+        $chaveAgenda = chaveAgenda::findOrFail($id);
 
         try{
             $chaveAgenda->update($request->all());
@@ -88,8 +88,19 @@ class ChaveAgendaController extends Controller
     }
 
 
-    public function destroy(chaveAgenda $chaveAgenda)
+    public function destroy(Request $request)
     {
-        //
+        $ChaveAgenda = chaveAgenda::findOrFail($request->id_exclusao); //findOr Fail retorna erro 404 se não achar nada.
+        try {
+            $ChaveAgenda->delete();
+            return redirect()
+                    ->route('chaveAgenda.index')
+                    ->with('success', 'Chaves de agenda excluída com sucesso!');
+        } catch (\Exception $e){
+                return redirect()
+                    ->route('chaveAgenda.index')
+                    ->with('error', 'Chaves de agenda não pode ser excluído.');
+        }
+
     }
 }
