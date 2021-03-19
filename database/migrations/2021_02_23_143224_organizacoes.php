@@ -22,7 +22,7 @@ class Organizacoes extends Migration
             $table->string('bd_port');
             $table->string('bd_hostname');
             $table->string('bd_username');
-            $table->string('bd_password');
+            $table->string('bd_password')->nullable();
             $table->timestamps();
         });
     }
