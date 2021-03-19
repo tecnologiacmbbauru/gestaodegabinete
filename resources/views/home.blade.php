@@ -254,7 +254,8 @@
 <script>
   function populaModal(aniversariante){
     document.getElementById("nome").innerHTML = aniversariante.nom_nome;
-    document.getElementById("apelido").innerHTML = " - '"+aniversariante.nom_apelido+"'";
+    if(aniversariante.nom_apelido!=null)
+        document.getElementById("apelido").innerHTML = " - '"+aniversariante.nom_apelido+"'";
     document.getElementById("rua").innerHTML = aniversariante.nom_endereco;
     if(aniversariante.nom_numero!=null)
       document.getElementById("numero").innerHTML = "-"+aniversariante.nom_numero;

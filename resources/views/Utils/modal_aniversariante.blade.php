@@ -26,9 +26,8 @@
             <b>Texto de Observação: </b><label id="txt_obs"></label>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" data-dismiss="modal">Fechar</button> 
+          <button type="submit" class="btn btn-primary" data-dismiss="modal">Fechar</button>
         </div>
       </div>
     </div>
   </div>
-  

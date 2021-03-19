@@ -18,19 +18,19 @@ terceria:62727b
 .btn{
     background-color:#37474f !important;
     border-color: #102027 !important;
-    border: none; 
+    border: none;
 }
 
 .btn-primary{
     background-color:#37474f !important;
     border-color: #102027 !important;
-    border: none; 
+    border: none;
 }
 
 .btn-secondary{
     background-color:#62727b !important;
     border-color: #102027 !important;
-    border: none; 
+    border: none;
 }
 
 .card-header{
@@ -61,10 +61,20 @@ terceria:62727b
 }
 
 .sobre{
-    border-color: #37474f;
-    color: #ffffff;
-    background-color: #62727b;
+    border-color: #90a4ae;
+    color: black;
+    background-color: #90a4ae;
+    padding: 10px;
+	border: 1px solid #90a4ae;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	font-size: 17px;
 }
+.sobre a{
+    color: black !important;
+    text-decoration: underline;
+}
+
 .link-cad{
     color:#4e342e;
 }
@@ -130,11 +140,11 @@ terceria:62727b
 }
 
 .fc-event-title {
-    color:black !important; 
+    color:black !important;
 }
 
 .fc-event-time{
-    color:black !important; 
+    color:black !important;
 }
 
 .fc-daygrid-event-dot{
@@ -147,11 +157,11 @@ terceria:62727b
 }
 
 .fc-list-day-text{
-    color:#37474f !important; 
+    color:#37474f !important;
 }
 
 .fc-list-day-side-text{
-    color:#37474f !important; 
+    color:#37474f !important;
 }
 
 .fc-list-event-dot{

@@ -31,7 +31,11 @@ class HomeController extends Controller
 
         $chaveAgendas = chaveAgenda::all();
 
-        $api_key = chaveAgenda::first()->api_key;
+        $api_key = chaveAgenda::first();
+
+        if($api_key!=null){
+            $api_key = $api_key->api_key;
+        }
 
         //chama função birthdayBetween, passando como parâmetros DATA ATUAL e DATA ATUAL + 4 DIAS
         $aniversariantes = Pessoa::birthdayBetween(
