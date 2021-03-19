@@ -27,7 +27,7 @@ class tenantUsuarioController extends Controller
                 'user_name' => $data['user_name'],
                 'email'     => $data['email'],
                 'domain'    => $data['domain'],
-                'corSystem' => 'indingo',
+                'corSystem' => 'indigo',
                 'ajuda_inicio' => true,
                 'ajd_pessoa' => true,
                 'ajd_documento' => true,
