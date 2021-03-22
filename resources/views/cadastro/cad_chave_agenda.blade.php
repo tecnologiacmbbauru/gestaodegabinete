@@ -8,21 +8,12 @@
                     <input id="name" type="text" class="form-control" name="name" value="{{old('api_key')}}" maxlength="255" >
                 </div>
             </div>
-            @if (isset($ChavePrimaria))
-                <div class="form-row">
-                    <div class="form-group col-md-8">
-                        <label class="col-form-label negrito">Google Calendar API</label>
-                        <input id="api_key" type="text" class="form-control" name="api_key" value="{{$ChavePrimaria->api_key}}" maxlength="255" readonly>
-                    </div>
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <label class="col-form-label negrito">Google Calendar API</label>
+                    <input id="api_key" type="text" class="form-control" name="api_key" value="{{old('api_key')}}" maxlength="255" >
                 </div>
-            @else
-                <div class="form-row">
-                    <div class="form-group col-md-8">
-                        <label class="col-form-label negrito">Google Calendar API</label>
-                        <input id="api_key" type="text" class="form-control" name="api_key" value="{{old('api_key')}}" maxlength="255" >
-                    </div>
-                </div>
-            @endif
+            </div>
             <div class="form-row">
                 <div class="form-group col-md-8">
                     <label class="col-form-label negrito">Google Calendar ID</label>
@@ -35,6 +26,9 @@
             <button id="limpar" type="reset" class="btn btn-primary">Limpar</button>
         </div>
 </form>
-<p style="font-size: 13px; margin-top:10px;">
+<p style="font-size: 14px; margin-top:10px;margin-bottom:0px;">
     Para sincronizar seu "Google Agenda" com o software "Gestão de Gabinete", para isto siga os passos disponiveis <a class="a-footer" href="https://fullcalendar.io/docs/google-calendar" target="_blank">aqui</a>.
+</p>
+<p style="font-size: 14px;margin-bottom:5px;">
+    É possível adicionar vários calendários(calendar id), porem todos devem pertencer a uma <b>única agenda</b>(agenda id).
 </p>

@@ -26,3 +26,6 @@ Route::get('/tenants', 'Tenant\TenantController@index')->name('tenant.index');
 
 Route::get('/estatisticas', 'Tenant\EstatisticasController@index')->name('tenant.estatisticas.index');
 Route::post('/estatisticas/pesquisaEstatistica','Tenant\EstatisticasController@pesquisaEstatisticas')->name('estatisticas.pesquisa');
+
+
+Route::get('/backup', 'Tenant\BackupController@index')->name('tenant.backup.index');
