@@ -17,7 +17,7 @@ class TenantController extends Controller
 {
     public function index(){
         $totalReg = Organizacao::count(); 
-        $totalUser = User::count();
+        $totalUser = User::count()-1;
 
         return view("Tenants/home",compact('totalReg','totalUser'));
     }

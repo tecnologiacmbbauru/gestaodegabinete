@@ -27,7 +27,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="{{ route('organizacao.index') }}">{{ __('Organizações') }}</a>
+                    <a class="nav-link" href="{{ route('organizacao.index') }}">{{ __('Gabinetes') }}</a>
                 </li>
             </ul>
 

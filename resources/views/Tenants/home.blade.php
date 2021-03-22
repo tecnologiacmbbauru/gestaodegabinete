@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12" style="text-align: center;">
-            <h1>Recursos de Tenats</h1>
+            <h1>Recursos de Tenants</h1>
         </div>
         <p>
             <img src="{{asset('utils/company.png')}}" alt="Imagem de Empresa com pessoas"  title="Recursos Tenants">
@@ -13,7 +13,7 @@
     <div class="row justify-content-center">
         <div class="col-md-4" style="margin-bottom:10px">
             <div class="card-system">
-                <p class="title">Total de organizações</p>
+                <p class="title">Total de Gabinetes</p>
                 <br>
                 <p class="number">{{$totalReg}}</p>
             </div>

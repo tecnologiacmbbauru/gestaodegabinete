@@ -45,7 +45,10 @@ class OrganizacaoController extends Controller
 
     public function store(Request $request)
     {
+        ini_set('max_execution_time', 300); //Altera tempo maximo de requisição 5 minutes
+
         $dataform = $request->all();
+
         try{
             if(isset($dataform['alterar-db'])===false){
                 $dataform['bd_password'] = env('DB_PASSWORD');
@@ -79,12 +82,12 @@ class OrganizacaoController extends Controller
             if($e->getCode()=="23000"){
                 return redirect()
                 ->route('organizacao.index')
-                    ->with('error', 'Falha ao cadastrar. O campo dominio deve ser unico em cada organização.');
+                    ->with('error', 'Falha ao cadastrar. O campo dominio deve ser unico em cada gabinete.');
             }
             if($e->getCode()=="1049"){
                 return redirect()
                 ->route('organizacao.index')
-                    ->with('error', 'A database selecionada não existe no banco de dados. Crie a database no banco de dados ou selecione para criar ao fazer o cadastro de uma nova organização.');
+                    ->with('error', 'A database selecionada não existe no banco de dados. Crie a database no banco de dados ou selecione para criar ao fazer o cadastro de um novo gabinete.');
             }
             else{
                 return redirect()

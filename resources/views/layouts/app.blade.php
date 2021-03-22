@@ -92,73 +92,74 @@
             @endguest
         </div>
         </nav>
+            @auth 
+            <nav class="navbar navbar-expand-md navbar-light systemColor nav-segundaria">
+                <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#segundaNav" aria-controls="segundaNav" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="segundaNav"> 
+                    <ul class="navbar-nav mr-auto">
+                        <li class = "nav-item">
+                            <a class="nav-link negrito" href="{{ route('agenda') }}">{{ __('Agenda') }}</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a class="nav-link negrito" href="{{ route('pessoa.index') }}">{{ __('Pessoa') }}</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a class="nav-link negrito" href="{{ route('atendimento.index') }}">{{ __('Atendimento') }}</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a class="nav-link negrito" href="{{ route('documento.index') }}">{{ __('Documento') }}</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle negrito" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Cadastros
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item negrito" href="{{ route('agentePolitico.index') }}">{{ __('Agente Político') }}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item negrito" href="{{ route('cargoPolitico.index') }}">{{ __('Cargo Político') }}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item negrito" href="{{ route('tipoAtendimento.index') }}">{{ __('Tipo de Atendimento') }}</a>
+                            <a class="dropdown-item negrito" href="{{ route('statusAtendimento.index') }}">{{ __('Situação do Atendimento') }}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item negrito" href="{{ route('tipoDocumento.index') }}">{{ __('Tipo de Documento') }}</a>
+                            <a class="dropdown-item negrito" href="{{ route('situacaoDoc.index') }}">{{ __('Situação do Documento') }}</a>
+                            <a class="dropdown-item negrito" href="{{ route('unidadeDocumento.index') }}">{{ __('Unidade Administrativa (Documento)') }}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item negrito" href="{{ route('chaveAgenda.index') }}">{{ __('Chaves - Google Agenda') }}</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle negrito" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Relatórios
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item negrito" href="{{ route('relatorio.retornaAtendimento') }}">{{ __('Atendimentos') }}</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item negrito" href="{{ route('relatorio.retornaDocumento') }}">{{__('Documentos')}}</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item negrito" href="{{route('relatorio.retornaEtiqueta')}}" }}>Etiquetas de Aniversariantes</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle negrito" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Ajuda
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item negrito" href="{{ route('sobre') }}" }}>Sobre o Sistema</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item negrito" href="{{ route('manual') }}" }}>Manual do Usuário</a>
+                            </div>
+                        </li>  
+                    </ul>
+                </div>
+                </div>
+            </nav>
+            @endauth
     </div>
-    @auth 
-        <nav class="navbar navbar-expand-md navbar-light systemColor nav-segundaria">
-            <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#segundaNav" aria-controls="segundaNav" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="segundaNav"> 
-                <ul class="navbar-nav mr-auto">
-                    <li class = "nav-item">
-                        <a class="nav-link negrito" href="{{ route('agenda') }}">{{ __('Agenda') }}</a>
-                    </li>
-                    <li class = "nav-item">
-                        <a class="nav-link negrito" href="{{ route('pessoa.index') }}">{{ __('Pessoa') }}</a>
-                    </li>
-                    <li class = "nav-item">
-                        <a class="nav-link negrito" href="{{ route('atendimento.index') }}">{{ __('Atendimento') }}</a>
-                    </li>
-                    <li class = "nav-item">
-                        <a class="nav-link negrito" href="{{ route('documento.index') }}">{{ __('Documento') }}</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle negrito" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Cadastros
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item negrito" href="{{ route('agentePolitico.index') }}">{{ __('Agente Político') }}</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item negrito" href="{{ route('cargoPolitico.index') }}">{{ __('Cargo Político') }}</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item negrito" href="{{ route('tipoAtendimento.index') }}">{{ __('Tipo de Atendimento') }}</a>
-                        <a class="dropdown-item negrito" href="{{ route('statusAtendimento.index') }}">{{ __('Situação do Atendimento') }}</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item negrito" href="{{ route('tipoDocumento.index') }}">{{ __('Tipo de Documento') }}</a>
-                        <a class="dropdown-item negrito" href="{{ route('situacaoDoc.index') }}">{{ __('Situação do Documento') }}</a>
-                        <a class="dropdown-item negrito" href="{{ route('unidadeDocumento.index') }}">{{ __('Unidade Administrativa (Documento)') }}</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item negrito" href="{{ route('chaveAgenda.index') }}">{{ __('Chaves - Google Agenda') }}</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle negrito" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Relatórios
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item negrito" href="{{ route('relatorio.retornaAtendimento') }}">{{ __('Atendimentos') }}</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item negrito" href="{{ route('relatorio.retornaDocumento') }}">{{__('Documentos')}}</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item negrito" href="{{route('relatorio.retornaEtiqueta')}}" }}>Etiquetas de Aniversariantes</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle negrito" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Ajuda
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item negrito" href="{{ route('sobre') }}" }}>Sobre o Sistema</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item negrito" href="{{ route('manual') }}" }}>Manual do Usuário</a>
-                        </div>
-                    </li>  
-                </ul>
-            </div>
-            </div>
-        </nav>
-    @endauth
+
 
     <main class="py-4">
         @yield('content')

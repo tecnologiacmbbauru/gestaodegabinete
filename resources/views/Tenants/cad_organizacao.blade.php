@@ -7,6 +7,7 @@
         <div>
             <h4>Cadastrando novo gabinete...</h4>
             <img src="{{asset('utils/carregando.gif')}}" style="padding-left:50px;">
+            <h5 style="padding-right:40px;">Este processo pode levar alguns minutos...</h5>
         </div>
     </div>
     <form id="cad-gab" class="form" method="post" action={{route('organizacao.store')}}>
@@ -27,7 +28,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label class="col-form-label">Database</label>
-                <input id="bd_database" type="text" name="bd_database" class="form-control" placeholder="Exemplo: gab01" required maxlength="50"> 
+                <input id="bd_database" type="text" name="bd_database" class="form-control" placeholder="Exemplo: gab_01" required maxlength="50"> 
             </div>
         </div>
         <div class="form-row">
@@ -93,6 +94,7 @@
             document.getElementById('bd_database').focus;
         }else{
             event.preventDefault();
+            document.getElementById('app').hidden=true;
             document.getElementById('cad-gab').hidden=true;
             document.getElementById('carregando').hidden=false;
             document.getElementById('cad-gab').submit();

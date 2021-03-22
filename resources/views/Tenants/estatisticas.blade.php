@@ -7,7 +7,7 @@
         <h3>Selecione o Gabinete</h3>
         <form id="form-pesquisa" action="{{route('estatisticas.pesquisa')}}" method="POST">
             @csrf
-            <select id="select-gab" name="select-gab" class="custom-select custom-select-lg mb-3"> 
+            <select id="select-gab" name="select-gab" class="custom-select custom-select-lg col-lg-5" style="margin-bottom: 15px;"> 
                 @foreach ($Organizacoes as $Organizacao)
                     <option name="organizacoes-opt" value="{{ $Organizacao->domain}}">{{ $Organizacao->name}}</option>
                 @endforeach
@@ -20,14 +20,14 @@
         <h3>Selecione o Gabinete</h3>
         <form id="form-pesquisa" action="{{route('estatisticas.pesquisa')}}" method="POST">
             @csrf
-            <select id="select-gab" name="select-gab" class="custom-select custom-select-lg mb-3"> 
+            <select id="select-gab" name="select-gab" class="custom-select custom-select-lg col-lg-5" style="margin-bottom: 15px;"> 
                 @foreach ($Organizacoes as $Organizacao)  
                     <option name="organizacoes-opt" value="{{$Organizacao->domain}}" @if($Organizacao->domain==$domain) selected @endif>{{ $Organizacao->name}}</option>
                 @endforeach
             </select> 
         </form>  
         <fieldset>
-            <h4>Dados do Gabinete:</h4>
+            <h4>Dados do Gabinete</h4>
             <h5>Espaço ocupado no disco rigido:</h5>
             
             Fotos: {{$tamanhoFoto}}
