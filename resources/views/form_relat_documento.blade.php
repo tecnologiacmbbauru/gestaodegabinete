@@ -203,7 +203,7 @@
                     </tr>
                 </thead>             
                 @if($documentos->isEmpty()) {{--caso pesquisa não tenha resultado, o método isEmpty ja esta na classe LengthAwarePaginator na qual retorna a pesquisa paginada--}}
-                    <td colspan="7" style="text-align: center;">Não foi encontrado nenhum registro</td>
+                    <td colspan="8" style="text-align: center;">Não foi encontrado nenhum registro</td>
                 @endif
                 @php
                     $i=1; //contador para saber qual o atendimento relacionado
