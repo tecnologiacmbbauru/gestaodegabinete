@@ -27,6 +27,13 @@
     border-color: #38006b !important;
     border: none; 
 }
+.a:focus {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px #6a1b9a !important;
+}
+.btn:focus {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px #6a1b9a !important;
+}
+
 
 .card-header{
     background-color:#9c4dcc !important;

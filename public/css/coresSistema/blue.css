@@ -33,6 +33,13 @@ terceria:5e92f3
     border: none; 
 }
 
+.a:focus {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px #1563c0 !important;
+}
+.btn:focus {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px #1563c0 !important;
+}
+
 .card-header{
     background-color:#5e92f3 !important;
     text-align: center;
