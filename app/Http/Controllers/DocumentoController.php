@@ -15,6 +15,7 @@ use App\Models\statusAtendimento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentoController extends Controller
 {
@@ -127,6 +128,7 @@ class DocumentoController extends Controller
             $dataform['path_doc_resp']=null;
             $dataform['link_resposta']=null;
             $dataform['txt_resposta']=null;
+            Storage::delete($docC->path_doc_resp); //deleta documento de resposta relacionada
         }
 
         if($docC['ind_status'] == NULL){
@@ -174,7 +176,11 @@ class DocumentoController extends Controller
         $docC = Documento::findOrFail($request->id_exclusao);
 
         $inativo = array('ind_status'=> 'I','nom_usuario_log' => auth()->user()->name,'nom_operacao_log'=>'DELETE' );
+
         $docC->update($inativo);
+
+        Storage::delete($docC->path_doc); //deleta documento relacionado
+        Storage::delete($docC->path_doc_resp); //deleta documento de resposta relacionada
 
         return redirect()
                     ->route('documento.index')
@@ -199,28 +205,7 @@ class DocumentoController extends Controller
         return view('form_documento',compact('documentos','alteracao','mostraPesq','dataform','tipoDocumento','situacaoDoc','statusAtendimento','tipoAtendimento','situacaoDoc','unidadeDocumento','Atendimento'));
     }
 
-
-        /*public function cadAtendimento(Request $request) {
-            $dataform = $request->only(['GAB_PESSOA_cod_pessoa','dat_atendimento','GAB_TIPO_ATENDIMENTO_cod_tipo','GAB_STATUS_ATENDIMENTO_cod_status']);
-
-            $id = DB::table('gab_atendimento')->insertGetId(
-                ['GAB_PESSOA_cod_pessoa' => $dataform['GAB_PESSOA_cod_pessoa'],
-                'dat_atendimento'=> $dataform['dat_atendimento'],
-                'GAB_TIPO_ATENDIMENTO_cod_tipo'=> $dataform['GAB_TIPO_ATENDIMENTO_cod_tipo'],
-                'GAB_STATUS_ATENDIMENTO_cod_status'=> $dataform['GAB_STATUS_ATENDIMENTO_cod_status'],
-                'ind_status' => 'A','nom_operacao_log'=>'INSERT'
-                ],
-            ); 
-            
-            $nome = pessoa::findOrFail($dataform['GAB_PESSOA_cod_pessoa']);
-            $tipo = tipoAtendimento::findOrFail($dataform['GAB_TIPO_ATENDIMENTO_cod_tipo']);
-            $status = statusAtendimento::findOrFail($dataform['GAB_STATUS_ATENDIMENTO_cod_status']);
-            
-            return response()->json(['codigo'=>$id,'data'=>$dataform['dat_atendimento'],'pessoa'=>$nome->nom_nome,'ident'=>$nome->cod_cpf_cnpj,'tipo'=>$tipo->nom_tipo,'situacao'=>$status->nom_status]);
-        }*/
-
-    
-        //Quando pesquisa de atendimento era feita por Json
+    //Quando pesquisa de atendimento era feita por Json
     public function pesqAtendimento(Request $request, atendimento $atendimento) {
         $dataform = $request->only(['GAB_PESSOA_cod_pessoa','dat_atendimento','GAB_TIPO_ATENDIMENTO_cod_tipo','GAB_STATUS_ATENDIMENTO_cod_status']);
 

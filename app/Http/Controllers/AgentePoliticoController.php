@@ -68,6 +68,7 @@ class AgentePoliticoController extends Controller
 
         /*Altera a foto do vereador com um nome aleatorio*/
         if($request->hasFile('img_foto') && $request->img_foto->isValid()){
+            Storage::delete($vereador->img_foto); //deleta foto antiga do agente
             $imagePath = $request->img_foto->store(Auth::user()->domain.'/agentePolitico');
             $dataform['img_foto']=$imagePath;
         }

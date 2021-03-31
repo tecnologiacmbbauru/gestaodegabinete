@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\pessoa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PessoaController extends Controller
 {
@@ -92,6 +93,7 @@ class PessoaController extends Controller
         $dataform = $request->all();
         $pessoaC = pessoa::findOrFail($id);
         if($request->hasFile('img_perfil') && $request->img_perfil->isValid()){
+            Storage::delete($pessoaC->image); //deleta foto antiga da pessoa
             $imagePath = $request->img_perfil->store(Auth::user()->domain.'/pessoa');
             $dataform['image']=$imagePath;
         }
@@ -118,6 +120,8 @@ class PessoaController extends Controller
         $inativo = array('ind_status'=> 'I', 'nom_usuario_log' => auth()->user()->name,'nom_operacao_log'=>'DELETE' );
 
         $pessoaC->update($inativo);
+
+        Storage::delete($pessoaC->image); //deleta foto da pessoa
 
         return redirect()
                     ->route('pessoa.index')
