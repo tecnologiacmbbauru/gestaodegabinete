@@ -8,7 +8,7 @@ a{
 .navbar {
 	padding:0px !important;
 	background-color:#455a64 !important;
-	font-family: 'Times New Roman', Times, sans-serif;
+	font-family: Arial, Helvetica, sans-serif !important; 
 	font-size: 18px !important;
 	font-weight: 700 !important;
 }

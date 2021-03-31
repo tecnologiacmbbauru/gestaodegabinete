@@ -43,6 +43,8 @@
 
         @page {
             footer: page-footer;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size:12px;
         }
     </style>
 </head>
@@ -56,12 +58,12 @@
 
     <table class="tabela">
         <tr>
-          <th width='10%'>Data</th>
+          <th width='13%'>Data</th>
           <th>Pessoa</th>
           <th>Telefone(s)</th>
           <th>Endereço</th>
           <th width='10%'>Tipo</th>
-          <th width='10%'>Situação</th>
+          <th width='12%'>Situação</th>
         </tr>
       <tbody>
       @php $i=0; @endphp
