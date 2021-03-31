@@ -17,6 +17,8 @@ class CreateGabAtendimentoTable extends Migration {
 			$table->integer('GAB_STATUS_ATENDIMENTO_cod_status')->unsigned()->nullable()->index('fk_cod_status_atendimento');
 			$table->text('txt_detalhes', 65535)->nullable();
 			$table->dateTime('dat_log')->nullable();
+			$table->boolean('lembrete');
+			$table->date('dat_lembrete')->nullable();
 			$table->string('nom_usuario_log', 20)->nullable();
 			$table->string('nom_operacao_log', 20)->nullable();
 			$table->char('ind_status', 1);

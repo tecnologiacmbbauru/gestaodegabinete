@@ -1,22 +1,22 @@
 <?php
 
+
 namespace App\Models;
-use App\Models\tipoAtendimento;
-use App\Models\pessoa;
+
 use Illuminate\Database\Eloquent\Model;
+use Carbon\CarbonPeriod;
+use Carbon\Carbon;
+
 
 class atendimento extends Model
 {
     protected $primaryKey = 'cod_atendimento';
     protected $table = 'gab_atendimento';
     protected $fillable = ['dat_atendimento','txt_detalhes','nom_usuario_log',
-    'nom_operacao_log','ind_status',
+    'nom_operacao_log','ind_status','lembrete','dat_lembrete','dat_atendimento',
     'GAB_PESSOA_cod_pessoa','GAB_TIPO_ATENDIMENTO_cod_tipo','GAB_STATUS_ATENDIMENTO_cod_status'];
     protected $guarded = ['cod_atendimento'];
 
-    protected $dates = [
-        'dat_atendimento',
-    ];
 
     //chamadas das chaves estrangeiras
     public function tipoAtendimento(){
@@ -99,7 +99,27 @@ class atendimento extends Model
         })->orderby('dat_atendimento','desc')->limit(10)->get();
     }
    
+    //FUNÇÃO QUE RETORNA AS PESSOAS COM DATA DE ANIVERSÁRIO DENTRO DO PERÍODO PASSADO COMO PARAMETRO
+    public function scopeBirthdayBetween($query, $dateBegin, $dateEnd)
+    {
+        $period = CarbonPeriod::create($dateBegin, $dateEnd);
 
+        foreach ($period as $key => $date) {
+            $queryFn = function($query) use ($date) {
+                $query->whereMonth("dat_lembrete", '=', $date->format('m'))->whereDay("dat_lembrete", '=', $date->format('d'));
+            };
+
+            if($key === 0) {
+                $queryFn($query);
+            } else {
+                $query->orWhere(function($q) use ($queryFn) {
+                    $queryFn($q);
+                });
+            }
+        }
+
+        return $query;
+    }
 }
 
 

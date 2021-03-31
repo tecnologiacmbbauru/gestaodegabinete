@@ -91,21 +91,7 @@
             </div>
         </div> 
 
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <div class="form-check form-check-inline" id="div_lembrar">
-                    <input class="form-check-input" type="checkbox" id="lembrar" name="lembrar" onclick="mostraLembrete(document.getElementById('div_lembrar_dias').hidden)">
-                    <label class="form-check-label negrito" for="div_lembrar">Adicionar Lembrete</label>
-                </div>
-            </div>
-        </div>
-        <div class="form-row" id="div_lembrar_dias" hidden>
-            <div class="form-group col-md-6">
-                <div class="form-check form-check-inline" style="margin-bottom:5px;" >
-                    <b>Me lembre em </b><input class="form-control col-md-2" id="lembrar_dias" name="lembrar_dias" style="margin-left:5px; margin-right:5px;" placeholder="7" min="0" max="999" maxlength="3"> <b>dias.</b>
-                </div>
-            </div>
-        </div>
+        @include('lembretes/div-cad-lembrete')
 
         <div class="form-row" id="input_txt_detalhes">
             <div class="form-group col-md-12" id="div_detalhes">
@@ -125,13 +111,6 @@
             </div>      
         </div>
     </form>
-
-    {{--Script responsavel por mudar os campos requiridos para caso de cadastro, e nenhuma campo requirido para caso de pesquisa--}}
-    <script type="text/javascript">
-        function mostraLembrete(){
-            document.getElementById('div_lembrar_dias').hidden = !document.getElementById('div_lembrar_dias').hidden;
-        }
-    </script>
 
     {{--Script responsavel por mudar os campos requiridos para caso de cadastro, e nenhuma campo requirido para caso de pesquisa--}}
     <script type="text/javascript">

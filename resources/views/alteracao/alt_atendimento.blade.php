@@ -84,7 +84,7 @@
                 <label class="col-form-label negrito" for="input_cod_atendimento">Tipo de atendimento</label>
                     <select id="input_cod_atendimento" class="form-control col-md-10" name="GAB_TIPO_ATENDIMENTO_cod_tipo">
                         @foreach ($tipoAtendimento as $tipoAtendimento)
-                            <option name="GAB_TIPO_ATENDIMENTO_cod_tipo" value="{{$tipoAtendimento->cod_tipo}}" @if($tipoAtendimento->cod_tipo==$atendimentoC->GAB_TIPO_DOCUMENTO_cod_tip_doc) selected @endif>{{$tipoAtendimento->nom_tipo}}</option>
+                            <option name="GAB_TIPO_ATENDIMENTO_cod_tipo" value="{{$tipoAtendimento->cod_tipo}}" @if($tipoAtendimento->cod_tipo==$atendimentoC->GAB_TIPO_ATENDIMENTO_cod_tipo) selected @endif>{{$tipoAtendimento->nom_tipo}}</option>
                         @endforeach
                     </select>
             </div>
@@ -98,6 +98,43 @@
             </div>
         </div>
         
+        {{---Lembrete--}}
+        @if($atendimentoC->lembrete===1)
+            <div class="form-row">
+                <div class="form-group col-md-11">
+                    <fieldset id="fieldset_lembrete" class="fieldset-personalizado">
+                        <div class="pull-right">
+                            <a type="button" data-toggle="modal" data-target="#ModalAuxiliarDocumento" onclick="populaModal('lembrete')" style="float: right">
+                                <img src="{{asset('utils/excluir.png')}}" style="float: right" alt="excluir lembrete" title="Excluir Lembrete">
+                            </a>
+                        </div>
+                        <div class="form-inline" style="margin-bottom:5px;" >
+                            <label for="lembrar_dias" class="col-form-label negrito">Lembrete em</label><input class="input-lembrar" id="dat_lembrete" name="dat_lembrete" type="date" value="{{$atendimentoC->dat_lembrete}}" style="margin-left:5px; margin-right:5px;">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        @else  
+            <div class="form-row" id="div_dat_lembrete_vazia">
+                <div class="form-group col-md-11">
+                    <fieldset id="fieldset_lembrete" class="fieldset-personalizado">
+                    <div class="form-check form-check-inline" id="div_lembrar">
+                        <input class="form-check-input" type="checkbox" id="lembrete" name="lembrete" onclick="mostraLembrete(document.getElementById('div_dat_lembrete').hidden)">
+                        <label class="form-check-label negrito" for="div_lembrar">Adicionar Lembrete</label>
+                    </div>
+                    <div>
+                        <div class="form-inline" style="margin-bottom:5px;" id="div_dat_lembrete" hidden>
+                            <input type="hidden" id="lembrete" NAME="lembrete" VALUE="0">
+                            <label for="lembrar_dias" class="col-form-label negrito">Me lembre em</label><input class="input-lembrar" id="dat_lembrete" name="dat_lembrete" type="date" value="{{$atendimentoC->dat_lembrete}}" style="margin-left:5px; margin-right:5px;">
+                        </div>
+                    </div>
+                    </fieldset>
+                </div>
+            </div>
+        @endif
+
+        @include('Utils/modal_alterarDocumento')
+
         <div class="form-row" id="input_txt_detalhes">
             <div class="form-group col-md-12">
                 <label class="col-form-label negrito" for="txt_detalhes">Detalhes</label>
@@ -105,6 +142,7 @@
             <div>
         </div>
         <input type="hidden" NAME="ind_status" VALUE="A">
+        <input type="hidden" id="excluir_lembrete" NAME="excluir_lembrete" VALUE="">
 
         <div class="form-row div-botoes-cadastro" style="margin-top:20px;">
             <div>           
@@ -112,6 +150,21 @@
                 <a href="javascript:history.back()" class="btn btn-primary alterar">Voltar</a>
             </div>
         </div>
-        
     </form>
 </div>
+
+<script>
+    function populaModal(acao){
+      if(acao=="lembrete"){
+          document.getElementById("modal-title").innerHTML = "Deseja excluir este lembrete?";
+      }
+      document.getElementById("acao").value = acao;
+    }
+  </script>
+
+  {{--Script responsavel por mudar os campos requiridos para caso de cadastro, e nenhuma campo requirido para caso de pesquisa--}}
+<script type="text/javascript">
+    function mostraLembrete(){
+        document.getElementById('div_dat_lembrete').hidden = !document.getElementById('div_dat_lembrete').hidden;
+    }
+</script>

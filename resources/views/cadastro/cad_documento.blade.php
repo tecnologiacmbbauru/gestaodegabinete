@@ -70,6 +70,8 @@
             </div>
         </div>  
 
+        @include('lembretes/div-cad-lembrete')
+
         <div class="form-row">
             <div class="form-group col-md-11">
                 <div class="form-check form-check-inline" id="div_atend_rel" style="margin-bottom:5px;">

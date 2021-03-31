@@ -39,6 +39,8 @@ class AtendimentoController extends Controller
     public function store(Request $request)
     {
         $dataform = $request->all();
+        $dataform['lembrete'] = request()->has('lembrete');
+        //dd($dataform);
 
         if($dataform['GAB_PESSOA_cod_pessoa']==null){
             return redirect()
@@ -59,6 +61,8 @@ class AtendimentoController extends Controller
                             ->with('success', 'Atendimento inserido com sucesso!');
             } catch (\Exception $e) {
                 // Redireciona de volta com uma mensagem de erro
+
+                dd($e);
                 return redirect()
                     ->back()
                     ->with('error', 'Falha ao inserir');
@@ -81,9 +85,17 @@ class AtendimentoController extends Controller
     public function update(Request $request, $id)
     {
         $atendimentoModal = Atendimento::findOrFail($id);
+        $dataform = $request->all();
         
+        $dataform['lembrete'] = request()->has('lembrete');
+        
+        //Exclusao de lembrete
+        if($dataform['excluir_lembrete']=="on"){
+            $dataform['lembrete']=0;
+        }
+
         try{
-            $atendimentoModal->update($request->all());
+            $atendimentoModal->update($dataform);
                 return redirect()
                     ->route('atendimento.index')
                     ->with('success', 'Atendimento Alterado com sucesso!');

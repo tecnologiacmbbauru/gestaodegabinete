@@ -160,14 +160,41 @@
     }
 </script>
 
-<div class="form-group" style="margin:0px; margin-bottom:5px;">
-  <h2 class="titulo" style="text-align:center;">{{$vereador->cargoPolitico->nom_car_pol}}<a href="{{route('agentePolitico.index')}}" target="" style="color:black !important;"> {{$vereador->nom_vereador}}</a></h2>
-  <h4 style="text-align:center;">{{$vereador->nom_orgao}}</h4>
-</div>
+{{--Script para excluir notificações--}}
+<script>
+  function deleteAlert(lembrete){
+      if(lembrete == "danger"){
+          document.getElementById("alert-danger").remove();
+      }else{
+          document.getElementById("alert-warning").remove();
+      }
+  }
+</script>
 
 <div class="container">
-<div class="row">
+  @if ($lembreteAtd>0 or $lembreteDoc>0)
+    <div id="alert-danger" class="alert alert-danger" style="font-size: 14px !important; border:2px solid rgb(232, 124, 124);">
+        <img src="{{asset('utils/notification-danger.png')}}">
+        Você possui <a class="alert-link" href="{{route('lembrete.pesquisa',['select-lembrete'=>'atendimento'])}}">{{$lembreteAtd}} atendimentos</a> e <a class="alert-link" href="{{route('lembrete.pesquisa',['select-lembrete'=>'documento'])}}">{{$lembreteDoc}} documentos</a> em aberto.
+        <a href="#" class="alert-link" style="float: right;" onclick="deleteAlert('danger')">fechar</a>                   
+    </div>
+  @endif
 
+  @if ($lembreteAtdSemana>0 or $lembreteDocSemana>0)
+    <div id="alert-warning" class="alert alert-warning" style="font-size: 14px !important; border:2px solid rgb(211, 211, 25);">
+        <img src="{{asset('utils/notification-bell.png')}}">
+        Você possui <a class="alert-link" href="{{route('lembrete.pesquisa',['select-lembrete'=>'semana'])}}">{{$lembreteAtdSemana}} atendimentos</a> e <a class="alert-link" href="{{route('lembrete.pesquisa',['select-lembrete'=>'semana'])}}">{{$lembreteDocSemana}} documentos</a> para esta semana.
+        <a href="#" class="alert-link" style="float: right;" onclick="deleteAlert('warning')">fechar</a>                   
+    </div>
+  @endif
+
+  <div class="form-group" style="margin:0px; margin-bottom:5px;">
+    <h2 class="titulo" style="text-align:center;">{{$vereador->cargoPolitico->nom_car_pol}}<a href="{{route('agentePolitico.index')}}" target="" style="color:black !important;"> {{$vereador->nom_vereador}}</a></h2>
+    <h4 style="text-align:center;">{{$vereador->nom_orgao}}</h4>
+  </div>
+
+
+  <div class="row">
     <div class="form-group col-lg-3" >
       @if($vereador->img_foto !=null)
         <img src="{{url("storage/{$vereador->img_foto}")}}" alt="Imagem de Vereador" width="100%;">

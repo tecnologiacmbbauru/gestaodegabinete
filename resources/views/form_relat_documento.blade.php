@@ -239,9 +239,9 @@
                                         <br>
                                         <label style="font-weight: bolder">Pessoa:</label> <label>{{$documento->antedimentoRelacionado->pessoa->nom_nome}}</label>
                                         <br>
-                                        <label style="font-weight: bolder">Tipo:</label> <label>{{$documento->tipoDocumento->nom_tip_doc}}</label>
+                                        <label style="font-weight: bolder">Tipo:</label> <label>{{$documento->antedimentoRelacionado->tipoAtendimento->nom_tipo}}</label>
                                         <br>
-                                        <label style="font-weight: bolder">Situação:</label> <label>{{$documento->situacaoDoc->nom_status}}</label>          
+                                        <label style="font-weight: bolder">Situação:</label> <label>{{$documento->antedimentoRelacionado->statusAtendimento->nom_status}}</label>          
                                     </div>
                                 @else
                                     Não

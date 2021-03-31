@@ -112,6 +112,9 @@
                         <li class = "nav-item">
                             <a class="nav-link negrito" href="{{ route('documento.index') }}">{{ __('Documento') }}</a>
                         </li>
+                        <li class = "nav-item">
+                            <a class="nav-link negrito" href="{{ route('lembretes.index') }}">{{ __('Lembretes') }}</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle negrito" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Cadastros

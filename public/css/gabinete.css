@@ -240,3 +240,12 @@ Ou com hover
 	/*Cor padrão #e9e9e9*/
     background-color: #cacaca !important;
 }
+
+
+/*Lembrar-me*/
+/*Campo input "lembrar-me"*/
+.input-lembrar{
+	max-width: 150px;
+	min-width: 100px;
+	text-align: center;
+}

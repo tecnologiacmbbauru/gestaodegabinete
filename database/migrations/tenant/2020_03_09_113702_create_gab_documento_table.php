@@ -26,9 +26,11 @@ class CreateGabDocumentoTable extends Migration {
 			$table->integer('GAB_UNIDADE_DOCUMENTO_cod_uni_doc')->unsigned()->nullable()->index('fk_cod_uni_doc');
 			$table->integer('GAB_ATENDIMENTO_cod_atendimento')->unsigned()->nullable()->index('fk_cod_atendimento');
 			$table->date('dat_resposta')->nullable();
-			$table->string('lnk_resposta', 500)->nullable();
+			$table->string('link_resposta')->nullable();
 			$table->text('txt_resposta', 65535)->nullable();
 			$table->dateTime('dat_log')->nullable();
+			$table->boolean('lembrete');
+			$table->date('dat_lembrete')->nullable();
 			$table->string('nom_usuario_log', 20)->nullable();
 			$table->string('nom_operacao_log', 20)->nullable();
 			$table->char('ind_status', 1);
@@ -37,8 +39,7 @@ class CreateGabDocumentoTable extends Migration {
 			->nullable();   // Preenchimento não obrigatório
 			$table->string('path_doc_resp') // Nome da coluna
 			->nullable();   // Preenchimento não obrigatório
-			$table->string('link_resposta') // Nome da coluna
-			->nullable();   // Preenchimento não obrigatório
+
 		});
 	}
 

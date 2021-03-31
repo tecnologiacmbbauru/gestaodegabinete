@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\CarbonPeriod;
 
 class documento extends Model
 {
@@ -10,7 +11,7 @@ class documento extends Model
     protected $table = 'gab_documento';
     protected $fillable = ['nom_documento','dat_ano',
     'lnk_documento','link_resposta','txt_assunto','txt_resposta','nom_usuario_log','nom_operacao_log',
-    'ind_status','GAB_UNIDADE_DOCUMENTO_cod_uni_doc','GAB_TIPO_DOCUMENTO_cod_tip_doc',
+    'ind_status','GAB_UNIDADE_DOCUMENTO_cod_uni_doc','GAB_TIPO_DOCUMENTO_cod_tip_doc','lembrete','dat_lembrete',
     'GAB_STATUS_DOCUMENTO_cod_status','GAB_ATENDIMENTO_cod_atendimento','dat_documento','dat_resposta','path_doc','path_doc_resp'
     ];
     protected $dates = [
@@ -115,5 +116,27 @@ class documento extends Model
             }       
         })->orderby('dat_documento','desc')->get();
     }   
+
+    //FUNÇÃO QUE RETORNA AS PESSOAS COM DATA DE ANIVERSÁRIO DENTRO DO PERÍODO PASSADO COMO PARAMETRO
+    public function scopeBirthdayBetween($query, $dateBegin, $dateEnd)
+    {
+        $period = CarbonPeriod::create($dateBegin, $dateEnd);
+
+        foreach ($period as $key => $date) {
+            $queryFn = function($query) use ($date) {
+                $query->whereMonth("dat_lembrete", '=', $date->format('m'))->whereDay("dat_lembrete", '=', $date->format('d'));
+            };
+
+            if($key === 0) {
+                $queryFn($query);
+            } else {
+                $query->orWhere(function($q) use ($queryFn) {
+                    $queryFn($q);
+                });
+            }
+        }
+
+        return $query;
+    }
 }
 

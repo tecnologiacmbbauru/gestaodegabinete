@@ -48,6 +48,7 @@ class DocumentoController extends Controller
     public function store(Request $request)
     {
         $dataform = $request->all();
+        $dataform['lembrete'] = request()->has('lembrete');
        //dd($dataform);
         if(isset($dataform['atend_rel'])==false){               //verifica se  marcou que existe atendimento relacionado
             $dataform['GAB_ATENDIMENTO_cod_atendimento']=null; //caso NÃO tenha marcado não salva o atendimento
@@ -113,6 +114,20 @@ class DocumentoController extends Controller
         $docC = documento::findOrFail($id);;
         
         $dataform = $request->all();
+        
+        $dataform['lembrete'] = request()->has('lembrete');
+
+        //Exclusao de lembrete
+        if($dataform['excluir_lembrete']=="on"){
+            $dataform['lembrete']=0;
+        }
+        //Exclusao de resposta
+        if($dataform['excluir_resposta']=="on"){
+            $dataform['dat_resposta']=null;
+            $dataform['path_doc_resp']=null;
+            $dataform['link_resposta']=null;
+            $dataform['txt_resposta']=null;
+        }
 
         if($docC['ind_status'] == NULL){
             $docC['ind_status'] = 'A';
@@ -137,10 +152,10 @@ class DocumentoController extends Controller
             $dataform['path_doc_resp']=$docPath;
         }
        
-        if($dataform['GAB_ATENDIMENTO_cod_atendimento']==null){
+        /*if($dataform['GAB_ATENDIMENTO_cod_atendimento']==null){
             $dataform['GAB_ATENDIMENTO_cod_atendimento'] = $docC->GAB_ATENDIMENTO_cod_atendimento;
-        }
-        
+        }*/
+
         try{
             $docC->update($dataform);
             return redirect()
