@@ -27,7 +27,7 @@ $i=0; // usado de controler para numerar os cards
                 $intervalo = $firstDate->diff($secondDate);
             @endphp
             <div id="card{{$i}}" class="card" style="width: 15rem; border: 1px solid rgb(232, 124, 124);">
-                <div class="card-header card-header-danger">Lembrete expirado a {{$intervalo->days}} dias.</div>              
+                <div class="card-header card-header-danger">Atrasado em {{$intervalo->days}} dias.</div>              
             @else
             <div id="card{{$i}}" class="card" style="width: 15rem; border: 1px solid rgb(160, 160, 38);">
                 <div class="card-header card-header-warning">Lembrete {{date('d/m/Y', strtotime($atendimento->dat_lembrete))}}</div> 
@@ -60,7 +60,7 @@ $i=0; // usado de controler para numerar os cards
                 $intervalo = $firstDate->diff($secondDate);
             @endphp
             <div id="card{{$i}}" class="card" style="width: 15rem; border: 1px solid rgb(232, 124, 124);">
-                <div class="card-header card-header-danger">Lembrete expirado a {{$intervalo->days}} dias.</div>              
+                <div class="card-header card-header-danger">Atrasado em {{$intervalo->days}} dias.</div>              
             @else
             <div id="card{{$i}}" class="card" style="width: 15rem; border: 1px solid rgb(160, 160, 38);">
                 <div class="card-header card-header-warning">Lembrete {{date('d/m/Y', strtotime($atendimento->dat_lembrete))}}</div> 
@@ -95,7 +95,7 @@ $i=0; // usado de controler para numerar os cards
                 $intervalo = $firstDate->diff($secondDate);
             @endphp
             <div id="card{{$i}}" class="card" style="width: 15rem; border: 1px solid rgb(232, 124, 124);">
-                <div class="card-header card-header-danger">Lembrete expirado a {{$intervalo->days}} dias.</div>              
+                <div class="card-header card-header-danger">Atrasado em {{$intervalo->days}} dias.</div>              
             @else
             <div id="card{{$i}}" class="card" style="width: 15rem; border: 1px solid rgb(160, 160, 38);">
                 <div class="card-header card-header-warning">Lembrete {{date('d/m/Y', strtotime($atendimento->dat_lembrete))}}</div> 

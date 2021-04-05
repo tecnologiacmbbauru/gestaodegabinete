@@ -175,7 +175,7 @@
   @if ($lembreteAtd>0 or $lembreteDoc>0)
     <div id="alert-danger" class="alert alert-danger" style="font-size: 14px !important; border:2px solid rgb(232, 124, 124);">
         <img src="{{asset('utils/notification-danger.png')}}">
-        Você possui <a class="alert-link" href="{{route('lembrete.pesquisa',['select-lembrete'=>'atendimento'])}}">{{$lembreteAtd}} atendimentos</a> e <a class="alert-link" href="{{route('lembrete.pesquisa',['select-lembrete'=>'documento'])}}">{{$lembreteDoc}} documentos</a> em aberto.
+        Você possui <a class="alert-link" href="{{route('lembrete.pesquisa',['select-lembrete'=>'atendimento'])}}">{{$lembreteAtd}} atendimentos</a> e <a class="alert-link" href="{{route('lembrete.pesquisa',['select-lembrete'=>'documento'])}}">{{$lembreteDoc}} documentos</a> atrasados.
         <a href="#" class="alert-link" style="float: right;" onclick="deleteAlert('danger')">fechar</a>                   
     </div>
   @endif
@@ -183,7 +183,7 @@
   @if ($lembreteAtdSemana>0 or $lembreteDocSemana>0)
     <div id="alert-warning" class="alert alert-warning" style="font-size: 14px !important; border:2px solid rgb(211, 211, 25);">
         <img src="{{asset('utils/notification-bell.png')}}">
-        Você possui <a class="alert-link" href="{{route('lembrete.pesquisa',['select-lembrete'=>'semana'])}}">{{$lembreteAtdSemana}} atendimentos</a> e <a class="alert-link" href="{{route('lembrete.pesquisa',['select-lembrete'=>'semana'])}}">{{$lembreteDocSemana}} documentos</a> para esta semana.
+        Você possui <a class="alert-link" href="{{route('lembrete.pesquisa',['select-lembrete'=>'semana'])}}">{{$lembreteAtdSemana}} atendimentos</a> e <a class="alert-link" href="{{route('lembrete.pesquisa',['select-lembrete'=>'semana'])}}">{{$lembreteDocSemana}} documentos</a> para os próximos 5 dias.
         <a href="#" class="alert-link" style="float: right;" onclick="deleteAlert('warning')">fechar</a>                   
     </div>
   @endif

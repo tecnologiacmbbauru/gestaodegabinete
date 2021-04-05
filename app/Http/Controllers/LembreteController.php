@@ -31,25 +31,25 @@ class LembreteController extends Controller
                 $segunda,
                 $domingo
             )->orderby('dat_lembrete','asc')->paginate(4,['*'],'atendimentos');
-            $atendimentos->withPath(config('app.url')."/lembretes/pesquisa/");
+            //$atendimentos->withPath(config('app.url')."/lembretes/pesquisa/");
 
             $documentos = documento::where('lembrete',true)->where('ind_status','A')->birthdayBetween(
                 $segunda,
                 $domingo
             )->orderby('dat_lembrete','asc')->paginate(4,['*'],'documentos');
-            $documentos->withPath(config('app.url')."/lembretes/pesquisa/");
+            //$documentos->withPath(config('app.url')."/lembretes/pesquisa/");
             return view('lembretes',compact('exibir','documentos','atendimentos'));
         }
         else if($exibir == "atendimento")
         {
             $atendimentos = atendimento::where('lembrete',true)->where('ind_status','A')->orderby('dat_lembrete','asc')->paginate(8);
-            $atendimentos->withPath(config('app.url')."/lembretes/pesquisa/");
+           // $atendimentos->withPath(config('app.url')."/lembretes/pesquisa/");
             return view('lembretes',compact('exibir','atendimentos'));
         }
         else if($exibir == "documento")
         {
             $documentos = documento::where('lembrete',true)->where('ind_status','A')->orderby('dat_lembrete','asc')->paginate(4);
-            $documentos->withPath(config('app.url')."/lembretes/pesquisa/");
+           // $documentos->withPath(config('app.url')."/lembretes/pesquisa/");
             return view('lembretes',compact('exibir','documentos'));
         }
 
