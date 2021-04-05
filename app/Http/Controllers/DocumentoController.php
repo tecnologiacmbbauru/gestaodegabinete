@@ -50,10 +50,11 @@ class DocumentoController extends Controller
     {
         $dataform = $request->all();
         $dataform['lembrete'] = request()->has('lembrete');
-       //dd($dataform);
+
         if(isset($dataform['atend_rel'])==false){               //verifica se  marcou que existe atendimento relacionado
             $dataform['GAB_ATENDIMENTO_cod_atendimento']=null; //caso NÃO tenha marcado não salva o atendimento
         }
+
         if(isset($dataform['resp_rel'])==false){ //verifica se  marcou que existe resposta relacionada
             $dataform['dat_resposta']=null;     //caso NÃO tenha marcado não salva os campos de resposta
             $dataform['txt_resposta']=null; 
@@ -75,9 +76,8 @@ class DocumentoController extends Controller
             $docPath = $request->path_doc_resp->store(Auth::user()->domain.'/documentos');
             $dataform['path_doc_resp']=$docPath;
         }
-        
         try{
-            $insert = $this->docC->create($dataform);
+            $insert = $this->docC->create($dataform); 
             return redirect()
                     ->route('documento.index')
                     ->with('success', 'Documento inserido com sucesso!');
@@ -129,6 +129,10 @@ class DocumentoController extends Controller
             $dataform['link_resposta']=null;
             $dataform['txt_resposta']=null;
             Storage::delete($docC->path_doc_resp); //deleta documento de resposta relacionada
+        }
+
+        if($dataform['excluir_atendimento']=="on"){
+            $dataform['GAB_ATENDIMENTO_cod_atendimento'] = null;
         }
 
         if($docC['ind_status'] == NULL){

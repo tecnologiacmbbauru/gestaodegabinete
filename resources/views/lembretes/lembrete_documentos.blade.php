@@ -1,5 +1,13 @@
-@php
 
+@if($documentos->isEmpty()) {{--caso pesquisa não tenha resultado, o método isEmpty ja esta na classe LengthAwarePaginator na qual retorna a pesquisa paginada--}}
+    <div id="alert" class="alert alert-success" style="font-size: 14px !important; border:2px solid rgb(100, 253, 131);">
+        <img src="{{asset('utils/check-success.png')}}">
+        Você não possui lembretes de documentos.
+        <a href="#" class="alert-link" style="float: right;" onclick="deleteAlert()">fechar</a>                   
+    </div>
+@endif
+
+@php
 //$segunda = date('d/m/Y', strtotime('monday this week'));
 //$sabado = date('d/m/Y', strtotime('saturday this week'));
 $hoje = date('Y-m-d');

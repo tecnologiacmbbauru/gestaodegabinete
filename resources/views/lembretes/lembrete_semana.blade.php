@@ -1,3 +1,12 @@
+
+@if($atendimentos->isEmpty() and $documentos->isEmpty()) {{--caso pesquisa não tenha resultado, o método isEmpty ja esta na classe LengthAwarePaginator na qual retorna a pesquisa paginada--}}
+<div id="alert" class="alert alert-success" style="font-size: 14px !important; border:2px solid rgb(100, 253, 131);">
+    <img src="{{asset('utils/check-success.png')}}">
+    Você não possui lembretes para esta semana.
+    <a href="#" class="alert-link" style="float: right;" onclick="deleteAlert()">fechar</a>                   
+</div>
+@endif
+
 @php
 //$segunda = date('d/m/Y', strtotime('monday this week'));
 //$sabado = date('d/m/Y', strtotime('saturday this week'));
@@ -39,7 +48,7 @@ $i=0; // usado de controler para numerar os cards
                     <a href="#" id="ver-mais{{$i}}" class="ver-mais" onclick="verDetalhes({{$i}})">ver mais</a>
                 </div>
                 <div class="card-footer" style="vertical-align: middle;">
-                    <a href="{{route('lembrete.delete', [$atendimento->cod_atendimento,"acao"=>"atendimento"])}}" class="card-link" style="float:left;" onclick="finalizar({{$i}})"><img src="{{asset('utils/check.png')}}" alt="Simbolo de check list finalizado"  title="Check Finalizado" style="float:left; margin-top:2%;">Finalizar</a>
+                    <a href="{{route('lembrete.delete', [$atendimento->cod_atendimento,"acao"=>"semana-atendimento"])}}" class="card-link" style="float:left;" onclick="finalizar({{$i}})"><img src="{{asset('utils/check.png')}}" alt="Simbolo de check list finalizado"  title="Check Finalizado" style="float:left; margin-top:2%;">Finalizar</a>
                     <a href="{{route('atendimento.edit', $atendimento->cod_atendimento)}}" class="card-link" style="float:right;"><img src="{{asset('utils/alterar-16.png')}}" alt="Simbolo de editar atendimento"  title="Editar Atendimento" style="float:left;">Editar</a>
                 </div>
             </div>
@@ -148,7 +157,7 @@ $i=0; // usado de controler para numerar os cards
                     @endif
                 </div>
                 <div class="card-footer" style="vertical-align: middle;">
-                    <a href="{{route('lembrete.delete',[$documento->cod_documento,"acao"=>"documento"])}}" class="card-link" style="float:left;" onclick="finalizar({{$i}})"><img src="{{asset('utils/check.png')}}" alt="Simbolo de check list finalizado"  title="Check Finalizado" style="float:left; margin-top:2%;">Finalizar</a>
+                    <a href="{{route('lembrete.delete',[$documento->cod_documento,"acao"=>"semana-documento"])}}" class="card-link" style="float:left;" onclick="finalizar({{$i}})"><img src="{{asset('utils/check.png')}}" alt="Simbolo de check list finalizado"  title="Check Finalizado" style="float:left; margin-top:2%;">Finalizar</a>
                     <a href="{{route('documento.edit', $documento->cod_documento)}}" class="card-link" style="float:right;"><img src="{{asset('utils/alterar-16.png')}}" alt="Simbolo de editar documento"  title="Editar documento" style="float:left;">Editar</a>
                 </div>
             </div> 

@@ -24,7 +24,8 @@
             $('#ModalAuxiliarDocumento').modal('hide')
         }else if(acao==="atendimento"){
             document.getElementById('segunda_secao').innerHTML = "Atendimento desvinculado";
-            document.getElementById('GAB_ATENDIMENTO_cod_atendimento').value = "";
+            //document.getElementById('GAB_ATENDIMENTO_cod_atendimento').value = "";
+            document.getElementById('excluir_atendimento').value = "on";
             $('#ModalAuxiliarDocumento').modal('hide')
         }else if(acao==="resposta"){
             document.getElementById('terceira_secao').innerHTML = "Resposta excluída";

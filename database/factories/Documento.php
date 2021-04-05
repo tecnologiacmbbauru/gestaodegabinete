@@ -16,6 +16,8 @@ $factory->define(documento::class, function (Faker $faker) {
         'nom_usuario_log' => "admin",
         'nom_operacao_log' => "insert",
         'ind_status'=> "A",
+        'lembrete' =>  $faker->numberBetween(0,1),
+        'dat_lembrete' =>  $faker->date(),
         'GAB_UNIDADE_DOCUMENTO_cod_uni_doc'=> $faker->numberBetween(1,2),
         'GAB_TIPO_DOCUMENTO_cod_tip_doc'=> $faker->numberBetween(1,3),
         'GAB_STATUS_DOCUMENTO_cod_status'=> $faker->numberBetween(1,4),

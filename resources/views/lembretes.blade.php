@@ -95,16 +95,6 @@
                     </select>    
                 </form>  
         </div>
-        <!--
-        <div class="form-group col-md-8">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="atend_rel" name="atend_rel" onclick="">
-                <label class="form-check-label negrito" for="div_atend_rel">Todos Lembretes</label>
-                <input class="form-check-input" type="checkbox" id="atend_rel" name="atend_rel" onclick="" style="margin-left:50px;">
-                <label class="form-check-label negrito" for="div_atend_rel" >Lembretes da Semana</label>
-            </div>
-        </div>
-        -->
 
         @if($exibir==="semana")
             @include('lembretes/lembrete_semana')
@@ -140,6 +130,14 @@
     $('#select-lembrete').change(function(){
         $('#form-pesquisa').submit();
     });
+</script>
+
+
+{{--Script para excluir notificações--}}
+<script>
+    function deleteAlert(){
+        document.getElementById("alert").remove();
+    }
 </script>
 
 @endsection

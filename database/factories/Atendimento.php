@@ -12,6 +12,8 @@ $factory->define(Atendimento::class, function (Faker $faker) {
         'nom_usuario_log' => "admin",
         'nom_operacao_log' => "insert",
         'ind_status' => "A",
+        'lembrete' =>  $faker->numberBetween(0,1),
+        'dat_lembrete' =>  $faker->date(),
         'GAB_PESSOA_cod_pessoa' => $faker->numberBetween(1,100),
         'GAB_TIPO_ATENDIMENTO_cod_tipo' => $faker->numberBetween(1,4),
         'GAB_STATUS_ATENDIMENTO_cod_status' => $faker->numberBetween(1,3),

@@ -56,6 +56,26 @@ class LembreteController extends Controller
     }
 
     public function delete($id,$acao){
+        if($acao=="semana-atendimento"){
+            try{
+                Atendimento::where('cod_atendimento',$id)->update(['lembrete'=>0]);
+                return redirect()
+                    ->route('lembrete.pesquisa',['select-lembrete'=>"semana"])->with('success', 'Lembrete finalizado com sucesso!');
+            }catch(\Exception $e){
+                return redirect()
+                    ->route('lembrete.pesquisa',['select-lembrete'=>"semana"])->with('error', 'Falha ao finalizar o lembrete!');
+            }
+        }
+        if($acao=="semana-documento"){
+            try{
+                Documento::where('cod_documento',$id)->update(['lembrete'=>0]);
+                return redirect()
+                    ->route('lembrete.pesquisa',['select-lembrete'=>"semana"])->with('success', 'Lembrete finalizado com sucesso!');
+            }catch(\Exception $e){
+                return redirect()
+                    ->route('lembrete.pesquisa',['select-lembrete'=>"semana"])->with('error', 'Falha ao finalizar o lembrete!');
+            }
+        }
         if($acao=="atendimento"){
             try{
                 Atendimento::where('cod_atendimento',$id)->update(['lembrete'=>0]);

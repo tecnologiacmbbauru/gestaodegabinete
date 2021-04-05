@@ -255,7 +255,7 @@
 
     {{--INPUTS QUE CONTROLAM SE EXCLUIU OU NÃO OS ATENDIMENTOS/LEMBRETE/RESPOSTA RELACIONADOS--}}
     <input type="hidden" NAME="ind_status" VALUE="A"> 
-    <input type="hidden" id="GAB_ATENDIMENTO_cod_atendimento" NAME="GAB_ATENDIMENTO_cod_atendimento" VALUE="{{$docC->GAB_ATENDIMENTO_cod_atendimento}}">
+    <input type="hidden" id="excluir_atendimento" NAME="excluir_atendimento" VALUE="">
     <input type="hidden" id="excluir_lembrete" NAME="excluir_lembrete" VALUE="">
     <input type="hidden" id="excluir_resposta" NAME="excluir_resposta" VALUE="">
 
