@@ -55,8 +55,8 @@ class HomeController extends Controller
         $hoje = new DateTime();
         $lembreteAtd = Atendimento::where('lembrete',true)->where('ind_status','A')->where('dat_lembrete','<=',$hoje)->count();
         $lembreteDoc = documento::where('lembrete',true)->where('ind_status','A')->where('dat_lembrete','<=',$hoje)->count();
-    
-        //Lembretes da semana
+            
+        /*Lembretes da semana
         $segunda = date('Y-m-d', strtotime('monday this week'));
         $domingo = date('Y-m-d', strtotime('sunday this week'));//pega domingo como o ultimo dia da semana
         $lembreteAtdSemana = Atendimento::where('lembrete',true)->where('ind_status','A')->birthdayBetween(
@@ -67,8 +67,19 @@ class HomeController extends Controller
         $lembreteDocSemana = documento::where('lembrete',true)->where('ind_status','A')->BirthdayBetween(
             $segunda,
             $domingo
+        )->count();*/
+
+        $lembreteAtdProx = Atendimento::where('lembrete',true)->where('ind_status','A')->birthdayBetween(
+            Carbon::now()->toDateString(),
+            Carbon::now()->addDays(4)->toDateString()
         )->count();
+
+        $lembreteDocProx = documento::where('lembrete',true)->where('ind_status','A')->birthdayBetween(
+            Carbon::now()->toDateString(),
+            Carbon::now()->addDays(4)->toDateString()
+        )->count();
+
         
-        return view('home',compact('vereador','api_key','chaveAgendas','aniversariantes','lembreteAtd','lembreteDoc','lembreteAtdSemana','lembreteDocSemana'));
+        return view('home',compact('vereador','api_key','chaveAgendas','aniversariantes','lembreteAtd','lembreteDoc','lembreteAtdProx','lembreteDocProx'));
     }
 }

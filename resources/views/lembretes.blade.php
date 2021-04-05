@@ -89,7 +89,7 @@
                 <form id="form-pesquisa" action="{{route('lembrete.pesquisa')}}" method="POST">
                     @csrf
                     <select id="select-lembrete" class="form-control col-md-8" name="select-lembrete"> 
-                        <option value="semana" @if($exibir==="semana") selected @endif>Lembretes da Semana</option>
+                        <option value="semana" @if($exibir==="semana") selected @endif>Lembretes próximos 5 dias</option>
                         <option value="atendimento" @if($exibir==="atendimento") selected @endif>Lembretes de Atendimento</option>
                         <option value="documento" @if($exibir==="documento") selected @endif>Lembretes de Documento</option>
                     </select>    

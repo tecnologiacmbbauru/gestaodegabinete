@@ -180,10 +180,10 @@
     </div>
   @endif
 
-  @if ($lembreteAtdSemana>0 or $lembreteDocSemana>0)
+  @if ($lembreteAtdProx>0 or $lembreteDocProx>0)
     <div id="alert-warning" class="alert alert-warning" style="font-size: 14px !important; border:2px solid rgb(211, 211, 25);">
         <img src="{{asset('utils/notification-bell.png')}}">
-        Você possui <a class="alert-link" href="{{route('lembrete.pesquisa',['select-lembrete'=>'semana'])}}">{{$lembreteAtdSemana}} atendimentos</a> e <a class="alert-link" href="{{route('lembrete.pesquisa',['select-lembrete'=>'semana'])}}">{{$lembreteDocSemana}} documentos</a> para os próximos 5 dias.
+        Você possui <a class="alert-link" href="{{route('lembrete.pesquisa',['select-lembrete'=>'semana'])}}">{{$lembreteAtdProx}} atendimentos</a> e <a class="alert-link" href="{{route('lembrete.pesquisa',['select-lembrete'=>'semana'])}}">{{$lembreteDocProx}} documentos</a> para os próximos 5 dias.
         <a href="#" class="alert-link" style="float: right;" onclick="deleteAlert('warning')">fechar</a>                   
     </div>
   @endif

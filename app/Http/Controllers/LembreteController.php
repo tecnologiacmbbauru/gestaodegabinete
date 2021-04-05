@@ -22,7 +22,8 @@ class LembreteController extends Controller
 
         $exibir = $aux['select-lembrete'];
 
-        if($exibir == "semana")
+
+        /*if($exibir == "semana")
         {
             //Lembretes da semana
             $segunda = date('Y-m-d', strtotime('monday this week'));
@@ -39,8 +40,21 @@ class LembreteController extends Controller
             )->orderby('dat_lembrete','asc')->paginate(4,['*'],'documentos');
             //$documentos->withPath(config('app.url')."/lembretes/pesquisa/");
             return view('lembretes',compact('exibir','documentos','atendimentos'));
-        }
-        else if($exibir == "atendimento")
+        }*/
+        if($exibir == "semana"){
+            $atendimentos = Atendimento::where('lembrete',true)->where('ind_status','A')->birthdayBetween(
+                Carbon::now()->toDateString(),
+                Carbon::now()->addDays(4)->toDateString()
+            )->orderby('dat_lembrete','asc')->paginate(4,['*'],'atendimentos');
+            //$atendimentos->withPath(config('app.url')."/lembretes/pesquisa/");
+
+            $documentos = documento::where('lembrete',true)->where('ind_status','A')->birthdayBetween(
+                Carbon::now()->toDateString(),
+                Carbon::now()->addDays(4)->toDateString()
+            )->orderby('dat_lembrete','asc')->paginate(4,['*'],'documentos');
+            //$documentos->withPath(config('app.url')."/lembretes/pesquisa/");
+            return view('lembretes',compact('exibir','documentos','atendimentos'));
+        }else if($exibir == "atendimento")
         {
             $atendimentos = atendimento::where('lembrete',true)->where('ind_status','A')->orderby('dat_lembrete','asc')->paginate(8);
            // $atendimentos->withPath(config('app.url')."/lembretes/pesquisa/");
