@@ -286,7 +286,7 @@ class pdfController extends Controller
             case 'relatorioExcel':
                 $dataform = $request->input('dataform');
                 //dd($dataform);
-                $atendimentos = $atendimento->pesquisaPdf($dataform);        
+                $atendimentos = $atendimento->pesquisa($dataform);        
                 $agentePolitico = agentePolitico::first();
 
                 //GERAR PDF CASO TENHA TIDO BUSCA DE ENDEREÇO
