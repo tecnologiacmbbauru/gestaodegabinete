@@ -12,7 +12,8 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Login') }}</label>
+                            <label for="user_name" class="col-md-4 col-form-label text-md-right" style="padding-top: calc(0.375rem + 1px) !important;
+                            padding-bottom: calc(0.375rem + 1px) !important;">{{ __('Usuário') }}</label>
                             
                             <div class="col-md-6">
                                 <input id="user_name" type="user_name" class="form-control @error('user_name') is-invalid @enderror" name="user_name" value="{{ old('user_name') }}" required autocomplete="user_name" autofocus>
@@ -26,7 +27,8 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Senha') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right" style="padding-top: calc(0.375rem + 1px) !important;
+                            padding-bottom: calc(0.375rem + 1px) !important;">{{ __('Senha') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
