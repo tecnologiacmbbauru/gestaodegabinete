@@ -74,8 +74,6 @@
         //Primeiro verifica se todos campos estão preenchidos
         if(document.getElementById('name').value===""){
             document.getElementById('name').focus;
-        }else if(document.getElementById('domain').value===""){
-            document.getElementById('domain').focus;
         }else if(document.getElementById('bd_database').value===""){
             document.getElementById('bd_database').focus;
         }else if(document.getElementById('bd_database').value===""){

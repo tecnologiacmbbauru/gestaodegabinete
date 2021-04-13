@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"><img src="{{asset('Utils/warning.png')}}">  Deseja excluir este Gabinete?</h5>
+          <h5 class="modal-title" id="exampleModalLabel"><img src="{{asset('Utils/warning.png')}}">  Deseja excluir o Gabinete?</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -11,11 +11,11 @@
         <div class="modal-body">
             <div style="padding-left:20px">
                 <input class="form-check-input" type="checkbox" id="delete_bd" name="delete_bd" onclick="showAlert()" checked>
-                <b>Deletar Banco de dados?</b>
+                <b>Excluir também o  banco de dados?</b>
             </div>
             <br>
             <p id="msg-alert">
-                <b>Atenção:</b> Ao excluir banco de dados nenhuma informação poderá ser recuperada.
+                <b>Atenção:</b> Ao excluir o banco de dados, nenhuma informação poderá ser recuperada.
             </p>
         </div>
         <div class="modal-footer">

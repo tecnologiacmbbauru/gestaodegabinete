@@ -10,11 +10,11 @@
         </div>
         <div class="modal-body">
             <p >
-                Serão criados 3 (três) usuários para o Gabinete.
+                Serão criados três (3) usuários para o Gabinete.
                 <br>
-                Os nomes de usuário terão o seguinte formato <b><i>nome do banco de dados</i>+</b><b><i>número sequencial</i></b>.
+                Os nomes de usuário terão o seguinte formato: <b><i>nome do banco de dados</i>+</b><b><i>número sequencial</i></b>.
                 <br>
-                A senha vai ser igual ao nome de usuário.
+                A senha será igual ao nome de usuário.
             </p>
         </div>
         <div class="modal-footer">

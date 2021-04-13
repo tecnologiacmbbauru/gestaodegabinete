@@ -3,7 +3,7 @@
 
 @if(!isset($mostraPesq))<!--Se não tiver pesquisado nada -->
     <div class="container">
-        <h1>Estatísticas Avançadas</h1>
+        <h1>Estatísticas</h1>
         <h3>Selecione o Gabinete</h3>
         <form id="form-pesquisa" action="{{route('estatisticas.pesquisa')}}" method="POST">
             @csrf
@@ -17,7 +17,7 @@
     </div> 
 @else
     <div class="container">
-        <h1>Estatísticas Avançadas</h1>
+        <h1>Estatísticas</h1>
         <h3>Selecione o Gabinete</h3>
         <form id="form-pesquisa" action="{{route('estatisticas.pesquisa')}}" method="POST">
             @csrf

@@ -10,9 +10,9 @@
         </div>
         <div class="modal-body">
             <p style="color: black;">
-                A nova senha passara a ser igual ao campo <i>‘usuário’</i>.
+                A nova senha será igual ao <i>nome do usuário</i>.
                 <br>
-                Oriente o usuário para alterar sua senha após logon no sistema.
+                Oriente o usuário para alterar sua senha após logar no sistema.
             </p>
         </div>
         <div class="modal-footer">

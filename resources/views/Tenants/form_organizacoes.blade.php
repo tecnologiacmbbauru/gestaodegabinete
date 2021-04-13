@@ -28,12 +28,12 @@
                   <h5 class="card-title" style="font-weight:bold">{{$organizacao->name}}</h5>
                   <h6 class="card-subtitle mb-2 text-muted">Criado em: {{date('d/m/Y', strtotime($organizacao->created_at))}}</h6>
                     <p class="card-text">
-                        <b>Dominio:</b> {{$organizacao->domain}}
+                        <b>Banco de dados:</b> {{$organizacao->bd_database}}
                         <br>
                         <b>Host:</b> {{$organizacao->bd_hostname}}
                     </p>
-                  <a href="{{route('organizacao.show',$organizacao->id)}}" class="card-link">Detalhes</a>
-                  <a href="{{route('organizacao.edit',$organizacao->id)}}" class="card-link">Editar</a>
+                  <u style="float: left"><a href="{{route('organizacao.show',$organizacao->id)}}" class="card-link">Detalhes</a></u>
+                  <u style="float: right"><a href="{{route('organizacao.edit',$organizacao->id)}}" class="card-link">Editar</a></u>
                 </div>
               </div>
             @endforeach

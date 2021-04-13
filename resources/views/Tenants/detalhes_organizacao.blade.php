@@ -37,10 +37,6 @@
                     <td>Nome</td>
                     <td class="det-gab">{{$organizacao->name}}</td>
                 </tr>
-                <tr>
-                    <td>Dominio</td>
-                    <td class="det-gab">{{$organizacao->domain}}</td>
-                </tr>
                 <tr style="border-top:1px solid rgb(26, 25, 25);">
                     <td colspan="2">Banco de dados</td>
                 </tr>
@@ -103,7 +99,7 @@
                 @foreach ($usuarios as $usuario)
                     <div class="card" style="margin-bottom:10px;">
                         <div class="card-header" style="background-color:#607d8b; color:white;">
-                            <a class="btn"  id="btn-alteracao-user" style="float:right; padding:3px;" data-userid="{{$usuario->id}}"><img src="{{asset('utils/reset-senha.png')}}" alt="Reset-senha" title="Resetar Senha"></a>                   
+                            <a class="btn"  id="btn-alteracao-user" style="float:right; padding:3px;" data-userid="{{$usuario->id}}"><img src="{{asset('utils/reset-senha.png')}}" alt="Redefinir-senha" title="Redefinir Senha"></a>                   
                             {{$usuario->name}} 
                             <a class="btn" id="btn-exclusao-user" style="float:right; padding:3px;" data-userid="{{$usuario->id}}"><img src="{{asset('utils/delete-usuario.png')}}" alt="Excluir" title="Excluir"></a>
                         </div>
