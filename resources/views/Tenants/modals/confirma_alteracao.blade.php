@@ -9,7 +9,8 @@
           </button>
         </div>
         <div class="modal-body">
-            <p>Por questões de segurança a alteração <b>não</b> afeta o banco de dados, caso os dados alterados não conhecidam a aplicação não vai funcionar, deseja continuar?</p>
+          <b>Atenção:</b><p>Por questões de segurança a alteração <b>não</b> afeta o banco de dados.
+            <br>Caso os dados alterados não conhecidam  com o banco, a aplicação não ira funcionar.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>

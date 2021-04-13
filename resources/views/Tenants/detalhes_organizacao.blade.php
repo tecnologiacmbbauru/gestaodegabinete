@@ -53,7 +53,7 @@
                     <td class="det-gab">{{$organizacao->bd_hostname}}</td>
                 </tr>
                 <tr>
-                    <td>Usuario</td>
+                    <td>Usuário</td>
                     <td class="det-gab">{{$organizacao->bd_username}}</td>
                 </tr>
                 <tr>
@@ -87,15 +87,15 @@
         <div class="col-md-6">
             <h2>Usuários de: {{$organizacao->name}}</h2>
             @if ($usuarios->isEmpty())
-                Nenhum usuários cadastrado
+                Nenhum usuário cadastrado
                 <br>
-                <a data-toggle="modal" data-target="#usuarioPadrao" style="text-decoration:underline; color:#37474f;">Deseja criar usuarios padrão?</a>
+                <a data-toggle="modal" data-target="#usuarioPadrao" style="text-decoration:underline; color:#37474f;">Deseja criar usuários padrão?</a>
                 @include('Tenants/modals/confirma_usuario_padrao')
                 
 
                 <form class="form" method="post" action="{{route('usuario.cadastro')}}" style="margin-top:10px">
                     @csrf
-                    <a class="btn btn-add col-md-6" data-toggle="modal" data-target="#cadUsuario">Cadastrar novo usario</a>
+                    <a class="btn btn-add col-md-6" data-toggle="modal" data-target="#cadUsuario">Cadastrar novo usuário</a>
                     @include('Tenants/modals/cadastro_usuario')
                 </form>
 
@@ -108,7 +108,7 @@
                             <a class="btn" id="btn-exclusao-user" style="float:right; padding:3px;" data-userid="{{$usuario->id}}"><img src="{{asset('utils/delete-usuario.png')}}" alt="Excluir" title="Excluir"></a>
                         </div>
                         <div class="card-body">
-                            <b>Dominio:</b> {{$usuario->domain}} <b style="padding-left:20px;">Login:</b> {{$usuario->user_name}} <b style="padding-left:20px;">Email:</b> {{$usuario->email}}
+                            <b>Dominio:</b> {{$usuario->domain}} <b style="padding-left:20px;">Usuário:</b> {{$usuario->user_name}} <b style="padding-left:20px;">Email:</b> {{$usuario->email}}
                         </div>
                     </div>
                 @endforeach
@@ -119,7 +119,7 @@
 
                 <form class="form" method="post" action="{{route('usuario.cadastro')}}">
                     @csrf
-                    <a class="btn btn-add" data-toggle="modal" data-target="#cadUsuario">Cadastrar novo usario</a>
+                    <a class="btn btn-add" data-toggle="modal" data-target="#cadUsuario">Cadastrar novo usuário</a>
                     @include('Tenants/modals/cadastro_usuario')
                 </form>
             @endif

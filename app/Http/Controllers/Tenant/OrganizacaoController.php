@@ -48,6 +48,7 @@ class OrganizacaoController extends Controller
         ini_set('max_execution_time', 300); //Altera tempo maximo de requisição 5 minutes
 
         $dataform = $request->all();
+        $dataform['domain'] = $dataform['bd_database'];
 
         try{
             if(isset($dataform['alterar-db'])===false){

@@ -10,11 +10,11 @@
         </div>
         <div class="modal-body">
             <p >
-                Este comando vai criar 3 usuarios padrão para o Gabinete.
+                Serão criados 3 (três) usuários para o Gabinete.
                 <br>
-                Os usuarios vão seguir o padrão <b><i>dominio do gabinete</i></b><b><i>numero</i></b>
+                Os nomes de usuário terão o seguinte formato <b><i>nome do banco de dados</i>+</b><b><i>número sequencial</i></b>.
                 <br>
-                A senha vai ser a mesma do login.
+                A senha vai ser igual ao nome de usuário.
             </p>
         </div>
         <div class="modal-footer">

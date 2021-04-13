@@ -11,7 +11,7 @@
         </div>
     </div>
     <form id="cad-gab" class="form" method="post" action={{route('organizacao.store')}}>
-        <h1>Cadastrar de novo Gabinete</h1>
+        <h1>Cadastro de Gabinete</h1>
         @csrf
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -21,20 +21,14 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label class="col-form-label">Dominio</label>
-                <input id="domain" type="text" name="domain" class="form-control" placeholder="Exemplo: gab01" required maxlength="50"> 
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label class="col-form-label">Database</label>
+                <label class="col-form-label">Banco de dados (database)</label>
                 <input id="bd_database" type="text" name="bd_database" class="form-control" placeholder="Exemplo: gab_01" required maxlength="50"> 
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6" style="margin-left:20px;">
                 <input class="form-check-input" type="checkbox" id="altear-db" name="altear-db" onclick="showConfig()">
-                <label class="form-check-label" for="alterar-db">Alterar configurações da database</label>
+                <label class="form-check-label" for="alterar-db">Alterar configurações do banco de dados</label>
             </div>
         </div>
         <div id="conf-db" hidden>
@@ -52,7 +46,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label class="col-form-label">Usuario</label>
+                    <label class="col-form-label">Usuário</label>
                     <input id="bd_username" type="text" name="bd_username" class="form-control" value="{{env('DB_USERNAME')}}" required maxlength="50"> 
                 </div>
             </div>

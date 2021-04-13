@@ -3,15 +3,16 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="resetSenha"  style="color: black;">Deseja resetar a senha do usuário?</h5>
+          <h5 class="modal-title" id="resetSenha"  style="color: black;">Deseja redefinir a senha do usuário?</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
             <p style="color: black;">
-                A nova senha do usuário passara a ser o mesmo que o ‘login’.
-                Oriente o usuário para alterar sua senha logando no sistema e indo em configurações.
+                A nova senha passara a ser igual ao campo <i>‘usuário’</i>.
+                <br>
+                Oriente o usuário para alterar sua senha após logon no sistema.
             </p>
         </div>
         <div class="modal-footer">

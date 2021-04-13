@@ -15,20 +15,14 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label class="col-form-label">Dominio</label>
-                    <input id="domain" type="text" name="domain" class="form-control"  value="{{$organizacao->domain}}"> 
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label class="col-form-label">Database</label>
+                    <label class="col-form-label">Banco de dados (database)</label>
                     <input id="bd_database" type="text" name="bd_database" class="form-control" value="{{$organizacao->bd_database}}"> 
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6" style="margin-left:20px;">
                     <input class="form-check-input" type="checkbox" id="altear-db" name="altear-db" onclick="showConfig()">
-                    <label class="form-check-label" for="alterar-db">Alterar configurações da database</label>
+                    <label class="form-check-label" for="alterar-db">Alterar configurações do banco de dados</label>
                 </div>
             </div>
             <div id="conf-db" hidden>

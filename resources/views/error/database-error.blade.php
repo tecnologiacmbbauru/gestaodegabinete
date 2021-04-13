@@ -23,8 +23,8 @@
         <p>O sistema não pode se conectar a dabatase.
             <br>
             Contate o adminsitrador do sistema para resolver o problema.
-            <br>
-            <a href="#" onclick="mostra(document.getElementById('solucoes'))">Possíveis soluções</a>
+            <!--<br>
+            <a href="#" onclick="mostra(document.getElementById('solucoes'))">Possíveis soluções</a>-->
         </p>
     </div>
     <div style="display:flex;justify-content:center;align-items:center;">
@@ -38,7 +38,7 @@
     <div style="display:flex;justify-content:center;align-items:center;">
         <form id="logout-form" action="{{ route('logout') }}" method="POST">
             @csrf
-            <button class="bt bt-vd">Voltar Início</button>
+            <button class="bt bt-vd">Voltar</button>
         </form>
     </div>
 </body>

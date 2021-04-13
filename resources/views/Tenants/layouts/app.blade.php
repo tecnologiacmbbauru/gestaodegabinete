@@ -33,15 +33,15 @@
 
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="{{ route('tenant.estatisticas.index') }}">{{ __('Estatisticas') }}</a>
+                    <a class="nav-link" href="{{ route('tenant.estatisticas.index') }}">{{ __('Estatísticas') }}</a>
                 </li>
             </ul>
 
-            <ul class="navbar-nav mr-auto">
+            <!--<ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="{{ route('tenant.backup.index') }}">{{ __('Backup') }}</a>
                 </li>
-            </ul>
+            </ul>-->
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>

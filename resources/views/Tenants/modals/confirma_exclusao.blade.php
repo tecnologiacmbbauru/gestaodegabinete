@@ -10,12 +10,12 @@
         </div>
         <div class="modal-body">
             <div style="padding-left:20px">
-                <input class="form-check-input" type="checkbox" id="delete_bd" name="delete_bd" onclick="showAlert()">
+                <input class="form-check-input" type="checkbox" id="delete_bd" name="delete_bd" onclick="showAlert()" checked>
                 <b>Deletar Banco de dados?</b>
             </div>
             <br>
-            <p id="msg-alert" hidden>
-                <b>Atenção:</b> Caso delete o banco de dados nenhuma informação vai poder ser recuperada. Se não tem certeza do que fazer desmarque esta opção.
+            <p id="msg-alert">
+                <b>Atenção:</b> Ao excluir banco de dados nenhuma informação poderá ser recuperada.
             </p>
         </div>
         <div class="modal-footer">
