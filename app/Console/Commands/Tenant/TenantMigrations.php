@@ -66,8 +66,11 @@ class TenantMigrations extends Command
         $comando = $this->option('refresh') ? 'migrate:refresh' :'migrate';
         
         $this->tenant->setConnection($organizacao);
-        //dd($this->tenant->setConnection($organizacao));
+        
         $this->info("Conectando com: {$organizacao->name}");
+
+        if(! defined('STDIN')) define('STDIN', fopen("php://stdin","r"));
+            //Sem este comando (linha 72) pode parecer o erro STDIN undefinied.
 
         $command = Artisan::call($comando,[
             '--force' =>true,
@@ -77,6 +80,7 @@ class TenantMigrations extends Command
         if($command === 0){
             Artisan::call('db:seed',[
                 '--class'  =>'DatabaseTenantSeeder',
+                '--force'  => true
             ]);
 
             $this->info("Migracao com sucesso em: {$organizacao->name}");
