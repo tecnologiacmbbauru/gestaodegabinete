@@ -108,29 +108,12 @@
                                 <img src="{{asset('utils/excluir.png')}}" style="float: right" alt="excluir lembrete" title="Excluir Lembrete">
                             </a>
                         </div>
-                        <div class="form-inline" style="margin-bottom:5px;" >
-                            <label for="lembrar_dias" class="col-form-label negrito">Lembrete em</label><input class="input-lembrar" id="dat_lembrete" name="dat_lembrete" type="date" value="{{$atendimentoC->dat_lembrete}}" style="margin-left:5px; margin-right:5px;">
-                        </div>
+                        @include('lembretes/div-alt-lembrete-atendimento')
                     </fieldset>
                 </div>
             </div>
         @else  
-            <div class="form-row" id="div_dat_lembrete_vazia">
-                <div class="form-group col-md-11">
-                    <fieldset id="fieldset_lembrete" class="fieldset-personalizado">
-                    <div class="form-check form-check-inline" id="div_lembrar">
-                        <input class="form-check-input" type="checkbox" id="lembrete" name="lembrete" onclick="mostraLembrete(document.getElementById('div_dat_lembrete').hidden)">
-                        <label class="form-check-label negrito" for="div_lembrar">Adicionar Lembrete</label>
-                    </div>
-                    <div>
-                        <div class="form-inline" style="margin-bottom:5px;" id="div_dat_lembrete" hidden>
-                            <input type="hidden" id="lembrete" NAME="lembrete" VALUE="0">
-                            <label for="lembrar_dias" class="col-form-label negrito">Me lembre em</label><input class="input-lembrar" id="dat_lembrete" name="dat_lembrete" type="date" value="{{$atendimentoC->dat_lembrete}}" style="margin-left:5px; margin-right:5px;">
-                        </div>
-                    </div>
-                    </fieldset>
-                </div>
-            </div>
+            @include('lembretes/div-cad-lembrete')
         @endif
 
         @include('Utils/modal_alterarDocumento')
