@@ -159,7 +159,8 @@ class OrganizacaoController extends Controller
         //Então vou excluir todos usuarios relacionados e deletar o registro da organização...
         //...do database na databela Organizacaoes
         try {
-            User::where('domain',$organizacao->doamin)->delete();
+            User::where('domain',$organizacao->domain)->delete();
+
             $organizacao->delete();
             
             return redirect()
