@@ -55,7 +55,9 @@ class Handler extends ExceptionHandler
         if($exception->getCode()=='1049'){
             return response()->view('error.database-error',[],404);
         }
-
+        if($exception->getCode()=='1045'){
+            return response()->view('error.database-error2',[],500);
+        }
 
         return parent::render($request, $exception);
         

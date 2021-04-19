@@ -17,12 +17,12 @@
         </div>
     </div>
     <div style="display:flex;justify-content:center;align-items:center;">
-        <h2>Database não encotrada</h2>
+        <h2>Acesso negado a base de dados</h2>
     </div>
     <div style="display:flex;justify-content:center;align-items:center;">
-        <p>O sistema não pode se conectar a dabatase.
+        <p>O sistema não pode se conectar a base de dados.
             <br>
-            Contate o adminsitrador do sistema para resolver o problema.
+            Contate o administrador do sistema para resolver o problema.
             <!--<br>
             <a href="#" onclick="mostra(document.getElementById('solucoes'))">Possíveis soluções</a>-->
         </p>
