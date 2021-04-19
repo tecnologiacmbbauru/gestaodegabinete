@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;//cripitografia da senha
 
 class OrganizacaoController extends Controller
 {
@@ -49,10 +50,12 @@ class OrganizacaoController extends Controller
 
         $dataform = $request->all();
         $dataform['domain'] = $dataform['bd_database'];
+        $dataform['bd_password'] = Crypt::encryptString($dataform['bd_password']);
 
         try{
             if(isset($dataform['alterar-db'])===false){
                 $dataform['bd_password'] = env('DB_PASSWORD');
+                $dataform['bd_password'] = Crypt::encryptString($dataform['bd_password']);
             }
 
             $organizacao = $this->organizacao->create($dataform);
@@ -121,9 +124,11 @@ class OrganizacaoController extends Controller
     public function update(Request $request, $id)
     {
         $organizacao = Organizacao::findOrFail($id);
+        $dataform = $request->all();
+        $dataform['bd_password'] = Crypt::encryptString($dataform['bd_password']);
         
         try{
-            $organizacao->update($request->all());
+            $organizacao->update($dataform);
             return redirect()
                         ->route('organizacao.index')
                         ->with('success', 'Gabinete atualizado com sucesso.');

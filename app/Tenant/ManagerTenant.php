@@ -5,6 +5,7 @@ namespace App\Tenant;
 use Illuminate\Support\Facades\DB;
 use App\Models\Organizacao;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Crypt;
 
 class ManagerTenant
 {
@@ -19,7 +20,7 @@ class ManagerTenant
         config()->set('database.connections.tenant.port',$organizacao->bd_port);
         config()->set('database.connections.tenant.database',$organizacao->bd_database);
         config()->set('database.connections.tenant.username',$organizacao->bd_username);
-        config()->set('database.connections.tenant.password',$organizacao->bd_password);
+        config()->set('database.connections.tenant.password',Crypt::decryptString($organizacao->bd_password));
         
         DB::reconnect('tenant');//Reconceta com as novas configurações
         

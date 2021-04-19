@@ -52,10 +52,10 @@
                     <td>Usuário</td>
                     <td class="det-gab">{{$organizacao->bd_username}}</td>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td>Senha</td>
-                    <td class="det-gab">{{$organizacao->bd_password}}</td>
-                </tr>
+                    <td class="det-gab"></td>
+                </tr>-->
                 <tr style="border-top:1px solid rgb(26, 25, 25);">
                     <td colspan="2"></td>
                 </tr>

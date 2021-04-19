@@ -47,7 +47,12 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label class="col-form-label">Senha</label>
-                        <input id="bd_password" type="password" name="bd_password" class="form-control" value="{{$organizacao->bd_password}}"> 
+                        @php 
+                            //descriptografação da senha para mostrar na tela
+                            use Illuminate\Support\Facades\Crypt;
+                            $senha  = Crypt::decryptString($organizacao->bd_password);
+                        @endphp
+                        <input id="bd_password" type="password" name="bd_password" class="form-control" value="{{$senha}}"> 
                     </div>
                 </div>
             </div>
