@@ -1,0 +1,1 @@
+Extensão que ajuda Laravel Visual estudio: https://marketplace.visualstudio.com/items?itemName=onecentlin.laravel-extension-pack.
