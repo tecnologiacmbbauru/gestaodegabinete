@@ -53,7 +53,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label class="col-form-label">Senha</label>
-                    <input id="bd_password" type="password" name="bd_password" class="form-control" value="" maxlength="50"> 
+                    <input id="bd_password" type="password" name="bd_password" class="form-control" value="" maxlength="15"> 
                 </div>
             </div>
         </div>

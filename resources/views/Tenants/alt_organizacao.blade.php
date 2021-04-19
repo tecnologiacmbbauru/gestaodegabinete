@@ -52,7 +52,7 @@
                             use Illuminate\Support\Facades\Crypt;
                             $senha  = Crypt::decryptString($organizacao->bd_password);
                         @endphp
-                        <input id="bd_password" type="password" name="bd_password" class="form-control" value="{{$senha}}"> 
+                        <input id="bd_password" type="password" name="bd_password" class="form-control" value="{{$senha}}" maxlength="15"> 
                     </div>
                 </div>
             </div>
