@@ -253,3 +253,24 @@ Ou com hover
 	min-width: 100px;
 	text-align: center;
 }
+
+
+.btn-webcam{
+	border: 1px solid rgb(141, 141, 141);
+	background-color: rgb(201, 200, 200);
+	align-items:center;
+	padding: 1px;
+	padding-left: 7px;
+	padding-right: 7px;
+	border-radius: 3px;
+}
+
+.btn-webcam:focus{
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px rgba(0, 0, 0, 0.40) !important;
+	outline-style: none !important;
+	border:none !important;
+}
+
+.btn-webcam:hover{
+	order: 1px solid rgb(165, 162, 162);
+}

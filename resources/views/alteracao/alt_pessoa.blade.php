@@ -1,4 +1,3 @@
-<div class="cadastro">
 <form class="form" method="post" action={{route('pessoa.update',$pessoaC)}} enctype="multipart/form-data">
     @method("PUT")
     @csrf
@@ -43,18 +42,24 @@
             <i><label class="col-form-label" for="nom_nome"> - Campo Obrigatório</label></i> <!--Ou unico campo obrigatório?-->
             <input id="nom_nome" type="text" class="form-control col-md-10" name="nom_nome"  value="{{$pessoaC->nom_nome}}" autofocus  maxlength="150" required>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             @if($pessoaC->image !=null)
-                <label class="col-form-label negrito" for="nome">Foto de perfil:</label>
-                <input type="file" class="form-control col-md-10 input-arquivo" name="img_perfil" id="img_perfil" accept="image/*"/>
+                <label class="col-form-label negrito" for="nome">Alterar foto de perfil:</label>
+                <input type="file" class="form-control col-md-12 input-arquivo" name="img_perfil" id="img_perfil" accept="image/*"/>
                 <label id="alert-foto" class="alert-obrigatorio" hidden="true">* A extensão do arquivo não é aceita.</label>
                 <label id="alert-foto-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de foto aceito é 25mb.</label>
             @else
                 <label class="col-form-label negrito" for="nome">Foto de perfil:</label>
-                <input type="file" class="form-control col-md-10 input-arquivo" name="img_perfil" id="img_perfil" accept="image/*"/>      
+                <input type="file" class="form-control col-md-12 input-arquivo" name="img_perfil" id="img_perfil" accept="image/*"/>      
                 <label id="alert-foto" class="alert-obrigatorio" hidden="true">* A extensão do arquivo não é aceita.</label>
                 <label id="alert-foto-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de foto aceito é 25mb.</label>          
             @endif
+        </div>
+        <div class="form-group col-md-2" style="padding-left:2%;">
+            <label class="col-form-label negrito" for="nom_complemento">Webcam</label>
+            <br>
+            <button type="button" data-toggle="modal" data-target="#modalWebcam" class="btn-webcam"><img src="{{asset('Utils/webcam.png')}}" alt="Tirar foto com webcam" title="Tirar foto com webcam"></button>
+            <input hidden id="foto_webcam" name="foto_webcam" value="">
         </div>
     </div>
 
@@ -264,6 +269,7 @@
     @endif
 <!--Este script é chamado depois de carregar todo html, pois caso ao contrario ele não encontraria as labels.-->
 </form>
+@include('Utils/modal_webcam')
 {{--Valida a imagem que o usuario enviou--}}
 <script type="text/javascript" defer>
     //Validação do input de documento

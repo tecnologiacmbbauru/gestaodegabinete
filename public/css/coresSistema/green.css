@@ -163,3 +163,24 @@
 .fc-list-event-dot{
     border: calc(var(--fc-list-event-dot-width, 10px) / 2) solid var(--fc-event-border-color, #005005) !important;
 }
+
+/*Botão da foto de webcam*/
+.area button{
+    -webkit-appearance: none;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+    background-color: #2e7d32;
+    color: white;
+    text-transform: uppercase;
+    border: 1px solid #2e7d32;
+    box-shadow: 0 1px 5px #2e7d32;
+}
+  
+.area button:focus{
+    outline: none;
+    background-color: #005005;
+    border: 1px solid #005005;
+    box-shadow: 0 1px 5px #005005;
+}

@@ -174,3 +174,24 @@ terceria:62727b
 .fc-list-event-dot{
     border: calc(var(--fc-list-event-dot-width, 10px) / 2) solid var(--fc-event-border-color, #102027) !important;
 }
+
+/*Botão da foto de webcam*/
+.area button{
+    -webkit-appearance: none;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+    background-color: #62727b;
+    color: white;
+    text-transform: uppercase;
+    border: 1px solid #62727b;
+    box-shadow: 0 1px 5px #62727b;
+}
+  
+.area button:focus{
+    outline: none;
+    background-color: #37474f;
+    border: 1px solid #37474f;
+    box-shadow: 0 1px 5px #37474f;
+}

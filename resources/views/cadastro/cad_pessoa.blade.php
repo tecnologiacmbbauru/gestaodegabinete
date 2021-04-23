@@ -31,11 +31,17 @@
             <i><label class="col-form-label" for="nom_nome"> - Campo Obrigatório</label></i> <!--Ou unico campo obrigatório?-->
             <input id="nom_nome" type="text" class="form-control col-md-10" name="nom_nome" value="{{old('nom_nome')}}" autofocus  maxlength="150" required>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label class="col-sm-2 col-form-label negrito" for="nome">Foto</label>
-            <input id="img_perfil" type="file" class="form-control col-md-10 input-arquivo" name="img_perfil" accept="image/*"/>
+            <input id="img_perfil" type="file" class="form-control col-md-12 input-arquivo" name="img_perfil" accept="image/*" />
             <label id="alert-foto" class="alert-obrigatorio" hidden="true">* A extensão do arquivo não é aceita.</label>
             <label id="alert-foto-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de foto aceito é 25mb.</label>
+        </div>
+        <div class="form-group col-md-2" style="padding-left:2%;">
+            <label class="col-form-label negrito" for="nom_complemento">Webcam</label>
+            <br>
+            <button type="button" data-toggle="modal" data-target="#modalWebcam" class="btn-webcam"><img src="{{asset('Utils/webcam.png')}}" alt="Tirar foto com webcam" title="Tirar foto com webcam"></button>
+            <input hidden id="foto_webcam" name="foto_webcam" value="">
         </div>
     </div>
 
@@ -183,7 +189,7 @@
     </div>
 
 </form>
-
+@include('Utils/modal_webcam')
 {{--Alteração de pessoa fisica e juridica e busca ou cadastro--}}
 <script type="text/javascript">
     var checkInicio = document.getElementsByName("ind_pessoa"); //Inicia com pessoa fisica checada

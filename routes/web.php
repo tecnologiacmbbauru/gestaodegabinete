@@ -52,6 +52,7 @@ Route::resource('/agentePolitico', 'AgentePoliticoController');
 Route::post('/agentePolitico/altera', 'AgentePoliticoController@altera')->name('agentePolitico.altera');
 
 //Rotas da navbar
+Route::post('/pessoa/tirarFoto','PessoaController@tirarFoto')->name('pessoa.tirarFoto');
 Route::any('/pessoa/pesquisa/relatorio/{var}','PessoaController@pessoaRelatorio')->name('pessoa.pessoaRelatorio');
 Route::any('/pessoa/pesquisa','PessoaController@pesquisaPessoa')->name('pessoa.pesquisaPessoa');
 Route::resource('/pessoa','PessoaController');
