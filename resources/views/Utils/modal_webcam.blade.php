@@ -71,7 +71,7 @@ Colocado nos forms dependendo da cor
     </div>
   </div>
 <script>
-    $(document).ready(function(){
+    function iniciaWebcan(){
         //function loadCamera(){
             //Captura elemento de vídeo
             var video = document.querySelector("#webCamera");
@@ -93,7 +93,7 @@ Colocado nos forms dependendo da cor
                 });
             }
         //}
-    });
+    }
 
     function takeSnapShot(){
         //Captura elemento de vídeo
