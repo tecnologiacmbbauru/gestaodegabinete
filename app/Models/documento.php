@@ -124,7 +124,7 @@ class documento extends Model
 
         foreach ($period as $key => $date) {
             $queryFn = function($query) use ($date) {
-                $query->whereMonth("dat_lembrete", '=', $date->format('m'))->whereDay("dat_lembrete", '=', $date->format('d'));
+                $query->whereMonth("dat_lembrete", '=', $date->format('m'))->whereDay("dat_lembrete", '=', $date->format('d'))->whereYear("dat_lembrete", '=', $date->format('Y'));
             };
 
             if($key === 0) {
