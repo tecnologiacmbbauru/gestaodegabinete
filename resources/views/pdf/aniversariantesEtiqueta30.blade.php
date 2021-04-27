@@ -9,40 +9,37 @@
         @page{
             margin-right:0.4cm;
             margin-left:0.4cm;
-            margin-top:1.3cm;
-            margin-bottom:1.2cm;
+            margin-top:1.4cm !important;
+            margin-bottom:1.23cm !important;
             padding:0px;
             {
-            font-family: Arial!important;
-            font-size:13px;
-            font-style: bold;
-            }
-            body{
-                margin:0cm;
-                padding:0cm;
+                font-family: Arial!important;
+                font-size:13px;
+                font-style: bold;
             }
             table {
                 padding:0cm;
                 table-layout: fixed;
-                width:100%;
-                border-spacing: 0.3cm 0cm;/*0,3 centimetro de espalamento de uma celula para outra*/
-
+                width:100% !important;
+                height: 100% !important;
+                border-spacing: 0.3cm 0cm !important;/*0,3 centimetro de espalamento de uma celula para outra*/
+            }
+            body{
+                border: 0cm !important;
+                margin:0cm !important;
             }
             td{
-                margin:0cm;
-                padding:0cm;
-                border:0px solid; /*1px solid;*/
+                margin:0cm !important;
+                padding:0cm !important;
+                border:1px solid; /*1px solid;*/
             }
             .celula{
-                margin:0cm;
-                padding:0cm;
-                width: 6.65cm;           
-                height:2.5cm;          
-                white-space: nowrap;
-                word-wrap: break-word;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                padding-left:0.4cm;
+                margin:0cm !important;
+                padding:0cm !important;
+                width: 6.8cm !important;           
+                height: 2.7cm !important;          
+                padding-left:0.4cm !important;
+                padding-bottom: 0.3cm !important;
             }
         }
     </style>

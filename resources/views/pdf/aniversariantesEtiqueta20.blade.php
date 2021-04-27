@@ -18,7 +18,6 @@
                 font-style: bold;
             }
             table {
-
                 padding:0cm;
                 table-layout: fixed;
                 width:100%;
@@ -52,9 +51,11 @@
                 /*min-width: 10.1cm;*/
                 width: 10.19cm;          /*10,19cm; */
                 height:2.5cm;              /*3,39cm;*/
-                white-space: nowrap;
-                word-wrap: break-word;
-                overflow: hidden;
+                overflow: hidden; 
+                text-overflow: ellipsis; 
+                display: -webkit-box;
+                -webkit-line-clamp: 1; 
+                -webkit-box-orient: vertical; 
                 padding-left: 1cm;
             }
         }

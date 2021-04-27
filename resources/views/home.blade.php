@@ -291,7 +291,7 @@
     if(aniversariante.nom_cidade!=null)
       document.getElementById("cidade").innerHTML = ", "+aniversariante.nom_cidade;
     if(aniversariante.nom_estado!=null)
-      document.getElementById("cidade").innerHTML = ", "+aniversariante.estado;
+      document.getElementById("cidade").innerHTML = ", "+aniversariante.nom_estado;
     if(aniversariante.num_ddd_tel!=null)
       document.getElementById("ddd_tel").innerHTML = "("+aniversariante.num_ddd_tel+")";
     document.getElementById("telefone").innerHTML = aniversariante.num_tel;
