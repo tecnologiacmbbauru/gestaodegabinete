@@ -130,7 +130,8 @@
                     <label class="form-check-label negrito" style="margin-left:25px;">Alterar Atendimento</label> 
                     <div id="pesquisaAtendimento" name="pesquisaAtendimento" style="display:none;">
                             @include('Utils/form_pesquisa_atendimento')
-                    </div>              
+                    </div> 
+                    <input hidden type="text" name="existe_atendimento" id="existe_atendimento" value="s">         
                 </fieldset>
             @else
                 <fieldset id="segunda_secao" class="fieldset-personalizado" form="altera_documento">
@@ -322,6 +323,7 @@
             $("#pesquisaAtendimento").css("display", "none"); 
             checkAltAtendimento=true;            
         }
+        document.getElementById('existe_atendimento').value = "N";
     }
     
 </script>

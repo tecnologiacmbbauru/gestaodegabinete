@@ -34,7 +34,7 @@ class EtiquetaController extends Controller
                                 )->where('ind_status','A')                                       //pesquisa as pessoas que não estão excluidas(ativas)
                                 // ->orderBy('dat_nascimento','asc')
                                  ->orderByRaw('nom_nome asc')                       //ordena pela data de aniversario
-                                 ->paginate(50);       //10 resultados por pagina
+                                 ->paginate(4);       //10 resultados por pagina
                                            
         $aniversariantes->withPath(config('app.url')."/etiquetaAniversarioResultado");
 

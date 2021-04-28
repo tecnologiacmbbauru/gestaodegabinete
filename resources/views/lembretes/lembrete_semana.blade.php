@@ -136,7 +136,7 @@ $i=0; // usado de controler para numerar os cards
                     @endif
                     <hr>
                     <b>Resposta:</b>
-                    @if($documento->GAB_ATENDIMENTO_cod_atendimento==null)
+                    @if($documento->dat_resposta==null)
                         Não possui
                     @else
                         <p id="resposta{{$i}}" class="card-text" hidden style="margin-bottom: 0px; color:rgb(55, 53, 53);">

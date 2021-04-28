@@ -115,7 +115,7 @@ class DocumentoController extends Controller
         $docC = documento::findOrFail($id);;
         
         $dataform = $request->all();
-        
+        //dd($dataform);
         $dataform['lembrete'] = request()->has('lembrete');
 
         //Exclusao de lembrete
@@ -157,10 +157,12 @@ class DocumentoController extends Controller
             $docPath = $request->path_doc_resp->store(Auth::user()->domain.'/documento');
             $dataform['path_doc_resp']=$docPath;
         }
-       
-        /*if($dataform['GAB_ATENDIMENTO_cod_atendimento']==null){
-            $dataform['GAB_ATENDIMENTO_cod_atendimento'] = $docC->GAB_ATENDIMENTO_cod_atendimento;
-        }*/
+        if(isset($dataform['existe_atendimento'])){
+            if($dataform['existe_atendimento']=='s'){
+                $dataform['GAB_ATENDIMENTO_cod_atendimento'] = $docC->GAB_ATENDIMENTO_cod_atendimento;
+            }
+        }
+
 
         try{
             $docC->update($dataform);
