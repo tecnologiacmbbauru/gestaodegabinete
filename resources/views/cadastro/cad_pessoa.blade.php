@@ -36,6 +36,7 @@
             <input id="img_perfil" type="file" class="form-control col-md-12 input-arquivo" name="img_perfil" accept="image/*" />
             <label id="alert-foto" class="alert-obrigatorio" hidden="true">* A extensão do arquivo não é aceita.</label>
             <label id="alert-foto-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de foto aceito é 25mb.</label>
+            <label id="alert-foto-success" class="alert-success" hidden="true">* Foto carregada com sucesso.</label>
         </div>
         <div class="form-group col-md-2" style="padding-left:2%;">
             <label class="col-form-label negrito" for="nom_complemento">Webcam</label>
@@ -210,6 +211,7 @@
         $("#btn-cadastrar").attr("disabled", false);//primeiro ativa o botão cadastrar caso estivesse desativado
         document.getElementById("alert-foto").hidden=true;//e esconde as mensagens de erro
         document.getElementById("alert-foto-tamanho").hidden=true; 
+        document.getElementById("alert-foto-success").hidden=true; 
 
         if((this.files[0].size/1024/1024)>25){//valida se o tamanho é valido
             document.getElementById("img_perfil").focus;

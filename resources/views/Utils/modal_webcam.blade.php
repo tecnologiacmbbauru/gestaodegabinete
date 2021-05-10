@@ -120,6 +120,7 @@ Colocado nos forms dependendo da cor
     function sendSnapShot(base64){
       let img_base64 = base64.split(",");
       document.getElementById('foto_webcam').value=img_base64[1].trim();
+      document.getElementById('alert-foto-success').hidden = false;
       $('#modalWebcam').modal('hide');
         /*$.ajax({ //enviar requisição ajax
             url:"{{url('/pessoa/tirarFoto')}}", 
