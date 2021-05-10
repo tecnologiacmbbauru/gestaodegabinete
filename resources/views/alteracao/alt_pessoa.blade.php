@@ -48,11 +48,13 @@
                 <input type="file" class="form-control col-md-12 input-arquivo" name="img_perfil" id="img_perfil" accept="image/*"/>
                 <label id="alert-foto" class="alert-obrigatorio" hidden="true">* A extensão do arquivo não é aceita.</label>
                 <label id="alert-foto-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de foto aceito é 25mb.</label>
+                <label id="alert-foto-success" class="alert-success" hidden="true">* Foto carregada com sucesso.</label>
             @else
                 <label class="col-form-label negrito" for="nome">Foto de perfil:</label>
                 <input type="file" class="form-control col-md-12 input-arquivo" name="img_perfil" id="img_perfil" accept="image/*"/>      
                 <label id="alert-foto" class="alert-obrigatorio" hidden="true">* A extensão do arquivo não é aceita.</label>
-                <label id="alert-foto-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de foto aceito é 25mb.</label>          
+                <label id="alert-foto-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de foto aceito é 25mb.</label> 
+                <label id="alert-foto-success" class="alert-success" hidden="true">* Foto carregada com sucesso.</label>         
             @endif
         </div>
         <div class="form-group col-md-2" style="padding-left:2%;">

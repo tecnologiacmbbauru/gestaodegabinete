@@ -12,34 +12,32 @@ body{
   max-width: 500px;
 }
 
-.area video{
+.area video {
+  width: 100%;
+  height: auto;
+  /*background-color: whitesmoke;*/
+  background-color:#f5f5f6;
+}
+canvas{
   width: 100%;
   height: auto;
   /*background-color: whitesmoke;*/
   background-color:#f5f5f6;
 }
 
-
-/*
-Colocado nos forms dependendo da cor
-.area button{
-  -webkit-appearance: none;
-  width: 100%;
+.div-exibir-foto{
+  margin: 10px auto;
+  /*box-shadow: 0 10px 100px #ccc;*/
+  /*padding: 20px;*/
   box-sizing: border-box;
-  padding: 10px;
-  text-align: center;
-  background-color: #068c84;
-  color: white;
-  text-transform: uppercase;
-  border: 1px solid white;
-  box-shadow: 0 1px 5px #666;
+  max-width: 500px;
 }
 
-.area button:focus{
-  outline: none;
-  background-color: #0989b0;
+.div-exibir-foto button{
+  margin: 10px auto;
+  width: 33%;
 }
-*/
+
 </style>
 
 <!--Modal com os detalhes do evento-->
@@ -54,17 +52,21 @@ Colocado nos forms dependendo da cor
             </div>
             <div class="modal-body">
             
-                <div class="area">
+                <div id="taskFoto" class="area">
                       <video autoplay="true" id="webCamera">
                       </video>
               
                       <input hidden  type="text" id="base_img" name="base_img"/>
-                      <button id="tirarFoto" type="button" onclick="takeSnapShot()">Tirar foto e salvar</button>
-              
-                      <!--<img id="imagemConvertida"/>
-              onclick="takeSnapShot()"
-                        <p id="caminhoImagem" class="caminho-imagem"><a href="" target="_blank"></a></p>-->
+                      <button id="tirarFoto" type="button" onclick="takeSnapShot()">Tirar foto</button>
                 </div>
+                <div id="exibeFoto" class="div-exibir-foto" hidden>
+                    <canvas id='canvas'></canvas>
+                    <div style="display:flex;justify-content:center;align-items:center;">
+                      <button id="salvarFoto" class="btn btn-primary" type="button" onclick="enviaFoto()"><img src="{{asset('utils/correct.png')}}"></button>
+                      <button id="sairFoto" class="btn btn-primary" type="button" onclick="tirarOutraFoto()"><img src="{{asset('utils/close-x.png')}}"></button>
+                    </div>
+                </div>
+
               </form>
             </div>
         </div>
@@ -107,12 +109,28 @@ Colocado nos forms dependendo da cor
         
         //Desenhando e convertendo as dimensões
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        
+
+        var canvas = document.querySelector("#canvas");  
+        canvas.height = video.videoHeight;
+        canvas.width = video.videoWidth;
+        var context = canvas.getContext('2d');
+        context.drawImage(video, 0, 0);
+
+        document.getElementById('taskFoto').hidden = true;
+        document.getElementById('exibeFoto').hidden = false;
+    }
+
+    function enviaFoto(){
         //Criando o JPG
         var dataURI = canvas.toDataURL('image/jpeg'); //O resultado é um BASE64 de uma imagem.
         document.querySelector("#base_img").value = dataURI;
         
         sendSnapShot(dataURI); //Gerar Imagem e Salvar Caminho no Banco
+    }
+
+    function tirarOutraFoto(){
+        document.getElementById('taskFoto').hidden = false;
+        document.getElementById('exibeFoto').hidden = true;
     }
 
     // CSRF Token
