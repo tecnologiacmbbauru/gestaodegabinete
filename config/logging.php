@@ -47,6 +47,14 @@ return [
             'level' => 'debug',
         ],
 
+        'relatorios' => [
+            'driver' => 'single',
+            'name' => 'relatorios',
+            'path' => storage_path('logs/relatorios.log'),
+            'level' => 'debug',
+        ],
+
+        /*
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
@@ -98,7 +106,7 @@ return [
 
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
-        ],
+        ],*/
     ],
 
 ];

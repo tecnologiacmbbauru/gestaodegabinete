@@ -53,7 +53,7 @@
             <label class="col-form-label negrito">Número</label>
             <input id="nom_numero" type="text" class="form-control" name="nom_numero" value="{{$vereador->nom_numero}}" maxlength="100" >
         </div>
-        <div class="form-group col-md-5" style="padding-left:0px;">
+        <div class="form-group col-md-5">
             <label class="col-form-label negrito">Bairro/Complemento</label>
             <input id="nom_complemento" type="text" class="form-control col-sm-10" name="nom_complemento" value="{{$vereador->nom_complemento}}" maxlength="200"  >
         </div>        
