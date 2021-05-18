@@ -40,7 +40,7 @@ class pdfController extends Controller
                 $pessoas = $pessoa->pesquisaLimitada($dataform);  
                 
                 //log
-                Log::channel('relatorios')->info('Relatório de PESSOA em EXCEL gerado no Tenant:'.auth()->user()->domain.' |pelo usuário: '.auth()->user()->id. ' |Nome:' . auth()->user()->name. ' |Numero de registros impresos:'.$pessoas->count());
+                Log::channel('relatorios')->info('Relatorio de PESSOA em EXCEL gerado no Gabinete: '.auth()->user()->domain.' |pelo usuario: '.auth()->user()->name.'(id='.auth()->user()->id.')  |Numero de registros impressos:'.$pessoas->count());
 
                 return Excel::download(new pessoasExport($pessoas), 'pessoa.xlsx');
                 //return Excel::download(new atendimentosExport, 'atendimento.xlsx');
@@ -51,7 +51,7 @@ class pdfController extends Controller
                 $agentePolitico = agentePolitico::first();
                 
                 //log
-                Log::channel('relatorios')->info('Relatório de PESSOA em PDF gerado no Tenant:'.auth()->user()->domain.' |pelo usuário: '.auth()->user()->id. ' |Nome:' . auth()->user()->name. ' |Numero de registros impresos:'.$pessoas->count());
+                Log::channel('relatorios')->info('Relatorio de PESSOA em PDF gerado no Gabinete: '.auth()->user()->domain.' |pelo usuario: '.auth()->user()->name.'(id='.auth()->user()->id.') |Numero de registros impressos:'.$pessoas->count());
 
                 $pdf = PDF::loadView('pdf/pdfRelatorioPessoa',compact('agentePolitico','pessoas'));//->setOption('footer-right','"page [page] of [topage]"');
                 return $pdf->stream('pessoa.pdf');
@@ -169,7 +169,7 @@ class pdfController extends Controller
 
                 $atendimentos = $atendimentosBairro;                                      //no final $atendimentosBairro vai ter todas busca realizadas, ou o resultado da busca gera                        
                 
-                Log::channel('relatorios')->info('Relatório de ATENDIMENTO em PDF gerado no Tenant:'.auth()->user()->domain.' |pelo usuário: '.auth()->user()->id. ' |Nome:' . auth()->user()->name. ' |Numero de registros impresos:'.$atendimentos->count());
+                Log::channel('relatorios')->info('Relatorio de ATENDIMENTO em PDF gerado no Gabinete: '.auth()->user()->domain.' |pelo usuario: '.auth()->user()->name.'(id='.auth()->user()->id.') |Numero de registros impressos:'.$atendimentos->count());
                 
                 $pdf = PDF::loadView('pdf/pdfAtendimentoGeral',compact('agentePolitico','atendimentos')); 
                 return $pdf->stream('atendimentos.pdf');
@@ -356,7 +356,7 @@ class pdfController extends Controller
                 $atendimentos = $atendimentosBairro;                                      //no final $atendimentosBairro vai ter todas busca realizadas, ou o resultado da busca gera                           
                 //dd($atendimentos);
                 
-                Log::channel('relatorios')->info('Relatório de ATENDIMENTO em EXCEL gerado no Tenant:'.auth()->user()->domain.' |pelo usuário: '.auth()->user()->id. ' |Nome:' . auth()->user()->name. ' |Numero de registros impresos:'.$atendimentos->count());
+                Log::channel('relatorios')->info('Relatorio de ATENDIMENTO em EXCEL gerado no Gabinete: '.auth()->user()->domain.' |pelo usuario: '.auth()->user()->name.'(id='.auth()->user()->id.') |Numero de registros impressos:'.$atendimentos->count());
                 
                 return Excel::download(new atendimentosExport($atendimentos), 'atendimento.xlsx');
             break;
@@ -370,7 +370,7 @@ class pdfController extends Controller
                 $documentos = $documento->pesquisaLimitada($dataform);         
                 $agentePolitico = agentePolitico::first();
 
-                Log::channel('relatorios')->info('Relatório de DOCUMENTO em PDF gerado no Tenant:'.auth()->user()->domain.' |pelo usuário: '.auth()->user()->id. ' |Nome:' . auth()->user()->name. ' |Numero de registros impresos:'.$documentos->count());
+                Log::channel('relatorios')->info('Relatorio de DOCUMENTO em PDF gerado no Gabinete: '.auth()->user()->domain.' |pelo usuario: '.auth()->user()->name.'(id='.auth()->user()->id.') |Numero de registros impressos:'.$documentos->count());
 
                 $pdf = PDF::loadView('pdf/pdfDocumentoGeral',compact('agentePolitico','documentos'));
 
@@ -395,7 +395,7 @@ class pdfController extends Controller
                 $dataform = $request->input('dataform');
                 $documentos = $documento->pesquisaLimitada($dataform);
 
-                Log::channel('relatorios')->info('Relatório de DOCUMENTO em EXCEL gerado no Tenant:'.auth()->user()->domain.' |pelo usuário: '.auth()->user()->id. ' |Nome:' . auth()->user()->name. ' |Numero de registros impresos:'.$documentos->count());
+                Log::channel('relatorios')->info('Relatorio de DOCUMENTO em EXCEL gerado no Gabinete: '.auth()->user()->domain.' |pelo usuario: '.auth()->user()->name.'(id='.auth()->user()->id.') |Numero de registros impressos:'.$documentos->count());
 
                 return Excel::download(new documentosExport($documentos), 'documento.xlsx');
             break;

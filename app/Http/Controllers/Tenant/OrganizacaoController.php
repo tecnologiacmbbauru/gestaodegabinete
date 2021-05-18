@@ -52,6 +52,8 @@ class OrganizacaoController extends Controller
         $dataform['domain'] = $dataform['bd_database'];
         $dataform['bd_password'] = Crypt::encryptString($dataform['bd_password']);
 
+        
+
         try{
             if(isset($dataform['alterar-db'])===false){
                 $dataform['bd_password'] = env('DB_PASSWORD');
@@ -69,16 +71,8 @@ class OrganizacaoController extends Controller
                         ->route('organizacao.index')
                         ->with('error', 'Falha ao criar base dedados. Verifique se a base de dados já existe.');
                 }
-            }else{
-                try{
-                    event(new DatabaseCreated($organizacao));
-                } catch (\Exception $e) {
-                    $organizacao->delete();
-                    return redirect()
-                        ->route('organizacao.index')
-                        ->with('error', 'Falha ao criar base dedados. Verifique se a base de dados já existe.');
-                }
             }
+            
             return redirect()
                         ->route('organizacao.show',$organizacao->id)
                         ->with('success', 'Cadastro de gabinete realizado com sucesso.');

@@ -11,7 +11,7 @@
         <div id="alerta" class="sobre col-md-11">
             <h3>Gestão de Gabinete</h3>
             <p>
-                <h4>Versão 5.0</h4>
+                <h4>Versão 6.0</h4>
                 <br>
                 <br>
                 Desenvolvido pelo Serviço Tecnológico em Informática

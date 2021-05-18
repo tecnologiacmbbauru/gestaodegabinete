@@ -23,7 +23,7 @@ class CreateGabVereadorTable extends Migration {
 			$table->string('nom_cidade', 100)->nullable();
 			$table->char('nom_estado', 2)->nullable();
 			$table->char('num_cep', 9)->nullable();
-			$table->binary('img_foto')->nullable();
+			$table->string('img_foto')->nullable();
 			$table->string('tip_foto', 20)->nullable();
 			$table->integer('tam_foto')->nullable();
 			$table->string('nom_orgao', 150)->nullable();
