@@ -91,7 +91,7 @@ canvas{
                     video.srcObject = stream;
                 })
                 .catch(function(error) {
-                    alert("Oooopps... Falhou :'(");
+                    alert("Não foi possivel detectar sua câmera.\nCertique-se de que a câmera está habilitada para uso.");
                 });
             }
         //}
