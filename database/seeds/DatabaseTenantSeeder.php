@@ -19,13 +19,10 @@ class DatabaseTenantSeeder extends Seeder
             tipoAtendimentoSeeder::class,
             tipoDocumentoSeeder::class,
             unidadeAdmSeeder::class,
-            PessoaSeeder::class,
-            PessoaJuridicaSeeder::class,
-            AtendimentoSeeder::class,
-            DocumentoSeeder::class,
             /*
             ---------APENAS PARA TESTES, GERAR DADOS ALEATORIOS------------
             PessoaSeeder::class,
+            PessoaJuridicaSeeder::class,
             AtendimentoSeeder::class,
             DocumentoSeeder::class,
             --------------------FIM DOS DADOS DE TESTE---------------------
