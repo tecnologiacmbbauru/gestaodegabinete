@@ -41,13 +41,13 @@
       initialView: 'dayGridMonth',
 
       eventSources: [
-        {
             {{--Coloca para mostrar evento de todos calendar_id--}}
             @foreach ($chaveAgendas as $chaveAgenda)
+            {
                 googleCalendarId: '{{$chaveAgenda->calendar_id}}',
+                className: 'gcal-event'
+            },
             @endforeach
-            className: 'gcal-event'
-        }
       ],
       //function resize layout responsive
       windowResize: function(view) {
