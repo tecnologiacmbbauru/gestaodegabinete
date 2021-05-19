@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Atendimento::class, function (Faker $faker) {
     return [
         'dat_atendimento' => $faker->date(),
-        'txt_detalhes' => $faker->text,
+        'txt_detalhes' =>$faker->realText($maxNbChars = 200, $indexSize = 2),
         'nom_usuario_log' => "admin",
         'nom_operacao_log' => "insert",
         'ind_status' => "A",

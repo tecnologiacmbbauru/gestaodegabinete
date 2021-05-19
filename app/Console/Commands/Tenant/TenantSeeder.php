@@ -67,6 +67,7 @@ class TenantSeeder extends Command
 
         $command = Artisan::call('db:seed',[
             '--class'  =>'DatabaseTenantSeeder',
+            '--force'  => true
         ]);
 
         if($command === 0){
