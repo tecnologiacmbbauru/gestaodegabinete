@@ -23,13 +23,13 @@ Primeiro, execute o comando para clonar o projeto do GitHub:
 
 **_git clone --branch multi-tenancy https://github.com/tecnologiacmbbauru/gestaodegabinete.git_**
 
-Após clonar o repositório, acesse a pasta do sistema e execute o comando:
+Após clonar o repositório, acesse a pasta do sistema e instale todas as dependências, executando o comando:
 
 **_composer install_**
 
 ## Banco de dados
 
-Então, copie o arquivo _.env.example_, renomeie a cópia para **.env** e altere conforme as configurações do seu banco de dados:
+Copie o arquivo _.env.example_, renomeie a cópia para **.env** e altere conforme as configurações do seu banco de dados:
 
 > DB_CONNECTION=tenant
 
@@ -45,23 +45,23 @@ Então, copie o arquivo _.env.example_, renomeie a cópia para **.env** e altere
 
 **Atenção:** O campo _BD_CONECTION_ deve ser igual a _tenant_, os demais campos são configurações do seu banco de dados.
 
-**Atenção:** Certifique-se de que o usuário do banco de dados, definido neste arquivo,tenha todas permissões necessárias (deve ser super usuário).
+**Atenção:** Certifique-se de que o usuário do banco de dados, definido neste arquivo, tenha todas permissões necessárias (deve ser super usuário).
 
 
 ## Configurações para funcionamento do sistema
- Defina uma nova chave no seu arquivo .env, utilizando o comando:
+ Defina uma nova chave para o sistema (no arquivo .env), utilizando o comando:
 
-**_php artisan key:generate_**
+ **_php artisan key:generate_**
 
-Crie um link simbólico apontando para a pasta storage/app/public, onde são armazenados imagens e documentos do software, utilizando o comando:
+Crie um link simbólico apontando para a pasta storage/app/public, onde são armazenados imagens e documentos do sistema, utilizando o comando:
 
 **_php artisan storage:link_**
 
-Crie as tabelas necessárias para o banco de dados do sistema, executendo o comando:
+Crie as tabelas necessárias para o banco de dados do sistema, executando o comando:
 
 **_php artisan migrate_**
 
-Crie o usuário administradordo sistema, utilizando o comando:
+Crie o usuário administrador do sistema, utilizando o comando:
 
 **_php artisan db:seed_**
 
