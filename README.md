@@ -65,7 +65,9 @@ Crie o usuário administrador do sistema, utilizando o comando:
 
 **_php artisan db:seed_**
 
-Acesse o sistema e efetue login utilizando **usuário:system / senha:system**. Após logon, troque a senha.
+Acesse o sistema e efetue login utilizando **usuário:system / senha:system**. 
+
+Após login, **troque a senha** e acesse o **Manual do Administrador** para conhecer o processo de criação dos Gabinetes e Usuários.
 
 
 # Módulos externos
