@@ -138,7 +138,25 @@
     color:#4527a0 !important;
 }
 
-.fc-event-title {
+.fc-event-title{
+    color:black !important; 
+}
+.fc-event-title-container {
+    color:black !important; 
+}
+.fc-sticky{
+    color:black !important; 
+}
+
+.fc-h-event{
+    border: 0px solid black !important;
+}
+
+.fc-event-title-container {
+    color:black !important; 
+    background-color: var(--fc-event-bg-color, #b39ddb) !important;
+}
+.fc-sticky{
     color:black !important; 
 }
 

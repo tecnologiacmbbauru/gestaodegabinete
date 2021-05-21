@@ -146,8 +146,23 @@ terceria:62727b
     color:#37474f !important;
 }
 
-.fc-event-title {
-    color:black !important;
+.fc-event-title{
+    color:black !important; 
+}
+.fc-event-title-container {
+    color:black !important; 
+}
+.fc-sticky{
+    color:black !important; 
+}
+
+.fc-event-title-container {
+    color:black !important; 
+    background-color: var(--fc-event-bg-color, #90a4ae) !important;
+}
+
+.fc-h-event{
+    border: 0px solid black !important;
 }
 
 .fc-event-time{

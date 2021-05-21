@@ -27,8 +27,11 @@
         </div>
 </form>
 <p style="font-size: 14px; margin-top:10px;margin-bottom:0px;">
-    Para sincronizar seu "Google Agenda" com o software "Gestão de Gabinete", para isto siga os passos disponiveis <a class="a-footer" href="https://fullcalendar.io/docs/google-calendar" target="_blank">aqui</a>.
+    <b>É possível cadastrar várias agendas (IDs) no sistema, porém utilizando a mesma chave de API.</b>
+    <br>
+    Para saber como obter as chaves do Google Agenda, <a href="https://fullcalendar.io/docs/google-calendar" target="_blank">clique aqui</a> e siga os passos descritos nos itens:
+    <li>“Você deve primeiro ter uma chave de API do Google Agenda”</li>
+    <li>“Torne seu Google Agenda público”</li>
+    <li>“Obtenha o ID do seu Google Agenda”</li>
 </p>
-<p style="font-size: 14px;margin-bottom:5px;">
-    É possível adicionar vários calendários(calendar id), porem todos devem pertencer a uma <b>única agenda</b>(agenda id).
-</p>
+

@@ -130,8 +130,23 @@ terceria:5e92f3
     color:#1563c0 !important;
 }
 
-.fc-event-title {
+.fc-event-title{
     color:black !important; 
+}
+.fc-event-title-container {
+    color:black !important; 
+}
+.fc-sticky{
+    color:black !important; 
+}
+
+.fc-event-title-container {
+    color:black !important; 
+    background-color: var(--fc-event-bg-color, #bbdefb) !important;
+}
+
+.fc-h-event{
+    border: 0px solid black !important;
 }
 
 .fc-event-time{

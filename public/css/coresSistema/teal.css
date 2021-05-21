@@ -138,7 +138,14 @@
     color:#00695c !important;
 }
 
-.fc-event-title {
+.fc-event-title{
+    color:black !important; 
+}
+.fc-event-title-container {
+    color:black !important; 
+    background-color: var(--fc-event-bg-color, #b2dfdb) !important;
+}
+.fc-sticky{
     color:black !important; 
 }
 
@@ -148,6 +155,10 @@
 
 .fc-daygrid-event-dot{
     border: calc(var(--fc-daygrid-event-dot-width, 8px) / 2) solid #000000 !important;
+}
+
+.fc-h-event{
+    border: 0px solid black !important;
 }
 
 .fc-v-event{

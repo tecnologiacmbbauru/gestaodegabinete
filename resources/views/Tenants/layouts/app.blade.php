@@ -37,6 +37,12 @@
                 </li>
             </ul>
 
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="{{ route('tenant.manual.index') }}">{{ __('Manual') }}</a>
+                </li>
+            </ul>
+
             <!--<ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="{{ route('tenant.backup.index') }}">{{ __('Backup') }}</a>

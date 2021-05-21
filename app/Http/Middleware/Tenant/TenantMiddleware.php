@@ -20,7 +20,6 @@ class TenantMiddleware
      */
     public function handle($request, Closure $next)
     {
-        //dd(Auth::user()->domain);
         if(isset(Auth::user()->domain)){
             if(Auth::user()->domain!="system"){
                 $organizacao = Organizacao::where('domain',Auth::user()->domain)->first();

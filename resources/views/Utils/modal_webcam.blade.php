@@ -72,8 +72,8 @@ canvas{
         </div>
     </div>
   </div>
-<script>
-    function iniciaWebcan(){
+<script defer>
+    /*function iniciaWebcan(){
         //function loadCamera(){
             //Captura elemento de vídeo
             var video = document.querySelector("#webCamera");
@@ -92,10 +92,38 @@ canvas{
                 })
                 .catch(function(error) {
                     alert("Não foi possivel detectar sua câmera.\nCertique-se de que a câmera está habilitada para uso.");
+                    //console.log("entreii");
+                    $("#myModal").hide();
                 });
             }
         //}
-    }
+    }*/
+    $(document).ready(function() {
+      $("#modalWebcam").on('shown.bs.modal', function() {
+            //Captura elemento de vídeo
+            var video = document.querySelector("#webCamera");
+            //As opções abaixo são necessárias para o funcionamento correto no iOS
+            video.setAttribute('autoplay', '');
+            video.setAttribute('muted', '');
+            video.setAttribute('playsinline', '');
+            //--
+            
+            //Verifica se o navegador pode capturar mídia
+            if (navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({audio: false, video: {facingMode: 'user'}})
+                .then( function(stream) {
+                    //Definir o elemento vídeo a carregar o capturado pela webcam
+                    video.srcObject = stream;
+                })
+                .catch(function(error) {
+                    alert("Não foi possivel detectar sua câmera.\nCertique-se de que a câmera está habilitada para uso.");
+                    $('#modalWebcam').modal('hide');
+                });
+            }
+        //}
+      });
+    })
+
 
     function takeSnapShot(){
         //Captura elemento de vídeo

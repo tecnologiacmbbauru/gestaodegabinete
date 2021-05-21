@@ -39,9 +39,9 @@
             <table id="tb_situacao_Atendimento" class="mtab table table-striped table-hover table-responsive-lg" cellspacing="10" width="100%">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Nome</th>
-                        <th>Chave da API</th>
-                        <th>Id da agenda</th>
+                        <th>Nome da Agenda</th>
+                        <th>Google Calendar API</th>
+                        <th>Google Calendar ID</th>
                         <th style="text-align: center;">Alterar</th>
                         <th style="text-align: center;">Excluir</th>
                     </tr>

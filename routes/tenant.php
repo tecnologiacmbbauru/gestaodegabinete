@@ -24,6 +24,11 @@ Route::put('/usuario/configuracao/{id}', 'Tenant\TenantController@alterarUsuario
 Route::get('/usuario/configuracao/{id}', 'Tenant\TenantController@editarUsuario')->name('usuario.editar');
 Route::get('/tenants', 'Tenant\TenantController@index')->name('tenant.index');
 
+Route::get('/manual', function () {
+    return view('Tenants/manual');
+})->name('tenant.manual.index');
+
+
 Route::get('/estatisticas', 'Tenant\EstatisticasController@index')->name('tenant.estatisticas.index');
 Route::post('/estatisticas/pesquisaEstatistica','Tenant\EstatisticasController@pesquisaEstatisticas')->name('estatisticas.pesquisa');
 
