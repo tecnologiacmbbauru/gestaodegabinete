@@ -75,6 +75,7 @@ A Agenda utilizada no software exibe eventos do **Google Agenda**. Para utilizá
 
 # Versão Demonstrativa
 Para conhecer o software, acesse a **versão demonstrativa**: https://intranet.bauru.sp.leg.br/gabdemo/.
+Efetue login utilizando **usuário:admin / senha:admin**.
 
 # Mais informações
 Para mais detalhes sobre as funcionalidades do software, consulte o **Manual do Usuário**.
