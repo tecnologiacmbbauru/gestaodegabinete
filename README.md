@@ -43,7 +43,7 @@ Copie o arquivo _.env.example_, renomeie a cópia para **.env** e altere conform
 
 > DB_PASSWORD=example_password
 
-**Atenção:** O campo _BD_CONECTION_ deve ser igual a _tenant_, os demais campos são configurações do seu banco de dados.
+**Atenção:** O campo _DB_CONECTION_ deve ser igual a _tenant_, os demais campos são configurações do seu banco de dados.
 
 **Atenção:** Certifique-se de que o usuário do banco de dados, definido neste arquivo, tenha todas permissões necessárias (deve ser super usuário).
 
