@@ -6,49 +6,79 @@
     <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
 </p>
 
-## Sobre
+# Sobre
 
 "Gestão de Gabinete" consiste em um <i>software</i>, voltado para Agentes Políticos e Assessores Parlamentares, tendo como principal objetivo auxiliar as atividades diárias realizadas nos Gabinetes.
 
-## Licença
+# Licença
 O software foi desenvolvido pelo **Serviço Tecnológico em Informática da Câmara Municipal de Bauru** / São Paulo em **software livre e aberto**, sob Licença Pública Geral [GNU](http://www.gnu.org/licenses/).
 
-## Instalação e Configuração
-Após clonar o repositório, instale todas as dependências dentro da pasta do projeto, utilizando o comando:
+# Instalação e Configuração
 
-**<i>composer install</i>**
+## Pré Requisitos 
+Para funcionamento do software, é necessário instalar o [Composer](https://getcomposer.org/)- gerenciador de dependências e bibliotecas para softwares PHP.
 
-Renomeie o arquivo <i>.env.example</i> para **<i>.env</i>** e altere conforme as configurações do seu banco de dados.
+## Instalação
+Para instalar, basta você clonar o projeto do GitHub:
 
-Defina uma nova chave no seu arquivo .env, utilizando o comando:
+**_git clone --branch multi-tenancy https://github.com/tecnologiacmbbauru/gestaodegabinete.git_**
 
-**<i>php artisan key:generate</i>**
+Navegar até a pasta com a instalação e rodar o comando:
 
-Crie um link simbólico apontando para a pasta storage/app/public, onde são armazenados imagens e documentos do software, utilizando o comando:
+**_composer install_**
 
-**<i>php artisan storage:link</i>**
+## Banco de dados
+Então copie o arquivo **.env.example** e renomeei a cópia para **.env**.
 
-Crie o banco de dados, utilizando o comando:
+Neste arquivo, você vai alterar as configurações do banco de dados:
 
-**<i>php artisan migrate</i>**
+> DB_CONNECTION=tenant
 
-Popule as tabelas com dados iniciais, utilizando o comando:
+> DB_HOST=127.0.0.1
 
-**<i>php artisan db:seed</i>**
+> DB_PORT=3306
 
-<b>Atenção:</b> Para popular com dados de teste (não utilizar na versão de produção), retire os comentários das linhas 24,25,26 do arquivo <i>DatabaseSeeder.php</i> antes de executar o comando acima.
+> DB_DATABASE=gab_host
 
-Acesse o sistema e efetue login utilizando *usuário:admin / senha:admin*. Após logon, **troque a senha**.
+> DB_USERNAME=example_user
 
-## Módulos externos
+> DB_PASSWORD=example_password
+
+**Atenção:** O campo _BD_CONECTION_ deve ser igual a _tenant_, os demais campos são configurações do banco de dados.
+
+**Atenção:** O usuário e senha neste arquivo devem ter as permissões necessárias (super usuário).
+
+## Configurações para funcionamento do sistema
+Depois do sistema instalado e o banco de dados configurado com super usuário no arquivo **.env**, então podemos realizar os comandos para o pleno funcionamento. Dentro do caminho onde o sistema está instalando, vamos criar uma chave para o sistema com o comando:
+
+**_php artisan key:generate_**
+
+O sistema também utiliza um link simbólico da pasta public para pasta _storage_, onde os arquivos são armazenados. Para criar este link rode o comando:
+
+**_php artisan storage:link_**
+
+Agora precisamos apenas criar as tabelas necessárias para nosso banco de dados rodar, para isto execute o comando:
+
+**_php artisan migrate_**
+
+E criamos um usuário administrador com o comando:
+
+**_php artisan db:seed_**
+
+A partir disto, você já pode acessar o sistema pelo link do seu servidor apache.
+
+O usuário e senha padrão é **system/system**.  Após logon, troque a senha.
+
+
+# Módulos externos
 Este software utiliza **webservice gratuito <a href="https://viacep.com.br/">Via CEP</a>** no cadastro de Pessoas para consultar Códigos de Endereçamento Postal (CEP) do Brasil.
 
 A Agenda utilizada no software exibe eventos do **Google Agenda**. Para utilizá-la, é necessário cadastrar as Chaves do Google Agenda.
 
-## Versão Demonstrativa
+# Versão Demonstrativa
 Para conhecer o software, acesse a **versão demonstrativa**: https://intranet.bauru.sp.leg.br/gabdemo/.
 
-## Mais informações
+# Mais informações
 Para mais detalhes sobre as funcionalidades do software, consulte o **Manual do Usuário**.
 
 Para  dúvidas  e/ou  esclarecimentos, entre  em **contato**  com  o Serviço  Tecnológico  em  Informática da Câmara  Municipal  de Bauru/SP. 
