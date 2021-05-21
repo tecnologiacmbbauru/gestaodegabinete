@@ -16,21 +16,20 @@ O software foi desenvolvido pelo **Serviço Tecnológico em Informática da Câm
 # Instalação e Configuração
 
 ## Pré Requisitos 
-Para funcionamento do software, é necessário instalar o [Composer](https://getcomposer.org/)- gerenciador de dependências e bibliotecas para softwares PHP.
+Para o software funcionar corretamente, é necessário instalar o [Composer](https://getcomposer.org/)- gerenciador de dependências e bibliotecas para softwares PHP.
 
 ## Instalação
-Para instalar, basta você clonar o projeto do GitHub:
+Primeiro, execute o comando para clonar o projeto do GitHub:
 
 **_git clone --branch multi-tenancy https://github.com/tecnologiacmbbauru/gestaodegabinete.git_**
 
-Navegar até a pasta com a instalação e rodar o comando:
+Após clonar o repositório, acesse a pasta do sistema e execute o comando:
 
 **_composer install_**
 
 ## Banco de dados
-Então copie o arquivo **.env.example** e renomeei a cópia para **.env**.
 
-Neste arquivo, você vai alterar as configurações do banco de dados:
+Então, copie o arquivo _.env.example_, renomeie a cópia para **.env** e altere conforme as configurações do seu banco de dados:
 
 > DB_CONNECTION=tenant
 
@@ -44,30 +43,29 @@ Neste arquivo, você vai alterar as configurações do banco de dados:
 
 > DB_PASSWORD=example_password
 
-**Atenção:** O campo _BD_CONECTION_ deve ser igual a _tenant_, os demais campos são configurações do banco de dados.
+**Atenção:** O campo _BD_CONECTION_ deve ser igual a _tenant_, os demais campos são configurações do seu banco de dados.
 
-**Atenção:** O usuário e senha neste arquivo devem ter as permissões necessárias (super usuário).
+**Atenção:** Certifique-se de que o usuário do banco de dados, definido neste arquivo,tenha todas permissões necessárias (deve ser super usuário).
+
 
 ## Configurações para funcionamento do sistema
-Depois do sistema instalado e o banco de dados configurado com super usuário no arquivo **.env**, então podemos realizar os comandos para o pleno funcionamento. Dentro do caminho onde o sistema está instalando, vamos criar uma chave para o sistema com o comando:
+ Defina uma nova chave no seu arquivo .env, utilizando o comando:
 
 **_php artisan key:generate_**
 
-O sistema também utiliza um link simbólico da pasta public para pasta _storage_, onde os arquivos são armazenados. Para criar este link rode o comando:
+Crie um link simbólico apontando para a pasta storage/app/public, onde são armazenados imagens e documentos do software, utilizando o comando:
 
 **_php artisan storage:link_**
 
-Agora precisamos apenas criar as tabelas necessárias para nosso banco de dados rodar, para isto execute o comando:
+Crie as tabelas necessárias para o banco de dados do sistema, executendo o comando:
 
 **_php artisan migrate_**
 
-E criamos um usuário administrador com o comando:
+Crie o usuário administradordo sistema, utilizando o comando:
 
 **_php artisan db:seed_**
 
-A partir disto, você já pode acessar o sistema pelo link do seu servidor apache.
-
-O usuário e senha padrão é **system/system**.  Após logon, troque a senha.
+Acesse o sistema e efetue login utilizando **usuário:system / senha:system**. Após logon, troque a senha.
 
 
 # Módulos externos
