@@ -80,10 +80,14 @@ Para conhecer o software, acesse a **versão demonstrativa**: https://intranet.b
 
 Efetue login utilizando **usuário:admin / senha:admin**.
 
-# Mais informações
-Para mais detalhes sobre as funcionalidades do software, consulte o **Manual do Usuário**.
+# Manuais
+Para conhecer as funcionalidades do software, consulte o [Manual do Usuário.](https://github.com/tecnologiacmbbauru/gestaodegabinete/blob/multi-tenancy/public/utils/Manual_do_Usuario.pdf)
 
-Para  dúvidas  e/ou  esclarecimentos, entre  em **contato**  com  o Serviço  Tecnológico  em  Informática da Câmara  Municipal  de Bauru/SP. 
+Sobre a parte técnica, consulte o [Manual do Administrador.](https://github.com/tecnologiacmbbauru/gestaodegabinete/blob/multi-tenancy/public/utils/Manual_do_Administrador.pdf)
+
+# Contato
+Para dúvidas, sugestões e/ou esclarecimentos, entre em **contato** com o Serviço Tecnológico em Informática da Câmara Municipal de Bauru/SP.
+
 
 >**Email**: tecnologia@bauru.sp.leg.br  
 >**Portal Legislativo**: https://www.bauru.sp.leg.br
