@@ -15,7 +15,7 @@ O software foi desenvolvido pelo **Serviço Tecnológico em Informática da Câm
 
 # Instalação e Configuração
 
-## Pré Requisitos 
+## Pré-Requisitos 
 Para o software funcionar corretamente, é necessário instalar o [Composer](https://getcomposer.org/)- gerenciador de dependências e bibliotecas para softwares PHP.
 
 ## Instalação
