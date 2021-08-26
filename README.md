@@ -88,17 +88,17 @@ Criar um arquivo de ambiente virtual chamado **gestaodegabinete.conf** na pasta 
 >Alias /gestaodegabinete /pasta_raiz_do_Apache/gestaodegabinete/public
 >
 ><Directory /pasta_raiz_do_Apache/gestaodegabinete/>
->
+
 >    Options FollowSymLinks
->    
+
 >    Options -Indexes
->    
+
 >    AllowOverride All
->    
+
 >    Require all granted
->    
+
 ></Directory>
->
+
 >ErrorLog ${APACHE_LOG_DIR}/gestaodegabiente_error.log
 >
 >CustomLog ${APACHE_LOG_DIR}/gestaodegabinete_access.log combined
