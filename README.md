@@ -12,11 +12,12 @@
 
 # Licença
 O software foi desenvolvido pelo **Serviço Tecnológico em Informática da Câmara Municipal de Bauru** / São Paulo em **software livre e aberto**, sob Licença Pública Geral [GNU](http://www.gnu.org/licenses/).
+Ele utiliza o Framework Laravel PHP, bem como o servidor Apache e o banco de dados MySQL.
 
 # Instalação e Configuração
 
 ## Pré-Requisitos 
-Para o software funcionar corretamente, é necessário instalar o [Composer](https://getcomposer.org/)- gerenciador de dependências e bibliotecas para softwares PHP.
+Para o software funcionar corretamente, é necessário instalar: [Composer](https://getcomposer.org/) - gerenciador de dependências e bibliotecas para softwares PHP, webserver Apache e servidor de banco de dados Mysql. 
 
 ## Instalação
 Primeiro, execute o comando para clonar o projeto do GitHub:
@@ -28,6 +29,7 @@ Após clonar o repositório, acesse a pasta do sistema e instale todas as depend
 **_composer install_**
 
 ## Banco de dados
+Efetue a criação do Banco de Dados principal.
 
 Copie o arquivo _.env.example_, renomeie a cópia para **.env** e altere conforme as configurações do seu banco de dados:
 
@@ -49,6 +51,11 @@ Copie o arquivo _.env.example_, renomeie a cópia para **.env** e altere conform
 
 
 ## Configurações para funcionamento do sistema
+
+Altere, ainda no arquivo .env, as informações : APP_ENV, APP_DEBUG e APP_URL de acordo com as configurações do servidor.
+Para a APP_URL você deve colocar a url do servidor (IP ou hostname) / nome da pasta do projeto (padrão gestaodegabinete)
+Default: http://seudominioouip/gestaodegabinete
+
  Defina uma nova chave para o sistema (no arquivo .env), utilizando o comando:
 
  **_php artisan key:generate_**
@@ -65,6 +72,43 @@ Crie o usuário administrador do sistema, utilizando o comando:
 
 **_php artisan db:seed_**
 
+
+## Criação do VirtualHost no Apache
+Criar um arquivo de ambiente virtual chamado gestaodegabinete.conf na pasta padrão do Apache, conforme conteúdo abaixo:
+
+><VirtualHost *:80>
+>ServerName seudominioouip
+>ServerAdmin seuemail@seudominio.com.br
+>DocumentRoot /pasta_raiz_do_Apache
+>Alias /gestaodegabinete /pasta_raiz_do_Apache/gestaodegabinete/public
+><Directory /pasta_raiz_do_Apache/gestaodegabinete/>
+>    Options FollowSymLinks
+>    Options -Indexes
+>    AllowOverride All
+>    Require all granted
+></Directory>
+>ErrorLog ${APACHE_LOG_DIR}/gestaodegabiente_error.log
+>CustomLog ${APACHE_LOG_DIR}/gestaodegabinete_access.log combined
+></VirtualHost>
+
+Ativar o ambiente virtual e reiniciar o serviço do Apache.
+
+**OBS:Se o nome da pasta do projeto for alterado (padrão gestaodegabinete), também deverá ser alterado o conteúdo do arquivo de ambiente virtual do Apache (gestaodegabinete.conf) e a linha 23 do arquivo .htacess na pasta public.**
+
+# Permissões para o sistema operacional Linux
+Executar os seguintes comandos na pasta do projeto:
+
+sudo chmod 777 storage -R   
+sudo chmod 777 bootstrap -R
+sudo chown usuario_apache:usuario_apache /var/www/html/gestaodegabinete -R
+php artisan config:clear
+php artisan cache:clear
+composer dump-autoload
+php artisan view:clear
+php artisan route:clear
+
+
+# Primeiro Acesso ao sistema
 Acesse o sistema e efetue login utilizando **usuário:system / senha:system**. 
 
 Após login, **troque a senha** e acesse o **Manual do Administrador** para conhecer o processo de criação dos Gabinetes e Usuários.
