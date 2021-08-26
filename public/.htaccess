@@ -18,4 +18,8 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+    #Redireciona base do /public para nome do projeto colocado nas configs do apache
+    RewriteBase /gestaodegabinete/
+
 </IfModule>
