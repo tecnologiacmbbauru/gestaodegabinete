@@ -111,15 +111,21 @@ Ativar o ambiente virtual e reiniciar o serviço do Apache.
 # Permissões para o sistema operacional Linux
 Executar os seguintes comandos na pasta do projeto:
 
-sudo chmod 777 storage -R   
-sudo chmod 777 bootstrap -R
-sudo chown usuario_apache:usuario_apache /var/www/html/gestaodegabinete -R
-php artisan config:clear
-php artisan cache:clear
-composer dump-autoload
-php artisan view:clear
-php artisan route:clear
-
+>sudo chmod 777 storage -R   
+>
+>sudo chmod 777 bootstrap -R
+>
+>sudo chown usuario_apache:usuario_apache /var/www/html/gestaodegabinete -R
+>
+>php artisan config:clear
+>
+>php artisan cache:clear
+>
+>composer dump-autoload
+>
+>php artisan view:clear
+>
+>php artisan route:clear
 
 # Primeiro Acesso ao sistema
 Acesse o sistema e efetue login utilizando **usuário:system / senha:system**. 
