@@ -52,9 +52,9 @@ Copie o arquivo _.env.example_, renomeie a cópia para **.env** e altere conform
 
 ## Configurações para funcionamento do sistema
 
-Altere, ainda no arquivo .env, as informações : **APP_ENV, APP_DEBUG e APP_URL** de acordo com as configurações do seu servidor.
+Ainda no arquivo .env, preencha as variáveis **APP_ENV, APP_DEBUG e APP_URL** de acordo com as configurações do seu servidor.
 
-Para a **APP_URL** você deve colocar a url do servidor (IP ou hostname) / nome da pasta do projeto (padrão gestaodegabinete)
+OBS: Para a variável **APP_URL**, insira a URL do servidor (IP ou hostname) / nome da pasta do projeto (padrão gestaodegabinete)
 Default: http://seudominioouip/gestaodegabinete
 
  Defina uma nova chave para o sistema (no arquivo .env), utilizando o comando:
