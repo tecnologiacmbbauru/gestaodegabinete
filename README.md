@@ -12,12 +12,12 @@
 
 # Licença
 O software foi desenvolvido pelo **Serviço Tecnológico em Informática da Câmara Municipal de Bauru** / São Paulo em **software livre e aberto**, sob Licença Pública Geral [GNU](http://www.gnu.org/licenses/).
-Ele utiliza o Framework Laravel PHP, bem como o servidor Apache e o banco de dados MySQL.
+Ele utiliza o **Framework Laravel PHP**, bem como o **servidor Apache** e o **banco de dados MySQL**.
 
 # Instalação e Configuração
 
 ## Pré-Requisitos 
-Para o software funcionar corretamente, é necessário instalar: [Composer](https://getcomposer.org/) - gerenciador de dependências e bibliotecas para softwares PHP, webserver Apache e servidor de banco de dados Mysql. 
+Para o software funcionar corretamente, é necessário instalar: **[Composer](https://getcomposer.org/)** - gerenciador de dependências e bibliotecas para softwares PHP, webserver **[Apache](https://httpd.apache.org/)** e servidor de banco de dados **[Mysql](https://www.mysql.com/)**. 
 
 ## Instalação
 Primeiro, execute o comando para clonar o projeto do GitHub:
