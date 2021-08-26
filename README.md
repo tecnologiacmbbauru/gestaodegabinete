@@ -92,7 +92,7 @@ CustomLog ${APACHE_LOG_DIR}/gestaodegabinete_access.log combined
 
 Ative o ambiente virtual e reinicie o serviço do Apache.
 
-**OBS:Se o nome da pasta do projeto for alterado (padrão gestaodegabinete), também deverá ser alterado o conteúdo do arquivo de ambiente virtual do Apache (gestaodegabinete.conf) e a linha 23 do arquivo .htacess na pasta public.**
+**Importante: Se o nome da pasta do projeto for alterado (padrão gestaodegabinete), também deverá ser alterado o conteúdo do arquivo de ambiente virtual do Apache (gestaodegabinete.conf) e a linha 23 do arquivo .htaccess na pasta public.**
 
 # Permissões para o sistema operacional Linux
 Execute os seguintes comandos na pasta do projeto:
