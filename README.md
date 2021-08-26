@@ -127,7 +127,7 @@ Executar os seguintes comandos na pasta do projeto:
 >
 >php artisan route:clear
 
-# Primeiro Acesso ao sistema
+# Primeiro Acesso 
 Acesse o sistema e efetue login utilizando **usuário:system / senha:system**. 
 
 Após login, **troque a senha** e acesse o **Manual do Administrador** para conhecer o processo de criação dos Gabinetes e Usuários.
