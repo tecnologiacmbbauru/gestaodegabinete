@@ -97,7 +97,7 @@ Criar um arquivo de ambiente virtual chamado **gestaodegabinete.conf** na pasta 
 
 >    Require all granted
 
-></Directory>
+>fsdfasdfasdfasdf
 
 >ErrorLog ${APACHE_LOG_DIR}/gestaodegabiente_error.log
 >
