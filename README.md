@@ -100,7 +100,7 @@ Execute os seguintes comandos na pasta do projeto:
 ```
 sudo chmod 777 storage -R   
 sudo chmod 777 bootstrap -R
-sudo chown usuario_apache:usuario_apache /var/www/html/gestaodegabinete -R
+sudo chown usuario_apache:usuario_apache /pasta_raiz_do_Apache/gestaodegabinete -R
 php artisan config:clear
 php artisan cache:clear
 composer dump-autoload
