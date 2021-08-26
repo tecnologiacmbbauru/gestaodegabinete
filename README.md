@@ -33,17 +33,14 @@ Efetue a criação do Banco de Dados principal.
 
 Copie o arquivo _.env.example_, renomeie a cópia para **.env** e altere conforme as configurações do seu banco de dados:
 
-> DB_CONNECTION=tenant
-
-> DB_HOST=127.0.0.1
-
-> DB_PORT=3306
-
-> DB_DATABASE=gab_host
-
-> DB_USERNAME=example_user
-
-> DB_PASSWORD=example_password
+```
+DB_CONNECTION=tenant
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=gab_host
+DB_USERNAME=example_user
+DB_PASSWORD=example_password
+```
 
 **Atenção:** O campo _DB_CONECTION_ deve ser igual a _tenant_, os demais campos são configurações do seu banco de dados.
 
@@ -101,21 +98,16 @@ Ativar o ambiente virtual e reiniciar o serviço do Apache.
 # Permissões para o sistema operacional Linux
 Executar os seguintes comandos na pasta do projeto:
 
->sudo chmod 777 storage -R   
->
->sudo chmod 777 bootstrap -R
->
->sudo chown usuario_apache:usuario_apache /var/www/html/gestaodegabinete -R
->
->php artisan config:clear
->
->php artisan cache:clear
->
->composer dump-autoload
->
->php artisan view:clear
->
->php artisan route:clear
+```
+sudo chmod 777 storage -R   
+sudo chmod 777 bootstrap -R
+sudo chown usuario_apache:usuario_apache /var/www/html/gestaodegabinete -R
+php artisan config:clear
+php artisan cache:clear
+composer dump-autoload
+php artisan view:clear
+php artisan route:clear
+```
 
 # Primeiro Acesso 
 Acesse o sistema e efetue login utilizando **usuário:system / senha:system**. 
