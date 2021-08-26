@@ -75,7 +75,7 @@ Crie o usuário administrador do sistema, utilizando o comando:
 
 
 ## Criação do VirtualHost no Apache
-Criar um arquivo de ambiente virtual chamado gestaodegabinete.conf na pasta padrão do Apache, conforme conteúdo abaixo:
+Criar um arquivo de ambiente virtual chamado **gestaodegabinete.conf** na pasta padrão do Apache, conforme conteúdo abaixo:
 
 ><VirtualHost *:80>
 >
