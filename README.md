@@ -51,8 +51,9 @@ DB_PASSWORD=example_password
 
 Ainda no arquivo .env, preencha as variáveis **APP_ENV, APP_DEBUG e APP_URL** de acordo com as configurações do seu servidor.
 
-OBS: Para a variável **APP_URL**, insira a URL do servidor (IP ou hostname) / nome da pasta do projeto (padrão gestaodegabinete)
-Default: http://seudominioouip/gestaodegabinete
+OBS: Para a variável **APP_URL**, insira a URL do servidor (IP ou hostname) / nome da pasta do projeto (gestaodegabinete)
+
+Padrão: http://seudominioouip/gestaodegabinete
 
  Defina uma nova chave para o sistema (no arquivo .env), utilizando o comando:
 
