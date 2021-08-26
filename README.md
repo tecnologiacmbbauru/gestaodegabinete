@@ -96,8 +96,8 @@ Criar um arquivo de ambiente virtual chamado **gestaodegabinete.conf** na pasta 
 >    AllowOverride All
 >    
 >    Require all granted
->       
-><Directory>
+>    
+></Directory>
 >
 >ErrorLog ${APACHE_LOG_DIR}/gestaodegabiente_error.log
 >
