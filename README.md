@@ -71,7 +71,7 @@ Crie o usuário administrador do sistema, utilizando o comando:
 
 
 ## Criação do VirtualHost no Apache
-Criar um arquivo de ambiente virtual chamado **gestaodegabinete.conf** na pasta padrão do Apache, conforme conteúdo abaixo:
+Crie um arquivo de ambiente virtual chamado **gestaodegabinete.conf** na pasta padrão do Apache, conforme conteúdo abaixo:
 
 ```
 <VirtualHost *:80>
@@ -90,12 +90,12 @@ CustomLog ${APACHE_LOG_DIR}/gestaodegabinete_access.log combined
 </VirtualHost>
 ```
 
-Ativar o ambiente virtual e reiniciar o serviço do Apache.
+Ative o ambiente virtual e reinicie o serviço do Apache.
 
 **OBS:Se o nome da pasta do projeto for alterado (padrão gestaodegabinete), também deverá ser alterado o conteúdo do arquivo de ambiente virtual do Apache (gestaodegabinete.conf) e a linha 23 do arquivo .htacess na pasta public.**
 
 # Permissões para o sistema operacional Linux
-Executar os seguintes comandos na pasta do projeto:
+Execute os seguintes comandos na pasta do projeto:
 
 ```
 sudo chmod 777 storage -R   
