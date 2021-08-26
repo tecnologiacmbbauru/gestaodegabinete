@@ -77,18 +77,31 @@ Crie o usuário administrador do sistema, utilizando o comando:
 Criar um arquivo de ambiente virtual chamado gestaodegabinete.conf na pasta padrão do Apache, conforme conteúdo abaixo:
 
 ><VirtualHost *:80>
+>
 >ServerName seudominioouip
+>
 >ServerAdmin seuemail@seudominio.com.br
+>
 >DocumentRoot /pasta_raiz_do_Apache
+>
 >Alias /gestaodegabinete /pasta_raiz_do_Apache/gestaodegabinete/public
+>
 ><Directory /pasta_raiz_do_Apache/gestaodegabinete/>
+>
 >    Options FollowSymLinks
+>    
 >    Options -Indexes
+>    
 >    AllowOverride All
+>    
 >    Require all granted
+>    
 ></Directory>
+>
 >ErrorLog ${APACHE_LOG_DIR}/gestaodegabiente_error.log
+>
 >CustomLog ${APACHE_LOG_DIR}/gestaodegabinete_access.log combined
+>
 ></VirtualHost>
 
 Ativar o ambiente virtual e reiniciar o serviço do Apache.
