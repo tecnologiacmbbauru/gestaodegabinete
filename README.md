@@ -17,7 +17,7 @@ Ele utiliza o **Framework Laravel PHP**, bem como o **servidor Apache** e o **ba
 # Instalação e Configuração
 
 ## Pré-Requisitos 
-Para o software funcionar corretamente, é necessário instalar: **[Composer](https://getcomposer.org/)** - gerenciador de dependências e bibliotecas para softwares PHP, webserver **[Apache](https://httpd.apache.org/)** e servidor de banco de dados **[Mysql](https://www.mysql.com/)**. 
+Para o software funcionar corretamente, é necessário instalar: **[Composer](https://getcomposer.org/)** - gerenciador de dependências e bibliotecas para softwares PHP, webserver **[Apache](https://www.apache.org/)** e servidor de banco de dados **[Mysql](https://www.mysql.com/)**. 
 
 ## Instalação
 Primeiro, execute o comando para clonar o projeto do GitHub:
