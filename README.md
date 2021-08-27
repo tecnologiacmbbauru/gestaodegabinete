@@ -85,7 +85,7 @@ Options -Indexes
 AllowOverride All
 Require all granted
 </Directory>
-ErrorLog ${APACHE_LOG_DIR}/gestaodegabiente_error.log
+ErrorLog ${APACHE_LOG_DIR}/gestaodegabinete_error.log
 CustomLog ${APACHE_LOG_DIR}/gestaodegabinete_access.log combined
 </VirtualHost>
 ```
