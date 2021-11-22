@@ -75,9 +75,9 @@ Route::get('/relatorio/atendimento','pdfController@retornaAtendimento')->name('r
 Route::get('/pdf/{id}','pdfController@geraPdfAtendimento')->name('pdf.atendimento');
 
 /*Etiqueta de Aniversario*/
-Route::get('/etiquetaAniversario','etiquetaController@index')->name('relatorio.retornaEtiqueta');
-Route::any('/etiquetaAniversarioResultado','etiquetaController@pesquisaAniversario')->name('relatorio.pesquisaAniversario');
-Route::any('/etiquetaAniversarioImpressao','etiquetaController@imprimeEtiqueta')->name('relatorio.imprimeEtiqueta');
+Route::get('/etiquetaAniversario','EtiquetaController@index')->name('relatorio.retornaEtiqueta');
+Route::any('/etiquetaAniversarioResultado','EtiquetaController@pesquisaAniversario')->name('relatorio.pesquisaAniversario');
+Route::any('/etiquetaAniversarioImpressao','EtiquetaController@imprimeEtiqueta')->name('relatorio.imprimeEtiqueta');
 
 //Rotas
 Route::get('/','HomeController@index')->name('index');
