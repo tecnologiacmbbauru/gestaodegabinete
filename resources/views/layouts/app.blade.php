@@ -123,6 +123,7 @@
                             <a class="dropdown-item negrito" href="{{ route('agentePolitico.index') }}">{{ __('Agente Político') }}</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item negrito" href="{{ route('cargoPolitico.index') }}">{{ __('Cargo Político') }}</a>
+                            <a class="dropdown-item negrito" href="{{ route('relatorio.retornaDocumento') }}">{{__('Documentos')}}</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item negrito" href="{{ route('tipoAtendimento.index') }}">{{ __('Tipo de Atendimento') }}</a>
                             <a class="dropdown-item negrito" href="{{ route('statusAtendimento.index') }}">{{ __('Situação do Atendimento') }}</a>
