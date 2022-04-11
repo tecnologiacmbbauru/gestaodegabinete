@@ -103,6 +103,7 @@ Ative o ambiente virtual e reinicie o serviço do Apache.
 
 # Permissões para o sistema operacional Linux
 Execute os seguintes comandos na pasta do projeto:
+
 **Observação: a instalação foi realizada no sistema operacional Linux Ubuntu**
 
 ```
