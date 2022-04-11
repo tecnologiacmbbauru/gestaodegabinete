@@ -31,9 +31,11 @@ Após clonar o repositório, acesse a pasta do sistema e instale todas as depend
 ## Banco de dados
 Efetue a criação do Banco de Dados principal.
 
-Copie o arquivo _.env.example_, renomeie a cópia para **.env** e altere conforme as configurações do seu banco de dados:
+Copie o arquivo _.env.example_, renomeie a cópia para **.env** e altere conforme as configurações do seu ambiente e banco de dados:
 
 ```
+APP_ENV=local ou production ('local' se for acesso por IP ou 'production' se por DNS)
+APP_DEBUG=true ou false ('true' se for ambiente de desenvolvimento ou 'false' se for ambiente de produção)
 DB_CONNECTION=tenant
 DB_HOST=127.0.0.1
 DB_PORT=3306
