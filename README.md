@@ -10,7 +10,7 @@
 
 "Gestão de Gabinete" consiste em um <i>software</i>, voltado para Agentes Políticos e Assessores Parlamentares, tendo como principal objetivo auxiliar as atividades diárias realizadas nos Gabinetes.
 
-**_Observação: este projeto não recebe mais atualizações desde 2022 por conta da equipe de TI ser pequena e sobrar pouco tempo para desenvolvimento deste software._**
+**_Observação: este projeto não recebe mais atualizações desde 2022 por conta da equipe de TI ser muito reduzida e, por consequência, sobrar pouquíssimo tempo para testar / realizar melhorias / corrigir falhas neste software._**
 
 # Licença
 O software foi desenvolvido pelo **Serviço Tecnológico em Informática da Câmara Municipal de Bauru** / São Paulo em **software livre e aberto**, sob Licença Pública Geral [GNU](http://www.gnu.org/licenses/).
