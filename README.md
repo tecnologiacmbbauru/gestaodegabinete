@@ -128,15 +128,12 @@ Este software utiliza **webservice gratuito <a href="https://viacep.com.br/">Via
 
 A Agenda utilizada no software exibe eventos do **Google Agenda**. Para utilizá-la, é necessário cadastrar as Chaves do Google Agenda.
 
-# Versão Demonstrativa
-Para conhecer o software, acesse a **versão demonstrativa**: https://intranet.bauru.sp.leg.br/gabdemo/.
-
-Efetue login utilizando **usuário:admin / senha:admin**.
 
 # Manuais
 Para conhecer as funcionalidades do software, consulte o [Manual do Usuário.](https://github.com/tecnologiacmbbauru/gestaodegabinete/blob/multi-tenancy/public/utils/Manual_do_Usuario.pdf)
 
 Sobre a parte técnica, consulte o [Manual do Administrador.](https://github.com/tecnologiacmbbauru/gestaodegabinete/blob/multi-tenancy/public/utils/Manual_do_Administrador.pdf)
+
 
 # Contato
 Para dúvidas, sugestões e/ou esclarecimentos, entre em **contato** com o Serviço Tecnológico em Informática da Câmara Municipal de Bauru/SP.
