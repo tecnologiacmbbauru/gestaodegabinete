@@ -8,7 +8,8 @@
 
 # Sobre
 
-"Gestão de Gabinete" consiste em um <i>software</i>, voltado para Agentes Políticos e Assessores Parlamentares, tendo como principal objetivo auxiliar as atividades diárias realizadas nos Gabinetes 
+"Gestão de Gabinete" consiste em um <i>software</i>, voltado para Agentes Políticos e Assessores Parlamentares, tendo como principal objetivo auxiliar as atividades diárias realizadas nos Gabinetes.
+
 **_Observação: este projeto não teve mais atualização desde 2022, por falta de tempo da equipe desenvolvedora._**
 
 # Licença
