@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class tipoAtendimento extends Model
 {
+    protected $connection = 'tenant';	
     protected $primaryKey = 'cod_tipo';
     protected $table = 'gab_tipo_atendimento';
     protected $fillable = ['nom_tipo','ind_tipo'];

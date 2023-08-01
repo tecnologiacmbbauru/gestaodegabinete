@@ -7,6 +7,7 @@ use Carbon\CarbonPeriod;
 
 class documento extends Model
 {
+    protected $connection = 'tenant';	
     protected $primaryKey = 'cod_documento';
     protected $table = 'gab_documento';
     protected $fillable = ['nom_documento','dat_ano',

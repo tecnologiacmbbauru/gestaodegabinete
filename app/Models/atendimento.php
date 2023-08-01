@@ -10,6 +10,7 @@ use Carbon\Carbon;
 
 class atendimento extends Model
 {
+    protected $connection = 'tenant';	
     protected $primaryKey = 'cod_atendimento';
     protected $table = 'gab_atendimento';
     protected $fillable = ['dat_atendimento','txt_detalhes','nom_usuario_log',

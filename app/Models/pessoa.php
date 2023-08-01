@@ -8,6 +8,7 @@ use Carbon\Carbon;
 
 class pessoa extends Model
 {
+    protected $connection = 'tenant';	
     protected $primaryKey = 'cod_pessoa';
     protected $table = 'gab_pessoa';
     protected $fillable = ['ind_pessoa','image','nom_nome',

@@ -32,7 +32,7 @@ Route::get('/usuarioA','usuarioController@disableHelpAtendimento')->name('usuari
 
 
 //ROTAS DA ABA CADASTRO//
-Route::resource('/statusAtendimento', 'StatusAtendimentoController');
+Route::resource('/statusAtendimento', 'statusAtendimentoController');
 
 Route::resource('/tipoAtendimento', 'TipoAtendimentoController');
 
@@ -75,18 +75,20 @@ Route::get('/relatorio/atendimento','pdfController@retornaAtendimento')->name('r
 Route::get('/pdf/{id}','pdfController@geraPdfAtendimento')->name('pdf.atendimento');
 
 /*Etiqueta de Aniversario*/
-Route::get('/etiquetaAniversario','etiquetaController@index')->name('relatorio.retornaEtiqueta');
-Route::any('/etiquetaAniversarioResultado','etiquetaController@pesquisaAniversario')->name('relatorio.pesquisaAniversario');
-Route::any('/etiquetaAniversarioImpressao','etiquetaController@imprimeEtiqueta')->name('relatorio.imprimeEtiqueta');
+Route::get('/etiquetaAniversario','EtiquetaController@index')->name('relatorio.retornaEtiqueta');
+Route::any('/etiquetaAniversarioResultado','EtiquetaController@pesquisaAniversario')->name('relatorio.pesquisaAniversario');
+Route::any('/etiquetaAniversarioImpressao','EtiquetaController@imprimeEtiqueta')->name('relatorio.imprimeEtiqueta');
 
 //Rotas
 Route::get('/','HomeController@index')->name('index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/sobre' , 'sobreController@index')->name('sobre');
+Route::get('/sobre' , 'SobreController@index')->name('sobre');
 
-Route::get('/manual' , 'manualController@index')->name('manual');        
+Route::get('/manual' , 'manualController@index')->name('manual');
+
+Route::get('/downloads' , 'DownloadsController@index')->name('downloads');        
 
 Route::get('/lembretes' , 'LembreteController@index')->name('lembretes.index');
 Route::any('/lembretes/pesquisa/' , 'LembreteController@lembretePesquisa')->name('lembrete.pesquisa');

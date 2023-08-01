@@ -33,8 +33,8 @@ class TenantSeeder extends Command
     public function __construct(ManagerTenant $tenant)
     {
         parent::__construct();
-    
-        $this->tenant  = $tenant; 
+
+        $this->tenant  = $tenant;
     }
 
     /**
@@ -45,11 +45,11 @@ class TenantSeeder extends Command
     public function handle()
     {
         if( $this->argument('id')) { //verifica se foi passado o parametro opicional id
-            $organizacao =  Organizacao::find($this->argument('id')); 
+            $organizacao =  Organizacao::find($this->argument('id'));
 
             if($organizacao)
                 $this->execCommand($organizacao);
-            
+
             return;
         }
 
@@ -58,14 +58,15 @@ class TenantSeeder extends Command
             $this->execCommand($organizacao);
         }
     }
-    
+
     public function execCommand(Organizacao $organizacao){
 
         $this->tenant->setConnection($organizacao);
-        
+
         $this->info("Conectando com: {$organizacao->name}");
 
-        $command = Artisan::call('db:seed',[
+        $command = $this->call('db:seed',[
+            '--database'  => 'tenant',
             '--class'  =>'DatabaseTenantSeeder',
             '--force'  => true
         ]);

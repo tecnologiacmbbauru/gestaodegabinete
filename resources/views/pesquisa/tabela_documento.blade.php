@@ -38,7 +38,7 @@
                                     Sim 
                                     {{--CÓDIGO PARA MOSTRAR INFORMAÇÕES SOBRE O ATENDIMENTO--}}
                                     {{--Passa o contador de parametro para a função que mostra o atendimento--}}
-                                    <img class="seta" type="button" src="{{asset('Utils/seta-down.svg')}}" id="seta{{$i}}" onclick="atendimentoR({{$i}})">
+                                    <img class="seta" type="button" src="{{asset('utils/seta-down.svg')}}" id="seta{{$i}}" onclick="atendimentoR({{$i}})">
                                     {{--O nome da div tem o cotnador relacionado, para a função atendimnetoR saber qual div é para mostrar--}} 
                                     <div id="atendimentoRela{{$i}}" hidden="true"> 
                                         <label style="font-weight: bolder">Data:</label> <label>{{date('d/m/Y', strtotime($docC->antedimentoRelacionado->dat_atendimento))}}</label>
@@ -59,7 +59,7 @@
                         <td width='10%'>
                             @if($docC->dat_resposta!=null)
                                 Sim
-                                <img class="seta" type="button" src="{{asset('Utils/seta-down.svg')}}" id="seta-res{{$i}}" onclick="respRela({{$i}})">
+                                <img class="seta" type="button" src="{{asset('utils/seta-down.svg')}}" id="seta-res{{$i}}" onclick="respRela({{$i}})">
                                 {{--O nome da div tem o cotnador relacionado, para a função atendimnetoR saber qual div é para mostrar--}} 
                                 <div id="respRela{{$i}}" hidden="true" style="font-weight: 540;"> 
                                     {{$docC->dat_resposta = date('d/m/yy',strtotime($docC->dat_resposta))}}

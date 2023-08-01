@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class cargoPolitico extends Model
 {
+    protected $connection = 'tenant';
     protected $primaryKey = 'cod_car_pol';
     protected $table = 'gab_cargo_politico';
     protected $fillable = ['nom_car_pol','ind_car_pol'];

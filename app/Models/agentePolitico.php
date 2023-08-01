@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class agentePolitico extends Model
 {
-    public $primaryKey = 'id';
+    protected $connection = 'tenant';
+	public $primaryKey = 'id';
     protected $table = 'gab_vereador';
     protected $fillable = ['nom_vereador','nom_endereco','nom_numero','nom_complemento',
     'nom_cidade','nom_estado','num_cep','img_foto','tip_foto','tam_foto',
