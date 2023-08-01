@@ -8,7 +8,7 @@
             <!--Mostra imagem padrão de sem imagem-->
             @else
                 <img src="{{url("utils/sem-imagem.jpg")}}" alt="$pessoaC->nom_nome" style="max-widht: 150px; max-height: 150px;">
-            @endif  
+            @endif
         </div>
         <div class="form-group col-md-8">
             <h1 class="h2" style="text-align:center;">{{$pessoaC->nom_nome}} @if($pessoaC->nom_apelido!=null) ({{$pessoaC->nom_apelido}}) @endif</h1>
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    
+
     <h4 style="margin-bottom:0px;">Dados Pessoais</h4>
     <hr style="margin-top:0px;" class="col-md-10">
 
@@ -51,16 +51,16 @@
                 <label id="alert-foto-success" class="alert-success" hidden="true">* Foto carregada com sucesso.</label>
             @else
                 <label class="col-form-label negrito" for="nome">Foto de perfil:</label>
-                <input type="file" class="form-control col-md-12 input-arquivo" name="img_perfil" id="img_perfil" accept="image/*"/>      
+                <input type="file" class="form-control col-md-12 input-arquivo" name="img_perfil" id="img_perfil" accept="image/*"/>
                 <label id="alert-foto" class="alert-obrigatorio" hidden="true">* A extensão do arquivo não é aceita.</label>
-                <label id="alert-foto-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de foto aceito é 25mb.</label> 
-                <label id="alert-foto-success" class="alert-success" hidden="true">* Foto carregada com sucesso.</label>         
+                <label id="alert-foto-tamanho" class="alert-obrigatorio" hidden="true">* O tamanho máximo de foto aceito é 25mb.</label>
+                <label id="alert-foto-success" class="alert-success" hidden="true">* Foto carregada com sucesso.</label>
             @endif
         </div>
         <div class="form-group col-md-2" style="padding-left:2%;">
             <label class="col-form-label negrito" for="nom_complemento">Webcam</label>
             <br>
-            <button type="button" data-toggle="modal" data-target="#modalWebcam" class="btn-webcam" onclick="iniciaWebcan()"><img src="{{asset('Utils/webcam.png')}}" alt="Tirar foto com webcam" title="Tirar foto com webcam"></button>
+            <button type="button" data-toggle="modal" data-target="#modalWebcam" class="btn-webcam" onclick="iniciaWebcan()"><img src="{{asset('utils/webcam.png')}}" alt="Tirar foto com webcam" title="Tirar foto com webcam"></button>
             <input hidden id="foto_webcam" name="foto_webcam" value="">
         </div>
     </div>
@@ -88,7 +88,7 @@
                     <label class="form-check-label" for="inlineRadio2">Feminino</label>
                 </div>
             </div>
-        </div> 
+        </div>
         <div class="form-group col-md-4" id="label8" hidden="true">
             <label class="col-md-2 col-form-label negrito" for="nom_nome">Representante/Contato</label>
             <input id="nom_re" type="text" class="form-control col-md-9" name="nom_re"  value="{{$pessoaC->nom_re}}" maxlength="150">
@@ -105,11 +105,11 @@
         <div class="form-group col-md-4" id="label11">
             <label class="col-form-label negrito" for="cod_rg">RG</label>
             <input id="cod_rg"  type="text" class="form-control col-md-9 rg" name="cod_rg" value="{{$pessoaC->cod_rg}}">
-        </div> 
+        </div>
         <div class="form-group col-md-4" id="label12" hidden="true">
             <label class="col-form-label negrito" for="nom_re">Inscrição Estadual:</label>
             <input id="cod_ie" type="text" class="form-control col-md-9 ie" name="cod_ie" value="{{$pessoaC->cod_ie}}" maxlength="15">
-        </div>     
+        </div>
         <div class="form-group col-md-4">
             <label id="label13" class=" col-form-label negrito" for="dat_nascimento">Data Nascimento</label>
             <label id="label14" class=" col-form-label negrito" for="dat_nascimento" hidden="true">Data de Constituição</label>
@@ -128,7 +128,7 @@
         <div class="form-group col-md-4">
             <label class="col-form-label negrito">Cidade</label>
             <input id="nom_cidade" type="text" class="form-control col-md-9" name="nom_cidade" value="{{$pessoaC->nom_cidade}}" autocomplete="nom_cidade" maxlength="100">
-        </div>    
+        </div>
         <div class="form-group col-md-4">
             <label class="col-form-label negrito">Estado</label>
             <select id="nom_estado" class="form-control col-md-9" name="nom_estado">
@@ -171,15 +171,15 @@
         </div>
         <div class="form-group col-md-1">
             <label class="col-form-label negrito" for="nom_numero">Numero</label>
-            <input id="nom_numero" type="text" name="nom_numero" class="form-control col-md-9" maxlength="10" value="{{$pessoaC->nom_numero}}"> 
+            <input id="nom_numero" type="text" name="nom_numero" class="form-control col-md-9" maxlength="10" value="{{$pessoaC->nom_numero}}">
         </div>
         <div class="form-group col-md-3">
             <label class="col-form-label negrito">Bairro</label>
             <input id="nom_bairro" type="text" class="form-control col-md-8" name="nom_bairro" value="{{$pessoaC->nom_bairro}}" maxlength="200">
-        </div>    
+        </div>
         <div class="form-group col-md-4">
             <label class="col-form-label negrito" for="nom_complemento">Complemento</label>
-            <input id="nom_complemento" type="text" name="nom_complemento" class="form-control col-md-9" value="{{$pessoaC->nom_complemento}}"> 
+            <input id="nom_complemento" type="text" name="nom_complemento" class="form-control col-md-9" value="{{$pessoaC->nom_complemento}}">
         </div>
     </div>
 
@@ -217,18 +217,18 @@
     </div>
 
     <hr style="margin-top:0px;" class="col-md-10">
-    
+
     <div class="form-row">
         <div class="form-group col-md-11">
             <label class="col-form-label negrito" for="txt_obs">Observações</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" id="txt_obs" name="txt_obs">{{$pessoaC->txt_obs}}</textarea>
         </div>
-    </div>    
-    
+    </div>
+
     <input type="hidden" NAME="ind_status" VALUE="A">
-    
+
     <div class="form-row div-botoes-cadastro">
-        <div>           
+        <div>
             <button id="btn-alterar" type="submit" class="btn btn-primary alterar">Alterar</button>
             <a href="javascript:history.back()" class="btn btn-primary alterar">Voltar</a>
         </div>
@@ -242,7 +242,7 @@
             document.getElementById("cod_cpf").hidden=false;
             document.getElementById("cod_cnpj").disabled=true;
             document.getElementById("cod_cnpj").hidden=true;
-            var check = document.getElementsByName("ind_pessoa"); 
+            var check = document.getElementsByName("ind_pessoa");
             //check[1].disabled = true;
             for(var i=2;i<15;i++){
                 document.getElementById("label"+i).hidden=true;
@@ -278,11 +278,11 @@
     $('#img_perfil').bind('change', function() {
         $("#btn-alterar").attr("disabled", false);//primeiro ativa o botão cadastrar caso estivesse desativado
         document.getElementById("alert-foto").hidden=true;//e esconde as mensagens de erro
-        document.getElementById("alert-foto-tamanho").hidden=true; 
+        document.getElementById("alert-foto-tamanho").hidden=true;
 
         if((this.files[0].size/1024/1024)>25){//valida se o tamanho é valido
             document.getElementById("img_perfil").focus;
-            document.getElementById("alert-foto-tamanho").hidden=false; 
+            document.getElementById("alert-foto-tamanho").hidden=false;
             $("#btn-alterar").attr("disabled", true);
         }else{ //valida se a extensão é valida
             if(this.files[0].type=="image/png" || this.files[0].type=="image/jpg" || this.files[0].type=="image/gif" || this.files[0].type=="image/jpeg" || this.files[0].type=="image/heic" || this.files[0].type=="image/heif"){
