@@ -1,7 +1,7 @@
 name: gestaogabinete
 recipe: laravel
 config:
-  php: '8.1'
+  php: '8.0'
   webroot: public
   via: nginx
   database: mysql:8.0
