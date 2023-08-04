@@ -1,14 +1,14 @@
 name: gestaogabinete
 recipe: laravel
 config:
-  php: '8.1'
+  php: '8.0'
   webroot: public
   via: nginx
   database: mysql:8.0
   cache: redis
 services:
   appserver:
-    type: php:8.1
+    type: php:8.0
     xdebug: true
     build_as_root:
       - rm -f /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && pkill -o -USR2 php-fpm
