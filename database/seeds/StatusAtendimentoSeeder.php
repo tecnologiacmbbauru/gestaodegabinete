@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\StatusAtendimento;
 use Illuminate\Database\Seeder;
 
-class statusAtendimentoSeeder extends Seeder
+class StatusAtendimentoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,15 +14,15 @@ class statusAtendimentoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('gab_status_atendimento')->insert([
+        StatusAtendimento::create([
             'nom_status' => 'Aberto',
             'ind_status' => 'A',
         ]);
-        DB::table('gab_status_atendimento')->insert([
+        StatusAtendimento::create([
             'nom_status' => 'Em andamento',
             'ind_status' => 'A',
         ]);
-        DB::table('gab_status_atendimento')->insert([
+        StatusAtendimento::create([
             'nom_status' => 'Concluído',
             'ind_status' => 'A',
         ]);

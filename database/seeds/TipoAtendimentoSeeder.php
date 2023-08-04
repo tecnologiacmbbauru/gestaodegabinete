@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\TipoAtendimento;
 use Illuminate\Database\Seeder;
 
-class tipoAtendimentoSeeder extends Seeder
+class TipoAtendimentoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,19 +14,19 @@ class tipoAtendimentoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('gab_tipo_atendimento')->insert([
+        TipoAtendimento::create([
             'nom_tipo' => 'Saúde',
             'ind_tipo' => 'A',
         ]);
-        DB::table('gab_tipo_atendimento')->insert([
+        TipoAtendimento::create([
             'nom_tipo' => 'Educação',
             'ind_tipo' => 'A',
         ]);
-        DB::table('gab_tipo_atendimento')->insert([
+        TipoAtendimento::create([
             'nom_tipo' => 'Segurança',
             'ind_tipo' => 'A',
         ]);
-        DB::table('gab_tipo_atendimento')->insert([
+        TipoAtendimento::create([
             'nom_tipo' => 'Infraestrutura',
             'ind_tipo' => 'A',
         ]);

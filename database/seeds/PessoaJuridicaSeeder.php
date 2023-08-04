@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Documento;
 use Illuminate\Database\Seeder;
 use database\factories\PessoaJuridicaFactory;
 
@@ -14,6 +15,6 @@ class PessoaJuridicaSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Pessoa::class, 500)->states('PJ')->create();
+        Pessoa::factory()->count(500)->states('PJ')->make();
     }
 }

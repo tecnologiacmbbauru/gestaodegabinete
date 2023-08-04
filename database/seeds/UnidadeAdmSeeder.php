@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\UnidadeDocumento;
 use Illuminate\Database\Seeder;
 
-class unidadeAdmSeeder extends Seeder
+class UnidadeAdmSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,11 +14,11 @@ class unidadeAdmSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('gab_unidade_documento')->insert([
+        UnidadeDocumento::create([
             'nom_uni_doc' => 'Câmara',
             'ind_uni_doc' => 'A',
         ]);
-        DB::table('gab_unidade_documento')->insert([
+        UnidadeDocumento::create([
             'nom_uni_doc' => 'Prefeitura',
             'ind_uni_doc' => 'A',
         ]);

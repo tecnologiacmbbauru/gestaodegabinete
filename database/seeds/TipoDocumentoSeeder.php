@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\TipoDocumento;
 use Illuminate\Database\Seeder;
 
-class tipoDocumentoSeeder extends Seeder
+class TipoDocumentoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,15 +14,15 @@ class tipoDocumentoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('gab_tipo_documento')->insert([
+        TipoDocumento::create([
             'nom_tip_doc' => 'Carta',
             'ind_tip_doc' => 'A',
         ]);
-        DB::table('gab_tipo_documento')->insert([
+        TipoDocumento::create([
             'nom_tip_doc' => 'Ofício',
             'ind_tip_doc' => 'A',
         ]);
-        DB::table('gab_tipo_documento')->insert([
+        TipoDocumento::create([
             'nom_tip_doc' => 'Requerimento',
             'ind_tip_doc' => 'A',
         ]);

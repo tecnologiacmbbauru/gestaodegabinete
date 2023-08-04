@@ -16,7 +16,7 @@ class PessoaJuridicaFactory extends Factory
     public function definition()
     {
         return [
-            'ind_pessoa'=>'PJ',
+            'ind_pessoa' => 'PJ',
             'nom_nome' => $this->faker->company.$this->faker->companySuffix,
             'nom_apelido' => $this->faker->company,
             'nom_ocupacao' => $this->faker->jobTitle,

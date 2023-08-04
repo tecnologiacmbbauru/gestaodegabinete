@@ -15,12 +15,12 @@ class DatabaseTenantSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         $this->call([
-            cargoPoliticoSeeder::class,
-            situacaoDocumentoSeeder::class,
-            statusAtendimentoSeeder::class,
-            tipoAtendimentoSeeder::class,
-            tipoDocumentoSeeder::class,
-            unidadeAdmSeeder::class,
+            CargoPoliticoSeeder::class,
+            SituacaoDocumentoSeeder::class,
+            StatusAtendimentoSeeder::class,
+            TipoAtendimentoSeeder::class,
+            TipoDocumentoSeeder::class,
+            UnidadeAdmSeeder::class,
             /*
             ---------APENAS PARA TESTES, GERAR DADOS ALEATORIOS------------
             PessoaSeeder::class,

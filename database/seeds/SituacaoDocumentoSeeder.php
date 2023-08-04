@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\SituacaoDoc;
 use Illuminate\Database\Seeder;
 
-class situacaoDocumentoSeeder extends Seeder
+class SituacaoDocumentoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,19 +14,19 @@ class situacaoDocumentoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('gab_status_documento')->insert([
+        SituacaoDoc::create([
             'nom_status' => 'Enviado',
             'ind_status' => 'A',
         ]);
-        DB::table('gab_status_documento')->insert([
+        SituacaoDoc::create([
             'nom_status' => 'Recebido',
             'ind_status' => 'A',
         ]);
-        DB::table('gab_status_documento')->insert([
+        SituacaoDoc::create([
             'nom_status' => 'Aguardando resposta',
             'ind_status' => 'A',
         ]);
-        DB::table('gab_status_documento')->insert([
+        SituacaoDoc::create([
             'nom_status' => 'Respondido',
             'ind_status' => 'A',
         ]);

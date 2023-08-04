@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\CargoPolitico;
 use Illuminate\Database\Seeder;
 
-class cargoPoliticoSeeder extends Seeder
+class CargoPoliticoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
