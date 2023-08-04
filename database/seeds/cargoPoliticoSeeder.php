@@ -1,5 +1,8 @@
 <?php
 
+namespace Database\Seeders;
+
+use App\Models\CargoPolitico;
 use Illuminate\Database\Seeder;
 
 class cargoPoliticoSeeder extends Seeder
@@ -11,11 +14,11 @@ class cargoPoliticoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('gab_cargo_politico')->insert([
+        CargoPolitico::create([
             'nom_car_pol' => 'Vereador',
             'ind_car_pol' => 'A',
         ]);
-        DB::table('gab_cargo_politico')->insert([
+        CargoPolitico::create([
             'nom_car_pol' => 'Vereadora',
             'ind_car_pol' => 'A',
         ]);
