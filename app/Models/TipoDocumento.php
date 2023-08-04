@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class tipoDocumento extends Model
+class TipoDocumento extends Model
 {
-    protected $connection = 'tenant';	
+    protected $connection = 'tenant';
     protected $primaryKey = 'cod_tip_doc'; //definir qual a chave primaria
     protected $table = 'gab_tipo_documento'; //definir o nome da tabela
     protected $fillable = ['nom_tip_doc','ind_tip_doc']; //definir qual pode ser alterado

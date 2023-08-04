@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Models;
-use App\Models\cargoPolitico;
+use App\Models\CargoPolitico;
 
 use Illuminate\Database\Eloquent\Model;
 
-class agentePolitico extends Model
+class AgentePolitico extends Model
 {
     protected $connection = 'tenant';
 	public $primaryKey = 'id';
@@ -16,6 +16,6 @@ class agentePolitico extends Model
     protected $guarded = ['id'];
 
     public function cargoPolitico(){
-        return $this->belongsTo('App\Models\cargoPolitico', 'GAB_CARGO_POLITICO_cod_car_pol', 'cod_car_pol');
+        return $this->belongsTo('App\Models\CargoPolitico', 'GAB_CARGO_POLITICO_cod_car_pol', 'cod_car_pol');
     }
 }

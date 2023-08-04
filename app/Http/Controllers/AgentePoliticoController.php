@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\agentePoliticoRequest;
-use App\Models\cargoPolitico;
-use App\Models\agentePolitico;
+use App\Http\Requests\AgentePoliticoRequest;
+use App\Models\CargoPolitico;
+use App\Models\AgentePolitico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage; //para trabalhar com fotos
@@ -13,18 +13,18 @@ use Illuminate\Support\Facades\DB;
 class AgentePoliticoController extends Controller
 {
     private $agentePolitico;
-   
 
-    public function __construct(agentePolitico $agentePolit){
+
+    public function __construct(AgentePolitico $agentePolit){
         $this->middleware('auth'); //verificar se o usuario esta logado
         $this->agentePolit = $agentePolit;
     }
 
 
     public function index()
-    { 
+    {
         $alteracao=false;
-        $cargoPolitico=cargoPolitico::get();
+        $cargoPolitico=CargoPolitico::get();
         $vereadorCad = DB::select("select * FROM gab_vereador LIMIT 1");//verificar se é o primeiro cadastro de vereador | saida:(Nuul ou o vereador)
         if ($vereadorCad==null) {
             $alteracao = false;
@@ -34,8 +34,8 @@ class AgentePoliticoController extends Controller
             $vereador = $this->agentePolit->first();
             return view('form_agente_politico',compact('vereador','alteracao','cargoPolitico'));
         }
-      
-    
+
+
     }
 
     public function store(Request $request)
@@ -45,7 +45,7 @@ class AgentePoliticoController extends Controller
             $imagePath = $request->img_foto->store(Auth::user()->domain.'/agentePolitico');
             $dataform['img_foto']=$imagePath;
         }
-            
+
         try{
             $insert = $this->agentePolit->create($dataform);
             return redirect()
@@ -62,7 +62,7 @@ class AgentePoliticoController extends Controller
 
     public function altera(Request $request) {
         /*Resgata o vereador que vai fazer a alteração (primeiro vereador cadastro, só é para ter 1) */
-        $vereador = agentePolitico::first();
+        $vereador = AgentePolitico::first();
 
         $dataform = $request->all();
 
@@ -94,7 +94,7 @@ class AgentePoliticoController extends Controller
     }
 
 
-    public function destroy(agentePolitico $agentePolitico)
+    public function destroy(AgentePolitico $agentePolitico)
     {
         //
     }

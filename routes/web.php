@@ -24,15 +24,15 @@ Auth::routes(['register' => false]); //rotas de autenticação sem registro
 Route::post('/login','LoginController@authenticate')->name('login.tenant');
 
 /*HELPS*/
-Route::resource('/usuario','usuarioController');
-Route::get('/usuarioI','usuarioController@disableHelpIni')->name('usuario.disableHelpIni');
-Route::get('/usuarioP','usuarioController@disableHelpPessoa')->name('usuario.disableHelpPessoa');
-Route::get('/usuarioD','usuarioController@disableHelpDocumento')->name('usuario.disableHelpDocumento');
-Route::get('/usuarioA','usuarioController@disableHelpAtendimento')->name('usuario.disableHelpAtendimento');
+Route::resource('/usuario','UsuarioController');
+Route::get('/usuarioI','UsuarioController@disableHelpIni')->name('usuario.disableHelpIni');
+Route::get('/usuarioP','UsuarioController@disableHelpPessoa')->name('usuario.disableHelpPessoa');
+Route::get('/usuarioD','UsuarioController@disableHelpDocumento')->name('usuario.disableHelpDocumento');
+Route::get('/usuarioA','UsuarioController@disableHelpAtendimento')->name('usuario.disableHelpAtendimento');
 
 
 //ROTAS DA ABA CADASTRO//
-Route::resource('/statusAtendimento', 'statusAtendimentoController');
+Route::resource('/statusAtendimento', 'StatusAtendimentoController');
 
 Route::resource('/tipoAtendimento', 'TipoAtendimentoController');
 
@@ -67,12 +67,12 @@ Route::post('/documento/cadAtendimento','DocumentoController@cadAtendimento')->n
 Route::resource('/documento','DocumentoController');
 
 /*Rotas de Relatório */
-Route::any('/relatorio/pessoa','pdfController@relatorioPessoa')->name('relatorio.Pessoa');
-Route::any('/relatorio/pesquisaDocumento','pdfController@pesquisaDocumento')->name('relatorio.pesquisaDocumento');
-Route::any('/relatorio/documento','pdfController@retornaDocumento')->name('relatorio.retornaDocumento');
-Route::any('/relatorio/pesquisaAtendimento','pdfController@pesquisaAtendimento')->name('relatorio.pesquisaAtendimento');
-Route::get('/relatorio/atendimento','pdfController@retornaAtendimento')->name('relatorio.retornaAtendimento');
-Route::get('/pdf/{id}','pdfController@geraPdfAtendimento')->name('pdf.atendimento');
+Route::any('/relatorio/pessoa','PdfController@relatorioPessoa')->name('relatorio.Pessoa');
+Route::any('/relatorio/pesquisaDocumento','PdfController@pesquisaDocumento')->name('relatorio.pesquisaDocumento');
+Route::any('/relatorio/documento','PdfController@retornaDocumento')->name('relatorio.retornaDocumento');
+Route::any('/relatorio/pesquisaAtendimento','PdfController@pesquisaAtendimento')->name('relatorio.pesquisaAtendimento');
+Route::get('/relatorio/atendimento','PdfController@retornaAtendimento')->name('relatorio.retornaAtendimento');
+Route::get('/pdf/{id}','PdfController@geraPdfAtendimento')->name('pdf.atendimento');
 
 /*Etiqueta de Aniversario*/
 Route::get('/etiquetaAniversario','EtiquetaController@index')->name('relatorio.retornaEtiqueta');
@@ -86,9 +86,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/sobre' , 'SobreController@index')->name('sobre');
 
-Route::get('/manual' , 'manualController@index')->name('manual');
+Route::get('/manual' , 'ManualController@index')->name('manual');
 
-Route::get('/downloads' , 'DownloadsController@index')->name('downloads');        
+Route::get('/downloads' , 'DownloadsController@index')->name('downloads');
 
 Route::get('/lembretes' , 'LembreteController@index')->name('lembretes.index');
 Route::any('/lembretes/pesquisa/' , 'LembreteController@lembretePesquisa')->name('lembrete.pesquisa');

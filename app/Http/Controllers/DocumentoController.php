@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\documento;
+use App\Models\Documento;
 //chaves estrangeiras
-use App\Models\tipoDocumento;
-use App\Models\tipoAtendimento;
-use App\Models\situacaoDoc;
-use App\Models\unidadeDocumento;
-use App\Models\atendimento;
-use App\Models\pessoa;
-use App\Models\statusAtendimento;
+use App\Models\TipoDocumento;
+use App\Models\TipoAtendimento;
+use App\Models\SituacaoDoc;
+use App\Models\UnidadeDocumento;
+use App\Models\Atendimento;
+use App\Models\Pessoa;
+use App\Models\StatusAtendimento;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,9 +20,9 @@ use Illuminate\Support\Facades\Storage;
 class DocumentoController extends Controller
 {
 
-    private $docC; 
+    private $docC;
 
-    public function __construct(documento $docC){
+    public function __construct(Documento $docC){
         $this->middleware('auth'); //verificar se o usuario esta logado
 
         $this->docC = $docC;
@@ -31,13 +31,13 @@ class DocumentoController extends Controller
     public function index()
     {
         $alteracao=false;
-        
-        $tipoDocumento = tipoDocumento::all();
-        $tipoAtendimento = tipoAtendimento::all();
-        $situacaoDoc = situacaoDoc::all();
-        $unidadeDocumento = unidadeDocumento::all();
-        $Atendimento = atendimento::all();
-        $statusAtendimento = statusAtendimento::all();
+
+        $tipoDocumento = TipoDocumento::all();
+        $tipoAtendimento = TipoAtendimento::all();
+        $situacaoDoc = SituacaoDoc::all();
+        $unidadeDocumento = UnidadeDocumento::all();
+        $Atendimento = Atendimento::all();
+        $statusAtendimento = StatusAtendimento::all();
         return view('form_documento',compact('alteracao','tipoDocumento','tipoAtendimento','situacaoDoc','unidadeDocumento','Atendimento','statusAtendimento'));
     }
 
@@ -57,7 +57,7 @@ class DocumentoController extends Controller
 
         if(isset($dataform['resp_rel'])==false){ //verifica se  marcou que existe resposta relacionada
             $dataform['dat_resposta']=null;     //caso NÃO tenha marcado não salva os campos de resposta
-            $dataform['txt_resposta']=null; 
+            $dataform['txt_resposta']=null;
             $dataform['link_resposta']=null;
             $dataform['path_doc_resp']=null;
         }
@@ -67,7 +67,7 @@ class DocumentoController extends Controller
         }
         $dataform['nom_operacao_log'] = 'INSERT';
         $dataform['nom_usuario_log'] = auth()->user()->name;
-        
+
         if($request->hasFile('path_doc') && $request->path_doc->isValid()){
             $docPath = $request->path_doc->store(Auth::user()->domain.'/documentos');
             $dataform['path_doc']=$docPath;
@@ -77,7 +77,7 @@ class DocumentoController extends Controller
             $dataform['path_doc_resp']=$docPath;
         }
         try{
-            $insert = $this->docC->create($dataform); 
+            $insert = $this->docC->create($dataform);
             return redirect()
                     ->route('documento.index')
                     ->with('success', 'Documento inserido com sucesso!');
@@ -87,9 +87,9 @@ class DocumentoController extends Controller
                 ->back()
                 ->with('error', 'Falha ao inserir');
         }
-    }   
+    }
 
-    public function show(documento $documento)
+    public function show(Documento $documento)
     {
         //
     }
@@ -101,19 +101,19 @@ class DocumentoController extends Controller
         $alteracao = true;
         $documento = $this->docC->paginate(20);
         $docC = $this->docC->where('cod_documento',$id)->first();
-        $tipoDocumento = tipoDocumento::all();
-        $tipoAtendimento = tipoAtendimento::all();
-        $situacaoDoc = situacaoDoc::all();
-        $unidadeDocumento = unidadeDocumento::all();
-        $statusAtendimento = statusAtendimento::all();
+        $tipoDocumento = TipoDocumento::all();
+        $tipoAtendimento = TipoAtendimento::all();
+        $situacaoDoc = SituacaoDoc::all();
+        $unidadeDocumento = UnidadeDocumento::all();
+        $statusAtendimento = StatusAtendimento::all();
 
         return view('form_documento',compact('alteracao','docC','documento','tipoDocumento','unidadeDocumento','tipoAtendimento','situacaoDoc','statusAtendimento'));
     }
 
     public function update($id, Request $request)
     {
-        $docC = documento::findOrFail($id);;
-        
+        $docC = Documento::findOrFail($id);;
+
         $dataform = $request->all();
         //dd($dataform);
         $dataform['lembrete'] = request()->has('lembrete');
@@ -140,15 +140,15 @@ class DocumentoController extends Controller
         }
 
         $dataform['nom_operacao_log'] = 'UPDATE';
-     
-        if($dataform['altera_link']="on" && $dataform['lnk_documento']==null){    //verifica se selecionou para alterar o documento, mas deixou nulo o preenchimento 
+
+        if($dataform['altera_link']="on" && $dataform['lnk_documento']==null){    //verifica se selecionou para alterar o documento, mas deixou nulo o preenchimento
             $dataform['lnk_documento'] = $docC->lnk_documento;                       //neste caso volta ao valor anterior do documento
         }
         if($dataform['altera_link_resp']="on" && $dataform['link_resposta']==null){
             $dataform['link_resposta'] = $docC->link_resposta;
         }
 
-        if($request->hasFile('path_doc') && $request->path_doc->isValid()){ 
+        if($request->hasFile('path_doc') && $request->path_doc->isValid()){
             $docPath = $request->path_doc->store(Auth::user()->domain.'/documento');
             $dataform['path_doc']=$docPath;
         }
@@ -193,7 +193,7 @@ class DocumentoController extends Controller
                     ->with('success', 'Documento excluído com sucesso!');
     }
 
-    public function pesquisaDocumento(Request $request,documento $documentoModel){
+    public function pesquisaDocumento(Request $request, Documento $documentoModel){
         $dataform = $request->except('_token');
         $documentos = $documentoModel->pesquisaLimitada($dataform);
         $documentos = $documentos->paginate(20)->onEachSide(1);
@@ -202,52 +202,52 @@ class DocumentoController extends Controller
 
         $alteracao = false;
         $mostraPesq=true;
-        $tipoDocumento = tipoDocumento::all();
-        $tipoAtendimento = tipoAtendimento::all();
-        $situacaoDoc = situacaoDoc::all();
-        $unidadeDocumento = unidadeDocumento::all();
-        $Atendimento = atendimento::all();
-        $statusAtendimento = statusAtendimento::all();
+        $tipoDocumento = TipoDocumento::all();
+        $tipoAtendimento = TipoAtendimento::all();
+        $situacaoDoc = SituacaoDoc::all();
+        $unidadeDocumento = UnidadeDocumento::all();
+        $Atendimento = Atendimento::all();
+        $statusAtendimento = StatusAtendimento::all();
         return view('form_documento',compact('documentos','alteracao','mostraPesq','dataform','tipoDocumento','situacaoDoc','statusAtendimento','tipoAtendimento','situacaoDoc','unidadeDocumento','Atendimento'));
     }
 
     //Quando pesquisa de atendimento era feita por Json
-    public function pesqAtendimento(Request $request, atendimento $atendimento) {
+    public function pesqAtendimento(Request $request, Atendimento $atendimento) {
         $dataform = $request->only(['GAB_PESSOA_cod_pessoa','dat_atendimento','GAB_TIPO_ATENDIMENTO_cod_tipo','GAB_STATUS_ATENDIMENTO_cod_status']);
 
-        $atendimentos = $atendimento->pesquisa10limit($dataform); 
+        $atendimentos = $atendimento->pesquisa10limit($dataform);
         //return response()->json($atendimentos);
-        
-        $pessoas = pessoa::all();
-        $tipoAtendimentos = tipoAtendimento::all();
-        $statusAtendimentos = statusAtendimento::all();
+
+        $pessoas = Pessoa::all();
+        $tipoAtendimentos = TipoAtendimento::all();
+        $statusAtendimentos = StatusAtendimento::all();
         $saida=array();
 
         //Trasnformando os dados em como quero que apareça na saida da tabela.
         //As informações que estavam como código (1,2,3) viram o nome.
-        foreach($atendimentos as $atendimento) { 
+        foreach($atendimentos as $atendimento) {
             //$atendimento->dat_atendimento =  date('d/m/Y',strtotime($atendimento->dat_atendimento));
             //$atendimento->dat_atendimento = "2021/12/12";
             foreach($pessoas as $pessoa){
                 if($atendimento->GAB_PESSOA_cod_pessoa === $pessoa->cod_pessoa ) {
-                    $atendimento->GAB_PESSOA_cod_pessoa = $pessoa->nom_nome;  
+                    $atendimento->GAB_PESSOA_cod_pessoa = $pessoa->nom_nome;
                 }
             }
             foreach($tipoAtendimentos as $tipoAtendimento) {
                 if($atendimento->GAB_TIPO_ATENDIMENTO_cod_tipo === $tipoAtendimento->cod_tipo ) {
-                    $atendimento->GAB_TIPO_ATENDIMENTO_cod_tipo = $tipoAtendimento->nom_tipo;  
+                    $atendimento->GAB_TIPO_ATENDIMENTO_cod_tipo = $tipoAtendimento->nom_tipo;
                 }
             }
             foreach($statusAtendimentos as $statusAtendimento) {
                 if($atendimento->GAB_STATUS_ATENDIMENTO_cod_status === $statusAtendimento->cod_status ) {
-                    $atendimento->GAB_STATUS_ATENDIMENTO_cod_status = $statusAtendimento->nom_status;  
+                    $atendimento->GAB_STATUS_ATENDIMENTO_cod_status = $statusAtendimento->nom_status;
                 }
             }
-            array_push($saida, $atendimento);        
+            array_push($saida, $atendimento);
         }
         return response()->json($saida);
-        
+
     }
-    
+
 
 }

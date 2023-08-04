@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class statusAtendimento extends Model
+class StatusAtendimento extends Model
 {
-    protected $connection = 'tenant';	
+    protected $connection = 'tenant';
     protected $primaryKey = 'cod_status';
     protected $table = 'gab_status_atendimento';
     protected $fillable = ['nom_status','ind_status'];

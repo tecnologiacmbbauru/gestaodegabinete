@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class agentePoliticoRequest extends FormRequest
+class AgentePoliticoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -8,9 +8,9 @@ use Carbon\CarbonPeriod;
 use Carbon\Carbon;
 
 
-class atendimento extends Model
+class Atendimento extends Model
 {
-    protected $connection = 'tenant';	
+    protected $connection = 'tenant';
     protected $primaryKey = 'cod_atendimento';
     protected $table = 'gab_atendimento';
     protected $fillable = ['dat_atendimento','txt_detalhes','nom_usuario_log',
@@ -21,17 +21,17 @@ class atendimento extends Model
 
     //chamadas das chaves estrangeiras
     public function tipoAtendimento(){
-        return $this->belongsTo('App\Models\tipoAtendimento', 'GAB_TIPO_ATENDIMENTO_cod_tipo', 'cod_tipo');
+        return $this->belongsTo('App\Models\TipoAtendimento', 'GAB_TIPO_ATENDIMENTO_cod_tipo', 'cod_tipo');
     }
     public function statusAtendimento(){
-        return $this->belongsTo('App\Models\statusAtendimento', 'GAB_STATUS_ATENDIMENTO_cod_status', 'cod_status');
+        return $this->belongsTo('App\Models\StatusAtendimento', 'GAB_STATUS_ATENDIMENTO_cod_status', 'cod_status');
     }
     public function pessoa(){
-        return $this->belongsTo('App\Models\pessoa', 'GAB_PESSOA_cod_pessoa', 'cod_pessoa');
+        return $this->belongsTo('App\Models\Pessoa', 'GAB_PESSOA_cod_pessoa', 'cod_pessoa');
     }
     public function documento()
     {
-        return $this->hasOne('App\Models\documento', 'GAB_ATENDIMENTO_cod_atendimento', 'cod_atendimento');
+        return $this->hasOne('App\Models\Documento', 'GAB_ATENDIMENTO_cod_atendimento', 'cod_atendimento');
     }
 
     public function pesquisaLimitada(array $data) {
@@ -99,7 +99,7 @@ class atendimento extends Model
             }
         })->orderby('dat_atendimento','desc')->limit(10)->get();
     }
-   
+
     //FUNÇÃO QUE RETORNA AS PESSOAS COM DATA DE ANIVERSÁRIO DENTRO DO PERÍODO PASSADO COMO PARAMETRO
     public function scopeBirthdayBetween($query, $dateBegin, $dateEnd)
     {

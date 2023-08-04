@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tipoAtendimento;
+use App\Models\TipoAtendimento;
 use Illuminate\Http\Request;
 
 class TipoAtendimentoController extends Controller
@@ -11,7 +11,7 @@ class TipoAtendimentoController extends Controller
 
     //private  $alteracao;
 
-    public function __construct(tipoAtendimento $tipoA){
+    public function __construct(TipoAtendimento $tipoA){
         $this->middleware('auth');
         $this->tipoA = $tipoA;
     }
@@ -52,9 +52,9 @@ class TipoAtendimentoController extends Controller
         if($dataform['ind_tipo'] == NULL){
             $dataform['ind_tipo'] == 'A';
         }
-      
+
         $insert = $this->tipoA->create($dataform);
-        
+
         // Verifica se inseriu com sucesso
         // Redireciona para a listagem das categorias
         // Passa uma session flash success (sessão temporária)
@@ -62,7 +62,7 @@ class TipoAtendimentoController extends Controller
             return redirect()
                         ->route('tipoAtendimento.index')
                         ->with('success', 'Tipo de Atendimento inserido com sucesso!');
-    
+
         // Redireciona de volta com uma mensagem de erro
         return redirect()
                     ->back()
@@ -76,7 +76,7 @@ class TipoAtendimentoController extends Controller
      * @param  \App\tipoAtendimento  $tipoAtendimento
      * @return \Illuminate\Http\Response
      */
-    public function show(tipoAtendimento $tipoAtendimento)
+    public function show(TipoAtendimento $tipoAtendimento)
     {
         //
     }
@@ -107,17 +107,17 @@ class TipoAtendimentoController extends Controller
     public function update( $id , Request $request)
     {
         $tipoA = TipoAtendimento::findOrFail($id);
-        
+
         $tipoA->update($request->all());
        // dd($request->all());
 
         return redirect()
                     ->route('tipoAtendimento.index')
                     ->with('success', 'Tipo de Atendimento alterado com sucesso!');
-    } 
-    
+    }
 
-    
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -133,7 +133,7 @@ class TipoAtendimentoController extends Controller
             return redirect()
                         ->route('tipoAtendimento.index')
                         ->with('success', 'Tipo de Atendimento excluído com sucesso!');
-        } catch (\Exception $e){ 
+        } catch (\Exception $e){
             if($e->getCode()=="23000"){
                 return redirect()
                     ->route('tipoAtendimento.index')
@@ -142,7 +142,7 @@ class TipoAtendimentoController extends Controller
                 return redirect()
                     ->route('tipoAtendimento.index')
                     ->with('error', 'Tipo do Atendimento não pode ser excluído.');
-            }    
+            }
         }
      }
 }

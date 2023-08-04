@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\chaveAgenda;
+use App\Models\ChaveAgenda;
 use Illuminate\Http\Request;
 
 class ChaveAgendaController extends Controller
@@ -10,7 +10,7 @@ class ChaveAgendaController extends Controller
     private $chaveAge;
 
 
-    public function __construct(chaveAgenda $chaveAge){
+    public function __construct(ChaveAgenda $chaveAge){
         $this->middleware('auth');
         $this->chaveAge = $chaveAge;
     }
@@ -53,7 +53,7 @@ class ChaveAgendaController extends Controller
     }
 
 
-    public function show(chaveAgenda $chaveAgenda)
+    public function show(ChaveAgenda $chaveAgenda)
     {
         //
     }
@@ -72,7 +72,7 @@ class ChaveAgendaController extends Controller
 
     public function update(Request $request,$id)
     {
-        $chaveAgenda = chaveAgenda::findOrFail($id);
+        $chaveAgenda = ChaveAgenda::findOrFail($id);
 
         try{
             $chaveAgenda->update($request->all());
@@ -90,7 +90,7 @@ class ChaveAgendaController extends Controller
 
     public function destroy(Request $request)
     {
-        $ChaveAgenda = chaveAgenda::findOrFail($request->id_exclusao); //findOr Fail retorna erro 404 se não achar nada.
+        $ChaveAgenda = ChaveAgenda::findOrFail($request->id_exclusao); //findOr Fail retorna erro 404 se não achar nada.
         try {
             $ChaveAgenda->delete();
             return redirect()

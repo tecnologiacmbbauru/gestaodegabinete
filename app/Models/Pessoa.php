@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\CarbonPeriod;
 use Carbon\Carbon;
 
-class pessoa extends Model
+class Pessoa extends Model
 {
-    protected $connection = 'tenant';	
+    protected $connection = 'tenant';
     protected $primaryKey = 'cod_pessoa';
     protected $table = 'gab_pessoa';
     protected $fillable = ['ind_pessoa','image','nom_nome',
@@ -21,10 +21,10 @@ class pessoa extends Model
     'nom_operacao_log','nom_re','nom_bairro','nom_complemento','dat_nascimento'
     ];
    // protected $dates = [
-        
+
    // ];
     //protected $guarded = ['cod_pessoa'];
-    
+
     public function atendimento()
     {
         return $this->hasOne('App\Models\atendimento', 'GAB_PESSOA_cod_pessoa', 'cod_pessoa');
@@ -172,8 +172,8 @@ class pessoa extends Model
                 $query->where('nom_bairro',$data['nom_bairro']);
             }
         })->orderby('nom_nome','asc')->get();//Retorna todos os resultados encontrados por ordem crescente de acordo com o nome
-    } 
-        
+    }
+
     //FUNÇÃO QUE RETORNA AS PESSOAS COM DATA DE ANIVERSÁRIO DENTRO DO PERÍODO PASSADO COMO PARAMETRO
     public function scopeBirthdayBetween($query, $dateBegin, $dateEnd)
     {

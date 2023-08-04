@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class tipoAtendimento extends Model
+class TipoAtendimento extends Model
 {
-    protected $connection = 'tenant';	
+    protected $connection = 'tenant';
     protected $primaryKey = 'cod_tipo';
     protected $table = 'gab_tipo_atendimento';
     protected $fillable = ['nom_tipo','ind_tipo'];

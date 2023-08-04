@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\atendimento;
-use App\Models\documento;
+use App\Models\Atendimento;
+use App\Models\Documento;
 use Carbon\Carbon;
 use DateTime;
 use Exception;
@@ -48,7 +48,7 @@ class LembreteController extends Controller
             )->orderby('dat_lembrete','asc')->paginate(4,['*'],'atendimentos');
             $atendimentos->withPath(config('app.url')."/lembretes/pesquisa/");
 
-            $documentos = documento::where('lembrete',true)->where('ind_status','A')->birthdayBetween(
+            $documentos = Documento::where('lembrete',true)->where('ind_status','A')->birthdayBetween(
                 Carbon::now()->toDateString(),
                 Carbon::now()->addDays(4)->toDateString()
             )->orderby('dat_lembrete','asc')->paginate(4,['*'],'documentos');
@@ -56,13 +56,13 @@ class LembreteController extends Controller
             return view('lembretes',compact('exibir','documentos','atendimentos'));
         }else if($exibir == "atendimento")
         {
-            $atendimentos = atendimento::where('lembrete',true)->where('ind_status','A')->orderby('dat_lembrete','asc')->paginate(8);
+            $atendimentos = Atendimento::where('lembrete',true)->where('ind_status','A')->orderby('dat_lembrete','asc')->paginate(8);
             $atendimentos->withPath(config('app.url')."/lembretes/pesquisa/");
             return view('lembretes',compact('exibir','atendimentos'));
         }
         else if($exibir == "documento")
         {
-            $documentos = documento::where('lembrete',true)->where('ind_status','A')->orderby('dat_lembrete','asc')->paginate(4);
+            $documentos = Documento::where('lembrete',true)->where('ind_status','A')->orderby('dat_lembrete','asc')->paginate(4);
             $documentos->withPath(config('app.url')."/lembretes/pesquisa/");
             return view('lembretes',compact('exibir','documentos'));
         }
@@ -110,7 +110,7 @@ class LembreteController extends Controller
                     ->route('lembrete.pesquisa',['select-lembrete'=>"documento"])->with('error', 'Falha ao finalizar o lembrete!');
             }
         }
-        
+
     }
 }
 

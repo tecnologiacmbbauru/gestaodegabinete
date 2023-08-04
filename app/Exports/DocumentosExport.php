@@ -2,19 +2,19 @@
 
 namespace App\Exports;
 
-use App\Models\documento;
+use App\Models\Documento;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 
-class documentosExport implements FromView
+class DocumentosExport implements FromView
 {
     private $documentos;
 
     public function __construct($documentos){
         $this->documentos = $documentos;
     }
-    
+
     /**
     * @return \Illuminate\Support\Collection
     */

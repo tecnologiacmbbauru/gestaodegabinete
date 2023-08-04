@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\CarbonPeriod;
 
-class documento extends Model
+class Documento extends Model
 {
-    protected $connection = 'tenant';	
+    protected $connection = 'tenant';
     protected $primaryKey = 'cod_documento';
     protected $table = 'gab_documento';
     protected $fillable = ['nom_documento','dat_ano',
@@ -16,19 +16,19 @@ class documento extends Model
     'GAB_STATUS_DOCUMENTO_cod_status','GAB_ATENDIMENTO_cod_atendimento','dat_documento','dat_resposta','path_doc','path_doc_resp'
     ];
     protected $dates = [
-        
+
     ];
     protected $guarded = ['cod_documento'];
 
     //chamadas das chaves estrangeiras
     public function situacaoDoc(){
-        return $this->belongsTo('App\Models\situacaoDoc', 'GAB_STATUS_DOCUMENTO_cod_status', 'cod_status');
+        return $this->belongsTo('App\Models\SituacaoDoc', 'GAB_STATUS_DOCUMENTO_cod_status', 'cod_status');
     }
     public function tipoDocumento(){
-        return $this->belongsTo('App\Models\tipoDocumento', 'GAB_TIPO_DOCUMENTO_cod_tip_doc', 'cod_tip_doc');
+        return $this->belongsTo('App\Models\TipoDocumento', 'GAB_TIPO_DOCUMENTO_cod_tip_doc', 'cod_tip_doc');
     }
     public function unidadeDocumento(){
-        return $this->belongsTo('App\Models\unidadeDocumento', 'GAB_UNIDADE_DOCUMENTO_cod_uni_doc', 'cod_uni_doc');
+        return $this->belongsTo('App\Models\UnidadeDocumento', 'GAB_UNIDADE_DOCUMENTO_cod_uni_doc', 'cod_uni_doc');
     }
     public function antedimentoRelacionado(){
         return $this->belongsTo('App\Models\atendimento', 'GAB_ATENDIMENTO_cod_atendimento', 'cod_atendimento');
@@ -63,8 +63,8 @@ class documento extends Model
             if(isset($data['GAB_UNIDADE_DOCUMENTO_cod_uni_doc'])) {
                 $query->where('GAB_UNIDADE_DOCUMENTO_cod_uni_doc',$data['GAB_UNIDADE_DOCUMENTO_cod_uni_doc']);
             }
-            if(isset($data['resp_rel']) && !isset($data['dat_resposta'])) {//se existir uma resposta relacionada e não exister data de resposta 
-                $query->where('dat_resposta','!=',null); //retorna todas datas de resposta diferente de null                                                
+            if(isset($data['resp_rel']) && !isset($data['dat_resposta'])) {//se existir uma resposta relacionada e não exister data de resposta
+                $query->where('dat_resposta','!=',null); //retorna todas datas de resposta diferente de null
             }
             if(isset($data['dat_resposta'])) {
                 $query->where('dat_resposta',$data['dat_resposta']);
@@ -74,11 +74,11 @@ class documento extends Model
             }
             if(isset($data['GAB_ATENDIMENTO_cod_atendimento'])) {
                 $query->where('GAB_ATENDIMENTO_cod_atendimento',$data['GAB_ATENDIMENTO_cod_atendimento']);
-            }               
+            }
         })->orderby('dat_documento','desc')->limit(500)->get();
     }
 
-    
+
     public function pesquisa(array $data) {
         return $this->where(function($query) use($data) {
             $query->where('ind_status',"A");//apenas as que o status seja igual a ATIVO. Caso ao contrario ela esta excluida
@@ -103,8 +103,8 @@ class documento extends Model
             if(isset($data['GAB_UNIDADE_DOCUMENTO_cod_uni_doc'])) {
                 $query->where('GAB_UNIDADE_DOCUMENTO_cod_uni_doc',$data['GAB_UNIDADE_DOCUMENTO_cod_uni_doc']);
             }
-            if(isset($data['resp_rel']) && !isset($data['dat_resposta'])) {//se existir uma resposta relacionada e não exister data de resposta 
-                $query->where('dat_resposta','!=',null); //retorna todas datas de resposta diferente de null                                                
+            if(isset($data['resp_rel']) && !isset($data['dat_resposta'])) {//se existir uma resposta relacionada e não exister data de resposta
+                $query->where('dat_resposta','!=',null); //retorna todas datas de resposta diferente de null
             }
             if(isset($data['dat_resposta'])) {
                 $query->where('dat_resposta',$data['dat_resposta']);
@@ -114,9 +114,9 @@ class documento extends Model
             }
             if(isset($data['GAB_ATENDIMENTO_cod_atendimento'])) {
                 $query->where('GAB_ATENDIMENTO_cod_atendimento',$data['GAB_ATENDIMENTO_cod_atendimento']);
-            }       
+            }
         })->orderby('dat_documento','desc')->get();
-    }   
+    }
 
     //FUNÇÃO QUE RETORNA AS PESSOAS COM DATA DE ANIVERSÁRIO DENTRO DO PERÍODO PASSADO COMO PARAMETRO
     public function scopeBirthdayBetween($query, $dateBegin, $dateEnd)

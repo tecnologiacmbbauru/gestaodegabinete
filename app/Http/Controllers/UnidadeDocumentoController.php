@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\unidadeDocumento;
+use App\Models\UnidadeDocumento;
 use Illuminate\Http\Request;
 
 class UnidadeDocumentoController extends Controller
 {
-    
+
     private $unidadeDocumento;
 
 
-    public function __construct(unidadeDocumento $uniDoc){
+    public function __construct(UnidadeDocumento $uniDoc){
         $this->middleware('auth');
         $this->uniDoc = $uniDoc;
     }
@@ -52,9 +52,9 @@ class UnidadeDocumentoController extends Controller
         if($dataform['ind_uni_doc'] == NULL){
             $dataform['ind_uni_doc'] == 'A';
         }
-      
+
         $insert = $this->uniDoc->create($dataform);
-        
+
         // Verifica se inseriu com sucesso
         // Redireciona para a listagem das categorias
         // Passa uma session flash success (sessão temporária)
@@ -62,7 +62,7 @@ class UnidadeDocumentoController extends Controller
             return redirect()
                         ->route('unidadeDocumento.index')
                         ->with('success', 'Unidade Administrativa inserida com sucesso!');
-    
+
         // Redireciona de volta com uma mensagem de erro
         return redirect()
                     ->back()
@@ -75,7 +75,7 @@ class UnidadeDocumentoController extends Controller
      * @param  \App\unidadeDocumento  $unidadeDocumento
      * @return \Illuminate\Http\Response
      */
-    public function show(unidadeDocumento $unidadeDocumento)
+    public function show(UnidadeDocumento $unidadeDocumento)
     {
         //
     }
@@ -105,7 +105,7 @@ class UnidadeDocumentoController extends Controller
      */
     public function update($id, Request $request)
     {
-        $uniDoc = unidadeDocumento::findOrFail($id);
+        $uniDoc = UnidadeDocumento::findOrFail($id);
         $uniDoc->update($request->all());
         // dd($request->all()); debug
 
@@ -122,13 +122,13 @@ class UnidadeDocumentoController extends Controller
      */
     public function destroy(Request $request)
     {
-        $uniDoc = unidadeDocumento::findOrFail($request->id_exclusao);
+        $uniDoc = UnidadeDocumento::findOrFail($request->id_exclusao);
         try {
             $uniDoc->delete();
             return redirect()
                         ->route('unidadeDocumento.index')
                         ->with('success', 'Unidade Administrativa excluída com sucesso!');
-        } catch (\Exception $e){ 
+        } catch (\Exception $e){
             if($e->getCode()=="23000"){
                 return redirect()
                     ->route('unidadeDocumento.index')
@@ -137,7 +137,7 @@ class UnidadeDocumentoController extends Controller
                 return redirect()
                     ->route('unidadeDocumento.index')
                     ->with('error', 'Unidade Administrativa não pode ser excluída.');
-            }    
+            }
         }
     }
 }

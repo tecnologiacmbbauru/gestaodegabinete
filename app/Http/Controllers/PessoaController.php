@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pessoa;
+use App\Models\Pessoa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +15,7 @@ class PessoaController extends Controller
     private $pessoaC; //contrutor de pessoa
 
 
-    public function __construct(pessoa $pessoaC){
+    public function __construct(Pessoa $pessoaC){
         $this->middleware('auth'); //verificar se o usuario esta logado
 
         $this->pessoaC = $pessoaC;
@@ -42,7 +42,7 @@ class PessoaController extends Controller
         if($dataform['ind_status'] == NULL){
             $dataform['ind_status'] == 'A';
         }
-        
+
         if($request->hasFile('img_perfil') && $request->img_perfil->isValid()){
             $imagePath = $request->img_perfil->store(Auth::user()->domain.'/pessoa');
             $dataform['image']=$imagePath;
@@ -51,7 +51,7 @@ class PessoaController extends Controller
         //foto enviada pela webcam
         if($dataform['foto_webcam']!=null){
             //dd($request->all());
-            $imageName = Str::random(10).'.png';  
+            $imageName = Str::random(10).'.png';
             $imagePath = Auth::user()->domain.'/pessoa'.'/'.$imageName;
             Storage::put(Auth::user()->domain.'/pessoa'.'/'.$imageName, base64_decode($request->foto_webcam));
             $dataform['image']=$imagePath;
@@ -61,7 +61,7 @@ class PessoaController extends Controller
         $dataform['nom_usuario_log'] = auth()->user()->name;
         $dataform['nom_operacao_log'] = 'INSERT';
         //dd($dataform);
-        
+
         try{
             $insert = $this->pessoaC->create($dataform);
             return redirect()
@@ -72,39 +72,39 @@ class PessoaController extends Controller
                 ->route('pessoa.index')
                 ->with('error', 'A pessoa não pode ser cadastrada, algum campo foi preenchido de forma indevida.');
         }
-    
+
     }
 
-    public function pesquisaPessoa(Request $request,pessoa $pessoaModel){
+    public function pesquisaPessoa(Request $request, Pessoa $pessoaModel){
         $alteracao = false;
         $mostraPesq=true;
         $dataform = $request->except('_token','ind_status');
         $pessoa = $pessoaModel->pesquisaLimitada($dataform);
         $pessoa = $pessoa->paginate(20)->onEachSide(1);
         $pessoa->withPath(config('app.url')."/pessoa/pesquisa");//Passar para a função de paginação a url principal (encontrada no .env) e continuar a rota "/pessoa/pesquisa"
-    
+
         return view('form_pessoa',compact('alteracao','mostraPesq','dataform','pessoa'));
     }
 
-    public function show(pessoa $pessoa)
+    public function show(Pessoa $pessoa)
     {
         //
     }
 
- 
+
     public function edit($id)
     {
         $alteracao = true;
         $pessoa = $this->pessoaC->paginate(15);
         $pessoaC = $this->pessoaC->where('cod_pessoa',$id)->first();
-    
+
         return view('form_pessoa',compact('alteracao','pessoaC','pessoa'));
     }
 
     public function update($id , Request $request)
     {
         $dataform = $request->all();
-        $pessoaC = pessoa::findOrFail($id);
+        $pessoaC = Pessoa::findOrFail($id);
 
         if($request->hasFile('img_perfil') && $request->img_perfil->isValid()){
             Storage::delete($pessoaC->image); //deleta foto antiga da pessoa
@@ -115,7 +115,7 @@ class PessoaController extends Controller
         //foto enviada pela webcam
         if($dataform['foto_webcam']!=null){
             //dd($request->all());
-            $imageName = Str::random(15).'.png';  
+            $imageName = Str::random(15).'.png';
             $imagePath = Auth::user()->domain.'/pessoa'.'/'.$imageName;
             Storage::put(Auth::user()->domain.'/pessoa'.'/'.$imageName, base64_decode($request->foto_webcam));
             $dataform['image']=$imagePath;
@@ -139,7 +139,7 @@ class PessoaController extends Controller
 
     public function destroy(Request $request)
     {
-        $pessoaC = pessoa::findOrFail($request->id_exclusao);
+        $pessoaC = Pessoa::findOrFail($request->id_exclusao);
         //$pessoaC = $pessoaC->delete(); //excluir de verdade
         $inativo = array('ind_status'=> 'I', 'nom_usuario_log' => auth()->user()->name,'nom_operacao_log'=>'DELETE' );
 
@@ -162,9 +162,9 @@ class PessoaController extends Controller
         $img64 = $request['base_img'];
         //dd($img64);
         $result = [];
- 
+
         $data = str_replace(" ","+",$img64);
-        $name = md5(time().uniqid()); 
+        $name = md5(time().uniqid());
         $path = "snaps/{$name}.jpg";
 
         //data
@@ -172,7 +172,7 @@ class PessoaController extends Controller
         //dd($data);
         //Save data
         file_put_contents($path, base64_decode(trim($data[1])));
-        
+
         //Print Data
         $result['img'] = $path;
         dd($result);
@@ -185,16 +185,16 @@ class PessoaController extends Controller
             $result = [];
 
             $data = str_replace(" ","+",$img64);
-            $name = md5(time().uniqid()); 
+            $name = md5(time().uniqid());
             $path = "foto_temporaria/{$name}.jpg";
-    
+
             //data
             $data = explode(',', $data);
             //dd($data);
-            
+
             //Save data
             file_put_contents($path, base64_decode(trim($data[1])));
-            
+
             //Print Data
             $result['img'] = $path;
             $result['img_64'] = trim($data[1]);

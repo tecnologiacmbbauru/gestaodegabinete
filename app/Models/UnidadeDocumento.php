@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class unidadeDocumento extends Model
+class UnidadeDocumento extends Model
 {
-    protected $connection = 'tenant';	
+    protected $connection = 'tenant';
     protected $primaryKey = 'cod_uni_doc';
     protected $table = 'gab_unidade_documento';
     protected $fillable = ['nom_uni_doc','ind_uni_doc'];

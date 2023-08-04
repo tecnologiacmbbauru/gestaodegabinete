@@ -2,14 +2,14 @@
 
 namespace App\Exports;
 
-use App\Models\atendimento;
+use App\Models\Atendimento;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 //
 //use Maatwebsite\Excel\Concerns\FromQuery;
 //use Maatwebsite\Excel\Concerns\Exportable;
-class atendimentosExport implements FromView
+class AtendimentosExport implements FromView
 {
     private $atendimentos;
 
@@ -24,4 +24,4 @@ class atendimentosExport implements FromView
         ]);
     }
 
-}  
+}

@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\statusAtendimentoRequest;
 use Illuminate\Http\Request;
-use App\Models\statusAtendimento;
+use App\Models\StatusAtendimento;
 
-class statusAtendimentoController extends Controller
+class StatusAtendimentoController extends Controller
 {
     private $statusAtendimento;
-    public function __construct(statusAtendimento $statusA){
+    public function __construct(StatusAtendimento $statusA){
         $this->middleware('auth');
         $this->statusA = $statusA;
     }
@@ -43,15 +43,15 @@ class statusAtendimentoController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
-        
+
         $dataform = $request->all(); //variavel recebe todos dados do formulario
 
         if($dataform['ind_status'] == NULL){
             $dataform['ind_status'] = 'A';
         }
-      
+
         $insert = $this->statusA->create($dataform);
-        
+
         // Verifica se inseriu com sucesso
         // Redireciona para a listagem das categorias
         // Passa uma session flash success (sessão temporária)
@@ -59,7 +59,7 @@ class statusAtendimentoController extends Controller
             return redirect()
                         ->route('statusAtendimento.index')
                         ->with('success', 'Situação do Atendimento inserida com sucesso!');
-    
+
         // Redireciona de volta com uma mensagem de erro
         return redirect()
                     ->back()
@@ -105,9 +105,9 @@ class statusAtendimentoController extends Controller
      */
     public function update($id , Request $request)
     {
-        
-        $statusA = statusAtendimento::findOrFail($id);
-        
+
+        $statusA = StatusAtendimento::findOrFail($id);
+
         $statusA->update($request->all());
        // dd($request->all());
 
@@ -125,13 +125,13 @@ class statusAtendimentoController extends Controller
      */
     public function destroy(Request $request)
     {
-        $statusA = statusAtendimento::findOrFail($request->id_exclusao);
+        $statusA = StatusAtendimento::findOrFail($request->id_exclusao);
         try {
             $statusA->delete();
             return redirect()
                 ->route('statusAtendimento.index')
                 ->with('success', 'Situação do Atendimento excluída com sucesso!');
-        } catch (\Exception $e){ 
+        } catch (\Exception $e){
             if($e->getCode()=="23000"){
                 return redirect()
                     ->route('statusAtendimento.index')
@@ -139,8 +139,8 @@ class statusAtendimentoController extends Controller
             }else{
                 return redirect()
                     ->route('statusAtendimento.index')
-                    ->with('error', 'Situação do Atendimento não pode ser excluída.'); 
-            }    
+                    ->with('error', 'Situação do Atendimento não pode ser excluída.');
+            }
         }
     }
 }

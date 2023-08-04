@@ -7,12 +7,12 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;//classe de hash para senha
 
-class usuarioController extends Controller
+class UsuarioController extends Controller
 {
     private $usuario;
 
     public function __construct(User $usuario){
-        $this->middleware('auth'); 
+        $this->middleware('auth');
         $this->usuario = $usuario;
     }
 
@@ -20,7 +20,7 @@ class usuarioController extends Controller
         //$usuario = $this->usuario->where('id',$id); //recupera o primeiro id
         return view('form_config');
     }
-    
+
     public function edit($id){
         $usuario = $this->usuario->where('id',$id); //recupera o primeiro id
 
@@ -30,7 +30,7 @@ class usuarioController extends Controller
     public function update($id , Request $request){
         $usuario = User::findOrFail($id);
         $dataForm = $request->all();
-        
+
         if($dataForm['corSystem'] == null){
             $dataForm['corSystem'] = $usuario->corSystem;
         }
@@ -58,7 +58,7 @@ class usuarioController extends Controller
         $usuario = User::find($request['id']);
         $array['ajuda_inicio']=false;
         $usuario->update($array);
-        
+
         return redirect()->back();
     }
 
