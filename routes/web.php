@@ -42,7 +42,7 @@ Route::get('/404-tenant', function() {
 
 Auth::routes(['register' => false]); //rotas de autenticação sem registro
 
-Route::post('/users', [LoginController::class, 'authenticate'])->name('login.tenant');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.tenant');
 
 /*HELPS*/
 Route::resource('/usuario', UsuarioController::class);

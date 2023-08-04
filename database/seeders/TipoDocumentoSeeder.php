@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\seeders;
 
 use App\Models\TipoDocumento;
 use Illuminate\Database\Seeder;

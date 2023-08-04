@@ -21,7 +21,7 @@ class TenantMiddleware
     public function handle($request, Closure $next)
     {
         if(isset(Auth::user()->domain)){
-            if(Auth::user()->domain!="system"){
+            if(Auth::user()->domain != "system"){
                 $organizacao = Organizacao::where('domain',Auth::user()->domain)->first();
                 $manager = app(ManagerTenant::class);
                 $manager->setConnection($organizacao);

@@ -1,11 +1,12 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\seeders;
 
 use App\Models\Documento;
 use Illuminate\Database\Seeder;
+use database\factories\PessoaJuridicaFactory;
 
-class DocumentoSeeder extends Seeder
+class PessoaJuridicaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +15,6 @@ class DocumentoSeeder extends Seeder
      */
     public function run()
     {
-        Documento::factory()->count(1000)->make();
+        Pessoa::factory()->count(500)->states('PJ')->make();
     }
-
 }

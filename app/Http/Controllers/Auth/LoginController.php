@@ -32,7 +32,7 @@ class LoginController extends Controller
    // protected $redirectTo = RouteServiceProvider::HOME;
 
    public function authenticate(Request $request, ManagerTenant $manager)
-   {   
+   {
 
        $dominio = $request->domain;
 
@@ -45,18 +45,18 @@ class LoginController extends Controller
            $response = false;
        }
 
-       $credentials = $request->only('user_name', 'password','domain');
+       $credentials = $request->only('user_name','password','domain');
 
        if (Auth::attempt($credentials)) {
            // Authentication passed...
-           
+
            $manager->setConnection($organizacao); //tenta setar conexão
-           
+
            session()->put('dominio', Auth()->user()->domain);
-           
+
            dd(Auth()->user()->domain);
-           
-           if($credentials['domain']=="system"){
+
+           if($credentials['domain'] == "system"){
                return redirect()->route('tenant.index');
            }else{
                return redirect()->route('index');
