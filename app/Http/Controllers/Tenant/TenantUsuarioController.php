@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
-class tenantUsuarioController extends Controller
+class TenantUsuarioController extends Controller
 {
     private $ususario;
 
