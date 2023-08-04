@@ -172,5 +172,5 @@
 
 </body>
 
-<footer class="footer">Desenvolvido pelo Serviço Tecnológico em Informática da <a class="a-footer" href="https://www.bauru.sp.leg.br/" target="blank">Câmara Municipal de Bauru</a> / São Paulo em software livre e aberto.</footer>
+<footer class="footer">Atualmente projeto mantido e atualizado por <a class="a-footer" href="https://tschope.tech/" target="blank">Rodrigo Tschope</a> em software livre e aberto.</footer>
 </html>
