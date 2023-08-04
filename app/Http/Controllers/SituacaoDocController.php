@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\situacaoDoc;
+use App\Models\SituacaoDoc;
 use Illuminate\Http\Request;
 
 class SituacaoDocController extends Controller
@@ -10,7 +10,7 @@ class SituacaoDocController extends Controller
     private $situacaoDoc;
 
 
-    public function __construct(situacaoDoc $sitDoc){
+    public function __construct(SituacaoDoc $sitDoc){
         $this->middleware('auth');
         $this->sitDoc = $sitDoc;
     }
@@ -75,7 +75,7 @@ class SituacaoDocController extends Controller
      * @param  \App\situacaoDoc  $situacaoDoc
      * @return \Illuminate\Http\Response
      */
-    public function show(situacaoDoc $situacaoDoc)
+    public function show(SituacaoDoc $situacaoDoc)
     {
         //
     }
@@ -105,7 +105,7 @@ class SituacaoDocController extends Controller
      */
     public function update($id , Request $request)
     {
-        $sitDoc = situacaoDoc::findOrFail($id);
+        $sitDoc = SituacaoDoc::findOrFail($id);
 
         $sitDoc->update($request->all());
        // dd($request->all());
@@ -123,7 +123,7 @@ class SituacaoDocController extends Controller
      */
     public function destroy(Request $request)
     {
-        $sitDoc = situacaoDoc::findOrFail($request->id_exclusao);
+        $sitDoc = SituacaoDoc::findOrFail($request->id_exclusao);
         try {
             $sitDoc->delete();
             return redirect()

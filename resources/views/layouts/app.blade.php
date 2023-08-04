@@ -12,7 +12,7 @@
     <!-- Scripts -->
    <script src="{{ asset('js/app.js') }}"></script>
 
-    <!-- Fonts 
+    <!-- Fonts
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">-->
 
@@ -21,7 +21,7 @@
     <link href="{{ asset('css/gabinete.css') }}" rel="stylesheet">
     <!--Checa no banco de dados para escolher qual sera a cor do sistema-->
         <link href="{{ asset('css/coresSistema/inicio-cores.css') }}" rel="stylesheet">
-@auth  
+@auth
     @if(Auth::user()->corSystem=="blue")
         <link href="{{ asset('css/coresSistema/blue.css') }}" rel="stylesheet">
     @elseif(Auth::user()->corSystem=="blue-grey")
@@ -77,7 +77,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             {{--Iten de Configuração do Usuario--}}
                             <a class="dropdown-item" href="{{route('usuario.edit',Auth::user()->id)}}">Configurações</a>
-                            
+
                             {{--Iten de logout--}}
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
@@ -92,13 +92,13 @@
             @endguest
         </div>
         </nav>
-            @auth 
+            @auth
             <nav class="navbar navbar-expand-md navbar-light systemColor nav-segundaria">
                 <div class="container">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#segundaNav" aria-controls="segundaNav" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="segundaNav"> 
+                <div class="collapse navbar-collapse" id="segundaNav">
                     <ul class="navbar-nav mr-auto">
                         <li class = "nav-item">
                             <a class="nav-link negrito" href="{{ route('agenda') }}">{{ __('Agenda') }}</a>
@@ -154,8 +154,10 @@
                             <a class="dropdown-item negrito" href="{{ route('sobre') }}" }}>Sobre o Sistema</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item negrito" href="{{ route('manual') }}" }}>Manual do Usuário</a>
+							<div class="dropdown-divider"></div>
+                            <a class="dropdown-item negrito" href="{{ route('downloads') }}" }}>Downloads</a>
                             </div>
-                        </li>  
+                        </li>
                     </ul>
                 </div>
                 </div>

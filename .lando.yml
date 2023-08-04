@@ -1,0 +1,54 @@
+name: gestaogabinete
+recipe: laravel
+config:
+  php: '8.1'
+  webroot: public
+  via: nginx
+  database: mysql:8.0
+  cache: redis
+services:
+  appserver:
+    type: php:8.1
+    xdebug: true
+    build_as_root:
+      - rm -f /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && pkill -o -USR2 php-fpm
+    overrides:
+      environment:
+        # Support debugging CLI with XDEBUG.
+        PHP_IDE_CONFIG: "serverName=appserver"
+        XDEBUG_SESSION_START: lando
+        LANDO_HOST_IP: "host.docker.internal"
+        XDEBUG_CONFIG: "remote_enable=1 remote_host=host.docker.internal"
+tooling:
+  setup:
+    cmd:
+      - appserver: composer install --no-cache
+      - appserver: php artisan setup:app
+      - appserver: php artisan key:generate
+      - appserver: php artisan migrate --seed
+  install:
+    cmd:
+      - appserver: composer install --no-cache
+      - appserver: php artisan setup:app -i
+      - appserver: php artisan key:generate
+      - appserver: php artisan migrate --seed
+  tinker:
+    service: appserver
+    cmd: php artisan tinker
+  migrate:
+    service: appserver
+    cmd: php artisan migrate
+  rollback:
+    service: appserver
+    cmd: php artisan migrate:rollback --step=1
+  xdebug-on:
+    service: appserver
+    description: Enable xdebug for nginx.
+    cmd: rm -f /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && docker-php-ext-enable xdebug && pkill -o -USR2 php-fpm && echo "Xdebug enabled"
+    user: root
+  xdebug-off:
+    service: appserver
+    description: Disable xdebug for nginx.
+    cmd: rm -f /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && pkill -o -USR2 php-fpm && echo "Xdebug disabled"
+    user: root
+

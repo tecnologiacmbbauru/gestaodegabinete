@@ -33,8 +33,8 @@ class TenantMigrations extends Command
     public function __construct(ManagerTenant $tenant)
     {
         parent::__construct();
-    
-        $this->tenant  = $tenant; 
+
+        $this->tenant  = $tenant;
     }
 
     /**
@@ -46,11 +46,11 @@ class TenantMigrations extends Command
     {
 
         if( $this->argument('id')) { //verifica se foi passado o parametro opicional id
-            $organizacao =  Organizacao::find($this->argument('id')); 
+            $organizacao =  Organizacao::find($this->argument('id'));
 
             if($organizacao)
                 $this->execCommand($organizacao);
-            
+
             return;
         }
 
@@ -59,27 +59,29 @@ class TenantMigrations extends Command
             $this->execCommand($organizacao);
         }
     }
-    
+
     public function execCommand(Organizacao $organizacao){
         //validação para caso use o comando com --refersh
         //ULTILIZAR COMANDO REFRESH SOMENTE EM DESENVOLVIMENTO --NÃO-- EM PRODUÇÃO
         $comando = $this->option('refresh') ? 'migrate:refresh' :'migrate';
-        
+
         $this->tenant->setConnection($organizacao);
-        
+
         $this->info("Conectando com: {$organizacao->name}");
 
         if(! defined('STDIN')) define('STDIN', fopen("php://stdin","r"));
             //Sem este comando (linha 72) pode parecer o erro STDIN undefinied.
 
-        $command = Artisan::call($comando,[
+	    $command = $this->call($comando,[
+            '--database'  => 'tenant',
             '--force' =>true,
-            '--path'  =>'/database/migrations/tenant',
+            '--path'  => '/database/migrations/tenant',
         ]);
 
         if($command === 0){
-            Artisan::call('db:seed',[
-                '--class'  =>'DatabaseTenantSeeder',
+            $this->call('db:seed',[
+                '--database'  => 'tenant',
+                '--class'  => 'DatabaseTenantSeeder',
                 '--force'  => true
             ]);
 

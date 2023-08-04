@@ -1,20 +1,30 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
-use App\Models\Pessoa;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
-$factory->state(Pessoa::class,'PJ', function (Faker $faker) {
-    return [
-        'ind_pessoa'=>'PJ',
-        'nom_nome' => $faker->company.$faker->companySuffix,
-        'nom_apelido' => $faker->company,
-        'nom_ocupacao' => $faker->jobTitle,
-        'cod_cpf_cnpj' => $faker->cnpj(false),
-        'cod_ie' => $faker->isbn10,
-        'nom_re' => $faker->name,
-        'cod_rg' => "",
-        'ind_sexo'  => "",
-    ];
-});
+
+class PessoaJuridicaFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'ind_pessoa' => 'PJ',
+            'nom_nome' => $this->faker->company.$this->faker->companySuffix,
+            'nom_apelido' => $this->faker->company,
+            'nom_ocupacao' => $this->faker->jobTitle,
+            'cod_cpf_cnpj' => $this->faker->cnpj(false),
+            'cod_ie' => $this->faker->isbn10,
+            'nom_re' => $this->faker->name,
+            'cod_rg' => "",
+            'ind_sexo'  => "",
+        ];
+    }
+}

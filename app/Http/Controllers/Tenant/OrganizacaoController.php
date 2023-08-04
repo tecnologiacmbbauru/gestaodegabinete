@@ -28,13 +28,13 @@ class OrganizacaoController extends Controller
         $organizacoes = Organizacao::all();
         $acao  = $request->all();
         if($acao == null){
-            return view('Tenants/form_organizacoes',compact('organizacoes')); 
+            return view('Tenants/form_organizacoes',compact('organizacoes'));
         }else{
             if($acao['cadastro']==null){
-                return view('Tenants/cad_organizacao'); 
+                return view('Tenants/cad_organizacao');
             }
         }
-        
+
     }
 
 
@@ -52,10 +52,8 @@ class OrganizacaoController extends Controller
         $dataform['domain'] = $dataform['bd_database'];
         $dataform['bd_password'] = Crypt::encryptString($dataform['bd_password']);
 
-        
-
         try{
-            if(isset($dataform['alterar-db'])===false){
+            if(isset($dataform['alterar-db']) === false){
                 $dataform['bd_password'] = env('DB_PASSWORD');
                 $dataform['bd_password'] = Crypt::encryptString($dataform['bd_password']);
             }
@@ -72,10 +70,11 @@ class OrganizacaoController extends Controller
                         ->with('error', 'Falha ao criar base dedados. Verifique se a base de dados já existe.');
                 }
             }
-            
+
             return redirect()
                         ->route('organizacao.show',$organizacao->id)
                         ->with('success', 'Cadastro de gabinete realizado com sucesso.');
+
         } catch (\Exception $e) {
             if($e->getCode()=="23000"){
                 return redirect()
@@ -101,9 +100,9 @@ class OrganizacaoController extends Controller
     public function show($id)
     {
         $organizacao = Organizacao::find($id);
-        
+
         $usuarios = User::where('domain',$organizacao->domain)->get();
-        
+
         return view('Tenants/detalhes_organizacao',compact('organizacao','usuarios'));
     }
 
@@ -120,7 +119,7 @@ class OrganizacaoController extends Controller
         $organizacao = Organizacao::findOrFail($id);
         $dataform = $request->all();
         $dataform['bd_password'] = Crypt::encryptString($dataform['bd_password']);
-        
+
         try{
             $organizacao->update($dataform);
             return redirect()
@@ -141,16 +140,16 @@ class OrganizacaoController extends Controller
         if($request->delete_bd == "on"){ //Verifica se é para deletar a base de dados
             try {
                 event(new DatabaseDeleted($organizacao));
-            } catch (\Exception $e){ 
+            } catch (\Exception $e){
                 if($e->getCode()=="HY000"){
                     return redirect()
                     ->route('organizacao.index')
-                    ->with('error', 'Não foi possivel excluir a database relacionada ao Gabinete '.$organizacao->name .' possivelmente a database' . $organizacao->bd_database .' não exista.'); 
+                    ->with('error', 'Não foi possivel excluir a database relacionada ao Gabinete '.$organizacao->name .' possivelmente a database' . $organizacao->bd_database .' não exista.');
                 }else{
                     return redirect()
                         ->route('organizacao.index')
-                        ->with('error', 'Não foi possivel excluir a database relacionada ao Gabinete '.$organizacao->name); 
-                }     
+                        ->with('error', 'Não foi possivel excluir a database relacionada ao Gabinete '.$organizacao->name);
+                }
             }
             User::where('domain',$organizacao->doamin)->delete();
         }
@@ -161,15 +160,15 @@ class OrganizacaoController extends Controller
             User::where('domain',$organizacao->domain)->delete();
 
             $organizacao->delete();
-            
+
             return redirect()
                 ->route('organizacao.index')
                 ->with('success', 'Gabinete excluido com sucesso!');
-            } catch (\Exception $e){ 
+            } catch (\Exception $e){
                 return redirect()
                     ->route('organizacao.index')
-                    ->with('error', 'Gabinete não pode ser excluido.'); 
-            }   
+                    ->with('error', 'Gabinete não pode ser excluido.');
+            }
         }
 
 }

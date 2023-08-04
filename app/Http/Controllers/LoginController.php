@@ -19,8 +19,7 @@ class LoginController extends Controller
      * @return Response
      */
     public function authenticate(Request $request, ManagerTenant $manager)
-    {   
-        
+    {
         $credentials = $request->only('user_name', 'password');
         if (Auth::attempt($credentials)) {
             // Authentication passed...
@@ -39,7 +38,7 @@ class LoginController extends Controller
                 return redirect()->route('login')->withErrors([
                     'password' => 'A senha não confere com o usuário cadastrado.',
                 ]);
-            }   
+            }
         }
     }
 

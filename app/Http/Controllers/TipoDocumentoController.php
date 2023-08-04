@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tipoDocumento;
+use App\Models\TipoDocumento;
 use Illuminate\Http\Request;
 
 class TipoDocumentoController extends Controller
@@ -11,7 +11,7 @@ class TipoDocumentoController extends Controller
     private $tipoDocumento;
 
 
-    public function __construct(tipoDocumento $tipoDoc){
+    public function __construct(TipoDocumento $tipoDoc){
         $this->middleware('auth');
         $this->tipoDoc = $tipoDoc;
     }
@@ -24,7 +24,7 @@ class TipoDocumentoController extends Controller
     public function index()
     {
         $alteracao=false;
-        $tipoDocumento = $this->tipoDoc->paginate(20); 
+        $tipoDocumento = $this->tipoDoc->paginate(20);
         $tipoDocumento->withPath(config('app.url')."/tipoDocumento");
 
         return view('form_tipoDoc',compact('alteracao','tipoDocumento'));
@@ -48,16 +48,16 @@ class TipoDocumentoController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         $dataform = $request->all();
-        
+
 
         if($dataform['ind_tip_doc'] == NULL){
             $dataform['ind_tip_doc'] == 'A';
         }
-      
+
         $insert = $this->tipoDoc->create($dataform);
-        
+
         // Verifica se inseriu com sucesso
         // Redireciona para a listagem das categorias
         // Passa uma session flash success (sessão temporária)
@@ -65,7 +65,7 @@ class TipoDocumentoController extends Controller
             return redirect()
                         ->route('tipoDocumento.index')
                         ->with('success', 'Tipo de Documento inserido com sucesso!');
-    
+
         // Redireciona de volta com uma mensagem de erro
         return redirect()
                     ->back()
@@ -78,7 +78,7 @@ class TipoDocumentoController extends Controller
      * @param  \App\tipoDocumento  $tipoDocumento
      * @return \Illuminate\Http\Response
      */
-    public function show(tipoDocumento $tipoDocumento)
+    public function show(TipoDocumento $tipoDocumento)
     {
         //
     }
@@ -131,7 +131,7 @@ class TipoDocumentoController extends Controller
             return redirect()
                     ->route('tipoDocumento.index')
                     ->with('success', 'Tipo de Documento excluído com sucesso!');
-        } catch (\Exception $e){ 
+        } catch (\Exception $e){
             if($e->getCode()=="23000"){
                 return redirect()
                     ->route('tipoDocumento.index')
@@ -140,7 +140,7 @@ class TipoDocumentoController extends Controller
                 return redirect()
                     ->route('tipoDocumento.index')
                     ->with('error', 'Tipo do Documento não pode ser excluído.');
-            }    
+            }
         }
     }
 }

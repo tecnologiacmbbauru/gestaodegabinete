@@ -41,7 +41,7 @@
         <div class="form-group col-md-2" style="padding-left:2%;">
             <label class="col-form-label negrito" for="nom_complemento">Webcam</label>
             <br>
-            <button type="button" data-toggle="modal" data-target="#modalWebcam" class="btn-webcam" onclick=""><img src="{{asset('Utils/webcam.png')}}" alt="Tirar foto com webcam" title="Tirar foto com webcam"></button>
+            <button type="button" data-toggle="modal" data-target="#modalWebcam" class="btn-webcam" onclick=""><img src="{{asset('utils/webcam.png')}}" alt="Tirar foto com webcam" title="Tirar foto com webcam"></button>
             <input hidden id="foto_webcam" name="foto_webcam" value="">
         </div>
     </div>

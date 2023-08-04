@@ -26,7 +26,7 @@ Solucao 2 =- Falha
 import Popper from 'node_modules/popper.js/dist/umd/popper.js';
 try {
     window.$ = window.jQuery = require('jquery');
-    
+
     // new line #2 and #3
     window.Popper = Popper;
     require('bootstrap');
@@ -56,5 +56,5 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     broadcaster: 'pusher',
 //     key: process.env.MIX_PUSHER_APP_KEY,
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
+//     forceTLS: true
 // });

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cargoPolitico;
+use App\Models\CargoPolitico;
 use Illuminate\Http\Request;
 
 class CargoPoliticoController extends Controller
 {
-    
+
     private $cargoPolitico;
 
-    public function __construct(cargoPolitico $cargoPolit){
+    public function __construct(CargoPolitico $cargoPolit){
         $this->middleware('auth'); //verificar se o usuario esta logado
         $this->cargoPolit = $cargoPolit;
     }
@@ -53,9 +53,9 @@ class CargoPoliticoController extends Controller
         if($dataform['ind_car_pol'] == NULL){
             $dataform['ind_car_pol'] == 'A';
         }
-      
+
         $insert = $this->cargoPolit->create($dataform);
-        
+
         // Verifica se inseriu com sucesso
         // Redireciona para a listagem das categorias
         // Passa uma session flash success (sessão temporária)
@@ -63,7 +63,7 @@ class CargoPoliticoController extends Controller
             return redirect()
                         ->route('cargoPolitico.index')
                         ->with('success', 'Cargo Político inserido com sucesso!');
-    
+
         // Redireciona de volta com uma mensagem de erro
         return redirect()
                     ->back()
@@ -76,7 +76,7 @@ class CargoPoliticoController extends Controller
      * @param  \App\cargoPolitico  $cargoPolitico
      * @return \Illuminate\Http\Response
      */
-    public function show(cargoPolitico $cargoPolitico)
+    public function show(CargoPolitico $cargoPolitico)
     {
         //
     }
@@ -106,15 +106,15 @@ class CargoPoliticoController extends Controller
      */
     public function update( $id , Request $request)
     {
-        $cargoPolit = cargoPolitico::findOrFail($id);
-        
+        $cargoPolit = CargoPolitico::findOrFail($id);
+
         $cargoPolit->update($request->all());
        // dd($request->all());
 
         return redirect()
                     ->route('cargoPolitico.index')
                     ->with('success', 'Cargo Político alterado com sucesso!');
-    } 
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -124,13 +124,13 @@ class CargoPoliticoController extends Controller
      */
     public function destroy(Request $request)
     {
-        $cargoPolit = cargoPolitico::findOrFail($request->id_exclusao);
+        $cargoPolit = CargoPolitico::findOrFail($request->id_exclusao);
         try {
             $cargoPolit->delete();
             return redirect()
                         ->route('cargoPolitico.index')
                         ->with('success', 'Cargo Político excluído com sucesso!');
-        } catch (\Exception $e){ 
+        } catch (\Exception $e){
             if($e->getCode()=="23000"){
                 return redirect()
                     ->route('cargoPolitico.index')
@@ -138,8 +138,8 @@ class CargoPoliticoController extends Controller
             }else{
                 return redirect()
                     ->route('cargoPolitico.index')
-                    ->with('error', 'Cargo Político não pode ser excluído.'); 
-            }    
+                    ->with('error', 'Cargo Político não pode ser excluído.');
+            }
         }
      }
 }

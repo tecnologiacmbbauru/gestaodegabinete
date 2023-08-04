@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        Paginator::useBootstrap();
 
 		if(config('app.env') === 'production') { //se o aplicativo tiver em produção
             URL::forceRootUrl(Config::get('app.url')); //Força o caminho definido no arquivo .env campo APP_URL
