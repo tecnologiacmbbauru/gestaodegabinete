@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGabAtendimentoTable extends Migration {
-	
+return new class extends Migration {
+
 	public function up()
 	{
 		Schema::create('gab_atendimento', function(Blueprint $table)
@@ -31,4 +31,4 @@ class CreateGabAtendimentoTable extends Migration {
 		Schema::drop('gab_atendimento');
 	}
 
-}
+};
