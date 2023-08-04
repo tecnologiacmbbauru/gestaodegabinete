@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class sobreController extends Controller
+class SobreController extends Controller
 {
     public function index()
     {
