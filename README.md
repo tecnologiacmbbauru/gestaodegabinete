@@ -140,7 +140,30 @@ Sobre a parte técnica, consulte o [Manual do Administrador.](https://github.com
 # Contato
 Para dúvidas, sugestões e/ou esclarecimentos, entre em **contato** com o Serviço Tecnológico em Informática da Câmara Municipal de Bauru/SP.
 
-
 >**Email**: tecnologia@bauru.sp.leg.br  
 >**Portal Legislativo**: https://www.bauru.sp.leg.br
 
+## 🤝 Colaboradores
+
+Agradecemos às seguintes pessoas que contribuíram para este projeto:
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/tschope) target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/847603?v=4" width="100px;" alt="Foto de Rodrigo Tschope"/><br>
+        <sub>
+          <b>Rodrigo Tschope</b>
+        </sub>
+      </a>
+    </td>
+     <td align="center">
+      <a href="https://github.com/MartinsPaulo" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/19333554?s=400&u=784c8f8a74c8760492239c5cb02111f344af3973&v=4" width="100px;" alt="Foto do Paulo Martins"/><br>
+        <sub>
+          <b>Paulo Martins</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
